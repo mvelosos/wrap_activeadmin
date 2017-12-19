@@ -1,0 +1,11 @@
+# Ignore local configs
+.DS_Store
+.bundle/
+log/*.log
+pkg/
+
+# Ignore Test Files
+test/dummy/db/*.sqlite3
+test/dummy/db/*.sqlite3-journal
+test/dummy/log/*.log
+test/dummy/tmp/
