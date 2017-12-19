@@ -1,5 +1,8 @@
-require "cb_stem/engine"
+require 'cb_stem/engine'
 
+# Engine
 module CbStem
-  # Your code goes here...
+
+  autoload :VERSION, 'cb_stem/version'
+
 end
