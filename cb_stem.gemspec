@@ -23,15 +23,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails', '~> 5.0.5'
   s.add_dependency 'select2-rails'
-  s.add_dependency 'sprockets', '>= 3.0', '< 4.1'
-  s.add_dependency 'sprockets-es6', '>= 0.9.2'
 
-  s.add_development_dependency 'devise', '~> 4.2.0'
+  s.add_development_dependency 'devise'
   s.add_development_dependency 'pg',     '~> 0.15'
   s.add_development_dependency 'thin'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'interactive_editor'
   s.add_development_dependency 'letter_opener'
-  s.add_development_dependency 'awesome_print'
-  s.add_development_dependency 'quiet_assets'
 end
