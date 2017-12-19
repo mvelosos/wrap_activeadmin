@@ -22,7 +22,18 @@ $ gem install cb_stem
 ```
 
 ## Contributing
-Contribution directions go here.
+Clone this gem.
+
+```
+$ bundle install
+$ bundle install --gemfile=.overcommit_gems.rb
+$ chmod +x bin/setup_overcommit
+$ overcommit --install
+```
+
+Create a dummy rails app and add this to your Gemfile.
+```ruby
+gem 'cb_stem', path: '{PATH_TO_GEM}/cb_stem'
+```
 
 ## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
