@@ -1,0 +1,75 @@
+ActiveAdmin.register <%= class_name %> do
+  decorate_with Admin::<%= class_name %>Decorator
+
+  permit_params :title, :body, :slug, :featured, :published_date,
+                :published, :image, :<%= class_name.underscore %>_category_id, :tag_list,
+                <%= class_name.underscore %>_category_attributes: %i[title],
+                seo_meta_config_attributes: %i[seo_title seo_description]
+
+  actions :all, except: %i[show]
+
+  # INDEX
+  filter :title
+  filter :seo_meta_config,
+         as: :select,
+         multiple: true,
+         include_blank: true,
+         collection: proc { SeoMetaConfig.all.map { |x| [x.seo_title, x.id] } }
+  filter :<%= class_name.underscore %>_category
+  filter :tags,
+         as: :select,
+         multiple: true,
+         include_blank: true,
+         collection: proc { <%= class_name %>.tag_counts.map { |x| [x.name, x.id] } }
+  filter :published
+  filter :published_date
+  filter :tag_list
+
+  index do
+    selectable_column
+    column 'Page Title', :title_with_link, sortable: 'title'
+    column 'Status' do |<%= class_name.underscore %>|
+      <%= class_name.underscore %>.published ? 'Published' : 'Scheduled'
+    end
+    column 'SEO Tags' do |<%= class_name.underscore %>|
+      <%= class_name.underscore %>.seo_meta_config ? 'Customized' : 'Default'
+    end
+    column 'Last Update', :updated_at
+    column :<%= class_name.underscore %>_category
+    actions
+  end
+
+  # FORM
+  form do |f|
+    columns do
+      column span: 2 do
+        f.inputs 'Basics' do
+          f.input :slug
+          f.input :title, label: 'Page Title'
+          f.input :body, label: 'Page Description'
+          f.input :image, label: 'Feature Image'
+          f.input :tag_list, label: 'Tags'
+          f.input :<%= class_name.underscore %>_category
+          f.input :published
+        end
+        f.inputs 'New Category', for: [:<%= class_name.underscore %>_category, <%= class_name %>Category.new] do |u|
+          u.input :title
+        end
+
+        f.inputs 'SEO Tag',
+                 for: [:seo_meta_config, <%= class_name.underscore %>.seo_meta_config || SeoMetaConfig.new] do |u|
+          u.input :seo_title, label: 'SEO tags title'
+          u.input :seo_description, label: 'SEO tags description'
+        end
+      end
+
+      column do
+        f.inputs 'Publish Time' do
+          f.input :published_date, label: 'Publish in the future'
+        end
+      end
+    end
+
+    actions
+  end
+end

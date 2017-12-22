@@ -23,6 +23,11 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails', '~> 5.0.5'
   s.add_dependency 'select2-rails'
+  s.add_dependency 'friendly_id', '~> 5.1.0'
+  s.add_dependency 'carrierwave', '~> 1.0'
+  s.add_dependency 'acts-as-taggable-on', '~> 4.0'
+  s.add_dependency 'acts_as_list', '~> 0.9.10'
+
 
   s.add_development_dependency 'devise'
   s.add_development_dependency 'pg',     '~> 0.15'
