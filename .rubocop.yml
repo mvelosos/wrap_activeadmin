@@ -58,7 +58,7 @@ Layout/DotPosition:
   EnforcedStyle: trailing
 
 Style/OptionHash:
-  Enabled: true
+  Enabled: false
 Style/FileName:
   Exclude:
     - 'Gemfile'
