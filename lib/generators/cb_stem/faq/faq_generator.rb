@@ -18,8 +18,10 @@ module CbStem
       end
 
       def generate_decorators
-        template 'decorators/admin/faq_decorator.rb.erb',
+        template 'decorators/faq_decorator.rb.erb',
                  "app/decorators/#{name.underscore}_decorator.rb"
+        template 'decorators/admin/faq_decorator.rb.erb',
+                 "app/decorators/admin/#{name.underscore}_decorator.rb"
       end
 
       def generate_models

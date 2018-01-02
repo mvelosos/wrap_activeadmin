@@ -10,7 +10,7 @@ ActiveAdmin.register <%= class_name %> do
 
   # INDEX
   filter :question
-  filter :blog_category
+  filter :<%= class_name.underscore %>_category
   filter :position
   filter :updated_at
 
