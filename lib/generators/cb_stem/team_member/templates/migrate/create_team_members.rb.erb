@@ -1,0 +1,22 @@
+class Create<%= class_name.pluralize %> < ActiveRecord::Migration[5.0]
+  def change
+    create_table :<%= class_name.underscore.pluralize %> do |t|
+      t.string :first_name
+      t.string :last_name
+      t.text :bio
+      t.string :job_position
+      t.string :email
+      t.string :office_phone
+      t.string :cell_phone
+      t.string :prefix
+      t.string :suffix
+      t.integer :position
+      t.references :<%= class_name.underscore %>_category, foreign_key: true
+      t.string :avatar
+      t.string :slug
+
+      t.timestamps
+    end
+    add_index :<%= class_name.underscore.pluralize %>, :slug, unique: true
+  end
+end

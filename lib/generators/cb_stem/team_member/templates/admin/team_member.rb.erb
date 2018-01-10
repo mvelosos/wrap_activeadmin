@@ -1,0 +1,68 @@
+ActiveAdmin.register <%= class_name %> do
+  decorate_with Admin::<%= class_name %>Decorator
+
+  config.sort_order = 'position_asc'
+
+  permit_params :first_name, :last_name, :bio, :job_position, :email,
+                :office_phone, :cell_phone, :prefix, :suffix, :position,
+                :<%= class_name.underscore %>_category_id, :avatar, :slug
+
+  actions :all, except: %i[show]
+
+  # Controller
+  controller do
+    defaults finder: :find_by_slug
+  end
+
+  # INDEX
+  config.filters = false
+
+  index do
+    selectable_column
+    column 'Order', :position
+    column 'Name', :full_name
+    column :job_position
+    column 'Category', :<%= class_name.underscore %>_category
+    column 'Last Update', :updated_at
+    actions
+  end
+
+  # FORM
+  form do |f|
+    columns do
+      column span: 2 do
+        panel 'Personal Information' do
+          columns do
+            column do
+              f.inputs style: 'box-shadow: none' do
+                f.input :avatar, label: 'Add Photo'
+                f.input :first_name, label: 'First Name'
+                f.input :last_name, label: 'Last Name'
+                f.input :job_position, label: 'Job Position'
+              end
+            end
+            column do
+              f.inputs style: 'box-shadow: none' do
+                f.input :email
+                f.input :office_phone, label: 'Phone (Office)'
+                f.input :cell_phone, label: 'Mobile'
+                f.input :prefix
+                f.input :suffix
+              end
+            end
+          end
+          f.inputs style: 'box-shadow: none' do
+            f.input :bio
+          end
+        end
+      end
+      column do
+        f.inputs 'Page' do
+          f.input :position, label: 'Page Order'
+          f.input :<%= class_name.underscore %>_category, label: 'Select From Category'
+        end
+      end
+    end
+    actions
+  end
+end
