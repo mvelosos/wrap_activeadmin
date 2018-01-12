@@ -1,0 +1,5 @@
+class <%= class_name %>Category < ApplicationRecord
+
+  has_many :<%= class_name.underscore.pluralize %>, dependent: :destroy
+
+end

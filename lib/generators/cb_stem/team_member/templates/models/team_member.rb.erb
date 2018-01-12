@@ -1,0 +1,35 @@
+class <%= class_name %> < ApplicationRecord
+
+  mount_uploader :avatar, AvatarUploader
+
+  extend FriendlyId
+  include Sluggable
+
+  friendly_id :slug_candidates, use: %i[slugged finders]
+
+  acts_as_list
+
+  belongs_to :<%= class_name.underscore %>_category
+
+  validates :first_name, :last_name, :email,
+            presence: true
+
+  def full_name
+    [first_name, last_name].reject(&:blank?).join(' ')
+  end
+
+  private
+
+  def slug_candidates
+    [
+      :full_name,
+      %i[full_name slug_sequence]
+    ]
+  end
+
+  def slug_sequence
+    slug = normalize_friendly_id(full_name)
+    self.class.where(['slug LIKE ?', "%#{slug}%"]).count + 1
+  end
+
+end
