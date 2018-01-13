@@ -2,7 +2,16 @@ module ActiveAdmin
 
   module Views
 
+    # Overwriting TabbedNavigation - activeadmin/lib/active_admin/views/tabbed_navigation.rb
     class TabbedNavigation < Component
+
+      CURRENT_ITEM_CLASS  = 'active'.freeze
+      DROPDOWN_ITEM_CLASS = 'dropdown'.freeze
+      DROPDOWN_MENU_CLASS = 'dropdown-menu'.freeze
+      DROPDOWN_ANCHOR_OPTS = {
+        class: 'dropdown-toggle',
+        'data-toggle': 'dropdown'
+      }.freeze
 
       attr_reader :menu
 
@@ -14,59 +23,43 @@ module ActiveAdmin
 
       private
 
-      # def build_menu_item(item)
-      #   li id: item.id do |li|
-      #     li.add_class 'current' if item.current? assigns[:current_tab]
-      #     build_item(item)
-      #     # build_link(item, children)
-      #     # build_nested_menu(li, children)
-      #   end
-      # end
-      #
-      # def build_item(item)
-      #   children = item.items(self).presence
-      #   if url = item.url(self)
-      #     build_link(item, children)
-      #   else
-      #     span item.label(self), item.html_options
-      #   end
-      #   return if children.blank?
-      #   puts 'children'
-      # end
-      #
-      # # def build_nested_menu(li, children)
-      # #   return if children.blank?
-      # #   li.add_class 'dropdown'
-      # #   ul class: 'dropdown-menu' do
-      # #     children.each { |child| build_menu_item child }
-      # #   end
-      # # end
-      #
-      # def build_link(item, _children)
-      #   opts = item.html_options.merge(class: 'dropdown-toggle', data: { toggle: 'dropdown' })
-      #   link_to safe_join[item.label(self), caret], item.url(self), opts
-      # end
-      # #
-      # # def dropdown_toggle(item)
-      # #   opts = item.html_options.merge(class: 'dropdown-toggle', data: { toggle: 'dropdown' })
-      # #   text_node link_to item.label(self), item.url(self), opts
-      # # end
-      # #
-      # # def menu_link(item)
-      # #   text_node link_to item.label(self), item.url(self), item.html_options
-      # # end
-      # #
-      # # def link_item(item, children)
-      # #   children.present? ? dropdown_toggle(item) : menu_link(item)
-      # # end
-      # #
-      # # def text_item(item)
-      # #   text_node span(item.label(self), item.html_options)
-      # # end
-      #
-      # def caret
-      #   span class: 'caret'
-      # end
+      def build_menu
+        menu_items.each do |item|
+          build_menu_item(item)
+        end
+      end
+
+      def build_menu_item(item)
+        li id: item.id do |li|
+          add_current(li, item)
+          children = item.items(self).presence
+          build_link(item, children)
+          next if children.blank?
+          li.add_class DROPDOWN_ITEM_CLASS
+          ul(class: DROPDOWN_MENU_CLASS) { build_children(children) }
+        end
+      end
+
+      def build_link(item, children)
+        children && dropdown_options(item)
+        a item.html_options.merge(href: item.url(self)) do
+          text_node(item.label(self))
+          span('', class: 'caret') if children
+        end
+      end
+
+      def build_children(children)
+        children.each { |child| build_menu_item child }
+      end
+
+      def dropdown_options(item)
+        item.html_options.merge!(DROPDOWN_ANCHOR_OPTS)
+      end
+
+      def add_current(li, item)
+        return unless item.current? assigns[:current_tab]
+        li.add_class CURRENT_ITEM_CLASS
+      end
 
     end
 
