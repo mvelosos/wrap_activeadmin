@@ -14,6 +14,7 @@ module CbStem
     end
 
     initializer 'view overrides' do |_app|
+      require_formtastic
       require_resources
       require_components
       require_inputs
@@ -26,13 +27,23 @@ module CbStem
 
     def require_others
       require_each(
-        %w[view_factory]
+        %w[view_factory form_builder]
+      )
+    end
+
+    def require_formtastic
+      require_each(
+        %w[base/wrapping base/html base/labelling actions/base],
+        path: 'formtastic'
       )
     end
 
     def require_components
       require_each(
-        %w[site_title table_for dropdown_menu panel attributes_table],
+        %w[
+          site_title table_for dropdown_menu panel attributes_table
+          active_admin_form blank_slate columns
+        ],
         path: 'views/components'
       )
     end
@@ -60,7 +71,7 @@ module CbStem
 
     def require_inputs
       require_each(
-        %w[base/search_method_select base date_range_input forms],
+        %w[base/search_method_select date_range_input forms],
         path: 'inputs/filters'
       )
     end

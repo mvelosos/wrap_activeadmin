@@ -5,6 +5,10 @@ module ActiveAdmin
     # This module is included into the view
     module ViewHelper
 
+      WRAPPER_CLASS     = 'form-group'.freeze
+      PRIMARY_BTN_CLASS = 'btn btn-primary'.freeze
+      BTN_CLASS         = 'btn btn-default clear_filters_btn'.freeze
+
       # rubocop:disable Metrics/AbcSize
       def active_admin_filters_form_for(search, filters, options = {})
         options = defaults.deep_merge(options).deep_merge(required)
@@ -39,24 +43,32 @@ module ActiveAdmin
       end
 
       def buttons(f)
-        content_tag :div, class: 'buttons form-group text-right' do
-          cancel_button +
-            submit_button(f) +
-            hidden_field_tags_for(params, except: except_hidden_fields)
+        content_tag :div, class: "buttons #{WRAPPER_CLASS}" do
+          content_tag :ul, class: 'list-inline' do
+            wrap_button { cancel_button } +
+              wrap_button { submit_button(f) } +
+              hidden_field_tags_for(params, except: except_hidden_fields)
+          end
+        end
+      end
+
+      def wrap_button
+        content_tag :li do
+          yield
         end
       end
 
       def submit_button(f)
         f.submit(
           I18n.t('active_admin.filters.buttons.filter'),
-          class: 'btn btn-primary'
+          class: PRIMARY_BTN_CLASS
         )
       end
 
       def cancel_button
         link_to(
           I18n.t('active_admin.filters.buttons.clear'), '#',
-          class: 'btn btn-default clear_filters_btn'
+          class: BTN_CLASS
         )
       end
 

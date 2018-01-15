@@ -30,7 +30,7 @@ module ActiveAdmin
       def build_breadcrumb
         return unless links.present? && links.is_a?(::Array)
         ul class: 'breadcrumb' do
-          links.each { |link| li(text_node(link)) }
+          links[1..-1].each { |link| li(text_node(link)) }
           li @title, class: 'active'
         end
       end
