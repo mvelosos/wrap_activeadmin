@@ -5,6 +5,27 @@ module ActiveAdmin
     # Overwriting IndexAsTable - activeadmin/lib/active_admin/views/index_as_table.rb
     class IndexAsTable < ActiveAdmin::Component
 
+      WRAPPER_CLASS = 'table-responsive'.freeze
+      TABLE_CLASS   = 'index_table index'.freeze
+
+      # rubocop:disable Metrics/MethodLength
+      def build(page_presenter, collection)
+        super(class: 'table-responsive')
+        table_options = {
+          id: "index_table_#{active_admin_config.resource_name.plural}",
+          sortable: true,
+          class: TABLE_CLASS,
+          i18n: active_admin_config.resource_class,
+          paginator: page_presenter[:paginator] != false,
+          row_class: page_presenter[:row_class]
+        }
+
+        table_for collection, table_options do |t|
+          table_config_block = page_presenter.block || default_table
+          instance_exec(t, &table_config_block)
+        end
+      end
+
       # Register IndexTableFor
       class IndexTableFor < ::ActiveAdmin::Views::TableFor
 

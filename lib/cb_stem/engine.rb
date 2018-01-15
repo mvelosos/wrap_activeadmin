@@ -16,6 +16,7 @@ module CbStem
     initializer 'view overrides' do |_app|
       require_resources
       require_components
+      require_inputs
       require_views
       require_pages
       require_others
@@ -31,7 +32,7 @@ module CbStem
 
     def require_components
       require_each(
-        %w[site_title table_for dropdown_menu],
+        %w[site_title table_for dropdown_menu panel attributes_table],
         path: 'views/components'
       )
     end
@@ -54,6 +55,13 @@ module CbStem
       require_each(
         %w[base],
         path: 'views/pages'
+      )
+    end
+
+    def require_inputs
+      require_each(
+        %w[base/search_method_select base date_range_input forms],
+        path: 'inputs/filters'
       )
     end
 

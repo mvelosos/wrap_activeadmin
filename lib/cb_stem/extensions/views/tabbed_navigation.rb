@@ -5,9 +5,9 @@ module ActiveAdmin
     # Overwriting TabbedNavigation - activeadmin/lib/active_admin/views/tabbed_navigation.rb
     class TabbedNavigation < Component
 
-      CURRENT_ITEM_CLASS  = 'active'.freeze
-      DROPDOWN_ITEM_CLASS = 'dropdown'.freeze
-      DROPDOWN_MENU_CLASS = 'dropdown-menu'.freeze
+      CURRENT_ITEM_CLASS     = 'active'.freeze
+      DROPDOWN_WRAPPER_CLASS = 'dropdown'.freeze
+      DROPDOWN_MENU_CLASS    = 'dropdown-menu'.freeze
       DROPDOWN_ANCHOR_OPTS = {
         class: 'dropdown-toggle',
         'data-toggle': 'dropdown'
@@ -35,7 +35,7 @@ module ActiveAdmin
           children = item.items(self).presence
           build_link(item, children)
           next if children.blank?
-          li.add_class DROPDOWN_ITEM_CLASS
+          li.add_class DROPDOWN_WRAPPER_CLASS
           ul(class: DROPDOWN_MENU_CLASS) { build_children(children) }
         end
       end

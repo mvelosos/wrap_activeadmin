@@ -5,6 +5,10 @@ module ActiveAdmin
     # Overwriting DropdownMenu - activeadmin/lib/active_admin/views/components/dropdown_menu.rb
     class DropdownMenu < ActiveAdmin::Component
 
+      WRAPPER_CLASS = 'dropdown'.freeze
+      TOGGLE_CLASS  = 'btn btn-default btn-sm dropdown-toggle'.freeze
+      MENU_CLASS    = 'dropdown-menu'.freeze
+
       def build(name, options = {})
         options = options.dup
 
@@ -15,14 +19,14 @@ module ActiveAdmin
         @button = build_button(name, button_options)
         @menu = build_menu(menu_options)
 
-        super(options.merge(class: 'dropdown'))
+        super(options.merge(class: WRAPPER_CLASS))
       end
 
       private
 
       def build_button(name, button_options)
         button_options[:class] ||= ''
-        button_options[:class] << ' btn btn-default btn-sm dropdown-toggle'
+        button_options[:class] << " #{TOGGLE_CLASS}"
         button_options['data-toggle'] = 'dropdown'
 
         button_options[:href] = '#'
@@ -35,7 +39,7 @@ module ActiveAdmin
 
       def build_menu(options)
         options[:class] ||= ''
-        options[:class] << ' dropdown-menu'
+        options[:class] << " #{MENU_CLASS}"
 
         menu_list = ul(options)
         menu_list
