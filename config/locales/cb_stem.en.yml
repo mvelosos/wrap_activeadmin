@@ -1,0 +1,4 @@
+en:
+  cb_stem:
+    powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
+    owner: "Clever Banana Studios Inc"

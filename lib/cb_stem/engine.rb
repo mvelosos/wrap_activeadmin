@@ -57,7 +57,7 @@ module CbStem
 
     def require_views
       require_each(
-        %w[action_items header tabbed_navigation title_bar index_as_table],
+        %w[action_items header tabbed_navigation title_bar index_as_table footer],
         path: 'views'
       )
     end

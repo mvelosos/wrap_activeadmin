@@ -12,6 +12,10 @@ module ActiveAdmin
       MAIN_NAV_CLASS = 'nav navbar-nav navbar-left'.freeze
       ULT_NAV_ID     = 'utility-nav'.freeze
       ULT_NAV_CLASS  = 'nav navbar-nav navbar-right'.freeze
+      MENU_ID        = 'site-nav'.freeze
+      MENU_CLASS     = 'collapse navbar-collapse'.freeze
+      TITLE_CLASS    = 'navbar-header'.freeze
+      TOGGLE_CLASS   = 'navbar-toggle collapsed'.freeze
 
       def tag_name
         :nav
@@ -25,7 +29,32 @@ module ActiveAdmin
         @utility_menu = @namespace.fetch_menu(:utility_navigation)
 
         div class: WRAPPER_CLASS do
+          build_title
+          build_nav
+        end
+      end
+
+      def build_title
+        div class: TITLE_CLASS do
           build_site_title
+          build_nav_toggle
+        end
+      end
+
+      def build_nav_toggle
+        button(
+          class: TOGGLE_CLASS,
+          'data-toggle': 'collapse',
+          'data-target': "##{MENU_ID}"
+        ) do
+          3.times do
+            span('', class: 'icon-bar')
+          end
+        end
+      end
+
+      def build_nav
+        div id: MENU_ID, class: MENU_CLASS do
           build_global_navigation
           build_utility_navigation
         end
