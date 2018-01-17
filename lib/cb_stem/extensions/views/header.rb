@@ -7,15 +7,15 @@ module ActiveAdmin
 
       HEADER_ID      = 'header'.freeze
       WRAPPER_CLASS  = 'container-fluid'.freeze
-      HEADER_CLASS   = 'navbar navbar-default'.freeze
+      HEADER_CLASS   = 'navbar navbar-light navbar-expand-lg bg-light'.freeze
       MAIN_NAV_ID    = 'main-nav'.freeze
-      MAIN_NAV_CLASS = 'nav navbar-nav navbar-left'.freeze
+      MAIN_NAV_CLASS = 'navbar-nav mr-auto'.freeze
       ULT_NAV_ID     = 'utility-nav'.freeze
-      ULT_NAV_CLASS  = 'nav navbar-nav navbar-right'.freeze
+      ULT_NAV_CLASS  = 'navbar-nav'.freeze
       MENU_ID        = 'site-nav'.freeze
       MENU_CLASS     = 'collapse navbar-collapse'.freeze
-      TITLE_CLASS    = 'navbar-header'.freeze
-      TOGGLE_CLASS   = 'navbar-toggle collapsed'.freeze
+      TOGGLE_CLASS   = 'navbar-toggler'.freeze
+      ICON_CLASS     = 'navbar-toggler-icon'.freeze
 
       def tag_name
         :nav
@@ -35,10 +35,8 @@ module ActiveAdmin
       end
 
       def build_title
-        div class: TITLE_CLASS do
-          build_site_title
-          build_nav_toggle
-        end
+        build_site_title
+        build_nav_toggle
       end
 
       def build_nav_toggle
@@ -47,9 +45,7 @@ module ActiveAdmin
           'data-toggle': 'collapse',
           'data-target': "##{MENU_ID}"
         ) do
-          3.times do
-            span('', class: 'icon-bar')
-          end
+          span('', class: ICON_CLASS)
         end
       end
 

@@ -5,7 +5,7 @@ module ActiveAdmin
     # Overwriting TableFor - activeadmin/lib/active_admin/views/components/table_for.rb
     class TableFor < Arbre::HTML::Table
 
-      WRAPPER_CLASS = ' table'.freeze
+      WRAPPER_CLASS = ' table text-nowrap'.freeze
 
       # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       def build(obj, *attrs)

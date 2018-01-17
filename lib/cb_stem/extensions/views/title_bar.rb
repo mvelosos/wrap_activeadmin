@@ -5,6 +5,9 @@ module ActiveAdmin
     # Overwriting TitleBar - activeadmin/lib/active_admin/views/title_bar.rb
     class TitleBar < Component
 
+      ITEM_CLASS   = 'breadcrumb-item'.freeze
+      ACTIVE_CLASS = 'active'.freeze
+
       def build(title, action_items)
         super(id: 'title_bar')
         @title = title
@@ -30,8 +33,8 @@ module ActiveAdmin
       def build_breadcrumb
         return unless links.present? && links.is_a?(::Array)
         ul class: 'breadcrumb' do
-          links[1..-1].each { |link| li(text_node(link)) }
-          li @title, class: 'active'
+          links[1..-1].each { |link| li(text_node(link), class: ITEM_CLASS) }
+          li @title, class: "#{ACTIVE_CLASS} #{ITEM_CLASS}"
         end
       end
 

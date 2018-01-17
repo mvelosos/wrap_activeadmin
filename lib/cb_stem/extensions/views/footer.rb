@@ -5,18 +5,12 @@ module ActiveAdmin
     # Overwriting Footer - activeadmin/lib/active_admin/views/footer.rb
     class Footer < Component
 
-      WRAPPER_CLASS = 'text-center text-muted'.freeze
+      WRAPPER_CLASS = 'text-center text-muted mt-3'.freeze
 
       def build(namespace)
         super(id: 'footer', class: WRAPPER_CLASS)
         @namespace = namespace
-
-        hr
-        if footer?
-          small footer_text
-        else
-          small powered_by_message
-        end
+        small(footer? ? footer_text : powered_by_message)
       end
 
       private

@@ -7,7 +7,7 @@ module ActiveAdmin
 
       WRAPPER_CLASS     = 'form-group'.freeze
       PRIMARY_BTN_CLASS = 'btn btn-primary'.freeze
-      BTN_CLASS         = 'btn btn-default clear_filters_btn'.freeze
+      BTN_CLASS         = 'btn btn-secondary clear_filters_btn'.freeze
 
       # rubocop:disable Metrics/AbcSize
       def active_admin_filters_form_for(search, filters, options = {})
@@ -53,7 +53,7 @@ module ActiveAdmin
       end
 
       def wrap_button
-        content_tag :li do
+        content_tag :li, class: 'list-inline-item' do
           yield
         end
       end

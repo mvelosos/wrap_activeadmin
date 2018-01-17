@@ -9,7 +9,6 @@ module ActiveAdmin
       DROPDOWN_WRAPPER_CLASS = 'dropdown'.freeze
       DROPDOWN_MENU_CLASS    = 'dropdown-menu'.freeze
       DROPDOWN_ANCHOR_OPTS = {
-        class: 'dropdown-toggle',
         'data-toggle': 'dropdown'
       }.freeze
 
@@ -29,27 +28,31 @@ module ActiveAdmin
         end
       end
 
-      def build_menu_item(item)
+      def build_menu_item(item, child = false)
+        children = item.items(self).presence
+
         li id: item.id do |li|
           add_current(li, item)
-          children = item.items(self).presence
-          build_link(item, children)
+          build_link(item, children, child)
+          li.add_class 'nav-item'
           next if children.blank?
           li.add_class DROPDOWN_WRAPPER_CLASS
           ul(class: DROPDOWN_MENU_CLASS) { build_children(children) }
         end
       end
 
-      def build_link(item, children)
+      def build_link(item, children, child = false)
         children && dropdown_options(item)
-        a item.html_options.merge(href: item.url(self)) do
+        a item.html_options.merge(href: item.url(self)) do |a|
+          a.add_class(child ? 'dropdown-item' : 'nav-link')
           text_node(item.label(self))
-          span('', class: 'caret') if children
+          next unless children
+          a.add_class 'dropdown-toggle'
         end
       end
 
       def build_children(children)
-        children.each { |child| build_menu_item child }
+        children.each { |child| build_menu_item(child, true) }
       end
 
       def dropdown_options(item)

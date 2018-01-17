@@ -1,5 +1,5 @@
 require 'devise'
-require 'bootstrap-sass'
+require 'bootstrap'
 require 'active_admin'
 
 module CbStem

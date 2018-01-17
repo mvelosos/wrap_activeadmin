@@ -19,11 +19,7 @@ module ActiveAdmin
 
       # Calculate our columns sizes and margins
       def calculate_columns!
-        span_count = columns_span_count
-
-        columns.each do |column|
-          column.assign_column_span(span_count)
-        end
+        columns.each(&:assign_column_span)
       end
 
     end
@@ -31,16 +27,20 @@ module ActiveAdmin
     # Overwriting Columns
     class Column < ActiveAdmin::Component
 
-      COLUMN_MAX = 12
+      COL_CLASS = 'col-md'.freeze
 
       def build(options = {})
         options = options.dup
-        @span_size = options.delete(:span) || 1
+        @span_size = options.delete(:span)
         super(options)
       end
 
-      def assign_column_span(column_span)
-        set_attribute :class, "col-md-#{COLUMN_MAX / column_span}"
+      def assign_column_span
+        set_attribute :class, column_klass
+      end
+
+      def column_klass
+        @span_size ? "#{COL_CLASS}-#{@span_size}" : COL_CLASS
       end
 
     end

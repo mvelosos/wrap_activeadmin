@@ -10,6 +10,10 @@ module Formtastic
         options[:button_html].merge(class: 'btn btn-primary')
       end
 
+      def wrapper_html_options_from_options
+        options[:wrapper_html] || { class: 'list-inline-item' }
+      end
+
     end
 
   end

@@ -28,7 +28,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts-as-taggable-on', '~> 4.0'
   s.add_dependency 'acts_as_list', '~> 0.9.10'
   s.add_dependency 'devise'
-  s.add_dependency 'bootstrap-sass', '~> 3.2.0.0'
+  # s.add_dependency 'bootstrap-sass', '~> 3.2.0.0'
+  s.add_dependency 'bootstrap', '~> 4.0.0.beta3'
   s.add_dependency 'font-awesome-sass', '~> 4.5.0'
 
   s.add_development_dependency 'devise'

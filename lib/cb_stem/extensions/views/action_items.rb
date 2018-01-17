@@ -7,6 +7,7 @@ module ActiveAdmin
 
       WRAPPER_ID    = 'action_items'.freeze
       WRAPPER_CLASS = 'btn-group'.freeze
+      ITEM_CLASS    = 'btn btn-secondary'.freeze
 
       def build(action_items)
         super(id: WRAPPER_ID, class: WRAPPER_CLASS)
@@ -19,7 +20,7 @@ module ActiveAdmin
       private
 
       def action_btn(title, url, html_options = {})
-        html_options[:class] = "btn btn-default #{html_options[:class]}"
+        html_options[:class] = "#{ITEM_CLASS} #{html_options[:class]}"
         link_to title, url, html_options
       end
 

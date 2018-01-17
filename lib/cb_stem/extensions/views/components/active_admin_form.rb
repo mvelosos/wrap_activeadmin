@@ -17,14 +17,18 @@ module ActiveAdmin
     # Overwriting SemanticInputsProxy
     class SemanticInputsProxy < FormtasticProxy
 
+      WRAPPER_CLASS = 'card mb-3'.freeze
+      HEADING_CLASS = 'card-header'.freeze
+      BODY_CLASS    = 'card-body'.freeze
+
       def build(_form_builder, *args, &block)
         html_options = args.extract_options!
-        html_options[:class] ||= 'inputs panel panel-default'
+        html_options[:class] ||= "inputs #{WRAPPER_CLASS}"
         legend = args.shift if args.first.is_a?(::String)
         legend = html_options.delete(:name) if html_options.key?(:name)
         legend_tag = legend ? title_tag(legend) : ''
         fieldset_attrs = html_options.map { |k, v| %(#{k}="#{v}") }.join(' ')
-        @opening_tag = "<div #{fieldset_attrs}>#{legend_tag}<div class='panel-body'>"
+        @opening_tag = "<div #{fieldset_attrs}>#{legend_tag}<div class=#{BODY_CLASS}>"
         @closing_tag = '</div></div>'
         super(*(args << html_options), &block)
       end
@@ -32,7 +36,7 @@ module ActiveAdmin
       private
 
       def title_tag(legend)
-        "<div class='panel-heading'><h3 class='panel-title'>#{legend}</h3></div>"
+        "<h5 class=#{HEADING_CLASS}>#{legend}</h5>"
       end
 
     end
