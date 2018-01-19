@@ -64,7 +64,10 @@ rules:
       convention: strictbem
   function-name-format: 1
   id-name-format: 0
-  mixin-name-format: 1
+  mixin-name-format:
+    - 1
+    -
+      convention: camelcase
   placeholder-name-format: 1
   variable-name-format: 1
 

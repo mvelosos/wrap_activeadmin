@@ -33,7 +33,10 @@ module CbStem
 
     def require_formtastic
       require_each(
-        %w[base/wrapping base/html base/labelling actions/base],
+        %w[
+          base/wrapping base/html base/labelling actions/base
+          inputs/boolean_input inputs/switch_input
+        ],
         path: 'formtastic'
       )
     end

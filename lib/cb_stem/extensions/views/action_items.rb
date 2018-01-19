@@ -7,7 +7,7 @@ module ActiveAdmin
 
       WRAPPER_ID    = 'action_items'.freeze
       WRAPPER_CLASS = 'btn-group'.freeze
-      ITEM_CLASS    = 'btn btn-secondary'.freeze
+      ITEM_CLASS    = 'btn btn-light'.freeze
 
       def build(action_items)
         super(id: WRAPPER_ID, class: WRAPPER_CLASS)

@@ -3,7 +3,7 @@ module ActiveAdmin
   # Overwriting FormBuilder - activeadmin/lib/active_admin/form_builder.rb
   class FormBuilder < ::Formtastic::FormBuilder
 
-    CANCEL_CLASS = 'btn btn-secondary'.freeze
+    CANCEL_CLASS = 'btn btn-light'.freeze
 
     def cancel_link(url = { action: 'index' }, html_options = {}, li_attrs = {})
       li_attrs[:class]   ||= 'cancel list-inline-item'

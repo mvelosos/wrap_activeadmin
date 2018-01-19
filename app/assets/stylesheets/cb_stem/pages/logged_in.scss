@@ -1,3 +1,5 @@
 body.logged_in {
   padding-top: $navbar-height;
+
+  @include indexAsTable;
 }

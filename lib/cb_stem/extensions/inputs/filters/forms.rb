@@ -7,7 +7,7 @@ module ActiveAdmin
 
       WRAPPER_CLASS     = 'form-group'.freeze
       PRIMARY_BTN_CLASS = 'btn btn-primary'.freeze
-      BTN_CLASS         = 'btn btn-secondary clear_filters_btn'.freeze
+      BTN_CLASS         = 'btn btn-light clear_filters_btn'.freeze
 
       # rubocop:disable Metrics/AbcSize
       def active_admin_filters_form_for(search, filters, options = {})

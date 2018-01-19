@@ -6,7 +6,7 @@ module ActiveAdmin
     class DropdownMenu < ActiveAdmin::Component
 
       WRAPPER_CLASS = 'dropdown'.freeze
-      TOGGLE_CLASS  = 'btn btn-secondary btn-sm dropdown-toggle'.freeze
+      TOGGLE_CLASS  = 'btn btn-light btn-sm dropdown-toggle'.freeze
       MENU_CLASS    = 'dropdown-menu'.freeze
       ITEM_CLASS    = 'dropdown-item'.freeze
 
@@ -18,9 +18,9 @@ module ActiveAdmin
         menu_options = options.delete(:menu) || {}
 
         @button = build_button(name, button_options)
-        @menu = build_menu(menu_options)
-
-        super(options.merge(class: WRAPPER_CLASS))
+        @menu   = build_menu(menu_options)
+        klass   = [WRAPPER_CLASS, options[:class]].reject(&:blank?).join(' ')
+        super(options.merge(class: klass))
       end
 
       def item(*args)
@@ -33,7 +33,7 @@ module ActiveAdmin
 
       def build_link(*args)
         args.map! do |x|
-          x[:class] += ITEM_CLASS if x.is_a? Hash
+          x[:class] += " #{ITEM_CLASS}" if x.is_a? Hash
           x
         end
         link_to(*args)
