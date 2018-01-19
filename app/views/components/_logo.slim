@@ -1,0 +1,5 @@
+-if ActiveAdmin.application.site_title_image.present?
+  = image_tag ActiveAdmin.application.site_title_image,
+    alt: ActiveAdmin.application.site_title, retina: true,
+    class: 'd-inline-block align-top'
+= ActiveAdmin.application.site_title

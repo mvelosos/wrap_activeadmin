@@ -6,8 +6,7 @@ module ActiveAdmin
     class Header < Component
 
       HEADER_ID      = 'header'.freeze
-      WRAPPER_CLASS  = 'container-fluid'.freeze
-      HEADER_CLASS   = 'navbar navbar-light navbar-expand-lg bg-light'.freeze
+      HEADER_CLASS   = 'navbar navbar-light navbar-expand-lg bg-light fixed-top'.freeze
       MAIN_NAV_ID    = 'main-nav'.freeze
       MAIN_NAV_CLASS = 'navbar-nav mr-auto'.freeze
       ULT_NAV_ID     = 'utility-nav'.freeze
@@ -23,15 +22,11 @@ module ActiveAdmin
 
       def build(namespace, menu)
         super(id: HEADER_ID, class: HEADER_CLASS)
-
-        @namespace = namespace
-        @menu = menu
+        @namespace    = namespace
+        @menu         = menu
         @utility_menu = @namespace.fetch_menu(:utility_navigation)
-
-        div class: WRAPPER_CLASS do
-          build_title
-          build_nav
-        end
+        build_title
+        build_nav
       end
 
       def build_title

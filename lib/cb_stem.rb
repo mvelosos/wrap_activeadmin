@@ -1,3 +1,5 @@
+require 'slim-rails'
+require 'sass'
 require 'cb_stem/engine'
 
 # Engine
