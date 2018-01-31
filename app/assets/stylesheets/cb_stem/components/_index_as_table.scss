@@ -1,0 +1,8 @@
+@mixin indexAsTable {
+  table.index_table {
+    .col-selectable {
+      width: $col-selectable-width;
+      max-width: $col-selectable-width;
+    }
+  }
+}

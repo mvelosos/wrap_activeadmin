@@ -1,0 +1,10 @@
+body.logged_out {
+  #content_wrapper {
+    min-height: calc(100vh - #{$navbar-height});
+  }
+
+
+  #login {
+    .list-inline-item { display: block; }
+  }
+}

@@ -1,9 +1,90 @@
+require 'devise'
+require 'bootstrap'
+require 'active_admin'
+
 module CbStem
 
   # Initialize Engine
   class Engine < ::Rails::Engine
 
     isolate_namespace CbStem
+
+    initializer 'assets precompile' do |_app|
+      config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    end
+
+    initializer 'view overrides' do |_app|
+      require_formtastic
+      require_resources
+      require_components
+      require_inputs
+      require_views
+      require_pages
+      require_others
+    end
+
+    private
+
+    def require_others
+      require_each(
+        %w[view_factory form_builder]
+      )
+    end
+
+    def require_formtastic
+      require_each(
+        %w[
+          base/wrapping base/html base/labelling actions/base
+          inputs/boolean_input inputs/switch_input
+        ],
+        path: 'formtastic'
+      )
+    end
+
+    def require_components
+      require_each(
+        %w[
+          site_title table_for dropdown_menu panel attributes_table
+          active_admin_form blank_slate columns
+        ],
+        path: 'views/components'
+      )
+    end
+
+    def require_resources
+      require_each(
+        %w[action_items],
+        path: 'resource'
+      )
+    end
+
+    def require_views
+      require_each(
+        %w[action_items header tabbed_navigation title_bar index_as_table footer],
+        path: 'views'
+      )
+    end
+
+    def require_pages
+      require_each(
+        %w[base],
+        path: 'views/pages'
+      )
+    end
+
+    def require_inputs
+      require_each(
+        %w[base/search_method_select date_range_input forms],
+        path: 'inputs/filters'
+      )
+    end
+
+    def require_each(files, path: nil)
+      file_path = ['extensions/', path].reject(&:blank?).join('/')
+      files.each do |x|
+        require_relative "#{file_path}/#{x}"
+      end
+    end
 
   end
 
