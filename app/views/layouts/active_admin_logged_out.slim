@@ -13,19 +13,17 @@ html
       = tag(:meta, name: name, content: content)
     = csrf_meta_tag
   body[class="active_admin logged_out #{controller.action_name}"]
-    nav.navbar.navbar-light.bg-light
-      a.navbar-brand[href="#"]
-        -if ActiveAdmin.application.site_title_image.present?
-          = image_tag ActiveAdmin.application.site_title_image,
-            alt: ActiveAdmin.application.site_title, retina: true,
-            class: 'd-inline-block align-top'
-        = ActiveAdmin.application.site_title
     .container-fluid
       #content_wrapper.row.align-items-center.justify-content-md-center
-        .col-md-4
-          - flash_messages.each do |type, message|
-            = content_tag :div, message, class: "flash flash_#{type}"
+        .col-md-8.col-lg-4
+          .text-center.mb-3
+            - image = ActiveAdmin.application.site_title_image.present? ? ActiveAdmin.application.site_title_image : 'cb_stem/logo.png'
+            = image_tag image,
+              alt: ActiveAdmin.application.site_title,
+              retina: true, class: 'logo'
           #active_admin_content
+            = yield :title
+            = flash_messages
             = yield
       #footer
         = yield :footer

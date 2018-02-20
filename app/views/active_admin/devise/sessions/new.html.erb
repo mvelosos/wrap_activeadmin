@@ -1,20 +1,36 @@
-<div id="login">
-  <h3 class='mb-4 text-center'><%= title t('active_admin.devise.login.title') %></h3>
+<% content_for :title do %>
+  <h3 class='mb-4 display-3 text-center text-muted'>
+    <%= title t('active_admin.devise.login.title') %>
+  </h3>
+<% end %>
 
+<div id="login">
   <% scope = Devise::Mapping.find_scope!(resource_name) %>
-  <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_session_path"), html: { id: "session_new" }) do |f|
+  <%= active_admin_form_for(resource, as: resource_name, url: send(:"#{scope}_session_path"), html: { id: "session_new", autocomplete: 'off' }) do |f|
     f.inputs do
       resource.class.authentication_keys.each_with_index { |key, index|
-        f.input key, label: t("active_admin.devise.#{key}.title"), input_html: { autofocus: index.zero? }
+        f.input key,
+                placeholder: t("active_admin.devise.#{key}.title"),
+                label: false,
+                input_html: {
+                  autofocus: index.zero?,
+                  class: 'form-control form-control-lg'
+                }
       }
       f.input :password,
-              label: t('active_admin.devise.password.title')
-      f.input :remember_me,
-              label: t('active_admin.devise.login.remember_me'), as: :boolean if devise_mapping.rememberable?
+              placeholder: t('active_admin.devise.password.title'),
+              label: false,
+              input_html: { class: 'form-control form-control-lg' }
+      if devise_mapping.rememberable?
+        f.input :remember_me,
+                label: t('active_admin.devise.login.remember_me'),
+                as: :boolean
+      end
     end
     f.actions do
       f.action :submit,
                label: t('active_admin.devise.login.submit'),
+               input_html: { class: 'form-control form-control-lg' },
                button_html: {
                  value: t('active_admin.devise.login.submit'),
                  class: 'btn-block btn-lg'
@@ -23,5 +39,7 @@
   end
   %>
   <hr>
-  <%= render partial: "active_admin/devise/shared/links" %>
+  <div class='text-center'>
+    <%= render partial: "active_admin/devise/shared/links" %>
+  </div>
 </div>

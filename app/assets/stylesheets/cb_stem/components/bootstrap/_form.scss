@@ -1,0 +1,12 @@
+// https://getbootstrap.com/docs/4.0/components/forms/
+.form-control {
+  &.h5 { font-size: $h5-font-size; }
+  &.datepicker { background: $input-bg; }
+}
+
+.field_with_errors {
+  .form-control { border-color: $danger; }
+}
+
+// sass-lint:disable placeholder-in-extend
+.form-text { @extend small; }

@@ -14,6 +14,7 @@ module CbStem
     end
 
     initializer 'view overrides' do |_app|
+      require_helpers
       require_formtastic
       require_resources
       require_components
@@ -21,6 +22,10 @@ module CbStem
       require_views
       require_pages
       require_others
+    end
+
+    initializer 'material_active_admin.assets.precompile' do |app|
+      app.config.assets.precompile += %w[cb_stem/logo.png]
     end
 
     private
@@ -35,7 +40,7 @@ module CbStem
       require_each(
         %w[
           base/wrapping base/html base/labelling actions/base
-          inputs/boolean_input inputs/switch_input
+          inputs/boolean_input inputs/switch_input form_builder
         ],
         path: 'formtastic'
       )
@@ -55,6 +60,13 @@ module CbStem
       require_each(
         %w[action_items],
         path: 'resource'
+      )
+    end
+
+    def require_helpers
+      require_each(
+        %w[view_helpers],
+        path: 'views/helpers'
       )
     end
 

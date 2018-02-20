@@ -1,4 +1,8 @@
 body.logged_out {
+  .logo {
+    height: 64px;
+  }
+
   #content_wrapper {
     min-height: calc(100vh - #{$navbar-height});
   }

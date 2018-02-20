@@ -9,17 +9,17 @@
 // //
 //
 // // stylelint-disable
-// $white:    #fff !default;
-// $gray-100: #f8f9fa !default;
-// $gray-200: #e9ecef !default;
-// $gray-300: #dee2e6 !default;
-// $gray-400: #ced4da !default;
-// $gray-500: #adb5bd !default;
-// $gray-600: #868e96 !default;
-// $gray-700: #495057 !default;
-// $gray-800: #343a40 !default;
-// $gray-900: #212529 !default;
-// $black:    #000 !default;
+$white:    #fff !default;
+$gray-100: #f3f4f4 !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #cacaca !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
 //
 // $grays: () !default;
 // $grays: map-merge((
@@ -41,7 +41,7 @@
 // $red:     #dc3545 !default;
 // $orange:  #fd7e14 !default;
 // $yellow:  #ffc107 !default;
-// $green:   #28a745 !default;
+$green:   #2ab265 !default;
 // $teal:    #20c997 !default;
 // $cyan:    #17a2b8 !default;
 //
@@ -62,7 +62,7 @@
 //   "gray-dark":  $gray-800
 // ), $colors);
 //
-// $primary:       $blue !default;
+$primary:       $green !default;
 // $secondary:     $gray-600 !default;
 // $success:       $green !default;
 // $info:          $cyan !default;
@@ -136,7 +136,7 @@
 // //
 // // Settings for the `<body>` element.
 //
-// $body-bg:                   $white !default;
+$body-bg:                   $gray-100 !default;
 // $body-color:                $gray-900 !default;
 //
 // // Links
@@ -227,7 +227,7 @@
 // $font-family-base:            $font-family-sans-serif !default;
 // // stylelint-enable value-keyword-case
 //
-// $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
 // $font-size-lg:                ($font-size-base * 1.25) !default;
 // $font-size-sm:                ($font-size-base * .875) !default;
 //
@@ -238,12 +238,12 @@
 // $font-weight-base:            $font-weight-normal !default;
 // $line-height-base:            1.5 !default;
 //
-// $h1-font-size:                $font-size-base * 2.5 !default;
-// $h2-font-size:                $font-size-base * 2 !default;
-// $h3-font-size:                $font-size-base * 1.75 !default;
-// $h4-font-size:                $font-size-base * 1.5 !default;
-// $h5-font-size:                $font-size-base * 1.25 !default;
-// $h6-font-size:                $font-size-base !default;
+$h1-font-size:                $font-size-base * 2.5 !default;
+$h2-font-size:                $font-size-base * 2 !default;
+$h3-font-size:                $font-size-base * 1.75 !default;
+$h4-font-size:                $font-size-base * 1.5 !default;
+$h5-font-size:                $font-size-base * 1.25 !default;
+$h6-font-size:                $font-size-base !default;
 //
 // $headings-margin-bottom:      ($spacer / 2) !default;
 // $headings-font-family:        inherit !default;
@@ -251,10 +251,10 @@
 // $headings-line-height:        1.2 !default;
 // $headings-color:              inherit !default;
 //
-// $display1-size:               6rem !default;
-// $display2-size:               5.5rem !default;
-// $display3-size:               4.5rem !default;
-// $display4-size:               3.5rem !default;
+$display1-size:               $h1-font-size !default;
+$display2-size:               $h2-font-size !default;
+$display3-size:               $h3-font-size !default;
+$display4-size:               $h4-font-size !default;
 //
 // $display1-weight:             300 !default;
 // $display2-weight:             300 !default;
@@ -406,7 +406,7 @@
 // $input-focus-width:                     $input-btn-focus-width !default;
 // $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
 //
-// $input-placeholder-color:               $gray-600 !default;
+$input-placeholder-color:               $gray-400 !default;
 //
 // $input-height-border:                   $input-btn-border-width * 2 !default;
 //
