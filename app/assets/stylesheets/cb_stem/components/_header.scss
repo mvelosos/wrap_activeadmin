@@ -13,10 +13,13 @@
   background: $dark;
   border-right: $hr-border-width solid $hr-border-color;
   @include transition(transform 0.2s linear);
-  @include transform(translateX(-100%));
 
   @include media-breakpoint-up($header-breakpoint) {
-    @include transform(translateX(0));
+    @include transform(translateX(0) !important);
+  }
+
+  &:not(.show) {
+    @include transform(translateX(-100%));
   }
 
   & > *,

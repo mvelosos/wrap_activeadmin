@@ -1,3 +1,15 @@
+#filter-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-filter - 1;
+  background: $modal-backdrop-bg;
+  opacity: $modal-backdrop-opacity;
+}
+
+
 #filters {
   position: fixed;
   top: 0;
@@ -8,12 +20,17 @@
   width: $filter-width;
   height: auto !important;
   background: $white;
-  @include box-shadow(0 2px 4px rgba(black, 0.2));
   @include transition(transform 0.2s linear);
   @include transform(translateX(0));
 
-  &.collapse:not(.show) {
+  &:not(.show) {
     @include transform(translateX(100%));
+
+    & + #filter-backdrop { display: none; }
+  }
+
+  &.show {
+    @include box-shadow(0 2px 4px rgba(black, 0.2));
   }
 
   .card {

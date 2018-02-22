@@ -39,12 +39,23 @@ module ActiveAdmin
           target: '_blank', 'data-toggle': 'tooltip', 'data-placement': 'bottom')
       end
 
+      def close_link
+        return unless site_title_link?
+        div title: I18n.t('active_admin.header_close'),
+            'data-toggle': 'tooltip', 'data-placement': 'bottom' do
+          a(i('', class: 'nc-icon nc-simple-remove'),
+            class: 'btn btn-link d-xl-none',
+            target: '_blank', 'data-toggle': 'collapse', 'data-target': '#header')
+        end
+      end
+
       def site_title_content
         site_title_image
         div class: 'title-text text-truncate' do
           text_node title_text
         end
         site_link
+        close_link
       end
 
     end

@@ -23,6 +23,18 @@ module ActiveAdmin
         content_tag :input, class: 'form-control'
       end
 
+      def build_sidebar_toggle
+        div id: 'sidebar-toggle',
+            class: 'btn btn-link ',
+            'data-toggle': 'tooltip',
+            'data-placement': 'bottom',
+            'data-original-title': I18n.t('active_admin.header_toggle') do
+          a 'data-toggle': 'collapse', 'data-target': '#header' do
+            i '', class: 'nc-icon nc-menu-34'
+          end
+        end
+      end
+
       def build_search_toggle
         title = I18n.t('active_admin.search_model', model: active_admin_config.resource_label).to_s
         div id: 'search-filter-toggle',
@@ -30,17 +42,19 @@ module ActiveAdmin
             'data-toggle': 'tooltip',
             'data-placement': 'bottom',
             'data-original-title': title do
-          div 'data-toggle': 'collapse', 'data-target': '#filters' do
+          a 'data-toggle': 'collapse', 'data-target': '#filters' do
             i '', class: 'nc-icon nc-zoom-2'
           end
         end
       end
 
+      # rubocop:disable Metrics/MethodLength
       def build_titlebar
         div id: 'titlebar-content', class: 'row d-flex justify-content-between' do
           div class: 'col-4 d-xl-none' do
+            build_sidebar_toggle
           end
-          div class: 'col-4 text-center text-xl-left' do
+          div class: 'col-4 text-center text-xl-left site-title' do
             build_titlebar_left
           end
           div class: 'col-4' do
@@ -49,7 +63,6 @@ module ActiveAdmin
         end
       end
 
-      # rubocop:disable Metrics/MethodLength
       def build_titlebar_left
         div id: 'titlebar_left', class: 'navbar-brand mr-0' do
           if breadcrumbs?

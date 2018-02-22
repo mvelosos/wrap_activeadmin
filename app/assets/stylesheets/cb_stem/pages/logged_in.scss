@@ -25,6 +25,7 @@ body.logged_in {
 
     #main_content {
       @extend .container;
+      padding: 0;
     }
 
     &.with_sidebar {
@@ -35,6 +36,18 @@ body.logged_in {
         flex: 1;
         max-width: calc(100% - #{$sidebar-width});
       }
+
+      @include media-breakpoint-down(md) {
+        #main_content_wrapper,
+        #main_content {
+          max-width: 100%;
+        }
+      }
     }
+  }
+
+  #footer {
+    padding: $spacer 0;
+    border-top: 1px solid $hr-border-color;
   }
 }

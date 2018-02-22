@@ -33,7 +33,6 @@
     position: relative;
     display: flex;
     align-items: center;
-    font-size: 12px;
     text-align: center;
     vertical-align: middle;
 
@@ -49,10 +48,13 @@
       justify-content: center;
       width: $checkbox-size;
       height: $checkbox-size;
+      font-size: 12px;
       font-weight: $font-weight-bold;
       border: 1px solid $input-border-color;
       border-radius: $border-radius;
       content: '';
     }
+
+    span { margin-left: $spacer / 2; }
   }
 }
