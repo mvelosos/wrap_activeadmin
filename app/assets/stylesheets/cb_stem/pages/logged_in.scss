@@ -1,5 +1,8 @@
 body.logged_in {
-  padding-top: $navbar-height;
+  @include media-breakpoint-up($header-breakpoint) {
+    padding-left: $header-width;
+  }
 
-  @include indexAsTable;
+  padding-top: $navbar-height;
+  @include index-as-table;
 }

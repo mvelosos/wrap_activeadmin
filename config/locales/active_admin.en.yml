@@ -9,6 +9,8 @@ en:
     delete: "Delete"
     delete_confirmation: "Are you sure you want to delete this?"
     create_another: "Create another %{model}"
+    view_site_link: Visit Site
+    search_model: "Search %{model}"
     new_model: "New %{model}"
     edit_model: "Edit %{model}"
     delete_model: "Delete %{model}"
@@ -66,7 +68,7 @@ en:
       content: "There are no %{resource_name} yet."
       link: "Create one"
     dropdown_actions:
-      button_label: "Actions"
+      button_label: ''
     batch_actions:
       button_label: "Batch Actions"
       default_confirmation: "Are you sure you want to do this?"

@@ -1,5 +1,28 @@
-// Custom Variables
 $navbar-height: 56px;
-
-// IndexAsTable
 $col-selectable-width: 30px;
+$header-width: 340px;
+$filter-width: 370px;
+$icon-size: 22px;
+$icon-size-sm: $font-size-base;
+$checkbox-size: 18px;
+
+// z-index
+$z-index-custom-backdrop: 1040;
+$z-index-aside: 11;
+$z-index-header: 1080;
+$z-index-select2: 2200;
+$z-index-devise-warning: 99999;
+$z-index-filter: 1090;
+
+// Breakpoints
+$header-breakpoint: xl;
+
+// Icons
+$icon-checkbox-checked: '\ea14';
+$icon-checkbox-intermediate: '\ea18';
+$icon-sort-desc: '\ea15';
+$icon-sort-asc: '\ea16';
+$icon-sortable: '\ea17';
+$icon-arrow-right: '\ea07';
+$icon-submenu: '\ea06';
+$icon-breadcrumb-link: '\ea09';

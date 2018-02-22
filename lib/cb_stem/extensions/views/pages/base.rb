@@ -7,7 +7,7 @@ module ActiveAdmin
       # Overwriting Header - activeadmin/lib/active_admin/views/pages/base.rb
       class Base < Arbre::HTML::Document
 
-        WRAPPER_CLASS = 'container-fluid'.freeze
+        WRAPPER_CLASS = 'container py-3'.freeze
 
         def build(*args)
           super
@@ -26,6 +26,25 @@ module ActiveAdmin
               build_footer
             end
           end
+        end
+
+        def build_flash_messages
+          div class: 'flashes' do
+            flash_messages.each do |type, message|
+              div message, class: "alert #{bs_class_for(type)}"
+            end
+          end
+        end
+
+        private
+
+        def bs_class_for(type)
+          {
+            success: 'alert-success',
+            error: 'alert-danger',
+            alert: 'alert-warning',
+            notice: 'alert-info'
+          }[type.to_sym] || type.to_s
         end
 
       end

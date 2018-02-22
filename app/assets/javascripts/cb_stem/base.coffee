@@ -6,3 +6,6 @@
 #= require bootstrap
 #= require_tree ./lib
 #= require_self
+
+$ ->
+  $('[data-toggle="tooltip"]').tooltip()

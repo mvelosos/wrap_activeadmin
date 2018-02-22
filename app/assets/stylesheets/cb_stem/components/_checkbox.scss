@@ -1,0 +1,58 @@
+// sass-lint:disable force-attribute-nesting
+.aa-checkbox {
+  display: inline;
+  margin: 0;
+
+  input[type='checkbox'] {
+    & > label:not(.label) {
+      display: flex;
+      align-items: center;
+    }
+
+  }
+
+  input {
+    display: none;
+  }
+
+  input:indeterminate + .checkbox-icon::before {
+    color: $white;
+    background: $primary;
+    border-color: $primary;
+    content: $icon-checkbox-intermediate;
+  }
+
+  input:checked + .checkbox-icon::before {
+    color: $white;
+    background: $primary;
+    border-color: $primary;
+    content: $icon-checkbox-checked;
+  }
+
+  .checkbox-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    text-align: center;
+    vertical-align: middle;
+
+    & + .checkbox-label {
+      margin-left: $spacer / 2;
+    }
+
+    &::before {
+      @extend %nc-icon;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: $checkbox-size;
+      height: $checkbox-size;
+      font-weight: $font-weight-bold;
+      border: 1px solid $input-border-color;
+      border-radius: $border-radius;
+      content: '';
+    }
+  }
+}

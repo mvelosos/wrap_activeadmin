@@ -23,7 +23,7 @@ html
               retina: true, class: 'logo'
           #active_admin_content
             = yield :title
-            = flash_messages
+            = flashes_html
             = yield
       #footer
         = yield :footer

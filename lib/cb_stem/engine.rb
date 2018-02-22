@@ -9,6 +9,12 @@ module CbStem
 
     isolate_namespace CbStem
 
+    ActiveAdmin.before_load do |app|
+      require_relative 'extensions/batch_actions/views/batch_action_selector'
+      app.view_factory.register batch_action_selector:
+        ::ActiveAdmin::BatchActions::BatchActionSelector
+    end
+
     initializer 'assets precompile' do |_app|
       config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     end
@@ -72,14 +78,17 @@ module CbStem
 
     def require_views
       require_each(
-        %w[action_items header tabbed_navigation title_bar index_as_table footer],
+        %w[
+          action_items header tabbed_navigation
+          title_bar index_as_table footer
+        ],
         path: 'views'
       )
     end
 
     def require_pages
       require_each(
-        %w[base],
+        %w[base index],
         path: 'views/pages'
       )
     end

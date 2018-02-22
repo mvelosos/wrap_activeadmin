@@ -1,0 +1,125 @@
+#header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $z-index-header;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: $header-width;
+  height: 100%;
+  color: $white;
+  background: $dark;
+  border-right: $hr-border-width solid $hr-border-color;
+  @include transition(transform 0.2s linear);
+  @include transform(translateX(-100%));
+
+  @include media-breakpoint-up($header-breakpoint) {
+    @include transform(translateX(0));
+  }
+
+  & > *,
+  hr {
+    width: 100%;
+  }
+
+  .navbar {
+    height: $navbar-height;
+    border-bottom: $hr-border-width solid $hr-border-color;
+  }
+
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-right: 0;
+    overflow: hidden;
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      margin-right: $spacer;
+      font-size: $font-size-base;
+      color: $white;
+      text-transform: uppercase;
+      vertical-align: middle;
+      background: $primary;
+      border-radius: $border-radius;
+    }
+
+    .title-text {
+      flex: 1;
+      margin-right: $spacer / 2;
+    }
+
+    .btn { color: $secondary; }
+  }
+
+  #main-nav { flex: 1; }
+
+  #main-menu {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: $navbar-padding-x;
+    overflow-y: scroll;
+  }
+
+  .list-group {
+    margin-bottom: $spacer / 2;
+
+    a {
+      display: flex;
+      align-items: center;
+      padding: $list-group-item-padding-y $list-group-item-padding-x;
+      text-decoration: none;
+
+      & > * {
+        flex-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      &::after {
+        @extend %nc-icon;
+        margin-left: $spacer / 2;
+        content: $icon-arrow-right;
+      }
+
+      &.with-sub-menu::after {
+        content: $icon-submenu;
+      }
+
+      span.menu-text { flex: 1; }
+
+      i {
+        margin-right: $spacer / 2;
+        font-size: $icon-size;
+      }
+    }
+
+    .list-group-item {
+      padding: 0;
+      background: rgba($white, 0.1);
+    }
+
+    .sub-menu {
+      padding-left: calc(#{$list-group-item-padding-x} + #{$icon-size} + #{$spacer / 2});
+      border-top: 1px solid $hr-border-color;
+
+      li:not(:last-child) a {
+        border-bottom: 1px solid $hr-border-color;
+      }
+
+      a {
+        padding-left: 0;
+        color: $white;
+      }
+    }
+  }
+}

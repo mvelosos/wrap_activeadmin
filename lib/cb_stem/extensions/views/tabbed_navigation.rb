@@ -5,14 +5,17 @@ module ActiveAdmin
     # Overwriting TabbedNavigation - activeadmin/lib/active_admin/views/tabbed_navigation.rb
     class TabbedNavigation < Component
 
-      CURRENT_ITEM_CLASS     = 'active'.freeze
-      DROPDOWN_WRAPPER_CLASS = 'dropdown'.freeze
-      DROPDOWN_MENU_CLASS    = 'dropdown-menu'.freeze
-      DROPDOWN_ANCHOR_OPTS = {
-        'data-toggle': 'dropdown'
+      CURRENT_ITEM_CLASS = 'active'.freeze
+      COLLAPSE_ANCHOR_OPTS = {
+        class: 'with-sub-menu',
+        'data-toggle': 'collapse'
       }.freeze
 
       attr_reader :menu
+
+      def tag_name
+        :div
+      end
 
       def build(menu, options = {})
         @menu = menu
@@ -30,24 +33,18 @@ module ActiveAdmin
 
       def build_menu_item(item, child = false)
         children = item.items(self).presence
-
-        li id: item.id do |li|
-          add_current(li, item)
-          build_link(item, children, child)
-          li.add_class 'nav-item'
-          next if children.blank?
-          li.add_class DROPDOWN_WRAPPER_CLASS
-          ul(class: DROPDOWN_MENU_CLASS) { build_children(children) }
-        end
+        child ? build_child_menu(item, children) : build_parent_menu(item, children)
       end
 
-      def build_link(item, children, child = false)
+      def build_link(item, children)
         children && dropdown_options(item)
-        a item.html_options.merge(href: item.url(self)) do |a|
-          a.add_class(child ? 'dropdown-item' : 'nav-link')
-          text_node(item.label(self))
+        a item.html_options.merge(href: item.url(self), 'data-target': "##{item.id}-sub-menu") do
+          if item.label(self).include? 'menu-text'
+            text_node(item.label(self))
+          else
+            span(item.label(self), class: 'menu-text')
+          end
           next unless children
-          a.add_class 'dropdown-toggle'
         end
       end
 
@@ -56,12 +53,34 @@ module ActiveAdmin
       end
 
       def dropdown_options(item)
-        item.html_options.merge!(DROPDOWN_ANCHOR_OPTS)
+        item.html_options.merge!(COLLAPSE_ANCHOR_OPTS)
       end
 
       def add_current(li, item)
-        return unless item.current? assigns[:current_tab]
+        return unless item.current?(assigns[:current_tab])
         li.add_class CURRENT_ITEM_CLASS
+      end
+
+      def build_child_menu(item, children)
+        li id: item.id do |li|
+          add_current(li, item)
+          build_link(item, children)
+        end
+      end
+
+      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+      def build_parent_menu(item, children)
+        ul class: 'list-group' do
+          li id: item.id, class: 'list-group-item' do |li|
+            add_current(li, item)
+            build_link(item, children)
+            next if children.blank?
+            li.add_class 'has-sub-menu'
+            menu_klass = %w[sub-menu list-unstyled collapse]
+            menu_klass.push 'show' if item.current?(assigns[:current_tab])
+            ul(id: "#{item.id}-sub-menu", class: menu_klass.join(' ')) { build_children(children) }
+          end
+        end
       end
 
     end

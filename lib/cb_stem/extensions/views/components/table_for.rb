@@ -23,6 +23,31 @@ module ActiveAdmin
         columns(*attrs)
       end
 
+      def resource_selection_toggle_cell
+        label(class: 'aa-checkbox') do
+          input(
+            type: 'checkbox',
+            id: 'collection_selection_toggle_all',
+            name: 'collection_selection_toggle_all',
+            class: 'toggle_all'
+          )
+          span(class: 'checkbox-icon')
+        end
+      end
+
+      def resource_selection_cell(resource)
+        label(class: 'aa-checkbox') do
+          input(
+            type: 'checkbox',
+            id: "batch_action_item_#{resource.id}",
+            value: resource.id,
+            class: 'collection_selection',
+            name: 'collection_selection[]'
+          )
+          span(class: 'checkbox-icon')
+        end
+      end
+
     end
 
   end

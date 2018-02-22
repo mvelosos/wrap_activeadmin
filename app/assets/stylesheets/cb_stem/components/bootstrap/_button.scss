@@ -1,1 +1,12 @@
 // https://getbootstrap.com/docs/4.0/components/buttons/
+.btn {
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+
+  &.btn-light {
+    border: 1px solid $input-border-color;
+  }
+}

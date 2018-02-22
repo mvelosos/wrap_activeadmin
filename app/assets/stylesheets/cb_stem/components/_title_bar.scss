@@ -1,0 +1,33 @@
+#title_bar {
+  @include media-breakpoint-up($header-breakpoint) {
+    left: $header-width;
+  }
+
+  border-bottom: 1px solid $hr-border-color;
+
+  #breadcrumbs {
+    .dropdown-item a::before {
+      @extend %nc-icon;
+      margin-right: $spacer / 2;
+      vertical-align: middle;
+      content: $icon-breadcrumb-link;
+    }
+  }
+
+  #titlebar-content { flex: 1; }
+
+  .btn {
+    display: inline-flex;
+    i.nc-icon { font-size: $icon-size; }
+  }
+
+  .action-btns {
+    display: inline-flex;
+    justify-content: flex-end;
+
+    .dropdown-menu {
+      right: 0;
+      left: auto;
+    }
+  }
+}

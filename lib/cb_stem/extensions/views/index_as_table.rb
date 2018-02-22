@@ -45,7 +45,7 @@ module ActiveAdmin
         private
 
         def default_dropdown_name
-          I18n.t('active_admin.dropdown_actions.button_label', default: 'Actions')
+          I18n.t('active_admin.dropdown_actions.button_label', default: nil)
         end
 
         def render_action(resource, dropdown, dropdown_name, defaults, &block)
@@ -57,7 +57,7 @@ module ActiveAdmin
         end
 
         def render_dropdown_actions(resource, dropdown_name, defaults, &block)
-          dropdown_menu dropdown_name do
+          dropdown_menu dropdown_name, icon: 'menu-dots' do
             defaults(resource) if defaults
             instance_exec(resource, &block) if block_given?
           end

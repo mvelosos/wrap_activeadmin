@@ -8,5 +8,4 @@
   .form-control { border-color: $danger; }
 }
 
-// sass-lint:disable placeholder-in-extend
 .form-text { @extend small; }
