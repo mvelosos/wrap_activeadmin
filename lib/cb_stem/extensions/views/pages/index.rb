@@ -7,7 +7,7 @@ module ActiveAdmin
       # Overwriting Views::Pages::Index - activeadmin/lib/active_admin/views/pages/index.rb
       class Index < Base
 
-        WRAPPER_CLASS = 'container-fluid py-3'.freeze
+        WRAPPER_CLASS = 'container-fluid'.freeze
 
         def add_classes_to_body
           super
@@ -26,7 +26,7 @@ module ActiveAdmin
         def build_table_tools
           return unless any_table_tools?
           div class: 'table_tools' do
-            # build_scopes
+            build_scopes
             build_batch_actions_selector
             build_index_list
           end
@@ -38,13 +38,17 @@ module ActiveAdmin
             scope_count: config.fetch(:scope_count, true)
           }
 
-          scopes_renderer active_admin_config.scopes, scope_options
+          div id: 'scopes' do
+            scopes_renderer active_admin_config.scopes, scope_options
+          end
         end
 
         private
 
         def build_page
           within @body do
+            headers
+            build_filters
             div(id: 'wrapper', class: WRAPPER_CLASS) do
               components.each do |x|
                 send(x)
@@ -55,8 +59,8 @@ module ActiveAdmin
 
         def components
           %i[
-            build_unsupported_browser build_header build_title_bar
-            build_page_content build_filters build_footer
+            build_unsupported_browser build_title_bar
+            build_page_content
           ]
         end
 
@@ -95,13 +99,6 @@ module ActiveAdmin
               sidebar_section(section)
             end
           end
-        end
-
-        def any_table_tools?
-          active_admin_config.batch_actions.any? ||
-            active_admin_config.page_presenters[:index].try(:size).try(:>, 1)
-        rescue
-          false
         end
 
       end

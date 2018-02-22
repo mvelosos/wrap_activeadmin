@@ -1,8 +1,40 @@
 body.logged_in {
+  position: relative;
+  display: flex;
+  flex: 1;
+  min-height: 100%;
+  padding-top: $navbar-height;
+
   @include media-breakpoint-up($header-breakpoint) {
     padding-left: $header-width;
   }
 
-  padding-top: $navbar-height;
   @include index-as-table;
+
+  #wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  #active_admin_content {
+    display: flex;
+    flex: 1;
+
+    #main_content_wrapper { padding: $spacer 0; }
+
+    #main_content {
+      @extend .container;
+    }
+
+    &.with_sidebar {
+      @extend .row;
+
+      #main_content_wrapper {
+        @extend .col;
+        flex: 1;
+        max-width: calc(100% - #{$sidebar-width});
+      }
+    }
+  }
 }

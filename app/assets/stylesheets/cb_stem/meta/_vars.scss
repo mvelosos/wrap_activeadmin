@@ -2,6 +2,7 @@ $navbar-height: 56px;
 $col-selectable-width: 30px;
 $header-width: 340px;
 $filter-width: 370px;
+$sidebar-width: 370px;
 $icon-size: 22px;
 $icon-size-sm: $font-size-base;
 $checkbox-size: 18px;
@@ -13,6 +14,7 @@ $z-index-header: 1080;
 $z-index-select2: 2200;
 $z-index-devise-warning: 99999;
 $z-index-filter: 1090;
+$z-index-flashes: 2000;
 
 // Breakpoints
 $header-breakpoint: xl;

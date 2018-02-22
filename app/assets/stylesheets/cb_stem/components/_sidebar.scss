@@ -1,0 +1,8 @@
+#sidebar {
+  width: $sidebar-width;
+  border-left: 2px solid $hr-border-color;
+
+  .sidebar_section {
+    border-radius: 0;
+  }
+}

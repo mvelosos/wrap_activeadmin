@@ -1,9 +1,8 @@
 .pagination {
   @extend .btn-group;
   justify-content: center;
-  padding-bottom: $spacer;
   margin-bottom: $spacer;
-  border-bottom: 1px solid $hr-border-color;
+  border-radius: 0;
 
   & > span {
     @extend .btn;

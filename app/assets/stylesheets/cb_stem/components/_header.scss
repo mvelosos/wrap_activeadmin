@@ -47,7 +47,7 @@
       color: $white;
       text-transform: uppercase;
       vertical-align: middle;
-      background: $primary;
+      background: $warning;
       border-radius: $border-radius;
     }
 
@@ -72,11 +72,21 @@
   .list-group {
     margin-bottom: $spacer / 2;
 
+    .active > a,
+    .active > a:hover {
+      color: $primary;
+    }
+
     a {
       display: flex;
       align-items: center;
       padding: $list-group-item-padding-y $list-group-item-padding-x;
+      color: $secondary;
       text-decoration: none;
+
+      &:hover {
+        color: $white;
+      }
 
       & > * {
         flex-wrap: nowrap;
@@ -118,7 +128,6 @@
 
       a {
         padding-left: 0;
-        color: $white;
       }
     }
   }

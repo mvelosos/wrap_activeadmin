@@ -15,6 +15,12 @@ module CbStem
         ::ActiveAdmin::BatchActions::BatchActionSelector
     end
 
+    initializer 'default configs' do |_app|
+      ActiveAdmin.setup do |config|
+        config.current_filters = false
+      end
+    end
+
     initializer 'assets precompile' do |_app|
       config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
     end
@@ -56,7 +62,7 @@ module CbStem
       require_each(
         %w[
           site_title table_for dropdown_menu panel attributes_table
-          active_admin_form blank_slate columns
+          active_admin_form blank_slate columns scopes
         ],
         path: 'views/components'
       )

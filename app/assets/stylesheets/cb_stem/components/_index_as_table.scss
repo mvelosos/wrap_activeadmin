@@ -1,11 +1,11 @@
 @mixin index-as-table {
-  .index_content {
-    .table-responsive {
-      width: auto;
-      padding: 0 $spacer;
-      margin: 0 -#{$spacer};
-    }
-  }
+  // .index_content {
+  //   .table-responsive {
+  //     width: auto;
+  //     padding: 0 $spacer;
+  //     margin: 0 -#{$spacer};
+  //   }
+  // }
 
   table.index_table {
     border-collapse: separate;
