@@ -14,6 +14,7 @@
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()
   $('#flashes').aaFlash()
+  $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
 
 $(document)
   .ready(onDOMReady)

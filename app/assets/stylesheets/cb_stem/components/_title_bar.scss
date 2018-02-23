@@ -44,4 +44,15 @@
       left: auto;
     }
   }
+
+  .action_item {
+    .nc-icon + .action-text { display: none; }
+  }
+
+  #mobile-menu {
+    .dropdown-menu a {
+      @extend .dropdown-item;
+      .nc-icon { display: none; }
+    }
+  }
 }

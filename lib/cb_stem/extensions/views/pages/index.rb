@@ -70,6 +70,7 @@ module ActiveAdmin
               div(filter_sections.collect { |x| sidebar_section(x) })
             end
             div id: 'filter-backdrop',
+                class: 'backdrop',
                 'data-toggle': 'collapse',
                 'data-target': '#filters'
           end

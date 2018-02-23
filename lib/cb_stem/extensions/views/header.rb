@@ -6,16 +6,20 @@ module ActiveAdmin
     class Header < Component
 
       def tag_name
-        :nav
+        :div
       end
 
       def build(namespace, menu)
-        super(id: 'header')
+        super(id: 'header-wrap')
         @namespace    = namespace
         @menu         = menu
         @utility_menu = @namespace.fetch_menu(:utility_navigation)
-        build_title
-        build_nav
+        nav id: 'header' do
+          build_title
+          build_nav
+        end
+        div id: 'header-backdrop', class: 'backdrop',
+            'data-toggle': 'collapse', 'data-target': '#header'
       end
 
       def build_title

@@ -29,6 +29,12 @@ module ActiveAdmin
         end
       end
 
+      def raw_item(item)
+        within @menu do
+          li item
+        end
+      end
+
       private
 
       def build_link(*args)
