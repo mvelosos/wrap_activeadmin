@@ -17,7 +17,7 @@ module ActiveAdmin
       end
 
       def default_class_name
-        'scopes table_tools_segmented_control nav'
+        'scopes table_tools_segmented_control nav nav-tabs'
       end
 
       protected

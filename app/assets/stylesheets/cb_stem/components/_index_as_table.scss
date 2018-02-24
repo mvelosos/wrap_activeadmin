@@ -1,12 +1,4 @@
 @mixin index-as-table {
-  // .index_content {
-  //   .table-responsive {
-  //     width: auto;
-  //     padding: 0 $spacer;
-  //     margin: 0 -#{$spacer};
-  //   }
-  // }
-
   table.index_table {
     border-collapse: separate;
     border-spacing: 0 $spacer / 4;
@@ -30,9 +22,12 @@
       border: 0;
 
       &.sortable {
-        &.sorted-desc::after,
-        &.sorted-asc::after {
-          color: $primary;
+        &.sorted-desc,
+        &.sorted-asc {
+          a,
+          &::after {
+            color: $primary;
+          }
         }
 
         &.sorted-desc::after { content: $icon-sort-desc; }
@@ -46,6 +41,9 @@
           content: $icon-sortable;
         }
       }
+
+      a { color: $secondary; }
+
     }
 
     td {

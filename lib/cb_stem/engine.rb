@@ -18,6 +18,7 @@ module CbStem
     initializer 'default configs' do |_app|
       ActiveAdmin.setup do |config|
         config.current_filters = false
+        config.comments_menu   = false
       end
     end
 
@@ -36,8 +37,8 @@ module CbStem
       require_others
     end
 
-    initializer 'material_active_admin.assets.precompile' do |app|
-      app.config.assets.precompile += %w[cb_stem/logo.png]
+    initializer 'cb_stem.assets.precompile' do |app|
+      app.config.assets.precompile += %w[cb_stem/logo.png cb_stem/empty_state.svg]
     end
 
     private
@@ -62,7 +63,7 @@ module CbStem
       require_each(
         %w[
           site_title table_for dropdown_menu panel attributes_table
-          active_admin_form blank_slate columns scopes
+          active_admin_form blank_slate columns scopes tabs
         ],
         path: 'views/components'
       )

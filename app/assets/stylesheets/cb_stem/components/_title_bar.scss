@@ -1,9 +1,16 @@
 #title_bar {
+  height: $navbar-height;
+  background: linear-gradient(to bottom left, #{$primary} , darken($primary, 3%));
+  border-bottom: 1px solid $hr-border-color;
+
   @include media-breakpoint-up($header-breakpoint) {
     left: $header-width;
   }
 
-  border-bottom: 1px solid $hr-border-color;
+  @include media-breakpoint-up(lg) {
+    padding-right: 1.5 * $spacer !important;
+    padding-left: 1.5 * $spacer !important;
+  }
 
   #breadcrumbs {
     .dropdown-item a::before {
@@ -24,14 +31,24 @@
     justify-content: flex-end;
   }
 
-  .site-title {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .navbar-brand {
+    width: 100%;
+
+    .dropdown { width: 100%; }
+
+    .dropdown-toggle {
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      width: 100%;
+
+      i.nc-icon { margin-left: $spacer / 2; }
+    }
   }
 
   .btn {
     display: inline-flex;
+    color: $dark;
     i.nc-icon { font-size: $icon-size; }
   }
 

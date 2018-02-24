@@ -49,7 +49,10 @@
     padding: $spacer;
   }
 
-  label { display: block; }
+  label {
+    display: block;
+    color: $secondary;
+  }
 
   .filter_form_field .row {
     position: relative;
@@ -62,6 +65,15 @@
       width: calc(100% - #{$spacer});
       border-bottom: 1px solid $hr-border-color;
       content: '';
+    }
+  }
+
+  .buttons {
+    text-align: right;
+
+    .list-inline-item {
+      margin-right: 0;
+      margin-left: $spacer / 2;
     }
   }
 }

@@ -1,0 +1,9 @@
+// https://getbootstrap.com/docs/4.0/content/tables/
+.table {
+  tbody tr:first-child {
+    td,
+    th {
+      border-top: 0;
+    }
+  }
+}

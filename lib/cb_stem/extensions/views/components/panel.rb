@@ -9,10 +9,10 @@ module ActiveAdmin
       HEADING_CLASS = 'card-header'.freeze
       BODY_CLASS    = 'card-body'.freeze
 
-      def build(title, attributes = {})
+      def build(title = nil, attributes = {})
         super(attributes)
         add_class WRAPPER_CLASS
-        @title    = h5(title.to_s, class: HEADING_CLASS)
+        @title    = h5(title.to_s, class: HEADING_CLASS) if title.present?
         @contents = div(class: BODY_CLASS)
       end
 

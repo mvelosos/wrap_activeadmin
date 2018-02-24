@@ -6,16 +6,13 @@ module ActiveAdmin
     # Overwriting AttributesTable - activeadmin/lib/active_admin/views/components/attributes_table.rb
     class AttributesTable < ActiveAdmin::Component
 
-      WRAPPER_CLASS = 'table-responsive'.freeze
-      ITEM_CLASS    = 'table'.freeze
-
       def build(obj, *attrs)
         @collection     = Array.wrap(obj)
         @resource_class = @collection.first.class
-        options = { class: WRAPPER_CLASS }
+        options = { class: 'attributes-table' }
         options[:for] = @collection.first if single_record?
         super(options)
-        @table = table(class: ITEM_CLASS)
+        @table = table(class: 'table')
         build_colgroups
         rows(*attrs)
       end
@@ -35,6 +32,10 @@ module ActiveAdmin
       end
 
       private
+
+      def empty_value
+        span I18n.t('active_admin.empty'), class: 'empty text-muted font-weight-light'
+      end
 
       def build_table(options, title, &block)
         @table << tr(options) do

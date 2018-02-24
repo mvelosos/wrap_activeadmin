@@ -1,4 +1,6 @@
 // https://getbootstrap.com/docs/4.0/components/card/
 .card-header {
+  padding-bottom: 0;
+  border-bottom: 0;
   border-color: $hr-border-color;
 }

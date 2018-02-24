@@ -10,6 +10,7 @@ body.logged_in {
   }
 
   @include index-as-table;
+  @include formastic;
 
   #wrapper {
     display: flex;
@@ -18,36 +19,40 @@ body.logged_in {
   }
 
   #active_admin_content {
+    @extend .row;
     display: flex;
     flex: 1;
 
-    #main_content_wrapper { padding: $spacer 0; }
+    #main_content_wrapper {
+      flex: 1;
+      padding: $spacer 0;
+    }
 
     #main_content {
       @extend .container;
-      padding: 0;
+      padding: 0 $spacer;
+    }
+
+    @include media-breakpoint-down(md) {
+      #main_content_wrapper,
+      #main_content {
+        max-width: 100% !important;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      #main_content_wrapper {
+        padding-right: 1.5 * $spacer !important;
+        padding-left: 1.5 * $spacer !important;
+      }
     }
 
     &.with_sidebar {
-      @extend .row;
-
       #main_content_wrapper {
         @extend .col;
         flex: 1;
         max-width: calc(100% - #{$sidebar-width});
       }
-
-      @include media-breakpoint-down(md) {
-        #main_content_wrapper,
-        #main_content {
-          max-width: 100%;
-        }
-      }
     }
-  }
-
-  #footer {
-    padding: $spacer 0;
-    border-top: 1px solid $hr-border-color;
   }
 }

@@ -58,9 +58,36 @@ module ActiveAdmin
             assigns[:skip_sidebar] == true
         end
 
+        def breadcrumbs?
+          links[1..-1].present? && links.is_a?(::Array)
+        end
+
+        def build_breadcrumb(separator = '/')
+          return unless breadcrumbs?
+          ul id: 'breadcrumbs', class: 'list-inline my-3' do
+            links[1..-1].each do |link|
+              li class: 'list-inline-item mr-1 my-1' do
+                text_node(link)
+                span(separator, class: 'breadcrumb_sep ml-1 text-muted')
+              end
+            end
+            li(text_node(title), class: 'list-inline-item mr-1')
+          end
+        end
+
+        def links
+          breadcrumb_config = active_admin_config && active_admin_config.breadcrumb
+          if breadcrumb_config.is_a?(Proc)
+            instance_exec(controller, &active_admin_config.breadcrumb)
+          elsif breadcrumb_config.present?
+            breadcrumb_links
+          end
+        end
+
         def build_main_content_wrapper
           div id: 'main_content_wrapper' do
             div id: 'main_content' do
+              build_breadcrumb
               main_content
             end
             build_footer

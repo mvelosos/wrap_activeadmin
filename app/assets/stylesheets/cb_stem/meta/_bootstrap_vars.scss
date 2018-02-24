@@ -14,11 +14,11 @@ $gray-100: #fafafa !default;
 $gray-200: #f3f4f4 !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #cacaca !default;
-$gray-500: #adb5bd !default;
-$gray-600: #989CA1 !default;
+$gray-500: #c9c9c9 !default;
+$gray-600: #999 !default;
 $gray-700: #495057 !default;
-$gray-800: #434950 !default;
-$gray-900: #272b2f !default;
+$gray-800: #434240 !default;
+$gray-900: #2d3439 !default;
 $black:    #000 !default;
 //
 // $grays: () !default;
@@ -34,7 +34,7 @@ $black:    #000 !default;
 //   "900": $gray-900
 // ), $grays);
 //
-// $blue:    #007bff !default;
+$blue:    #4191f0 !default;
 // $indigo:  #6610f2 !default;
 // $purple:  #6f42c1 !default;
 // $pink:    #e83e8c !default;
@@ -65,11 +65,11 @@ $green:   #2ab265 !default;
 $primary:       $green !default;
 // $secondary:     $gray-600 !default;
 // $success:       $green !default;
-// $info:          $cyan !default;
+$info:          $blue !default;
 // $warning:       $yellow !default;
 // $danger:        $red !default;
 // $light:         $gray-100 !default;
-$dark:          $gray-800 !default;
+$dark:          $gray-900 !default;
 //
 // $theme-colors: () !default;
 // $theme-colors: map-merge((
@@ -88,7 +88,7 @@ $dark:          $gray-800 !default;
 // $theme-color-interval:      8% !default;
 //
 // // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-// $yiq-contrasted-threshold: 150 !default;
+$yiq-contrasted-threshold: 175 !default;
 //
 // // Customize the light and dark text colors for use in our YIQ color contrast function.
 // $yiq-text-dark: $gray-900 !default;
@@ -152,7 +152,7 @@ $body-color:                $gray-800 !default;
 // //
 // // Style p element.
 //
-// $paragraph-margin-bottom:   1rem !default;
+$paragraph-margin-bottom:   0.25rem !default;
 //
 //
 // // Grid breakpoints
@@ -231,12 +231,12 @@ $font-size-base:              1rem !default; // Assumes the browser default, typ
 // $font-size-lg:                ($font-size-base * 1.25) !default;
 // $font-size-sm:                ($font-size-base * .875) !default;
 //
-// $font-weight-light:           300 !default;
-// $font-weight-normal:          400 !default;
-// $font-weight-bold:            700 !default;
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-bold:            500 !default;
 //
-// $font-weight-base:            $font-weight-normal !default;
-// $line-height-base:            1.5 !default;
+$font-weight-base:            $font-weight-light !default;
+$line-height-base:            1.3 !default;
 //
 $h1-font-size:                $font-size-base * 2.5 !default;
 $h2-font-size:                $font-size-base * 2 !default;
@@ -318,7 +318,7 @@ $text-muted:                  $gray-500 !default;
 // //
 // // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 //
-// $input-btn-padding-y:         .375rem !default;
+$input-btn-padding-y:         .5rem !default;
 // $input-btn-padding-x:         .75rem !default;
 // $input-btn-line-height:       $line-height-base !default;
 //
@@ -543,7 +543,7 @@ $dropdown-link-active-bg:           $gray-100 !default;
 //
 // $dropdown-link-disabled-color:      $gray-600 !default;
 //
-// $dropdown-item-padding-y:           .25rem !default;
+$dropdown-item-padding-y:           0.5rem !default;
 // $dropdown-item-padding-x:           1.5rem !default;
 //
 // $dropdown-header-color:             $gray-600 !default;
@@ -646,7 +646,7 @@ $zindex-tooltip:                    2000 !default;
 //
 // // Cards
 //
-// $card-spacer-y:                     .75rem !default;
+$card-spacer-y:                     1.25rem !default;
 // $card-spacer-x:                     1.25rem !default;
 // $card-border-width:                 $border-width !default;
 // $card-border-radius:                $border-radius !default;

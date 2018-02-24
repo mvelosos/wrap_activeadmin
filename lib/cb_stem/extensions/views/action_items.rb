@@ -26,7 +26,7 @@ module ActiveAdmin
 
         return if mobile_hidden_items.empty?
         dropdown_menu '', icon: 'menu-dots', id: 'mobile-menu', class: 'd-block d-sm-none' do
-          items.reject(&:mobile).each do |action_item|
+          mobile_hidden_items.each do |action_item|
             raw_item instance_exec(&action_item.block)
           end
         end

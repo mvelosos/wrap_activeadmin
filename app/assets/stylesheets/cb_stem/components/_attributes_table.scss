@@ -1,0 +1,32 @@
+.card-body {
+  .attributes-table {
+    width: auto;
+    margin: 0 -#{$card-spacer-x};
+  }
+}
+
+.attributes-table {
+  tbody {
+    td,
+    th {
+      padding: $spacer;
+    }
+
+    td {
+      padding-left: 0;
+      word-break: break-all;
+    }
+
+    th {
+      width: 30%;
+      padding-left: $card-spacer-x;
+      font-weight: $font-weight-light;
+      color: $secondary;
+      border-top: 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+      th { width: 40%; }
+    }
+  }
+}

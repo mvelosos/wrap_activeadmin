@@ -94,7 +94,7 @@
       display: flex;
       align-items: center;
       padding: $list-group-item-padding-y $list-group-item-padding-x;
-      color: $secondary;
+      color: rgba($white, 0.5);
       text-decoration: none;
 
       &:hover {
@@ -121,18 +121,19 @@
       span.menu-text { flex: 1; }
 
       i {
-        margin-right: $spacer / 2;
+        margin-right: $spacer;
         font-size: $icon-size;
       }
     }
 
     .list-group-item {
       padding: 0;
-      background: rgba($white, 0.1);
+      background: rgba($white, 0.05);
     }
 
+    .badge { color: $dark; }
+
     .sub-menu {
-      padding-left: calc(#{$list-group-item-padding-x} + #{$icon-size} + #{$spacer / 2});
       border-top: 1px solid $hr-border-color;
 
       li:not(:last-child) a {
@@ -140,7 +141,7 @@
       }
 
       a {
-        padding-left: 0;
+        padding-left: calc(#{$list-group-item-padding-x} + #{$icon-size} + #{$spacer});
       }
     }
   }

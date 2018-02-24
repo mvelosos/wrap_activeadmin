@@ -3,9 +3,10 @@ $col-selectable-width: 30px;
 $header-width: 340px;
 $filter-width: 370px;
 $sidebar-width: 370px;
-$icon-size: 22px;
+$icon-size: 1.25rem;
 $icon-size-sm: $font-size-base;
 $checkbox-size: 18px;
+$sidebar-bg: $body-bg;
 
 // z-index
 $z-index-custom-backdrop: 1040;
@@ -21,10 +22,10 @@ $header-breakpoint: xl;
 
 // Icons
 $icon-checkbox-checked: '\ebd2';
-$icon-checkbox-intermediate: '\f123';
+$icon-checkbox-intermediate: '\f0f2';
 $icon-sort-desc: '\f1c8';
 $icon-sort-asc: '\f1cf';
 $icon-sortable: '\ed1e';
 $icon-arrow-right: '\ef0f';
 $icon-submenu: '\eef6';
-$icon-breadcrumb-link: '\f0fe';
+$icon-breadcrumb-link: '\ec57';

@@ -43,7 +43,7 @@ module ActiveAdmin
         return unless site_title_link?
         div title: I18n.t('active_admin.header_close'),
             'data-toggle': 'tooltip', 'data-placement': 'bottom' do
-          a(i('', class: 'nc-icon nc-simple-remove'),
+          a(i('', class: 'nc-icon nc-move-left'),
             class: 'btn btn-link d-xl-none',
             target: '_blank', 'data-toggle': 'collapse', 'data-target': '#header')
         end

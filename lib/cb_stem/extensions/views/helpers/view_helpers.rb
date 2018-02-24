@@ -25,6 +25,14 @@ module ActiveAdmin::ViewHelpers
     !resource.errors.empty?
   end
 
+  def thumbnail(*args)
+    options = args.extract_options!
+    klass   = options.delete(:class)
+    content_tag :div, class: "thumbnail #{klass}" do
+      image_tag(*args)
+    end
+  end
+
   private
 
   def aa_icon(icon)

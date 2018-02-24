@@ -5,12 +5,10 @@ module ActiveAdmin
     # Overwriting TableFor - activeadmin/lib/active_admin/views/components/table_for.rb
     class TableFor < Arbre::HTML::Table
 
-      WRAPPER_CLASS = ' table text-nowrap'.freeze
-
       # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       def build(obj, *attrs)
         options          = attrs.extract_options!
-        options[:class] += WRAPPER_CLASS
+        options[:class] += 'table text-nowrap'
         @sortable        = options.delete(:sortable)
         @collection      = obj.respond_to?(:each) && !obj.is_a?(Hash) ? obj : [obj]
         @resource_class  = options.delete(:i18n)
