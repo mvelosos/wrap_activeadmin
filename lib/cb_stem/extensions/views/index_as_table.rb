@@ -29,7 +29,7 @@ module ActiveAdmin
       # Register IndexTableFor
       class IndexTableFor < ::ActiveAdmin::Views::TableFor
 
-        ITEM_CLASS = 'btn btn-light btn-sm'.freeze
+        ITEM_CLASS = 'btn btn-outline-primary btn-sm'.freeze
 
         def actions(options = {}, &block)
           defaults      = options.delete(:defaults) { true }

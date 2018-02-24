@@ -53,7 +53,7 @@ module ActiveAdmin
       end
 
       def dropdown_options(item)
-        item.html_options.merge!(COLLAPSE_ANCHOR_OPTS)
+        item.html_options.reverse_merge!(COLLAPSE_ANCHOR_OPTS)
       end
 
       def add_current(li, item)

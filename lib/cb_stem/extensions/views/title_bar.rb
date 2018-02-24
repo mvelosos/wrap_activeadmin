@@ -64,19 +64,8 @@ module ActiveAdmin
       end
 
       def build_titlebar_left
-        div id: 'titlebar_left', class: 'navbar-brand mr-0' do
+        div id: 'titlebar_left', class: 'navbar-brand mr-0 text-truncate' do
           text_node @title
-          # if breadcrumbs?
-          #   div class: 'dropdown' do
-          #     a class: 'dropdown-toggle', 'data-toggle': 'dropdown' do
-          #       span @title, class: 'text-truncate'
-          #       i('', class: 'nc-icon nc-minimal-down')
-          #     end
-          #     build_breadcrumb
-          #   end
-          # else
-          #   text_node @title
-          # end
         end
       end
 

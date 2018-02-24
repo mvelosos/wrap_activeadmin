@@ -38,6 +38,11 @@ body.logged_in {
       #main_content {
         max-width: 100% !important;
       }
+
+      #main_content_wrapper {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+      }
     }
 
     @include media-breakpoint-up(lg) {

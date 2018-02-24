@@ -48,6 +48,8 @@
 
   .btn {
     display: inline-flex;
+    padding-right: 0;
+    padding-left: 0;
     color: $dark;
     i.nc-icon { font-size: $icon-size; }
   }
@@ -55,10 +57,18 @@
   .action-btns {
     display: inline-flex;
     justify-content: flex-end;
+    margin-left: $spacer;
 
     .dropdown-menu {
       right: 0;
       left: auto;
+    }
+
+    .action_item {
+      & + .action_item,
+      & + .dropdown {
+        margin-left: $spacer;
+      }
     }
   }
 

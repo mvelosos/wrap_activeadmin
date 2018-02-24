@@ -15,13 +15,13 @@ module ActiveAdmin
       # Adds the default action items to each resource
       def add_default_action_items
         add_default_new_action_item
-        add_default_show_action_item
+        add_default_destroy_action_item
         add_default_edit_action_item
       end
 
       # Adds the default Destroy link on show
-      def add_default_show_action_item
-        add_action_item :destroy, only: :show do
+      def add_default_destroy_action_item
+        add_action_item :destroy, only: :edit do
           if destroy_action?
             action_btn(
               destroy_btn_title,

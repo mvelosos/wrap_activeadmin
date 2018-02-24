@@ -96,7 +96,7 @@ module ActiveAdmin
 
         def flash_action
           div class: 'flash-action' do
-            button(class: 'btn btn-link text-primary') { 'Dismiss' }
+            button(class: 'btn btn-link') { 'Dismiss' }
           end
         end
 
@@ -111,7 +111,7 @@ module ActiveAdmin
             success: 'alert-success',
             error: 'alert-danger',
             alert: 'alert-warning',
-            notice: 'alert-info'
+            notice: 'alert-success'
           }[type.to_sym] || type.to_s
         end
 
