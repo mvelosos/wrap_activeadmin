@@ -5,6 +5,7 @@ module ActiveAdmin
     module Pages
 
       # Overwriting Header - activeadmin/lib/active_admin/views/pages/base.rb
+      # rubocop:disable Metrics/ClassLength
       class Base < Arbre::HTML::Document
 
         WRAPPER_CLASS = 'container-fluid'.freeze
@@ -24,12 +25,24 @@ module ActiveAdmin
               build_title_bar
               build_page_content
             end
+            footers
           end
         end
 
         def headers
           build_header
           build_flash_messages
+        end
+
+        def footers
+          build_float_help
+        end
+
+        def build_float_help
+          div id: 'float-help' do
+            i class: 'nc-icon'
+            span 'Need Help?'
+          end
         end
 
         def build_flash_messages

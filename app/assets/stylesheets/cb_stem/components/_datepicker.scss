@@ -1,0 +1,104 @@
+.datepicker-dropdown {
+  padding: $spacer / 2;
+  border-color: $dropdown-border-color;
+
+  &::before,
+  &::after {
+    content: none;
+  }
+
+  table tr td span {
+    height: 32px;
+    margin: $spacer / 2;
+    line-height: 32px;
+  }
+
+  thead {
+    tr:nth-child(1),
+    tr:nth-child(2) {
+      color: color-yiq($primary);
+      background: $primary;
+
+      th { padding: $spacer / 2 0; }
+      th:hover { background: darken($primary, 10%); }
+    }
+
+    th.dow {
+      font-size: $small-font-size;
+      color: $secondary;
+      text-transform: uppercase;
+    }
+    tr th { border-radius: 0; }
+    .nc-icon { line-height: $icon-size; }
+  }
+
+  tbody tr td {
+    &:focus { outline: none !important; }
+
+    &.day {
+      position: relative;
+      width: auto;
+      height: auto;
+      padding: $spacer / 2;
+      background: transparent !important;
+      border-color: transparent !important;
+
+      &:not(.active):hover::before { @extend .bg-light; }
+
+      &.active,
+      &.active:hover,
+      &.active:focus,
+      &.active:focus:active {
+        text-shadow: none !important;
+
+        &::before {
+          color: color-yiq($primary) !important;
+          background: $primary !important;
+          border-color: $primary !important;
+        }
+      }
+
+      &.today,
+      &.today:hover,
+      &.today:focus,
+      &.today:focus:active {
+        &::before {
+          color: color-yiq($body-bg);
+          background: $body-bg;
+        }
+      }
+
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        display: block;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        content: '';
+        @include transform(translate(-50%, -50%));
+      }
+    }
+
+    .month,
+    .year {
+      &.active {
+        color: color-yiq($primary) !important;
+        text-shadow: none !important;
+        background: $primary !important;
+        border-color: $primary !important;
+      }
+
+      &.focused {
+        color: color-yiq($body-bg);
+        background: $body-bg;
+      }
+
+      &:not(.active):hover { @extend .bg-light; }
+    }
+  }
+
+  .old { color: $text-muted !important; }
+}

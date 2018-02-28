@@ -54,6 +54,7 @@ module ActiveAdmin
                 send(x)
               end
             end
+            footers
           end
         end
 

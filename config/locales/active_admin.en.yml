@@ -72,7 +72,7 @@ en:
     dropdown_actions:
       button_label: ''
     batch_actions:
-      button_label: "Batch Actions"
+      button_label: "Edit Selections"
       default_confirmation: "Are you sure you want to do this?"
       delete_confirmation: "Are you sure you want to delete these %{plural_model}?"
       succesfully_destroyed:

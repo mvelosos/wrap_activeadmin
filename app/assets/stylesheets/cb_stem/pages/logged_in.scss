@@ -24,7 +24,10 @@ body.logged_in {
     flex: 1;
 
     #main_content_wrapper {
+      display: flex;
       flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
       padding: $spacer 0;
     }
 

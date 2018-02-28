@@ -1,0 +1,19 @@
+#float-help {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: $zindex-float-help;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacer / 2 $spacer;
+  color: $white;
+  background: $primary;
+  border-radius: $border-radius 0 0;
+
+  i.nc-icon::before {
+    margin-right: $spacer / 2;
+    font-size: $icon-size;
+    content: $icon-float-help;
+  }
+}

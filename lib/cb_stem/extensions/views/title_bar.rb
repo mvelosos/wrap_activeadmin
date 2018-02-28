@@ -15,10 +15,6 @@ module ActiveAdmin
 
       private
 
-      # def breadcrumbs?
-      #   links[1..-1].present? && links.is_a?(::Array)
-      # end
-
       def build_search_bar
         content_tag :input, class: 'form-control'
       end
@@ -79,25 +75,9 @@ module ActiveAdmin
         end
       end
 
-      # def build_breadcrumb
-      #   return unless breadcrumbs?
-      #   ul id: 'breadcrumbs', class: 'dropdown-menu' do
-      #     links[1..-1].each { |link| li(text_node(link), class: 'dropdown-item') }
-      #   end
-      # end
-
       def build_action_items
         insert_tag(view_factory.action_items, @action_items)
       end
-
-      # def links
-      #   breadcrumb_config = active_admin_config && active_admin_config.breadcrumb
-      #   if breadcrumb_config.is_a?(Proc)
-      #     instance_exec(controller, &active_admin_config.breadcrumb)
-      #   elsif breadcrumb_config.present?
-      #     breadcrumb_links
-      #   end
-      # end
 
     end
 

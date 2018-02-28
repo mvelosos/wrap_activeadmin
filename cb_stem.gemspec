@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'devise'
   s.add_dependency 'bootstrap', '~> 4.0.0'
   s.add_dependency 'font-awesome-sass', '~> 4.5.0'
+  s.add_dependency 'bootstrap-datepicker-rails'
 
   s.add_development_dependency 'devise'
   s.add_development_dependency 'pg', '~> 0.15'

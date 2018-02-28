@@ -9,13 +9,12 @@ $checkbox-size: 18px;
 $sidebar-bg: $body-bg;
 
 // z-index
-$z-index-custom-backdrop: 1040;
-$z-index-aside: 11;
-$z-index-header: 1080;
-$z-index-select2: 2200;
-$z-index-devise-warning: 99999;
-$z-index-filter: 1090;
-$z-index-flashes: 2000;
+$zindex-custom-backdrop: 1040;
+$zindex-aside: 11;
+$zindex-header: 1080;
+$zindex-filter: 1090;
+$zindex-flashes: 2200;
+$zindex-float-help: 30;
 
 // Breakpoints
 $header-breakpoint: xl;
@@ -29,3 +28,4 @@ $icon-sortable: '\ed1e';
 $icon-arrow-right: '\ef0f';
 $icon-submenu: '\eef6';
 $icon-breadcrumb-link: '\ec57';
+$icon-float-help: '\f19f';

@@ -1,5 +1,6 @@
 require 'devise'
 require 'bootstrap'
+require 'bootstrap-datepicker-rails'
 require 'active_admin'
 
 module CbStem

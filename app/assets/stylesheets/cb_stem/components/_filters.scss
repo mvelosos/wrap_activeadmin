@@ -1,5 +1,5 @@
 #filter-backdrop {
-  z-index: $z-index-filter - 1;
+  z-index: $zindex-filter - 1;
 }
 
 #filters {
@@ -7,7 +7,7 @@
   top: 0;
   right: 0;
   bottom: 0;
-  z-index: $z-index-filter;
+  z-index: $zindex-filter;
   display: block !important;
   width: $filter-width;
   height: auto !important;

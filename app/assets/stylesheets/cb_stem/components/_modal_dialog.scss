@@ -1,0 +1,42 @@
+.ui-widget-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $zindex-modal-backdrop;
+  background: $modal-backdrop-bg;
+  opacity: $modal-backdrop-opacity;
+}
+
+.ui-dialog {
+  @extend .modal-content;
+  position: fixed;
+  z-index: $zindex-modal;
+  width: $modal-md !important;
+  border: 0;
+  @include box-shadow($modal-content-box-shadow-xs);
+
+  .ui-dialog-titlebar {
+    @extend .modal-header;
+
+    .ui-dialog-title {
+      @extend .modal-title;
+      @extend h5;
+    }
+  }
+
+  .body {
+    @extend .modal-body;
+  }
+
+  .ui-dialog-buttonpane {
+    @extend .modal-footer;
+  }
+}
+
+.active_admin_dialog.ui-dialog {
+  .ui-dialog-titlebar-close {
+    display: none;
+  }
+}
