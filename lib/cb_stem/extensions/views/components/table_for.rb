@@ -22,7 +22,7 @@ module ActiveAdmin
       end
 
       def resource_selection_toggle_cell
-        label(class: 'aa-checkbox') do
+        label(class: 'input-checkbox') do
           input(
             type: 'checkbox',
             id: 'collection_selection_toggle_all',
@@ -34,7 +34,7 @@ module ActiveAdmin
       end
 
       def resource_selection_cell(resource)
-        label(class: 'aa-checkbox') do
+        label(class: 'input-checkbox') do
           input(
             type: 'checkbox',
             id: "batch_action_item_#{resource.id}",

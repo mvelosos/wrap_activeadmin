@@ -9,7 +9,7 @@ module Formtastic
 
       def to_html
         input_wrapping do
-          template.content_tag :div, class: 'aa-checkbox' do
+          template.content_tag :div, class: 'input-checkbox' do
             hidden_field_html +
               check_box_html +
               label_html

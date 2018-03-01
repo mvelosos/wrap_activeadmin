@@ -16,15 +16,20 @@ module Formtastic
       def label_html
         builder.label(
           method,
-          label_text,
+          switch_html,
           label_html_options
         )
+      end
+
+      def switch_html
+        template.content_tag(:span, label_text, class: 'switch-text') +
+          template.content_tag(:span, '', class: 'switch-btn')
       end
 
       def input_wrapping(&block)
         template.content_tag(:div, wrapper_html_options) do
           template.content_tag(
-            :span,
+            :div,
             [template.capture(&block), error_html, hint_html].join("\n")&.html_safe,
             toggle_html_options
           )
@@ -40,7 +45,7 @@ module Formtastic
       def label_html_options
         {
           for: input_html_options[:id],
-          class: super[:class] - ['label'] + ['form-switch-label']
+          class: super[:class] - %w[label checkbox-icon] + %w[form-switch-label]
         }
       end
 

@@ -7,6 +7,8 @@ onDOMReady = ->
 
     defaults = {
       todayHighlight: true
+      todayBtn: true
+      clearBtn: true
       templates:
         leftArrow: '<i class="nc-icon nc-minimal-left"></i>'
         rightArrow: '<i class="nc-icon nc-minimal-right"></i>'

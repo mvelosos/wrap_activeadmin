@@ -7,10 +7,34 @@
     content: none;
   }
 
-  table tr td span {
+  table { display: block; }
+
+  tbody tr td span {
+    width: calc(100% / 3 - #{$spacer});
     height: 32px;
     margin: $spacer / 2;
     line-height: 32px;
+  }
+
+  tfoot {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: $spacer / 2;
+    border-top: 1px solid $hr-border-color;
+
+    tr {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    tr th {
+      @extend .btn;
+      @extend .btn-link;
+      display: flex !important;
+      align-items: center;
+      width: auto;
+    }
   }
 
   thead {
