@@ -1,0 +1,11 @@
+.comment-list {
+  .comment-item {
+    padding: $spacer / 2 0;
+
+    .media-body { padding-bottom: $spacer; }
+
+    &:not(:last-child) .media-body {
+      border-bottom: 1px solid $hr-border-color;
+    }
+  }
+}

@@ -37,6 +37,7 @@ module CbStem
       require_components
       require_inputs
       require_views
+      require_orm
       require_pages
       require_others
     end
@@ -95,6 +96,13 @@ module CbStem
       require_each(
         %w[view_helpers],
         path: 'views/helpers'
+      )
+    end
+
+    def require_orm
+      require_each(
+        %w[active_admin_comments],
+        path: 'orm/active_record/comments/views'
       )
     end
 
