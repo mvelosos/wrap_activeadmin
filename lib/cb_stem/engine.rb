@@ -2,6 +2,8 @@ require 'devise'
 require 'bootstrap'
 require 'bootstrap-datepicker-rails'
 require 'active_admin'
+require 'draper'
+require 'carrierwave'
 
 module CbStem
 
@@ -42,6 +44,12 @@ module CbStem
       app.config.assets.precompile += %w[cb_stem/logo.png cb_stem/empty_state.svg]
     end
 
+    config.to_prepare do
+      Dir.glob(Rails.root + 'app/admin/concerns/**/*.rb').each do |c|
+        require_dependency(c)
+      end
+    end
+
     private
 
     def require_others
@@ -54,7 +62,9 @@ module CbStem
       require_each(
         %w[
           base/wrapping base/html base/labelling actions/base
-          inputs/boolean_input inputs/switch_input form_builder
+          inputs/boolean_input inputs/switch_input inputs/file_input
+          helpers/errors_helper
+          form_builder
         ],
         path: 'formtastic'
       )
@@ -96,7 +106,7 @@ module CbStem
 
     def require_pages
       require_each(
-        %w[base index],
+        %w[base index form],
         path: 'views/pages'
       )
     end

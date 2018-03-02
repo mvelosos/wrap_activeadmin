@@ -1,0 +1,13 @@
+# Application Base Decorator
+class ApplicationDecorator < Draper::Decorator
+
+  include Draper::LazyHelpers
+  delegate_all
+
+  private
+
+  def to_currency(attr)
+    number_to_currency(attr, precision: 2)
+  end
+
+end

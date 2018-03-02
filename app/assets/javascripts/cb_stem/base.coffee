@@ -28,6 +28,7 @@ onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()
   $('#flashes').aaFlash()
   $('#main-menu').aaIsolateScroll()
+  $('.form-control-file').aaFileInput()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
 
 $(document)

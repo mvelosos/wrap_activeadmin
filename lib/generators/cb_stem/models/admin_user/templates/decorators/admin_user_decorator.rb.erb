@@ -1,0 +1,10 @@
+# Decorates <%= class_name %> for AA
+class Admin::<%= class_name %>Decorator < ApplicationDecorator
+
+  decorates :<%= class_name.underscore %>
+
+  def full_name_with_link
+    link_to full_name, [:admin, object]
+  end
+
+end

@@ -2,3 +2,19 @@ en:
   cb_stem:
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
     owner: "Clever Banana Studios Inc"
+
+    form:
+      choose_file: Choose File
+      placeholders:
+        choose_file: No File Selected
+
+    resource:
+      panels: &shared_panels
+        general: General
+      admin_user:
+        panels:
+          <<: *shared_panels
+          security: Security
+        inputs:
+          info: Personal Information
+          password: Reset Password

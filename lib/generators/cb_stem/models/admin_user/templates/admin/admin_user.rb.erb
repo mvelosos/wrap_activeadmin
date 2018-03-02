@@ -1,0 +1,76 @@
+ActiveAdmin.register <%= class_name %> do
+  decorate_with Admin::<%= class_name %>Decorator
+
+  menu false
+
+  permit_params :first_name, :last_name,
+                :avatar, :avatar_cache,
+                :email, :password, :password_confirmation
+
+  # INDEX
+  filter :first_name
+  filter :last_name
+  filter :email
+  filter :current_sign_in_at
+  filter :sign_in_count
+  filter :created_at
+
+  index do
+    selectable_column
+    column :full_name, :full_name_with_link, sortable: :first_name
+    column :email
+    column :created_at
+    actions(dropdown: true, dropdown_name: nil)
+  end
+
+  # FORM
+  form multiple: true do
+    form_section [:admin, resource] do |f|
+      panel t('cb_stem.resource.admin_user.panels.general') do
+        f.inputs t('cb_stem.resource.admin_user.inputs.info') do
+          f.input :avatar
+          f.input :avatar_cache,
+                  as: :hidden
+          f.input :first_name
+          f.input :last_name
+          f.input :email
+        end
+        f.actions
+      end
+    end
+
+    form_section [:admin, resource] do |f|
+      panel t('cb_stem.resource.admin_user.panels.security') do
+        f.semantic_errors :password, :password_confirmation
+        f.inputs t('cb_stem.resource.admin_user.inputs.password'),
+                 hint: t('devise.shared.minimum_password_length',count: AdminUser.password_length.min) do
+          f.input :password
+          f.input :password_confirmation
+        end
+        f.actions
+      end
+    end
+  end
+
+  # SHOW
+  show do
+    panel t('cb_stem.resource.admin_user.panels.general') do
+      attributes_table_for resource do
+        row :full_name
+        row :email
+        row :created_at
+        row :updated_at
+      end
+    end
+
+    panel t('cb_stem.resource.admin_user.panels.security') do
+      attributes_table_for resource do
+        row :sign_in_count
+        row :last_sign_in_ip
+        row :last_sign_in_at
+      end
+    end
+
+    active_admin_comments
+  end
+end

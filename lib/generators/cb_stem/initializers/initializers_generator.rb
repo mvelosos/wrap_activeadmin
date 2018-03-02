@@ -11,21 +11,30 @@ module CbStem
 
       argument :name, type: :string, default: 'AdminUser'
 
-      def overwrite_config
-        @underscored_user_name = name.underscore.tr('/', '_')
-        @use_authentication_method = name.present?
+      def setup_directory
+        empty_directory 'config/initializers/cb_stem'
+      end
+
+      def generate_configs
         template(
-          'active_admin.rb.erb',
-          'config/initializers/active_admin.rb',
+          'cb_stem/menu.rb.erb',
+          'config/initializers/cb_stem/menu.rb',
           force: true
         )
       end
 
-      def copy_view_helpers
+      def generate_view_helpers
         template(
-          'view_helpers.rb.erb',
-          'config/initializers/view_helpers.rb',
+          'cb_stem/view_helpers.rb.erb',
+          'config/initializers/cb_stem/view_helpers.rb',
           force: true
+        )
+      end
+
+      def generate_fog
+        template(
+          'fog.rb.erb',
+          'config/initializers/fog.rb'
         )
       end
 

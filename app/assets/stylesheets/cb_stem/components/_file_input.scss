@@ -1,0 +1,45 @@
+.form-control-file {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  padding: $spacer / 2;
+  overflow: hidden;
+
+  &.active {
+    .file-text { display: block; }
+    .file-placeholder { display: none; }
+  }
+
+  input { display: none; }
+
+  .file-preview {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    background: $light;
+    border-radius: $border-radius;
+
+    &:empty { display: none; }
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      @include transform(translateX(-50%));
+    }
+  }
+
+  .file-text { display: none; }
+  .file-placeholder { display: block; }
+
+  .file-text,
+  .file-placeholder {
+    flex: 1;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
