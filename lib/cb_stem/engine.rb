@@ -68,6 +68,7 @@ module CbStem
         %w[
           base/wrapping base/html base/labelling actions/base
           inputs/boolean_input inputs/switch_input inputs/file_input
+          inputs/select_input
           helpers/errors_helper
           form_builder
         ],

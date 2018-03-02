@@ -49,24 +49,7 @@
     padding: $spacer;
   }
 
-  label {
-    display: block;
-    color: $secondary;
-  }
-
-  .filter_form_field .row {
-    position: relative;
-    padding-bottom: $spacer;
-
-    &::after {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      width: calc(100% - #{$spacer});
-      border-bottom: 1px solid $hr-border-color;
-      content: '';
-    }
-  }
+  label { display: block; }
 
   .buttons {
     text-align: right;
