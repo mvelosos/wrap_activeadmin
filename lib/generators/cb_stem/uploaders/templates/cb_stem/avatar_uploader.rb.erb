@@ -4,7 +4,7 @@
 class CbStem::AvatarUploader < ApplicationUploader
 
   def default_url
-    ActionController::Base.helpers.asset_path('fallback/avatar.jpg')
+    ActionController::Base.helpers.asset_path('cb_stem/default/avatar.png')
   end
 
   version :thumb do

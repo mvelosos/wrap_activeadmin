@@ -3,8 +3,18 @@ class Admin::<%= class_name %>Decorator < ApplicationDecorator
 
   decorates :<%= class_name.underscore %>
 
-  def full_name_with_link
-    link_to full_name, [:admin, object]
+  def identifier
+    table_item_identifier(
+      full_name, [:admin, object],
+      image: object.avatar,
+      options: { class: 'mr-2', icon: 'single-02' }
+    )
+  end
+
+  def avatar(*args)
+    options = args.extract_options!
+    options.reverse_merge!(icon: 'single-02')
+    thumbnail(object.avatar, options)
   end
 
 end

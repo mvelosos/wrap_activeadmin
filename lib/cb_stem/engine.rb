@@ -8,6 +8,7 @@ require 'carrierwave'
 module CbStem
 
   # Initialize Engine
+  # rubocop:disable Metrics/ClassLength
   class Engine < ::Rails::Engine
 
     isolate_namespace CbStem
@@ -41,7 +42,10 @@ module CbStem
     end
 
     initializer 'cb_stem.assets.precompile' do |app|
-      app.config.assets.precompile += %w[cb_stem/logo.png cb_stem/empty_state.svg]
+      app.config.assets.precompile += %w[
+        cb_stem/logo.png cb_stem/empty_state.svg
+        cb_stem/default/avatar.png
+      ]
     end
 
     config.to_prepare do

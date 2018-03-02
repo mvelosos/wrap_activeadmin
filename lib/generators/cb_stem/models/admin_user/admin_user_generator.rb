@@ -43,6 +43,17 @@ module CbStem
           )
         end
 
+        def generate_seeds
+          %w[
+            admin_user
+          ].each do |file|
+            template(
+              "seeds/#{file}.rb.erb",
+              "db/seeds/cb_stem/#{file}.rb"
+            )
+          end
+        end
+
       end
 
     end

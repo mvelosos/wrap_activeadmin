@@ -28,7 +28,7 @@ module Formtastic
       end
 
       def file_input_class
-        klass = %w[form-control form-control-file]
+        klass = %w[form-control-file]
         klass << 'active' if attachment.present?
         klass.join(' ')
       end

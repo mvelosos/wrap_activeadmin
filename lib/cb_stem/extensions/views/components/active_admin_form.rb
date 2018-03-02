@@ -29,7 +29,7 @@ module ActiveAdmin
         fieldset_attrs = html_options.map { |k, v| %(#{k}="#{v}") }.join(' ')
         @opening_tag =
           "<div #{fieldset_attrs}>" \
-          "#{title_html(legend_tag, body_tag)}<div class='col-md-7'>"
+          "#{title_html(legend_tag, body_tag)}<div class='col'>"
         @closing_tag = '</div></div>'
         super(*(args << html_options), &block)
       end

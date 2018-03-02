@@ -9,6 +9,13 @@ module ActiveAdmin::ViewHelpers
     ]
   end
 
+  def table_item_identifier(title, url, image: nil, options: {})
+    link_to url, class: 'table-item-identifier' do
+      concat(thumbnail(image, options)) if image
+      concat(content_tag(:span, title, class: 'identifier-text'))
+    end
+  end
+
   def flashes_html
     flash.each do |type, msg|
       concat(content_tag(:div, msg, class: "alert #{bs_class_for(type)}"))
@@ -25,11 +32,13 @@ module ActiveAdmin::ViewHelpers
     !resource.errors.empty?
   end
 
-  def thumbnail(*args)
+  def thumbnail(image, *args)
+    return unless image
     options = args.extract_options!
     klass   = options.delete(:class)
+    icon    = options.delete(:icon) { 'image-2' }
     content_tag :div, class: "thumbnail #{klass}" do
-      image_tag(*args)
+      image.present? ? image_tag(image, *args) : aa_icon(icon)
     end
   end
 

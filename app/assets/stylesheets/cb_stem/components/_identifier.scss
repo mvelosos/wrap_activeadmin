@@ -1,0 +1,15 @@
+.table-item-identifier {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-grow: 0;
+  justify-content: flex-start;
+  text-decoration: none !important;
+
+  &:hover .identifier-text { text-decoration: underline; }
+
+  .identifier-text {
+    @extend .text-truncate;
+    flex: 1;
+  }
+}

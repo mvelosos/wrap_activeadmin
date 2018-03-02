@@ -38,6 +38,7 @@ module CbStem
         invoke 'cb_stem:initializers'
         invoke 'cb_stem:models:admin_user'
         invoke 'cb_stem:uploaders'
+        invoke 'cb_stem:tasks'
       end
 
       def install_decorators
