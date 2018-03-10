@@ -2,6 +2,8 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+  padding: $input-padding-y 0;
+  border-bottom: 1px solid $hr-border-color;
 
   &.active {
     .file-text { display: block; }

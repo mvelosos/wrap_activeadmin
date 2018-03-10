@@ -2,4 +2,4 @@ en:
   formtastic:
     actions:
       create: Create %{model}
-      update: Save
+      update: Update %{model}

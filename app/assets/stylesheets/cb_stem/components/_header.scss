@@ -14,7 +14,7 @@
   width: $header-width;
   height: 100%;
   color: $white;
-  background: $dark;
+  background: $header-bg;
   border-right: $hr-border-width solid $hr-border-color;
   @include transition(transform 0.2s linear);
 
@@ -50,18 +50,28 @@
     overflow: hidden;
 
     .logo {
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 32px;
       height: 32px;
       margin-right: $spacer;
+      overflow: hidden;
       font-size: $font-size-base;
       color: $white;
       text-transform: uppercase;
       vertical-align: middle;
       background: $warning;
       border-radius: $border-radius;
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        height: 100%;
+        @include transform(translateX(-50%));
+      }
     }
 
     .title-text {
@@ -129,6 +139,7 @@
     .list-group-item {
       padding: 0;
       background: rgba($white, 0.05);
+      border: 0;
     }
 
     .badge { color: $dark; }

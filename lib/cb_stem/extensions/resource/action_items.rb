@@ -26,7 +26,7 @@ module ActiveAdmin
             action_btn(
               destroy_btn_title,
               resource_path(resource),
-              icon: 'trash-round', method: :delete,
+              icon: 'trash-simple', method: :delete,
               data: { confirm: destroy_confirm }
             )
           end

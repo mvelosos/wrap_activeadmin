@@ -1,7 +1,7 @@
 .card-body {
   .attributes-table {
     width: auto;
-    margin: 0 -#{$card-spacer-x};
+    margin-right: -#{$card-spacer-x};
   }
 }
 
@@ -18,14 +18,9 @@
     }
 
     th {
-      width: 30%;
-      padding-left: $card-spacer-x;
+      width: 40%;
+      padding-left: 0;
       font-weight: $font-weight-light;
-      border-top: 0;
-    }
-
-    @include media-breakpoint-down(xs) {
-      th { width: 40%; }
     }
   }
 }

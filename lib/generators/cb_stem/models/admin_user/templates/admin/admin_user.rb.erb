@@ -25,38 +25,51 @@ ActiveAdmin.register <%= class_name %> do
 
   # FORM
   form multiple: true do
-    form_section [:admin, resource] do |f|
-      panel t('cb_stem.resource.admin_user.panels.general') do
-        f.inputs t('cb_stem.resource.admin_user.inputs.info') do
-          f.input :avatar
-          f.input :remove_avatar,
-                  as: :boolean
-          f.input :avatar_cache,
-                  as: :hidden
-          hr
-          f.input :first_name
-          f.input :last_name
-          f.input :email
+    form_section [:admin, resource], class: 'mb-3' do |f|
+      h4 t('cb_stem.resource.admin_user.sections.general'), class: 'display-4'
+      hr
+      columns do
+        column(span: 5, class: 'mb-3') do
+          h5 t('cb_stem.resource.admin_user.inputs.info')
         end
-        f.actions
+        column do
+          f.inputs do
+            f.input :avatar
+            f.input :remove_avatar,
+                    as: :boolean
+            f.input :avatar_cache,
+                    as: :hidden
+            hr
+            f.input :first_name
+            f.input :last_name
+            f.input :email
+            f.actions
+          end
+        end
       end
     end
 
-    form_section [:admin, resource] do |f|
-      panel t('cb_stem.resource.admin_user.panels.security') do
-        f.semantic_errors :password, :password_confirmation
-        f.inputs t('cb_stem.resource.admin_user.inputs.password'),
-                 hint: t('devise.shared.minimum_password_length',count: AdminUser.password_length.min) do
-          f.input :password
-          f.input :password_confirmation
+    form_section [:admin, resource], class: 'mb-3' do |f|
+      h4 t('cb_stem.resource.admin_user.sections.security'), class: 'display-4'
+      hr
+      columns do
+        column(span: 5, class: 'mb-3') do
+          h5 t('cb_stem.resource.admin_user.inputs.password')
+          para t('devise.shared.minimum_password_length', count: AdminUser.password_length.min)
         end
-        f.actions
+        column do
+          f.inputs do
+            f.input :password
+            f.input :password_confirmation
+            f.actions
+          end
+        end
       end
     end
   end
 
   # SHOW
-  show do |u|
+  show do
     panel t('cb_stem.resource.admin_user.panels.general') do
       attributes_table_for resource do
         row :avatar

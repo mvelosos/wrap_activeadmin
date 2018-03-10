@@ -9,9 +9,9 @@ module ActiveAdmin::ViewHelpers
     ]
   end
 
-  def table_item_identifier(title, url, image: nil, options: {})
+  def table_item_identifier(title, url, object, image: nil, options: {})
     link_to url, class: 'table-item-identifier' do
-      concat(thumbnail(image, options)) if image
+      concat(thumbnail(object, image, options)) if image
       concat(content_tag(:span, title, class: 'identifier-text'))
     end
   end
@@ -32,14 +32,21 @@ module ActiveAdmin::ViewHelpers
     !resource.errors.empty?
   end
 
-  def thumbnail(image, *args)
+  def thumbnail(object, image, *args)
     return unless image
     options = args.extract_options!
     klass   = options.delete(:class)
     icon    = options.delete(:icon) { 'image-2' }
     content_tag :div, class: "thumbnail #{klass}" do
-      image.present? ? image_tag(image, *args) : aa_icon(icon)
+      object.try(image).present? ? image_tag(object.send(image), *args) : aa_icon(icon)
     end
+  end
+
+  def color_brick(color, *args)
+    options = args.extract_options!
+    klass   = options.delete(:class)
+    options[:class] = "color-brick #{klass}".strip
+    content_tag :div, '', options.merge(style: "background-color: #{color};")
   end
 
   private

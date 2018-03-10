@@ -38,7 +38,8 @@ module ActiveAdmin
 
       def build_link(item, children)
         children && dropdown_options(item)
-        a item.html_options.merge(href: item.url(self), 'data-target': "##{item.id}-sub-menu") do
+        href = children ? "##{item.id}-sub-menu" : item.url(self)
+        a item.html_options.merge(href: href) do
           if item.label(self).include? 'menu-text'
             text_node(item.label(self))
           else
@@ -79,7 +80,13 @@ module ActiveAdmin
             li.add_class 'has-sub-menu'
             menu_klass = %w[sub-menu list-unstyled collapse]
             menu_klass.push 'show' if item.current?(assigns[:current_tab])
-            ul(id: "#{item.id}-sub-menu", class: menu_klass.join(' ')) { build_children(children) }
+            ul(
+              id: "#{item.id}-sub-menu",
+              class: menu_klass.join(' '),
+              'data-parent': '#main-menu'
+            ) do
+              build_children(children)
+            end
           end
         end
       end

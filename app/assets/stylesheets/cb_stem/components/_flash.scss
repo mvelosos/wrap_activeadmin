@@ -1,13 +1,13 @@
 // sass-lint:disable no-vendor-prefixes
 #flashes {
   position: fixed;
+  right: 0;
   bottom: 0;
   left: 0;
   z-index: $zindex-flashes;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  width: $header-width;
+  justify-content: center;
   padding: $spacer;
   pointer-events: none;
   @include transition(transform 0.5s);
@@ -33,7 +33,6 @@
 
     @each $color, $value in $theme-colors {
       &.alert-#{$color} {
-        border-color: $value;
         .btn { color: $value; }
       }
     }

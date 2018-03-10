@@ -41,17 +41,19 @@ module ActiveAdmin
             url: comment_form_url,
             html: { class: 'admin-comment-form' }
           ) do |f|
-            f.inputs do
-              f.input :resource_type,
-                      as: :hidden,
-                      input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
-              f.input :resource_id,
-                      as: :hidden,
-                      input_html: { value: parent.resource.id }
-              f.input :body,
-                      label: false,
-                      input_html: { rows: '4', placeholder: 'Your comments...' }
-            end
+            f.input :resource_type,
+                    as: :hidden,
+                    input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
+            f.input :resource_id,
+                    as: :hidden,
+                    input_html: { value: parent.resource.id }
+            f.input :body,
+                    label: false,
+                    input_html: {
+                      rows: '1',
+                      placeholder: t('cb_stem.form.placeholders.comments'),
+                      class: 'form-control'
+                    }
             f.actions do
               f.action :submit, label: I18n.t('active_admin.comments.add')
             end

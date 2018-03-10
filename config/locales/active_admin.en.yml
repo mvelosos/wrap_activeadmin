@@ -12,6 +12,7 @@ en:
     view_site_link: Visit Site
     header_toggle: Open Menu
     header_close: Close Menu
+    filter_close: Close Filter
     search_model: "Search %{model}"
     new_model: "New %{model}"
     edit_model: "Edit %{model}"
@@ -22,7 +23,7 @@ en:
     previous: "Previous"
     next: "Next"
     download: "Download:"
-    has_many_new: "Add New %{model}"
+    has_many_new: "Add %{model}"
     has_many_delete: "Delete"
     has_many_remove: "Remove"
     move: "Move"

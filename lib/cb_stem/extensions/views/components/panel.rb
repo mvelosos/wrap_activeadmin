@@ -12,16 +12,18 @@ module ActiveAdmin
       def build(title = nil, attributes = {})
         super(attributes)
         add_class WRAPPER_CLASS
-        @title    = h5(title.to_s, class: HEADING_CLASS) if title.present?
+        @title    = h5(title_tag(title), class: HEADING_CLASS) if title.present?
         @contents = div(class: BODY_CLASS)
       end
 
-      def header_action(*args)
-        action = args[0]
+      def header_action(&block)
+        @title << div(instance_exec(&block), class: 'header_action')
+      end
 
-        @title << div(class: 'header_action') do
-          action
-        end
+      private
+
+      def title_tag(title)
+        div title.to_s, class: 'title'
       end
 
     end

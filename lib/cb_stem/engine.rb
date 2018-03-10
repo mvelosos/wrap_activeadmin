@@ -4,6 +4,7 @@ require 'bootstrap-datepicker-rails'
 require 'active_admin'
 require 'draper'
 require 'carrierwave'
+require 'tinymce-rails'
 
 module CbStem
 
@@ -33,6 +34,7 @@ module CbStem
     initializer 'view overrides' do |_app|
       require_helpers
       require_formtastic
+      require_filters
       require_resources
       require_components
       require_inputs
@@ -67,8 +69,7 @@ module CbStem
       require_each(
         %w[
           base/wrapping base/html base/labelling actions/base
-          inputs/boolean_input inputs/switch_input inputs/file_input
-          inputs/select_input
+          inputs/boolean_input inputs/switch_input inputs/file_input inputs/select_input
           helpers/errors_helper
           form_builder
         ],
@@ -83,6 +84,13 @@ module CbStem
           active_admin_form blank_slate columns scopes tabs
         ],
         path: 'views/components'
+      )
+    end
+
+    def require_filters
+      require_each(
+        %w[resource_extension],
+        path: 'filters'
       )
     end
 

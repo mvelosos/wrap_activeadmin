@@ -6,7 +6,7 @@ module ActiveAdmin
     class TitleBar < Component
 
       def build(title, action_items, is_index_page = false)
-        super(id: 'title_bar', class: 'navbar fixed-top bg-primary navbar-dark navbar-expand-lg')
+        super(id: 'title_bar', class: 'navbar fixed-top navbar-expand-lg')
         @title         = title
         @action_items  = action_items
         @is_index_page = is_index_page

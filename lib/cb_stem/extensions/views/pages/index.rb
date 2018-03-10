@@ -68,7 +68,7 @@ module ActiveAdmin
         def build_filters
           div id: 'filter-wrap' do
             div id: 'filters', class: 'collapse' do
-              div(filter_sections.collect { |x| sidebar_section(x) })
+              filter_sections.collect { |x| sidebar_section(x) }
             end
             div id: 'filter-backdrop',
                 class: 'backdrop',

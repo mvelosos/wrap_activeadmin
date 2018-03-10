@@ -1,32 +1,41 @@
-$navbar-height: 56px;
-$col-selectable-width: 30px;
-$header-width: 340px;
-$filter-width: 370px;
-$sidebar-width: 370px;
-$icon-size: 1.25rem;
-$icon-size-sm: $font-size-base;
-$checkbox-size: 18px;
-$sidebar-bg: $body-bg;
+$navbar-height:        56px !default;
+$col-selectable-width: 30px !default;
+$header-width:         340px !default;
+$filter-width:         370px !default;
+$sidebar-width:        370px !default;
+$icon-size:            1.25rem !default;
+$icon-size-sm:         $font-size-base !default;
+$checkbox-size:        18px !default;
+$color-brick-size:     18px !default;
+
+// Colors
+$backdrop-bg:          transparent !default;
+$logged-out-body-bg:   $body-bg !default;
+$sidebar-bg:           $body-bg !default;
+$titlebar-bg:          $primary !default;
+$header-bg:            $dark !default;
+$card-shadow:          0 0 0 1px rgba($dark, 0.05), 0 1px 3px 0 rgba($dark, 0.15) !default;
+$float-help-shadow:    $card-shadow !default;
 
 // z-index
 $zindex-custom-backdrop: 1040;
-$zindex-aside: 11;
-$zindex-header: 1080;
-$zindex-filter: 1090;
-$zindex-flashes: 2200;
-$zindex-float-help: 30;
+$zindex-aside:           11;
+$zindex-header:          1080;
+$zindex-filter:          1090;
+$zindex-flashes:         2200;
+$zindex-float-help:      30;
 
 // Breakpoints
 $header-breakpoint: xl;
 
 // Icons
-$icon-checkbox-checked: '\ebd2';
+$icon-checkbox-checked:      '\ebd2';
 $icon-checkbox-intermediate: '\f0f2';
-$icon-sort-desc: '\f1c8';
-$icon-sort-asc: '\f1cf';
-$icon-sortable: '\ed1e';
-$icon-arrow-right: '\ef0f';
-$icon-submenu: '\eef6';
-$icon-breadcrumb-link: '\ec57';
-$icon-float-help: '\f19f';
-$icon-select: '\ef0c';
+$icon-sort-desc:             '\f1c8';
+$icon-sort-asc:              '\f1cf';
+$icon-sortable:              '\ed1e';
+$icon-arrow-right:           '\ef0f';
+$icon-submenu:               '\eef6';
+$icon-breadcrumb-link:       '\ec57';
+$icon-float-help:            '\f19f';
+$icon-select:                '\f09f';

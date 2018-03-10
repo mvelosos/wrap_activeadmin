@@ -12,41 +12,44 @@ module ActiveAdmin
         action(:submit)
       end
 
+      # rubocop:disable Style/PredicateName
+      def has_many(*args, &block)
+        insert_tag(HasManyProxy, form_builder, *args, &block)
+      end
+
     end
 
     # Overwriting SemanticInputsProxy
     class SemanticInputsProxy < FormtasticProxy
 
-      # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
+      # rubocop:disable Metrics/LineLength, Metrics/AbcSize
       def build(_form_builder, *args, &block)
         html_options = args.extract_options!
-        html_options[:class] ||= 'inputs row'
-        legend      = args.shift if args.first.is_a?(::String)
-        legend      = html_options.delete(:name) if html_options.key?(:name)
-        hint        = html_options.delete(:hint) if html_options.key?(:hint)
-        body_tag    = hint ? hint_tag(hint) : ''
-        legend_tag  = legend ? title_tag(legend) : ''
+        card         = html_options.delete(:card) { true }
+        html_options[:class] ||= inputs_klass(card)
+        legend = args.shift if args.first.is_a?(::String)
+        legend = html_options.delete(:name) if html_options.key?(:name)
         fieldset_attrs = html_options.map { |k, v| %(#{k}="#{v}") }.join(' ')
-        @opening_tag =
-          "<div #{fieldset_attrs}>" \
-          "#{title_html(legend_tag, body_tag)}<div class='col'>"
-        @closing_tag = '</div></div>'
+        @opening_tag = "<div #{fieldset_attrs}>#{legend_tag(legend)}<div class=#{inputs_body_klass(card)}><ol class='list-unstyled'>"
+        @closing_tag = '</ol></div></div>'
         super(*(args << html_options), &block)
       end
 
       private
 
-      def title_html(legend_tag, body_tag)
-        return if (legend_tag + body_tag).blank?
-        "<div class='col-md-5'>#{legend_tag}#{body_tag}</div>"
+      def inputs_klass(card)
+        klass = %w[inputs mb-3]
+        klass.push 'card' if card
+        klass.join(' ')
       end
 
-      def title_tag(legend)
-        "<h6>#{legend}</h6>"
+      def inputs_body_klass(card)
+        card ? 'card-body' : 'inputs-body'
       end
 
-      def hint_tag(hint)
-        hint&.html_safe
+      def legend_tag(legend)
+        return if legend.blank?
+        "<h5 class='card-header'>#{legend}</h5>"
       end
 
     end

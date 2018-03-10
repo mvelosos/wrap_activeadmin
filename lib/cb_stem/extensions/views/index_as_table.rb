@@ -34,7 +34,7 @@ module ActiveAdmin
         def actions(options = {}, &block)
           defaults      = options.delete(:defaults) { true }
           name          = options.delete(:name)     { '' }
-          dropdown      = options.delete(:dropdown) { false }
+          dropdown      = options.delete(:dropdown) { true }
           dropdown_name = options.delete(:dropdown_name) { default_dropdown_name }
           options[:class] ||= 'col-actions'
           column name, options do |resource|

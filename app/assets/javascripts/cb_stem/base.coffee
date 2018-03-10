@@ -4,14 +4,15 @@
 #= require jquery-ui/widgets/sortable
 #= require jquery-ui/widgets/tabs
 #= require jquery-ui/widget
+#= require jquery-ui/sortable
 #= require jquery_ujs
 #= require popper
 #= require bootstrap
 #= require bootstrap-datepicker
+#= require tinymce
 #= require_self
 #= require active_admin/lib/checkbox-toggler
 #= require active_admin/lib/flash
-#= require active_admin/lib/has_many
 #= require active_admin/lib/per_page
 #= require active_admin/lib/table-checkbox-toggler
 #= require active_admin/ext/jquery-ui
@@ -27,8 +28,10 @@ window.ActiveAdmin = {}
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()
   $('#flashes').aaFlash()
-  $('#main-menu').aaIsolateScroll()
+  $('#main-menu, #filters_sidebar_section .card-body').aaIsolateScroll()
   $('.form-control-file').aaFileInput()
+  $('.tinymce').aaTinyMCE()
+  $('.dropdown').aaDropdown()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
 
 $(document)

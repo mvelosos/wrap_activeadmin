@@ -31,12 +31,13 @@ module ActiveAdmin
 
       def build(options = {})
         options = options.dup
+        @klass     = options.delete(:class)
         @span_size = options.delete(:span)
         super(options)
       end
 
       def assign_column_span
-        set_attribute :class, column_klass
+        set_attribute :class, "#{column_klass} #{@klass}".strip
       end
 
       def column_klass

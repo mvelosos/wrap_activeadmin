@@ -35,7 +35,7 @@ module ActiveAdmin
         end
 
         def footers
-          build_float_help
+          # build_float_help
         end
 
         def build_float_help

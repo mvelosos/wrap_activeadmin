@@ -1,5 +1,5 @@
 <% content_for :title do %>
-  <h3 class='mb-4 display-3 text-center text-muted'>
+  <h3 class='mb-4 display-3 text-center'>
     <%= title t('active_admin.devise.reset_password.title') %>
   </h3>
 <% end %>
@@ -7,7 +7,7 @@
 
   <%= devise_error_messages! %>
   <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, autocomplete: 'off' }) do |f|
-    f.inputs do
+    f.inputs card: false do
       f.input :email,
               label: false,
               placeholder: t("active_admin.devise.email.title"),

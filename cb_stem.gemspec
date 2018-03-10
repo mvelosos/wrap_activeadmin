@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails', '~> 5.0.5'
   s.add_dependency 'select2-rails'
+  s.add_dependency 'tinymce-rails'
   s.add_dependency 'friendly_id', '~> 5.1.0'
   s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'rmagick'
@@ -33,7 +34,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap', '~> 4.0.0'
   s.add_dependency 'font-awesome-sass', '~> 4.5.0'
   s.add_dependency 'bootstrap-datepicker-rails'
-  s.add_dependency 'draper'
+  s.add_dependency 'draper', '~> 3.0.1'
 
   s.add_development_dependency 'devise'
   s.add_development_dependency 'pg', '~> 0.15'
@@ -41,4 +42,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'interactive_editor'
   s.add_development_dependency 'letter_opener'
+  s.add_development_dependency 'faker'
 end

@@ -46,6 +46,27 @@ module ActiveAdmin
         end
       end
 
+      # Overwriting Table Column
+      class Column
+
+        def initialize(*args, &block)
+          @options = args.extract_options!
+
+          @title = args[0]
+          html_classes = %w[table-col]
+          if @options.key?(:class)
+            html_classes << @options.delete(:class)
+          elsif @title.present?
+            html_classes << "col-#{ActiveAdmin::Dependency.rails.parameterize(@title.to_s)}"
+          end
+          @html_class = html_classes.join(' ')
+          @data = args[1] || args[0]
+          @data = block if block
+          @resource_class = args[2]
+        end
+
+      end
+
     end
 
   end

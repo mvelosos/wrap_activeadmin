@@ -1,7 +1,8 @@
 #title_bar {
   height: $navbar-height;
-  background: linear-gradient(to bottom left, #{$primary} , darken($primary, 3%));
-  border-bottom: 1px solid $hr-border-color;
+  color: color-yiq($titlebar-bg);
+  background: linear-gradient(to bottom left, #{$titlebar-bg} , darken($titlebar-bg, 3%));
+  background-color: $titlebar-bg;
 
   @include media-breakpoint-up($header-breakpoint) {
     left: $header-width;

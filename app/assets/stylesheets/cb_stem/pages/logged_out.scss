@@ -1,14 +1,7 @@
 body.logged_out {
-  .logo {
-    height: 64px;
-  }
+  background: $logged-out-body-bg;
 
-  #content_wrapper {
-    min-height: calc(100vh - #{$navbar-height});
-  }
-
-
-  #login {
-    .list-inline-item { display: block; }
-  }
+  .logo                    { height: 64px; }
+  #content_wrapper         { min-height: calc(100vh - #{$navbar-height}); }
+  #login .list-inline-item { display: block; }
 }

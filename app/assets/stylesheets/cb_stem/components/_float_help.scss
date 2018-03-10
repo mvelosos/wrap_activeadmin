@@ -7,9 +7,10 @@
   align-items: center;
   justify-content: center;
   padding: $spacer / 2 $spacer;
-  color: $white;
+  color: color-yiq($primary);
   background: $primary;
   border-radius: $border-radius 0 0;
+  @include box-shadow($float-help-shadow);
 
   i.nc-icon::before {
     margin-right: $spacer / 2;

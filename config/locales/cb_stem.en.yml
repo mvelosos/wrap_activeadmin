@@ -3,16 +3,23 @@ en:
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
     owner: "Clever Banana Studios Inc"
 
+    panels:
+      danger: Danger Zone
+
+    hints:
+      destroy: 'Attention: If you choose to delete this %{model}, it will be permanently removed from the database.'
+
     form:
       choose_file: Choose File
       placeholders:
         choose_file: No File Selected
+        comments: Your comments...
 
     resource:
-      panels: &shared_panels
+      sections: &shared_panels
         general: General
       admin_user:
-        panels:
+        sections:
           <<: *shared_panels
           security: Security
         inputs:
