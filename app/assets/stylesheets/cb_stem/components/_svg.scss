@@ -1,0 +1,30 @@
+#empty-state-icon {
+  .st0 {
+    fill: lighten($primary, 13%);
+  }
+
+  .st1 {
+    fill: none;
+    stroke: $primary;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .st2 {
+    fill: #FFFFFF;
+    stroke: $primary;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .st3 {
+    fill: #FFFFFF;
+  }
+
+  .st4 {
+    fill: lighten($primary, 13%);
+    stroke: $primary;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
