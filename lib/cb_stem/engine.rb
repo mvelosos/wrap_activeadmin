@@ -5,6 +5,8 @@ require 'active_admin'
 require 'draper'
 require 'carrierwave'
 require 'tinymce-rails'
+require 'select2-rails'
+require 'flag-icons-rails'
 
 module CbStem
 

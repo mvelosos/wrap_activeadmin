@@ -1,4 +1,10 @@
 // https://getbootstrap.com/docs/4.0/components/forms/
+%select-input {
+  @include appearance(none);
+  padding-right: $icon-size + $input-padding-y;
+  background: linear-gradient(to bottom, $input-bg, darken($input-bg, 3%));
+}
+
 .form-control {
   &.h5 { font-size: $h5-font-size; }
   &.datepicker { background: $input-bg; }
@@ -29,9 +35,5 @@
     content: $icon-select;
   }
 
-  select {
-    @include appearance(none);
-    padding-right: $icon-size + $input-padding-y;
-    background: linear-gradient(to bottom, $input-bg, darken($input-bg, 3%));
-  }
+  select { @extend %select-input; }
 }

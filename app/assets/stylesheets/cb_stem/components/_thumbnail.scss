@@ -12,6 +12,10 @@
   border-radius: $border-radius;
 
   &.circle { border-radius: 50%; }
+  &.xs {
+    width: 24px;
+    height: 24px;
+  }
 
   img {
     position: absolute;

@@ -16,6 +16,21 @@ module ActiveAdmin::ViewHelpers
     end
   end
 
+  def item_identifier(title, object, image: nil, options: {})
+    content_tag :div, class: 'table-item-identifier' do
+      concat(thumbnail(object, image, options)) if image
+      concat(content_tag(:span, title, class: 'identifier-text'))
+    end
+  end
+
+  def country_identifier(country)
+    return if country&.code.blank?
+    content_tag :div, class: 'table-item-identifier' do
+      concat(flag_icon(country.code.downcase, class: 'mr-3'))
+      concat(content_tag(:span, country.name, class: 'identifier-text'))
+    end
+  end
+
   def flashes_html
     flash.each do |type, msg|
       concat(content_tag(:div, msg, class: "alert #{bs_class_for(type)}"))
