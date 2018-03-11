@@ -9,6 +9,9 @@ en:
     hints:
       destroy: 'Attention: If you choose to delete this %{model}, it will be permanently removed from the database.'
 
+    batch_actions:
+      title: Are you sure?
+
     form:
       choose_file: Choose File
       placeholders:

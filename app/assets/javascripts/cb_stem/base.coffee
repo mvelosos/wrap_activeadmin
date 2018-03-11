@@ -4,7 +4,6 @@
 #= require jquery-ui/widgets/sortable
 #= require jquery-ui/widgets/tabs
 #= require jquery-ui/widget
-#= require jquery-ui/sortable
 #= require jquery_ujs
 #= require popper
 #= require bootstrap
@@ -34,6 +33,7 @@ onDOMReady = ->
   $('.tinymce').aaTinyMCE()
   $('.dropdown').aaDropdown()
   $('.select2').aaSelect2()
+  $('[data-js="form-trigger"]').aaFormTrigger()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
 
 $(document)

@@ -3,25 +3,26 @@
   border: 0;
   @include box-shadow($card-shadow);
 
+  &.body-p-0 {
+    .card-body { padding: 0; }
+  }
+
+  &:not(.body-p-0) {
+    .card-header { padding-bottom: 0; }
+  }
+
   .card-header {
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding-bottom: 0;
     border-bottom: 0;
     border-color: $hr-border-color;
     .title { flex: 1; }
     .header_action i { font-size: $icon-size; }
   }
 
-  .card-body {
-    .card-outdent {
-      margin: 0 -#{$card-spacer-x};
-
-      .card-spacer-x {
-        padding-right: $card-spacer-x;
-        padding-left: $card-spacer-x;
-      }
-    }
+  .card-spacer-x {
+    padding-right: $card-spacer-x;
+    padding-left: $card-spacer-x;
   }
 }

@@ -17,6 +17,8 @@ module CbStem
     isolate_namespace CbStem
 
     ActiveAdmin.before_load do |app|
+      require_relative 'extensions/batch_actions/controller'
+      require_relative 'extensions/batch_actions/resource_extension'
       require_relative 'extensions/batch_actions/views/batch_action_selector'
       app.view_factory.register batch_action_selector:
         ::ActiveAdmin::BatchActions::BatchActionSelector

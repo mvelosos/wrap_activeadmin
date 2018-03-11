@@ -64,6 +64,8 @@ module ActiveAdmin::ViewHelpers
     content_tag :div, '', options.merge(style: "background-color: #{color};")
   end
 
+  alias batch_form active_admin_form_for
+
   private
 
   def aa_icon(icon)

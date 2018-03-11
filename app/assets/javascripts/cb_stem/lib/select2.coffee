@@ -15,7 +15,6 @@ class ActiveAdmin.Select2
       'width': '100%'
       'allowClear': true
       'minimumResultsForSearch': Infinity
-      'closeOnSelect': false
     }
 
     @options = $.extend defaults, @options
@@ -40,6 +39,11 @@ class ActiveAdmin.Select2
   _selection_template_opts: ->
     @options = $.extend(@options, {
       templateSelection: formatState
+    })
+
+  _multiple_opts: ->
+    @options = $.extend(@options, {
+      'closeOnSelect': false
     })
 
   _search_opts: ->
@@ -83,6 +87,9 @@ class ActiveAdmin.Select2
 
     if(@$element.data('select2-selection-template'))
       @_selection_template_opts()
+
+    if(@$element).attr('multiple')
+      @_multiple_opts()
 
     @$element.select2(@options)
     @
