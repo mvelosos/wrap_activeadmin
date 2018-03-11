@@ -28,7 +28,7 @@ module ActiveAdmin
             class: 'table_tools_button nav-link' do
             text_node scope_name(scope)
             if should_render_scope?(scope, options)
-              span get_scope_count(scope).to_s, class: 'badge badge-primary badge-pill'
+              span get_scope_count(scope).to_s, class: 'badge badge-pill'
             end
           end
         end

@@ -20,6 +20,8 @@
       }
 
       a { color: $primary; }
+
+      span.badge { @extend .badge-primary; }
     }
 
     a {
@@ -30,6 +32,9 @@
       text-decoration: none;
     }
 
-    span.badge { margin-left: $spacer / 2; }
+    span.badge {
+      @extend .badge-secondary;
+      margin-left: $spacer / 2;
+    }
   }
 }
