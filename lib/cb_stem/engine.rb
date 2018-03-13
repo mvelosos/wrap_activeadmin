@@ -2,6 +2,7 @@ require 'devise'
 require 'bootstrap'
 require 'bootstrap-datepicker-rails'
 require 'active_admin'
+require 'just-datetime-picker'
 require 'draper'
 require 'carrierwave'
 require 'tinymce-rails'
@@ -38,6 +39,7 @@ module CbStem
     initializer 'view overrides' do |_app|
       require_helpers
       require_formtastic
+      require_just_datetime_picker
       require_filters
       require_resources
       require_components
@@ -78,6 +80,13 @@ module CbStem
           form_builder
         ],
         path: 'formtastic'
+      )
+    end
+
+    def require_just_datetime_picker
+      require_each(
+        %w[just_datetime_picker],
+        path: 'just_datetime_picker'
       )
     end
 

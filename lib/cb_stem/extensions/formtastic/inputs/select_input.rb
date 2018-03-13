@@ -6,7 +6,11 @@ module Formtastic
     class SelectInput
 
       def select_html
-        template.content_tag :div, class: 'select-wrap' do
+        multiple = input_html_options[:multiple]
+        klass    = %w[select-wrap]
+        klass.push 'multiple' if multiple
+        klass = klass.join(' ')
+        template.content_tag :div, class: klass do
           builder.select(input_name, collection, input_options, input_html_options)
         end
       end

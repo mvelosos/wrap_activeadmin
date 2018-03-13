@@ -23,7 +23,7 @@
 .select-wrap {
   position: relative;
 
-  &::after {
+  &:not(.multiple)::after {
     @extend %nc-icon;
     position: absolute;
     top: 0;

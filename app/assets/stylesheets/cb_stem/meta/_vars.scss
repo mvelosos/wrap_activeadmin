@@ -7,7 +7,8 @@ $icon-size:            1.25rem !default;
 $icon-size-sm:         $font-size-base !default;
 $checkbox-size:        18px !default;
 $color-brick-size:     18px !default;
-$select2-min-height:   38px !default;
+$input-height:         38px !default;
+$select2-min-height:   $input-height !default;
 
 // Colors
 $backdrop-bg:          transparent !default;
@@ -25,7 +26,8 @@ $zindex-header:          1080;
 $zindex-filter:          1090;
 $zindex-flashes:         2200;
 $zindex-float-help:      30;
-$zindex-select2:        1000;
+$zindex-select2:         1000;
+$zindex-datepicker:      1100;
 
 // Breakpoints
 $header-breakpoint: xl;

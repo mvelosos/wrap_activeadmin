@@ -1,4 +1,5 @@
 .datepicker-dropdown {
+  z-index: $zindex-datepicker;
   padding: $spacer / 2;
   border-color: $dropdown-border-color;
 

@@ -71,14 +71,18 @@ module ActiveAdmin
             assigns[:skip_sidebar] == true
         end
 
+        def valid_links
+          links.delete_if { |x| x =~ %r{<a\ href="\/admin">Admin<\/a>} }
+        end
+
         def breadcrumbs?
-          links[1..-1].present? && links.is_a?(::Array)
+          valid_links.present? && links.is_a?(::Array)
         end
 
         def build_breadcrumb(separator = '/')
           return unless breadcrumbs?
           ul id: 'breadcrumbs', class: 'list-inline my-3' do
-            links[1..-1].each do |link|
+            valid_links.each do |link|
               li class: 'list-inline-item mr-1 my-1' do
                 text_node(link)
                 span(separator, class: 'breadcrumb_sep ml-1 text-muted')

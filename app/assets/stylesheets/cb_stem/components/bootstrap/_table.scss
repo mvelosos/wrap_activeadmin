@@ -1,14 +1,27 @@
 // https://getbootstrap.com/docs/4.0/content/tables/
-.table {
-  tbody tr:first-child {
-    td,
-    th {
-      border-top: 0;
-    }
-  }
-}
-
 table {
   width: 100%;
   .col-actions { text-align: right; }
+
+  &.table {
+    tbody tr:first-child {
+      td,
+      th {
+        border-top: 0;
+      }
+    }
+
+    .table-col {
+      &:first-child { padding-left: $card-spacer-x; }
+      &:last-child { padding-right: $card-spacer-x; }
+    }
+
+    &.table-outline {
+      .table-col {
+        &:first-child { padding-left: 0; }
+        &:last-child { padding-right: 0; }
+      }
+    }
+  }
+
 }

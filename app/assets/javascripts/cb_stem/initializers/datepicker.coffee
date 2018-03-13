@@ -9,6 +9,7 @@ onDOMReady = ->
       todayHighlight: true
       todayBtn: true
       clearBtn: true
+      format: 'yyyy-mm-dd'
       templates:
         leftArrow: '<i class="nc-icon nc-minimal-left"></i>'
         rightArrow: '<i class="nc-icon nc-minimal-right"></i>'

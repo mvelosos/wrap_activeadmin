@@ -21,14 +21,14 @@ module Formtastic
 
       # rubocop:disable Metrics/AbcSize
       def attachment_preview
-        template.content_tag :div, class: 'file-preview mr-2' do
+        template.content_tag :div, class: 'file-preview' do
           object.try(method).present? && object.try(method).image? &&
             template.image_tag(object.try(method)&.url)
         end
       end
 
       def file_input_class
-        klass = %w[form-control-file]
+        klass = %w[form-control-file form-control]
         klass << 'active' if attachment.present?
         klass.join(' ')
       end
@@ -40,10 +40,10 @@ module Formtastic
       end
 
       def file_placeholder
-        template.content_tag(:div, attachment, class: 'file-text mr-2') <<
+        template.content_tag(:div, attachment, class: 'file-text mx-2') <<
           template.content_tag(
             :div, ::I18n.t('cb_stem.form.placeholders.choose_file'),
-            class: 'file-placeholder text-muted'
+            class: 'file-placeholder text-muted mx-2'
           )
       end
 

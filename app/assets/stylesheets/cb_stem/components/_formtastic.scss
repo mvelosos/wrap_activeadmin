@@ -12,6 +12,10 @@
     text-align: right;
   }
 
+  .input {
+    label { display: block; }
+  }
+
   .has_many_container {
     .has_many_fields {
       padding-top: 1.5 * $spacer;
