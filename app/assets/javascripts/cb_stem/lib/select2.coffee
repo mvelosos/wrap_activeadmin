@@ -13,7 +13,6 @@ class ActiveAdmin.Select2
     defaults = {
       'theme': 'bootstrap'
       'width': '100%'
-      'allowClear': true
       'minimumResultsForSearch': Infinity
     }
 
@@ -27,7 +26,7 @@ class ActiveAdmin.Select2
     if(placeholder)
       $.extend(@options, { placeholder: placeholder })
 
-    if(clear == 'true')
+    if(clear)
       $.extend(@options, { allowClear: true })
     @
 

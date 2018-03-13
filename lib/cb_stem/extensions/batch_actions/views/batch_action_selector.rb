@@ -18,6 +18,7 @@ module ActiveAdmin
             message           = render_or_call_method_or_proc_on(self, batch_action.message)
             batch_form        = render_or_call_method_or_proc_on(self, batch_action.batch_form)
             inputs            = batch_form.present? ? nil : render_in_context(self, batch_action.inputs).to_json
+            batch_form        = CGI.escapeHTML(batch_form)&.html_safe if batch_form
 
             options = {
               :class         => 'batch_action',

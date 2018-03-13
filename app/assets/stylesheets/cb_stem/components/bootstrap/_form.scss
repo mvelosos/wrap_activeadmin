@@ -3,6 +3,10 @@
   @include appearance(none);
   padding-right: $icon-size + $input-padding-y;
   background: linear-gradient(to bottom, $input-bg, darken($input-bg, 3%));
+
+  option {
+    &[value=''] { color: $input-placeholder-color; }
+  }
 }
 
 .form-control {

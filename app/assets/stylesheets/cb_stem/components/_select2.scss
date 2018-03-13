@@ -15,6 +15,7 @@ input.select2 { display: none; }
     position: relative;
     z-index: 11;
     min-height: $select2-min-height;
+    padding-right: 2 * $icon-size + $input-padding-y !important;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
     color: $input-color;
@@ -36,6 +37,10 @@ input.select2 { display: none; }
       color: $secondary;
       pointer-events: none;
       content: $icon-select;
+    }
+
+    .select2-selection__placeholder {
+      color: $input-placeholder-color;
     }
 
     .select2-selection__clear {
