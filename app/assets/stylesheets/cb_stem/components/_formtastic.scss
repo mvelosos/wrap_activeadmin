@@ -16,6 +16,17 @@
     label { display: block; }
   }
 
+  .fragments-group {
+    @extend .row;
+    margin: 0 calc(-#{$spacer} / 4) !important;
+
+    .fragment {
+      @extend .col-md;
+      padding: 0 $spacer / 4;
+      margin-bottom: $spacer;
+    }
+  }
+
   .has_many_container {
     .has_many_fields {
       padding-top: 1.5 * $spacer;
