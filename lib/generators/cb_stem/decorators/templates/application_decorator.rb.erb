@@ -10,4 +10,8 @@ class ApplicationDecorator < Draper::Decorator
     number_to_currency(attr, precision: 2)
   end
 
+  def to_percentage(attr)
+    number_to_percentage(attr, precision: 2)
+  end
+
 end

@@ -26,11 +26,11 @@ ActiveAdmin.register <%= class_name %> do
   # FORM
   form multiple: true do
     form_section [:admin, resource], class: 'mb-3' do |f|
-      h4 t('cb_stem.resource.admin_user.sections.general'), class: 'display-4'
+      h4 t('cb_stem.resource.<%= class_name.underscore %>.sections.general'), class: 'display-4'
       hr
       columns do
         column(span: 5, class: 'mb-3') do
-          h5 t('cb_stem.resource.admin_user.inputs.info')
+          h5 t('cb_stem.resource.<%= class_name.underscore %>.inputs.info')
         end
         column do
           f.inputs do
@@ -50,11 +50,11 @@ ActiveAdmin.register <%= class_name %> do
     end
 
     form_section [:admin, resource], class: 'mb-3' do |f|
-      h4 t('cb_stem.resource.admin_user.sections.security'), class: 'display-4'
+      h4 t('cb_stem.resource.<%= class_name.underscore %>.sections.security'), class: 'display-4'
       hr
       columns do
         column(span: 5, class: 'mb-3') do
-          h5 t('cb_stem.resource.admin_user.inputs.password')
+          h5 t('cb_stem.resource.<%= class_name.underscore %>.inputs.password')
           para t('devise.shared.minimum_password_length', count: AdminUser.password_length.min)
         end
         column do
@@ -70,7 +70,7 @@ ActiveAdmin.register <%= class_name %> do
 
   # SHOW
   show do
-    panel t('cb_stem.resource.admin_user.panels.general') do
+    panel t('cb_stem.resource.<%= class_name.underscore %>.panels.general') do
       attributes_table_for resource do
         row :avatar
         row :full_name
@@ -80,7 +80,7 @@ ActiveAdmin.register <%= class_name %> do
       end
     end
 
-    panel t('cb_stem.resource.admin_user.panels.security') do
+    panel t('cb_stem.resource.<%= class_name.underscore %>.panels.security') do
       attributes_table_for resource do
         row :sign_in_count
         row :last_sign_in_ip
@@ -88,6 +88,6 @@ ActiveAdmin.register <%= class_name %> do
       end
     end
 
-    active_admin_comments
+    # active_admin_comments
   end
 end
