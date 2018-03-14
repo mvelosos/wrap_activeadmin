@@ -95,7 +95,7 @@ en:
       resource: "Resource"
       no_comments_yet: "No comments yet."
       author_missing: "Anonymous"
-      title_content: "Comments (%{count})"
+      title_content: "Comments"
       errors:
         empty_text: "Comment wasn't saved, text was empty."
     devise:

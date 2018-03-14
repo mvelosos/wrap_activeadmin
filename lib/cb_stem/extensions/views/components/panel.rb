@@ -5,15 +5,11 @@ module ActiveAdmin
     # Overwriting Panel - activeadmin/lib/active_admin/views/components/panel.rb
     class Panel < ActiveAdmin::Component
 
-      WRAPPER_CLASS = 'card mb-3'.freeze
-      HEADING_CLASS = 'card-header'.freeze
-      BODY_CLASS    = 'card-body'.freeze
-
       def build(title = nil, attributes = {})
         super(attributes)
-        add_class WRAPPER_CLASS
-        @title    = h5(title_tag(title), class: HEADING_CLASS) if title.present?
-        @contents = div(class: BODY_CLASS)
+        add_class wrapper_class
+        @title    = h5(title_tag(title), class: heading_class) if title.present?
+        @contents = div(class: body_class)
       end
 
       def header_action(&block)
@@ -21,6 +17,18 @@ module ActiveAdmin
       end
 
       private
+
+      def wrapper_class
+        'card mb-3'
+      end
+
+      def heading_class
+        'card-header'
+      end
+
+      def body_class
+        'card-body'
+      end
 
       def title_tag(title)
         div title.to_s, class: 'title'

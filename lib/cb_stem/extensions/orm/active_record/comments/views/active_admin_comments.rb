@@ -11,6 +11,18 @@ module ActiveAdmin
 
         protected
 
+        def wrapper_class
+          'activeadmin-comments mb-3 mt-5'
+        end
+
+        def heading_class
+          'activeadmin-comments-header'
+        end
+
+        def body_class
+          'activeadmin-comments-body mt-3'
+        end
+
         def build_comments
           build_comment_form
           div class: 'comment-list' do
@@ -24,12 +36,12 @@ module ActiveAdmin
         end
 
         def build_comment(comment)
-          div for: comment, class: 'media comment-item' do
-            div class: 'media-image' do
-              comment_avatar(comment)
-            end
-            div class: 'media-body' do
-              comment_body(comment)
+          div class: 'card comment-item mb-3' do
+            div class: 'card-body py-3' do
+              div for: comment, class: 'media' do
+                div comment_avatar(comment), class: 'media-image'
+                div comment_body(comment),   class: 'media-body'
+              end
             end
           end
         end
@@ -41,21 +53,30 @@ module ActiveAdmin
             url: comment_form_url,
             html: { class: 'admin-comment-form' }
           ) do |f|
-            f.input :resource_type,
-                    as: :hidden,
-                    input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
-            f.input :resource_id,
-                    as: :hidden,
-                    input_html: { value: parent.resource.id }
-            f.input :body,
-                    label: false,
-                    input_html: {
-                      rows: '1',
-                      placeholder: t('cb_stem.form.placeholders.comments'),
-                      class: 'form-control'
-                    }
-            f.actions do
-              f.action :submit, label: I18n.t('active_admin.comments.add')
+            ol class: 'list-unstyled' do
+              f.input :resource_type,
+                      as: :hidden,
+                      input_html: { value: ActiveAdmin::Comment.resource_type(parent.resource) }
+              f.input :resource_id,
+                      as: :hidden,
+                      input_html: { value: parent.resource.id }
+              div class: 'comment-input-wrapper mb-3' do
+                f.input :body,
+                        as: :string,
+                        label: false,
+                        wrapper_html: {
+                          class: 'comment-input-group'
+                        },
+                        input_html: {
+                          placeholder: t('cb_stem.form.placeholders.comments'),
+                          autocomplete: 'off'
+                        }
+                f.actions do
+                  f.action :submit,
+                           label: I18n.t('active_admin.comments.add'),
+                           button_html: { class: 'btn btn-light' }
+                end
+              end
             end
           end
         end
@@ -72,7 +93,7 @@ module ActiveAdmin
         def comment_body(comment)
           div class: 'comment-body' do
             comment_meta(comment)
-            div class: 'mt-2' do
+            div class: 'mt-1' do
               comment.body&.html_safe
             end
           end
@@ -91,7 +112,7 @@ module ActiveAdmin
         end
 
         def comment_avatar(comment)
-          thumbnail(comment.author&.avatar, class: 'mr-2', icon: 'single-02')
+          thumbnail(comment.author, :avatar, class: 'mr-2', icon: 'single-02')
         end
 
         def comment_author(comment)

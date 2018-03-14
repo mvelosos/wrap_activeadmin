@@ -1,11 +1,37 @@
-.comment-list {
-  .comment-item {
-    padding: $spacer / 2 0;
+.activeadmin-comments {
+  .activeadmin-comments-body {
+    position: relative;
+    border-top: 1px solid $hr-border-color;
 
-    .media-body { padding-bottom: $spacer; }
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(#{$card-spacer-y} + #{$thumbnail-size} / 2);
+      z-index: -1;
+      width: 2px;
+      background: $hr-border-color;
+      content: '';
+    }
+  }
 
-    &:not(:last-child) .media-body {
-      border-bottom: 1px solid $hr-border-color;
+  .comment-input-wrapper {
+    @extend .form-control;
+    display: flex;
+    flex-direction: row;
+    padding-left: $card-spacer-y;
+
+    .comment-input-group {
+      display: flex;
+      flex: 1;
+      margin-bottom: 0;
+
+      input {
+        padding: 0;
+        margin-right: $spacer;
+        border: 0;
+        @include box-shadow(none);
+      }
     }
   }
 }
