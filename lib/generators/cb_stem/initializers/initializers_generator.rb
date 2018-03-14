@@ -31,6 +31,13 @@ module CbStem
         )
       end
 
+      def generate_kaminari_patch
+        template(
+          'cb_stem/kaminari.rb.erb',
+          'config/initializers/cb_stem/kaminari.rb'
+        )
+      end
+
       def generate_fog
         template(
           'fog.rb.erb',

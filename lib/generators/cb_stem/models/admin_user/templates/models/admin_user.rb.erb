@@ -11,4 +11,8 @@ class <%= class_name %> < ApplicationRecord
     "#{first_name} #{last_name}".strip
   end
 
+  def display_name
+    full_name.present? ? full_name : email
+  end
+
 end

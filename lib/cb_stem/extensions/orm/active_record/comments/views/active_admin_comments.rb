@@ -83,12 +83,7 @@ module ActiveAdmin
 
         private
 
-        def empty_state_msg
-          blank_slate_msg(
-            new_resource_path: nil,
-            resource_name: ActiveAdmin::Comment.model_name.human(count: 2)
-          )
-        end
+        def build_empty_message; end
 
         def comment_body(comment)
           div class: 'comment-body' do

@@ -29,6 +29,9 @@ module CbStem
       ActiveAdmin.setup do |config|
         config.current_filters = false
         config.comments_menu   = false
+        config.meta_tags = {
+          viewport: 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no'
+        }
       end
     end
 
