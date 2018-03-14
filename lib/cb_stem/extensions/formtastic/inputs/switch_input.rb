@@ -45,7 +45,7 @@ module Formtastic
       def label_html_options
         {
           for: input_html_options[:id],
-          class: super[:class] - %w[label checkbox-icon] + %w[form-switch-label]
+          class: super[:class] - %w[label checkbox-icon control-label] + %w[form-switch-label]
         }
       end
 
@@ -53,9 +53,9 @@ module Formtastic
         classes = wrapper_classes_raw
         classes << as
         classes << 'input form-group'
-        classes << 'error' if errors?
-        classes << 'optional' if optional?
-        classes << 'required' if required?
+        classes << 'error'     if errors?
+        classes << 'optional'  if optional?
+        classes << 'required'  if required?
         classes << 'autofocus' if autofocus?
 
         classes.join(' ')
