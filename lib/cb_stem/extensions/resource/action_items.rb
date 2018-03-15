@@ -7,7 +7,7 @@ module ActiveAdmin
 
       def action_items_for(action, render_context = nil)
         action_items.select { |item| item.display_on? action, render_context }.
-          sort_by(&:priority)
+          sort_by(&:priority).reverse
       end
 
       private
@@ -15,19 +15,19 @@ module ActiveAdmin
       # Adds the default action items to each resource
       def add_default_action_items
         add_default_new_action_item
-        add_default_show_action_item
+        add_default_destroy_action_item
         add_default_edit_action_item
       end
 
       # Adds the default Destroy link on show
-      def add_default_show_action_item
-        add_action_item :destroy, only: :show do
+      def add_default_destroy_action_item
+        add_action_item :destroy, only: :edit do
           if destroy_action?
             action_btn(
               destroy_btn_title,
               resource_path(resource),
-              method: :delete, title: destroy_btn_title,
-              data: { confirm: destroy_confirm, toggle: 'tooltip', placement: 'bottom' }
+              icon: 'trash-simple', method: :delete,
+              data: { confirm: destroy_confirm }
             )
           end
         end
@@ -40,8 +40,7 @@ module ActiveAdmin
             action_btn(
               new_btn_title,
               new_resource_path,
-              title: new_btn_title,
-              data: { toggle: 'tooltip', placement: 'bottom' }
+              icon: 'simple-add'
             )
           end
         end
@@ -54,8 +53,7 @@ module ActiveAdmin
             action_btn(
               edit_btn_title,
               edit_resource_path,
-              title: edit_btn_title,
-              data: { toggle: 'tooltip', placement: 'bottom' }
+              icon: 'edit-74'
             )
           end
         end
@@ -72,6 +70,10 @@ module ActiveAdmin
 
     def priority
       options[:priority] || 999
+    end
+
+    def mobile
+      options[:mobile].to_s.present? ? options[:mobile] : true
     end
 
   end

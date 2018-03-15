@@ -5,7 +5,7 @@ module ActiveAdmin
     # Overwriting Footer - activeadmin/lib/active_admin/views/footer.rb
     class Footer < Component
 
-      WRAPPER_CLASS = 'text-center text-muted mt-3'.freeze
+      WRAPPER_CLASS = 'text-center text-muted m-4'.freeze
 
       def build(namespace)
         super(id: 'footer', class: WRAPPER_CLASS)
@@ -19,7 +19,7 @@ module ActiveAdmin
         I18n.t('cb_stem.powered_by',
                year: Time.zone.now.year,
                owner: t('cb_stem.owner'),
-               version: CbStem::VERSION)
+               version: "#{CbStem::VERSION} #{CbStem::STAGE}")
       end
 
     end

@@ -1,0 +1,26 @@
+.card-body {
+  .attributes-table {
+    width: auto;
+    margin-right: -#{$card-spacer-x};
+  }
+}
+
+.attributes-table {
+  tbody {
+    td,
+    th {
+      padding: $spacer;
+    }
+
+    td {
+      padding-left: 0;
+      word-break: break-all;
+    }
+
+    th {
+      width: 40%;
+      padding-left: 0;
+      font-weight: $font-weight-light;
+    }
+  }
+}

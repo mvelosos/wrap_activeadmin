@@ -1,0 +1,72 @@
+#filter-backdrop {
+  z-index: $zindex-filter - 1;
+}
+
+#filters_sidebar_section {
+  height: 100%;
+
+  .card-body {
+    flex: 1;
+    overflow-y: scroll;
+  }
+}
+
+#filters {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $zindex-filter;
+  display: block !important;
+  width: $filter-width;
+  height: auto !important;
+  background: $white;
+  @include transition(transform 0.2s linear);
+  @include transform(translateX(0));
+
+  &:not(.show) {
+    @include transform(translateX(100%));
+
+    & + #filter-backdrop { display: none; }
+  }
+
+  &.show {
+    @include box-shadow(0 2px 4px rgba(black, 0.2));
+  }
+
+  .card {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    @include box-shadow(none);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    height: $navbar-height;
+    overflow: hidden;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-normal;
+    color: $white;
+    white-space: nowrap;
+    background: $primary;
+    border-radius: 0;
+  }
+
+  .card-header,
+  .card-body {
+    padding: $spacer;
+  }
+
+  label { display: block; }
+
+  .buttons {
+    text-align: right;
+
+    .list-inline-item {
+      margin-right: 0;
+      margin-left: $spacer / 2;
+    }
+  }
+}

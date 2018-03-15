@@ -1,0 +1,93 @@
+ActiveAdmin.register <%= class_name %> do
+  decorate_with Admin::<%= class_name %>Decorator
+
+  menu false
+
+  permit_params :first_name, :last_name,
+                :avatar, :avatar_cache, :remove_avatar,
+                :email, :password, :password_confirmation
+
+  # INDEX
+  filter :first_name
+  filter :last_name
+  filter :email
+  filter :current_sign_in_at
+  filter :sign_in_count
+  filter :created_at
+
+  index do
+    selectable_column
+    column :full_name, :identifier, sortable: :first_name
+    column :email
+    column :created_at
+    actions(dropdown: true, dropdown_name: nil)
+  end
+
+  # FORM
+  form multiple: true do
+    form_section [:admin, resource], class: 'mb-3' do |f|
+      h4 t('cb_stem.resource.<%= class_name.underscore %>.sections.general'), class: 'display-4'
+      hr
+      columns do
+        column(span: 5, class: 'mb-3') do
+          h5 t('cb_stem.resource.<%= class_name.underscore %>.inputs.info')
+        end
+        column do
+          f.inputs do
+            f.input :avatar
+            f.input :remove_avatar,
+                    as: :boolean
+            f.input :avatar_cache,
+                    as: :hidden
+            hr
+            f.input :first_name
+            f.input :last_name
+            f.input :email
+            f.actions
+          end
+        end
+      end
+    end
+
+    form_section [:admin, resource], class: 'mb-3' do |f|
+      h4 t('cb_stem.resource.<%= class_name.underscore %>.sections.security'), class: 'display-4'
+      hr
+      columns do
+        column(span: 5, class: 'mb-3') do
+          h5 t('cb_stem.resource.<%= class_name.underscore %>.inputs.password')
+          para t('devise.shared.minimum_password_length', count: AdminUser.password_length.min)
+        end
+        column do
+          f.inputs do
+            f.input :password
+            f.input :password_confirmation
+            f.actions
+          end
+        end
+      end
+    end
+  end
+
+  # SHOW
+  show do
+    panel t('cb_stem.resource.<%= class_name.underscore %>.panels.general') do
+      attributes_table_for resource do
+        row :avatar
+        row :full_name
+        row :email
+        row :created_at
+        row :updated_at
+      end
+    end
+
+    panel t('cb_stem.resource.<%= class_name.underscore %>.panels.security') do
+      attributes_table_for resource do
+        row :sign_in_count
+        row :last_sign_in_ip
+        row :last_sign_in_at
+      end
+    end
+
+    # active_admin_comments
+  end
+end

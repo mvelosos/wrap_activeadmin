@@ -1,0 +1,28 @@
+.thumbnail {
+  @extend .bg-light;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $thumbnail-size;
+  height: $thumbnail-size;
+  overflow: hidden;
+  font-size: $icon-size;
+  color: $text-muted;
+  border-radius: $border-radius;
+
+  &.circle { border-radius: 50%; }
+
+  &.xs {
+    width: $thumbnail-size-sm;
+    height: $thumbnail-size-sm;
+  }
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    @include transform(translateX(-50%));
+  }
+}

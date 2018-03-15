@@ -1,0 +1,17 @@
+.pagination {
+  @extend .btn-group;
+  justify-content: center;
+  margin-bottom: $spacer;
+  border-radius: 0;
+
+  & > span {
+    @extend .btn;
+    @extend .btn-light;
+
+    a { color: $body-color; }
+
+    &.current {
+      @extend .btn-primary;
+    }
+  }
+}

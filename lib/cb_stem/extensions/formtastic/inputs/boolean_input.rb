@@ -9,16 +9,18 @@ module Formtastic
 
       def to_html
         input_wrapping do
-          hidden_field_html +
-            check_box_html +
-            label_html
+          template.content_tag :div, class: 'input-checkbox' do
+            hidden_field_html +
+              check_box_html +
+              label_html
+          end
         end
       end
 
       def label_html
         builder.label(
           method,
-          label_text,
+          template.content_tag(:span, label_text),
           label_html_options
         )
       end
@@ -26,14 +28,14 @@ module Formtastic
       def label_html_options
         {
           for: input_html_options[:id],
-          class: super[:class] - ['label'] + ['form-check-label']
+          class: super[:class] - ['label'] + ['checkbox-icon']
         }
       end
 
       def wrapper_classes
         classes = wrapper_classes_raw
         classes << as
-        classes << 'input form-check form-group'
+        classes << 'input form-group'
         classes << 'error' if errors?
         classes << 'optional' if optional?
         classes << 'required' if required?

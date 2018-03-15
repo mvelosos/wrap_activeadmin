@@ -1,5 +1,47 @@
-// Custom Variables
-$navbar-height: 56px;
+$navbar-height:        56px !default;
+$col-selectable-width: 30px !default;
+$header-width:         340px !default;
+$filter-width:         370px !default;
+$sidebar-width:        370px !default;
+$icon-size:            1.25rem !default;
+$icon-size-sm:         $font-size-base !default;
+$checkbox-size:        18px !default;
+$color-brick-size:     18px !default;
+$input-height:         38px !default;
+$select2-min-height:   $input-height !default;
+$thumbnail-size:       36px !default;
+$thumbnail-size-sm:    24px !default;
 
-// IndexAsTable
-$col-selectable-width: 30px;
+// Colors
+$backdrop-bg:          transparent !default;
+$logged-out-body-bg:   $body-bg !default;
+$sidebar-bg:           $body-bg !default;
+$titlebar-bg:          $primary !default;
+$header-bg:            $dark !default;
+$card-shadow:          0 0 0 1px rgba($dark, 0.05), 0 1px 3px 0 rgba($dark, 0.15) !default;
+$float-help-shadow:    $card-shadow !default;
+
+// z-index
+$zindex-custom-backdrop: 1040;
+$zindex-aside:           11;
+$zindex-header:          1080;
+$zindex-filter:          1090;
+$zindex-flashes:         2200;
+$zindex-float-help:      30;
+$zindex-select2:         1000;
+$zindex-datepicker:      1100;
+
+// Breakpoints
+$header-breakpoint: xl;
+
+// Icons
+$icon-checkbox-checked:      '\ebd2';
+$icon-checkbox-intermediate: '\f0f2';
+$icon-sort-desc:             '\f1c8';
+$icon-sort-asc:              '\f1cf';
+$icon-sortable:              '\ed1e';
+$icon-arrow-right:           '\ef0f';
+$icon-submenu:               '\eef6';
+$icon-breadcrumb-link:       '\ec57';
+$icon-float-help:            '\f19f';
+$icon-select:                '\f09f';

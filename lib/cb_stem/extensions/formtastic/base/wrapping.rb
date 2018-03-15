@@ -9,7 +9,7 @@ module Formtastic
 
         def input_wrapping(&block)
           template.content_tag(
-            :div,
+            :li,
             [template.capture(&block), error_html, hint_html].join("\n")&.html_safe,
             wrapper_html_options
           )

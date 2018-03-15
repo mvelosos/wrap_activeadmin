@@ -1,0 +1,5 @@
+en:
+  formtastic:
+    actions:
+      create: Create %{model}
+      update: Update %{model}

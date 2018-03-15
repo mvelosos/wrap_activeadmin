@@ -1,4 +1,15 @@
 @import 'meta/**/*';
+@import 'icons/**/*';
 @import 'bootstrap';
+@import 'bootstrap-datepicker3';
+@import 'select2';
+@import 'select2-bootstrap';
+@import 'flag-icon';
+@import 'mixins/**/*';
 @import 'components/**/*';
 @import 'pages/**/*';
+
+html {
+  position: relative;
+  height: 100%;
+}

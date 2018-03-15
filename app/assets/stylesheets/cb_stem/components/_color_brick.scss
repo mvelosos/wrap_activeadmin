@@ -1,0 +1,8 @@
+.color-brick {
+  width: $color-brick-size;
+  height: $color-brick-size;
+  overflow: hidden;
+  background: $light;
+  border: 1px solid $hr-border-color;
+  border-radius: $border-radius;
+}

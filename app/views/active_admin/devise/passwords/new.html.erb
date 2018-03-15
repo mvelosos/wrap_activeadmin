@@ -1,10 +1,19 @@
+<% content_for :title do %>
+  <h3 class='mb-4 display-3 text-center'>
+    <%= title t('active_admin.devise.reset_password.title') %>
+  </h3>
+<% end %>
 <div id="login">
-  <h3 class='mb-4 text-center'><%= title t('active_admin.devise.reset_password.title') %></h3>
 
   <%= devise_error_messages! %>
-  <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-    f.inputs do
-      f.input :email
+  <%= active_admin_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, autocomplete: 'off' }) do |f|
+    f.inputs card: false do
+      f.input :email,
+              label: false,
+              placeholder: t("active_admin.devise.email.title"),
+              input_html: {
+                class: 'form-control form-control-lg'
+              }
     end
     f.actions do
       f.action :submit, label: t('active_admin.devise.reset_password.submit'),
@@ -16,5 +25,7 @@
   end %>
 
   <hr>
-  <%= render partial: "active_admin/devise/shared/links" %>
+  <div class='text-center'>
+    <%= render partial: "active_admin/devise/shared/links" %>
+  </div>
 </div>

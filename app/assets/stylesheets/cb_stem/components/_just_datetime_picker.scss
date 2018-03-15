@@ -1,0 +1,16 @@
+.just_datetime_picker {
+  .input-fragments {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 calc(-#{$spacer} / 4);
+  }
+
+  .input-fragment {
+    margin: 0 $spacer / 4;
+  }
+
+  .fragment-time {
+    width: calc(#{$input-height} + #{$input-padding-x} * 2);
+  }
+}

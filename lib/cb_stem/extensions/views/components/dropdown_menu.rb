@@ -6,7 +6,7 @@ module ActiveAdmin
     class DropdownMenu < ActiveAdmin::Component
 
       WRAPPER_CLASS = 'dropdown'.freeze
-      TOGGLE_CLASS  = 'btn btn-light btn-sm dropdown-toggle'.freeze
+      TOGGLE_CLASS  = 'btn dropdown-toggle'.freeze
       MENU_CLASS    = 'dropdown-menu'.freeze
       ITEM_CLASS    = 'dropdown-item'.freeze
 
@@ -15,8 +15,8 @@ module ActiveAdmin
 
         # Easily set options for the button or menu
         button_options = options.delete(:button) || {}
-        menu_options = options.delete(:menu) || {}
-
+        menu_options   = options.delete(:menu) || {}
+        @icon   = options.delete(:icon) || 'minimal-down'
         @button = build_button(name, button_options)
         @menu   = build_menu(menu_options)
         klass   = [WRAPPER_CLASS, options[:class]].reject(&:blank?).join(' ')
@@ -29,18 +29,24 @@ module ActiveAdmin
         end
       end
 
+      def raw_item(item)
+        within @menu do
+          li item
+        end
+      end
+
       private
 
       def build_link(*args)
-        args.map! do |x|
-          x[:class] += " #{ITEM_CLASS}" if x.is_a? Hash
-          x
-        end
-        link_to(*args)
+        options = args.extract_options!
+        klass   = options[:class].to_s.split(' ')
+        klass.push(ITEM_CLASS).join(' ')
+        options[:class] = klass
+        link_to(*args, options)
       end
 
       def build_button(name, button_options)
-        button_options[:class] ||= ''
+        button_options[:class] ||= 'btn-link'
         button_options[:class] << " #{TOGGLE_CLASS}"
         button_options['data-toggle'] = 'dropdown'
 
@@ -48,15 +54,14 @@ module ActiveAdmin
 
         a button_options do
           text_node(name)
+          i('', class: "nc-icon nc-#{@icon}")
         end
       end
 
       def build_menu(options)
         options[:class] ||= ''
         options[:class] << " #{MENU_CLASS}"
-
-        menu_list = ul(options)
-        menu_list
+        ul(options)
       end
 
     end

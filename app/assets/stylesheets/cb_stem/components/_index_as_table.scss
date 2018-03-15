@@ -1,8 +1,69 @@
-@mixin indexAsTable {
+@mixin index-as-table {
   table.index_table {
+    border-collapse: separate;
+    border-spacing: 0 $spacer / 4;
+
     .col-selectable {
       width: $col-selectable-width;
       max-width: $col-selectable-width;
+    }
+
+    i.nc-icon { font-size: $icon-size; }
+
+    th,
+    td {
+      padding: $spacer / 2 $table-cell-padding;
+      vertical-align: middle !important;
+    }
+
+    th {
+      font-size: $small-font-size;
+      text-transform: uppercase;
+      border: 0;
+
+      &.sortable {
+        &.sorted-desc,
+        &.sorted-asc {
+          a,
+          &::after {
+            color: $primary;
+          }
+        }
+
+        &.sorted-desc::after { content: $icon-sort-desc; }
+        &.sorted-asc::after { content: $icon-sort-asc; }
+
+        &::after {
+          @extend %nc-icon;
+          margin-left: $spacer / 2;
+          font-weight: 700;
+          color: $text-muted;
+          content: $icon-sortable;
+        }
+      }
+
+      a { color: $secondary; }
+
+    }
+
+    td {
+      border: 0;
+    }
+
+    tbody {
+      tr {
+        background: $white;
+        &.selected { background: theme-color-level('primary', $alert-bg-level); }
+      }
+
+      td {
+        &:not(.col-actions) {
+          max-width: 200px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+      }
     }
   }
 }

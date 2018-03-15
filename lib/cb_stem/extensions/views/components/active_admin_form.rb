@@ -12,27 +12,44 @@ module ActiveAdmin
         action(:submit)
       end
 
+      # rubocop:disable Style/PredicateName
+      def has_many(*args, &block)
+        insert_tag(HasManyProxy, form_builder, *args, &block)
+      end
+
     end
 
     # Overwriting SemanticInputsProxy
     class SemanticInputsProxy < FormtasticProxy
 
+      # rubocop:disable Metrics/LineLength, Metrics/AbcSize
       def build(_form_builder, *args, &block)
         html_options = args.extract_options!
-        html_options[:class] ||= 'inputs'
+        card         = html_options.delete(:card) { true }
+        html_options[:class] ||= inputs_klass(card)
         legend = args.shift if args.first.is_a?(::String)
         legend = html_options.delete(:name) if html_options.key?(:name)
-        legend_tag = legend ? title_tag(legend) : ''
         fieldset_attrs = html_options.map { |k, v| %(#{k}="#{v}") }.join(' ')
-        @opening_tag = "<div #{fieldset_attrs}>#{legend_tag}<div>"
-        @closing_tag = '</div></div>'
+        @opening_tag = "<div #{fieldset_attrs}>#{legend_tag(legend)}<div class=#{inputs_body_klass(card)}><ol class='list-unstyled'>"
+        @closing_tag = '</ol></div></div>'
         super(*(args << html_options), &block)
       end
 
       private
 
-      def title_tag(legend)
-        "<h5>#{legend}</h5>"
+      def inputs_klass(card)
+        klass = %w[inputs mb-3]
+        klass.push 'card' if card
+        klass.join(' ')
+      end
+
+      def inputs_body_klass(card)
+        card ? 'card-body' : 'inputs-body'
+      end
+
+      def legend_tag(legend)
+        return if legend.blank?
+        "<h5 class='card-header'>#{legend}</h5>"
       end
 
     end

@@ -1,0 +1,18 @@
+.table-item-identifier {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  flex-grow: 0;
+  justify-content: flex-start;
+  overflow: hidden;
+  text-decoration: none !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover .identifier-text { text-decoration: underline; }
+
+  .identifier-text {
+    @extend .text-truncate;
+    flex: 1;
+  }
+}

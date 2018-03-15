@@ -37,10 +37,12 @@ module ActiveAdmin
           end
 
           def select_html
-            template.select_tag(
-              '', template.options_for_select(filter_options, current_filter),
-              class: INPUT_CLASS
-            )
+            template.content_tag :div, class: 'select-wrap' do
+              template.select_tag(
+                '', template.options_for_select(filter_options, current_filter),
+                class: INPUT_CLASS
+              )
+            end
           end
 
         end

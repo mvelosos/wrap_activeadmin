@@ -1,0 +1,82 @@
+@mixin formastic {
+  .inputs ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  .form-text { margin-top: $spacer / 2; }
+
+  .actions {
+    margin-bottom: 0;
+    text-align: right;
+  }
+
+  .input {
+    label.control-label { display: block; }
+  }
+
+  .fragments-group {
+    @extend .row;
+    margin: 0 calc(-#{$spacer} / 4) !important;
+
+    .fragment {
+      @extend .col-md;
+      padding: 0 $spacer / 4;
+      margin-bottom: $spacer;
+    }
+  }
+
+  .has_many_container {
+    .has_many_fields {
+      padding-top: 1.5 * $spacer;
+      &:not(:first-child) { border-top: 1px solid $hr-border-color; }
+
+      &.ui-sortable-helper {
+        background: $card-bg;
+        border: 1px solid $input-focus-border-color;
+        transform-origin: center left;
+        @include box-shadow($input-focus-box-shadow);
+        @include transform(scale(0.87));
+      }
+
+      .columns > ol,
+      & > ol {
+        @extend .row;
+      }
+
+      & > ol { margin: 0; }
+
+      .has-many-fields {
+        @extend .col;
+        padding: 0;
+      }
+      .has-many-actions > ol { height: 100%; }
+
+      .has-many-handle {
+        margin-right: $spacer;
+        border-right: 1px solid $hr-border-color;
+        border-radius: 0;
+      }
+
+      .has-many-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .has-many-actions,
+      .has-many-handle {
+        @extend .col-auto;
+        padding: 0;
+
+        .btn {
+          display: flex;
+          align-items: center;
+          height: 100%;
+          i { font-size: $icon-size; }
+        }
+      }
+    }
+  }
+
+}
