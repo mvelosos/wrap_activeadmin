@@ -8,7 +8,7 @@ class ActiveAdmin.TinyMCE
       height: 250
       menubar: false
       plugins: [
-        'autolink lists link charmap print preview anchor',
+        'lists link charmap print preview anchor',
         'insertdatetime media table contextmenu',
         'table textcolor wordcount hr'
       ]
