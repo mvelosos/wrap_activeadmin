@@ -9,12 +9,12 @@ License - nucleoapp.com/license/
 
 @font-face {
   font-family: 'cb-stem';
-  src: url('#{$nc-font-path}/nucleos.eot');
-  src: url('#{$nc-font-path}/nucleos.eot') format('embedded-opentype'),
-    url('#{$nc-font-path}/nucleos.woff2') format('woff2'),
-    url('#{$nc-font-path}/nucleos.woff') format('woff'),
-    url('#{$nc-font-path}/nucleos.ttf') format('truetype'),
-    url('#{$nc-font-path}/nucleos.svg') format('svg');
+  src: font-url('#{$nc-font-path}/nucleos.eot');
+  src: font-url('#{$nc-font-path}/nucleos.eot') format('embedded-opentype'),
+    font-url('#{$nc-font-path}/nucleos.woff2') format('woff2'),
+    font-url('#{$nc-font-path}/nucleos.woff') format('woff'),
+    font-url('#{$nc-font-path}/nucleos.ttf') format('truetype'),
+    font-url('#{$nc-font-path}/nucleos.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
