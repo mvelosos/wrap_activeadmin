@@ -1,6 +1,15 @@
 # Extend ActiveAdmin ViewHelpers
 module ActiveAdmin::ViewHelpers
 
+  def error_messages(resource)
+    return if resource.errors.blank?
+    content_tag :div, class: 'alert alert-danger' do
+      resource.errors.details.keys.map do |x|
+        resource.errors.full_messages_for(x).first
+      end.join(', ')
+    end
+  end
+
   def menu_label(label, icon: nil, badge: 0)
     safe_join [
       aa_icon(icon),

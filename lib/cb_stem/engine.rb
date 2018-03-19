@@ -70,7 +70,7 @@ module CbStem
 
     def require_others
       require_each(
-        %w[view_factory form_builder]
+        %w[base_controller view_factory form_builder]
       )
     end
 

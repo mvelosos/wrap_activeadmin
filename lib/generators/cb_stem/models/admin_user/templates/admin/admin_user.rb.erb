@@ -7,6 +7,9 @@ ActiveAdmin.register <%= class_name %> do
                 :avatar, :avatar_cache, :remove_avatar,
                 :email, :password, :password_confirmation
 
+  actions :all, except: %i[show]
+  config.remove_action_item(:destroy)
+
   # INDEX
   filter :first_name
   filter :last_name
@@ -25,69 +28,72 @@ ActiveAdmin.register <%= class_name %> do
 
   # FORM
   form multiple: true do
-    form_section [:admin, resource], class: 'mb-3' do |f|
-      h4 t('cb_stem.resource.<%= class_name.underscore %>.sections.general'), class: 'display-4'
-      hr
-      columns do
-        column(span: 5, class: 'mb-3') do
-          h5 t('cb_stem.resource.<%= class_name.underscore %>.inputs.info')
+    div error_messages(resource), class: 'mb-4'
+
+    if resource.new_record?
+      form_section [:admin, resource], class: 'mb-3' do |f|
+        f.inputs t('.<%= class_name.underscore %>.panel.detail', model: Store.model_name.human) do
+          f.input :avatar
+          f.input :remove_avatar,
+                  as: :boolean
+          f.input :avatar_cache,
+                  as: :hidden
+          hr
+          columns do
+            column { f.input :first_name }
+            column { f.input :last_name }
+          end
+          f.input :email
         end
-        column do
-          f.inputs do
-            f.input :avatar
-            f.input :remove_avatar,
-                    as: :boolean
-            f.input :avatar_cache,
-                    as: :hidden
-            hr
-            f.input :first_name
-            f.input :last_name
-            f.input :email
-            f.actions
+
+        f.inputs t('cb_stem.resource.<%= class_name.underscore %>.sections.security') do
+          columns do
+            column do
+              f.input :password,
+                      hint: t('devise.shared.minimum_password_length',
+                              count: <%= class_name %>.password_length.min)
+            end
+            column { f.input :password_confirmation }
           end
         end
+        hr
+        f.actions
       end
-    end
-
-    form_section [:admin, resource], class: 'mb-3' do |f|
-      h4 t('cb_stem.resource.<%= class_name.underscore %>.sections.security'), class: 'display-4'
-      hr
-      columns do
-        column(span: 5, class: 'mb-3') do
-          h5 t('cb_stem.resource.<%= class_name.underscore %>.inputs.password')
-          para t('devise.shared.minimum_password_length', count: AdminUser.password_length.min)
-        end
-        column do
-          f.inputs do
-            f.input :password
-            f.input :password_confirmation
-            f.actions
+    else
+      form_section [:admin, resource], class: 'mb-3' do |f|
+        f.inputs t('.<%= class_name.underscore %>.panel.detail', model: Store.model_name.human) do
+          f.input :avatar
+          f.input :remove_avatar,
+                  as: :boolean
+          f.input :avatar_cache,
+                  as: :hidden
+          hr
+          columns do
+            column { f.input :first_name }
+            column { f.input :last_name }
           end
+          f.input :email
+          f.actions
         end
       end
-    end
-  end
 
-  # SHOW
-  show do
-    panel t('cb_stem.resource.<%= class_name.underscore %>.panels.general') do
-      attributes_table_for resource do
-        row :avatar
-        row :full_name
-        row :email
-        row :created_at
-        row :updated_at
+      form_section [:admin, resource] do |f|
+        f.inputs(
+          t('.employee.panel.reset_password')
+        ) do
+          columns do
+            column do
+              f.input :password,
+                      hint: t('devise.shared.minimum_password_length',
+                              count: <%= class_name %>.password_length.min)
+            end
+            column { f.input :password_confirmation }
+          end
+          f.actions
+        end
       end
-    end
 
-    panel t('cb_stem.resource.<%= class_name.underscore %>.panels.security') do
-      attributes_table_for resource do
-        row :sign_in_count
-        row :last_sign_in_ip
-        row :last_sign_in_at
-      end
+      render 'cb_stem/components/panels/destroy', resource: resource
     end
-
-    # active_admin_comments
   end
 end

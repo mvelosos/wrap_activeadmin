@@ -63,7 +63,7 @@
       color: $white;
       text-transform: uppercase;
       vertical-align: middle;
-      background: $warning;
+      background: $header-logo-bg;
       border-radius: $border-radius;
 
       img {
@@ -72,6 +72,15 @@
         left: 50%;
         height: 100%;
         @include transform(translateX(-50%));
+      }
+
+      .placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background: $warning;
       }
     }
 
@@ -142,8 +151,6 @@
       background: rgba($white, 0.05);
       border: 0;
     }
-
-    .badge { color: $dark; }
 
     .sub-menu {
       border-top: 1px solid $hr-border-color;
