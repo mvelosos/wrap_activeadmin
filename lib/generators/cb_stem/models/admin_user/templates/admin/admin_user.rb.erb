@@ -32,7 +32,7 @@ ActiveAdmin.register <%= class_name %> do
 
     if resource.new_record?
       form_section [:admin, resource], class: 'mb-3' do |f|
-        f.inputs t('.<%= class_name.underscore %>.panel.detail', model: Store.model_name.human) do
+        f.inputs t('cb_stem.resource.<%= class_name.underscore %>.sections.detail', model: Store.model_name.human) do
           f.input :avatar
           f.input :remove_avatar,
                   as: :boolean
@@ -61,7 +61,7 @@ ActiveAdmin.register <%= class_name %> do
       end
     else
       form_section [:admin, resource], class: 'mb-3' do |f|
-        f.inputs t('.<%= class_name.underscore %>.panel.detail', model: Store.model_name.human) do
+        f.inputs t('cb_stem.resource.<%= class_name.underscore %>.sections.detail', model: Store.model_name.human) do
           f.input :avatar
           f.input :remove_avatar,
                   as: :boolean
@@ -79,7 +79,7 @@ ActiveAdmin.register <%= class_name %> do
 
       form_section [:admin, resource] do |f|
         f.inputs(
-          t('.employee.panel.reset_password')
+          t('cb_stem.resource.<%= class_name.underscore %>.sections.reset_password')
         ) do
           columns do
             column do

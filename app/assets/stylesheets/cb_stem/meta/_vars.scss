@@ -22,6 +22,8 @@ $header-bg:            $dark !default;
 $card-shadow:          0 0 0 1px rgba($dark, 0.05), 0 1px 3px 0 rgba($dark, 0.15) !default;
 $float-help-shadow:    $card-shadow !default;
 $header-logo-bg:       transparent !default;
+$svg-color:            $primary !default;
+$svg-color-adjustment: 33% !default;
 
 // z-index
 $zindex-custom-backdrop: 1040;

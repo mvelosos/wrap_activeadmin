@@ -1,18 +1,18 @@
 #empty-state-icon {
   .st0 {
-    fill: lighten($primary, 13%);
+    fill: lighten($svg-color, $svg-color-adjustment);
   }
 
   .st1 {
     fill: none;
-    stroke: $primary;
+    stroke: $svg-color;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
   .st2 {
     fill: #FFFFFF;
-    stroke: $primary;
+    stroke: $svg-color;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
@@ -22,8 +22,8 @@
   }
 
   .st4 {
-    fill: lighten($primary, 13%);
-    stroke: $primary;
+    fill: lighten($svg-color, $svg-color-adjustment);
+    stroke: $svg-color;
     stroke-linecap: round;
     stroke-linejoin: round;
   }

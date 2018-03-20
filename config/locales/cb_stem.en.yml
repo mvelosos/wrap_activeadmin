@@ -3,8 +3,13 @@ en:
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
     owner: "Clever Banana Studios Inc"
 
+    components:
+      select2:
+        placeholder: Please Select
+
     panels:
       danger: Danger Zone
+      reset_password: Reset Password
 
     hints:
       destroy: 'Attention: If you choose to delete this %{model}, it will be permanently removed from the database.'

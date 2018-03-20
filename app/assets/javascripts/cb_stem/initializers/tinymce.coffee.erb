@@ -8,7 +8,7 @@ class ActiveAdmin.TinyMCE
       height: 250
       menubar: false
       plugins: [
-        'lists link charmap print preview anchor',
+        'lists link charmap print preview anchor paste',
         'insertdatetime media table contextmenu',
         'table textcolor wordcount hr'
       ]
@@ -19,12 +19,16 @@ class ActiveAdmin.TinyMCE
       browser_spellcheck: true
       elementpath: false
       branding: false
+      paste_as_text: true
       table_appearance_options: false
       table_advtab: false
       table_cell_advtab: false
       table_row_advtab: false
       code_dialog_height: 300
       code_dialog_width: 300
+      content_css: [
+        "<%= asset_url('cb_stem/public/tinymce') %>"
+      ]
     }
 
     @options = $.extend defaults, @options

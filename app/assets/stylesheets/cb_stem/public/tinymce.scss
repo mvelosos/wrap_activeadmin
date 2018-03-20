@@ -1,0 +1,9 @@
+@import '../meta/**/*';
+@import '../icons/**/*';
+@import 'bootstrap';
+
+body.mce-content-body {
+  padding: $spacer;
+  margin: 0;
+  background: $white;
+}
