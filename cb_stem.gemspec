@@ -23,6 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'just-datetime-picker'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails', '~> 6.0.1'
+  s.add_dependency 'jquery-minicolors-rails'
   s.add_dependency 'select2-rails'
   s.add_dependency 'tinymce-rails'
   s.add_dependency 'friendly_id', '~> 5.1.0'
@@ -37,6 +38,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'draper', '~> 3.0.1'
   s.add_dependency 'flag-icons-rails'
+  s.add_dependency 'carmen-rails'
+  s.add_dependency 'countries'
 
   s.add_development_dependency 'devise'
   s.add_development_dependency 'pg', '~> 0.15'

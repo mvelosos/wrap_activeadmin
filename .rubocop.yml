@@ -35,6 +35,9 @@ Metrics/LineLength:
     - 'db/seeds/*.rb'
     - 'config/**/*.rb'
     - 'Gemfile'
+Metrics/ModuleLength:
+  Exclude:
+    - 'lib/cb_stem/extensions/views/helpers/view_helpers.rb'
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*.rb'

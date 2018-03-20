@@ -1,6 +1,7 @@
 require 'devise'
 require 'bootstrap'
 require 'bootstrap-datepicker-rails'
+require 'jquery-minicolors-rails'
 require 'active_admin'
 require 'just-datetime-picker'
 require 'draper'
@@ -8,6 +9,8 @@ require 'carrierwave'
 require 'tinymce-rails'
 require 'select2-rails'
 require 'flag-icons-rails'
+require 'carmen-rails'
+require 'countries'
 
 module CbStem
 
@@ -78,7 +81,8 @@ module CbStem
       require_each(
         %w[
           base/wrapping base/html base/labelling actions/base
-          inputs/boolean_input inputs/switch_input inputs/file_input inputs/select_input
+          inputs/boolean_input inputs/switch_input inputs/file_input
+          inputs/select_input inputs/color_picker_input
           inputs/date_picker_input inputs/base/timeish helpers/errors_helper
           form_builder
         ],

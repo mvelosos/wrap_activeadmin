@@ -4,9 +4,11 @@ module ActiveAdmin::ViewHelpers
   def error_messages(resource)
     return if resource.errors.blank?
     content_tag :div, class: 'alert alert-danger' do
-      resource.errors.details.keys.map do |x|
-        resource.errors.full_messages_for(x).first
-      end.join(', ')
+      content_tag :ul, class: 'errors mb-0 pl-3' do
+        resource.errors.details.keys.each do |x|
+          concat content_tag(:li, resource.errors.full_messages_for(x).first)
+        end
+      end
     end
   end
 
@@ -37,6 +39,14 @@ module ActiveAdmin::ViewHelpers
     content_tag :div, class: 'table-item-identifier' do
       concat(flag_icon(country.code.downcase, class: 'mr-3'))
       concat(content_tag(:span, country.name, class: 'identifier-text'))
+    end
+  end
+
+  def currency_identifier(country, currency)
+    return if country&.code.blank?
+    content_tag :div, class: 'table-item-identifier' do
+      concat(flag_icon(country.code.downcase, class: 'mr-3'))
+      concat(content_tag(:span, "#{country.name} - #{currency}", class: 'identifier-text'))
     end
   end
 

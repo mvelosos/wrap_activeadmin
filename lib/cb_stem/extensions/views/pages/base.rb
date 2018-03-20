@@ -72,6 +72,7 @@ module ActiveAdmin
         end
 
         def valid_links
+          return if links.blank?
           links.delete_if { |x| x =~ %r{<a\ href="\/admin">Admin<\/a>} }
         end
 

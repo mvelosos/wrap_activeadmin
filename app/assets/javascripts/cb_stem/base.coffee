@@ -5,6 +5,7 @@
 #= require jquery-ui/widgets/tabs
 #= require jquery-ui/widget
 #= require jquery_ujs
+#= require jquery.minicolors
 #= require popper
 #= require bootstrap
 #= require bootstrap-datepicker
@@ -35,6 +36,7 @@ onDOMReady = ->
   $('.select2').aaSelect2()
   $('[data-js="form-trigger"]').aaFormTrigger()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
+  $('.minicolors').aaColorPicker()
 
 $(document)
   .ready(onDOMReady)

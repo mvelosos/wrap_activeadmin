@@ -10,7 +10,7 @@ module Formtastic
       end
 
       def input_html_options
-        super.merge(class: 'datepicker')
+        super.merge(class: 'form-control datepicker')
       end
 
     end
