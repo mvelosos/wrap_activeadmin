@@ -63,12 +63,9 @@ module Formtastic
 
       def input_html_options
         {
-          id: dom_id,
-          class: 'form-switch-input',
-          required: required_attribute?,
-          autofocus: autofocus?,
-          readonly: readonly?
-        }.merge(options[:input_html] || {})
+          name: input_html_options_name,
+          class: 'form-switch-input'
+        }.reverse_merge!(super)
       end
 
     end

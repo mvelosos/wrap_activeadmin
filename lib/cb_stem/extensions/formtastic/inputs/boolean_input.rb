@@ -5,8 +5,6 @@ module Formtastic
     # Overwriting BooleanInput - formtastic/lib/formtastic/inputs/boolean_input.rb
     class BooleanInput
 
-      include Base
-
       def to_html
         input_wrapping do
           template.content_tag :div, class: 'input-checkbox' do
@@ -46,12 +44,9 @@ module Formtastic
 
       def input_html_options
         {
-          id: dom_id,
-          class: 'form-check-input',
-          required: required_attribute?,
-          autofocus: autofocus?,
-          readonly: readonly?
-        }.merge(options[:input_html] || {})
+          name: input_html_options_name,
+          class: 'form-check-input'
+        }.reverse_merge!(super)
       end
 
     end
