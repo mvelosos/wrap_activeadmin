@@ -1,13 +1,16 @@
 .minicolors {
-  .minicolors-swatch {
+  .minicolors-input-swatch {
     top: 50%;
     left: $input-padding-y;
+    @include transform(translateY(-50%));
+  }
+
+  .minicolors-swatch {
     width: $color-brick-size;
     height: $color-brick-size;
     background: transparent;
     border: 0;
     border-radius: $border-radius;
-    @include transform(translateY(-50%));
   }
 
   input {
