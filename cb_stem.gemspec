@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-minicolors-rails'
   s.add_dependency 'select2-rails'
   s.add_dependency 'tinymce-rails'
+  s.add_dependency 'chart-js-rails', '~> 0.1.3'
   s.add_dependency 'friendly_id', '~> 5.1.0'
   s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'rmagick'
@@ -40,6 +41,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'flag-icons-rails'
   s.add_dependency 'carmen-rails'
   s.add_dependency 'countries'
+  s.add_dependency 'google-api-client', '~> 0.11'
+  s.add_dependency 'oauth2'
+  s.add_dependency 'signet'
+  s.add_dependency 'legato'
 
   s.add_development_dependency 'devise'
   s.add_development_dependency 'pg', '~> 0.15'

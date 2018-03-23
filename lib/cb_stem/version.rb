@@ -1,6 +1,6 @@
 module CbStem
 
-  VERSION = '1.0.1'.freeze
+  VERSION = '1.0.3'.freeze
   STAGE   = 'alpha'.freeze
 
 end

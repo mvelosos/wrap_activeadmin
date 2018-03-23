@@ -1,0 +1,25 @@
+panel t('cb_stem.components.google_analytics.pageviews.gender') do
+  result_hash = {}
+
+  results =
+    CbStem::GoogleAnalytics.results(
+      property,
+      start_date: start_date,
+      end_date:   end_date,
+      sort: ['-pageviews']
+    )
+  results.metrics    << 'pageviews'
+  results.dimensions << 'userGender'
+
+  results.each do |x|
+    percentage = x.pageviews.to_f / results.totals_for_all_results['pageviews'].to_f * 100.0
+    result_hash["#{x.userGender.capitalize} (#{to_percentage(percentage)})"] = x.pageviews.to_f
+  end
+
+
+  if result_hash.present?
+    chart(type: 'doughnut', label: result_hash.keys, data: result_hash.values)
+  else
+    cb_stem_component('google_analytics/empty_state')
+  end
+end

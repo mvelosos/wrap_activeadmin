@@ -20,6 +20,10 @@ module ActiveAdmin::ViewHelpers
     ]
   end
 
+  def to_percentage(number, precision: 2)
+    number_to_percentage(number, precision: precision)
+  end
+
   def table_item_identifier(title, url, object, image: nil, options: {})
     link_to url, class: 'table-item-identifier' do
       concat(thumbnail(object, image, options)) if image

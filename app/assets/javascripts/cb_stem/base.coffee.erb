@@ -11,6 +11,7 @@
 #= require bootstrap-datepicker
 #= require tinymce
 #= require select2-full
+#= require Chart.min
 #= require_self
 #= require active_admin/lib/checkbox-toggler
 #= require active_admin/lib/flash
@@ -21,10 +22,12 @@
 #= require active_admin/initializers/batch_actions
 #= require active_admin/initializers/filters
 #= require active_admin/initializers/tabs
+#= require_tree ./utilities
 #= require_tree ./lib
 #= require_tree ./initializers
 
 window.ActiveAdmin = {}
+window.ChartColors = <%= CbStem.chart_colors %>
 
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()
@@ -37,6 +40,9 @@ onDOMReady = ->
   $('[data-js="form-trigger"]').aaFormTrigger()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
   $('.minicolors').aaColorPicker()
+  $('[data-js="line-chart"]').aaLineChart()
+  $('[data-js="bar-chart"]').aaBarChart()
+  $('[data-js="doughnut-chart"]').aaDoughnutChart()
 
 $(document)
   .ready(onDOMReady)
