@@ -64,6 +64,12 @@ module CbStem
         ::ActiveAdmin::BatchActions::BatchActionSelector
     end
 
+    initializer :cb_stem do
+      if defined?(ActiveAdmin)
+        ::ActiveAdmin.application.load_paths.unshift root.join('lib', 'cb_stem/admin').to_s
+      end
+    end
+
     initializer 'default configs' do |_app|
       ActiveAdmin.setup do |config|
         config.current_filters = false
@@ -90,7 +96,6 @@ module CbStem
       require_orm
       require_pages
       require_others
-      require_admins
     end
 
     initializer 'cb_stem.assets.precompile' do |app|
@@ -194,13 +199,6 @@ module CbStem
       require_each(
         %w[base/search_method_select date_range_input forms],
         path: 'inputs/filters'
-      )
-    end
-
-    def require_admins
-      require_each(
-        %w[google_analytics],
-        path: 'admin'
       )
     end
 
