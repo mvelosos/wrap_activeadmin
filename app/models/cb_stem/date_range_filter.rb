@@ -22,7 +22,7 @@ module CbStem
     end
 
     def self.human_filter_type(filter_type)
-      I18n.t("activerecord.attributes.transaction_filter.filter_types/#{filter_type}")
+      I18n.t("cb_stem.activerecord.attributes.date_range_filter.filter_types/#{filter_type}")
     end
 
     def filter_type
