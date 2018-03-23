@@ -1,11 +1,35 @@
 en:
   cb_stem:
+    activerecord:
+      attributes:
+        date_range_filter:
+          filter_types/today: Today
+          filter_types/this_week: This Week
+          filter_types/this_month: This Month
+          filter_types/this_year: This Year
+          filter_types/custom: Custom Range
+
+    date:
+      formats:
+        default: '%Y/%m/%d'
+
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
     owner: "Clever Banana Studios Inc"
 
     components:
       select2:
         placeholder: Please Select
+      google_analytics:
+        date_range_filter:
+          submit: Submit
+        pageviews:
+          traffic: Total Visits
+          gender: Visit By Gender
+          age: Visits By Age
+          device: Visits By Device
+          country: Visits By Country
+        empty_state:
+          message: No Results
 
     panels:
       danger: Danger Zone

@@ -1,18 +1,54 @@
+# Base
 require 'devise'
+require 'active_admin'
+require 'draper'
+# Components
 require 'bootstrap'
 require 'bootstrap-datepicker-rails'
 require 'jquery-minicolors-rails'
-require 'active_admin'
 require 'just-datetime-picker'
-require 'draper'
 require 'carrierwave'
 require 'tinymce-rails'
 require 'select2-rails'
+require 'chart-js-rails'
+# Countries
 require 'flag-icons-rails'
 require 'carmen-rails'
 require 'countries'
+# Google Analytics
+require 'oauth2'
+require 'legato'
+require 'signet/oauth_2/client'
 
+# CbStem
 module CbStem
+
+  class << self
+
+    mattr_accessor :google_analytics, :chart_colors
+
+    # add default values of more config vars here
+    self.google_analytics = {}
+
+    self.chart_colors = [
+      '#2ab265',
+      '#4191f0',
+      '#6610f2',
+      '#6f42c1',
+      '#e83e8c',
+      '#dc3545',
+      '#fd7e14',
+      '#f4b73f',
+      '#20c997',
+      '#17a2b8'
+    ]
+
+  end
+
+  # this function maps the vars from your app into your engine
+  def self.setup
+    yield self
+  end
 
   # Initialize Engine
   # rubocop:disable Metrics/ClassLength
@@ -54,6 +90,7 @@ module CbStem
       require_orm
       require_pages
       require_others
+      require_admins
     end
 
     initializer 'cb_stem.assets.precompile' do |app|
@@ -102,6 +139,7 @@ module CbStem
         %w[
           site_title table_for dropdown_menu panel attributes_table
           active_admin_form blank_slate columns scopes tabs
+          cb_stem_component chart
         ],
         path: 'views/components'
       )
@@ -156,6 +194,13 @@ module CbStem
       require_each(
         %w[base/search_method_select date_range_input forms],
         path: 'inputs/filters'
+      )
+    end
+
+    def require_admins
+      require_each(
+        %w[google_analytics],
+        path: 'admin'
       )
     end
 

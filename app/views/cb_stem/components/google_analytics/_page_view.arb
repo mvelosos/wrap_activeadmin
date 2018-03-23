@@ -1,0 +1,26 @@
+panel t('cb_stem.components.google_analytics.pageviews.traffic') do
+  result_hash = {}
+
+  results =
+    CbStem::GoogleAnalytics.results(
+      property,
+      start_date: start_date,
+      end_date:   end_date
+    )
+  results.metrics    << 'pageviews'
+  results.dimensions << 'date'
+
+  sum =
+    results.inject(0) do |sum, x|
+      date              = Date.parse(x.date).strftime(t('cb_stem.date.formats.default'))
+      result_hash[date] = x.pageviews
+      sum + x.pageviews.to_i
+    end
+
+  if result_hash.present?
+    h1 sum, class: 'display-1 mb-4'
+    chart(type: 'line', label: result_hash.keys, data: [{ value: result_hash.values }])
+  else
+    cb_stem_component('google_analytics/empty_state')
+  end
+end

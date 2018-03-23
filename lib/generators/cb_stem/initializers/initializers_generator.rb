@@ -18,16 +18,11 @@ module CbStem
       def generate_configs
         template(
           'cb_stem/menu.rb.erb',
-          'config/initializers/cb_stem/menu.rb',
-          force: true
+          'config/initializers/cb_stem/menu.rb'
         )
-      end
-
-      def generate_view_helpers
         template(
-          'cb_stem/view_helpers.rb.erb',
-          'config/initializers/cb_stem/view_helpers.rb',
-          force: true
+          'cb_stem/menu.rb.erb',
+          'config/initializers/cb_stem/config.rb'
         )
       end
 
