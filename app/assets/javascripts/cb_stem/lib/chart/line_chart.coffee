@@ -14,7 +14,7 @@ class ActiveAdmin.LineChart
       maintainAspectRatio: false
       labels: false
       layout:
-        padding: 10
+        padding: 0
       scales:
         yAxes: [
           gridLines:

@@ -14,7 +14,7 @@ class ActiveAdmin.DoughnutChart
       maintainAspectRatio: true
       labels: false
       layout:
-        padding: 10
+        padding: 0
     }
 
     @options = $.extend defaults, @options

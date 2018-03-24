@@ -29,6 +29,12 @@ if CbStem.google_analytics.present?
       columns do
         column class: 'col-md-6' do
           cb_stem_component(
+            'google_analytics/source',
+            property: google_service[:property],
+            start_date: date_range_filter.from_date,
+            end_date: date_range_filter.to_date
+          )
+          cb_stem_component(
             'google_analytics/page_view_device',
             property: google_service[:property],
             start_date: date_range_filter.from_date,
@@ -41,7 +47,20 @@ if CbStem.google_analytics.present?
             end_date: date_range_filter.to_date
           )
         end
+
         column class: 'col-md-6' do
+          cb_stem_component(
+            'google_analytics/session_bounce',
+            property: google_service[:property],
+            start_date: date_range_filter.from_date,
+            end_date: date_range_filter.to_date
+          )
+          cb_stem_component(
+            'google_analytics/session_duration',
+            property: google_service[:property],
+            start_date: date_range_filter.from_date,
+            end_date: date_range_filter.to_date
+          )
           cb_stem_component(
             'google_analytics/page_view_country',
             property: google_service[:property],

@@ -28,6 +28,10 @@ en:
           age: Visits By Age
           device: Visits By Device
           country: Visits By Country
+        source: Traffic Source
+        session:
+          bounce: Bounce Rate
+          avg_duration: Avg. Session Duration
         empty_state:
           message: No Results
 

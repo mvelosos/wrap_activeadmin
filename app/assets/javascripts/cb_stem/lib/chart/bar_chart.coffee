@@ -14,7 +14,7 @@ class ActiveAdmin.BarChart
       maintainAspectRatio: true
       labels: false
       layout:
-        padding: 10
+        padding: 0
       scales:
         yAxes: [
           gridLines:
