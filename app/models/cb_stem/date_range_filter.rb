@@ -5,7 +5,7 @@ module CbStem
     FILTER_TYPES = %w[today this_week this_month this_year custom].freeze
     DATE_FORMAT  = '%m/%d/%Y'.freeze
 
-    include CbStem::NonDbModel
+    include ::CbStem::NonDbModel
 
     attr_accessor :filter_type, :from, :to
 
