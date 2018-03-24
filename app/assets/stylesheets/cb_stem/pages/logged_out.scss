@@ -1,7 +1,23 @@
 body.logged_out {
   background: $logged-out-body-bg;
 
-  .logo                    { height: 64px; }
+  .logo {
+    position: relative;
+    width: $logged-out-logo-size;
+    height: $logged-out-logo-size;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: $border-radius;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 100%;
+      @include transform(translateX(-50%));
+    }
+  }
+
   #content_wrapper         { min-height: calc(100vh - #{$navbar-height}); }
   #login .list-inline-item { display: block; }
 }

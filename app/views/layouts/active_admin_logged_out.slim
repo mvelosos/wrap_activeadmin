@@ -17,10 +17,11 @@ html
       #content_wrapper.row.align-items-center.justify-content-md-center
         .col-md-8.col-lg-4
           .text-center.mb-3
-            - image = ActiveAdmin.application.site_title_image.present? ? ActiveAdmin.application.site_title_image : 'cb_stem/logo.png'
-            = image_tag image,
-              alt: ActiveAdmin.application.site_title,
-              retina: true, class: 'logo'
+            .logo
+              - image = ActiveAdmin.application.site_title_image.present? ? ActiveAdmin.application.site_title_image : 'cb_stem/logo.png'
+              = image_tag image,
+                alt: ActiveAdmin.application.site_title,
+                retina: true
           #active_admin_content
             = yield :title
             = flashes_html
