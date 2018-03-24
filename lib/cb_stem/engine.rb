@@ -64,6 +64,12 @@ module CbStem
         ::ActiveAdmin::BatchActions::BatchActionSelector
     end
 
+    config.to_prepare do
+      Dir.glob(Rails.root + 'app/admin/concerns/cb_stem/**/*_feature*.rb').each do |c|
+        require_dependency(c)
+      end
+    end
+
     initializer :cb_stem do
       if defined?(ActiveAdmin)
         ::ActiveAdmin.application.load_paths.unshift root.join('lib', 'cb_stem/admin').to_s

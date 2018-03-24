@@ -49,6 +49,7 @@ class ActiveAdmin.LineChart
     labels   = @$element.data('chart-label')
     data     = @$element.data('chart-data')
     options  = @$element.data('chart-options')
+    colors   = @$element.data('chart-colors') || ChartColors
     @options = $.extend @options, options
     datasets = []
 
@@ -56,21 +57,22 @@ class ActiveAdmin.LineChart
       length = ChartColors.length
       color =
         if index > length
-          ChartColors[(index % length)]
+          colors[(index % length)]
         else
-          ChartColors[index]
+          colors[index]
 
       datasets[index] =
         label: value.label
         data: value.value
-        pointRadius: 4
-        pointHoverRadius: 4
-        pointBorderWidth: 2
+        pointRadius: 0
+        pointHoverRadius: 2
+        pointBorderWidth: 0
         borderWidth: 2
         borderColor: color
-        pointBackgroundColor: 'white'
+        pointBackgroundColor: color
+        backgroundColor: hexToRgba(color, 0.4)
         lineTension: 0
-        fill: false
+        fill: true
 
     chartData =
       labels: labels

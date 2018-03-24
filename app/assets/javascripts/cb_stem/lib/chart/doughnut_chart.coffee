@@ -26,6 +26,7 @@ class ActiveAdmin.DoughnutChart
     labels   = @$element.data('chart-label')
     data     = @$element.data('chart-data')
     options  = @$element.data('chart-options')
+    colors   = @$element.data('chart-colors') || ChartColors
     @options = $.extend @options, options
 
     chartData =
@@ -33,7 +34,7 @@ class ActiveAdmin.DoughnutChart
       datasets: [{
         borderWidth: 2
         borderColor: '#FFFFFF'
-        backgroundColor: ChartColors
+        backgroundColor: colors
         data: data
       }]
 

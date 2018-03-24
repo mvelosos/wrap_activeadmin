@@ -1,0 +1,9 @@
+sub,
+sup {
+  position: relative;
+  font-size: $sscript-font-size;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+sub { bottom: 0; }

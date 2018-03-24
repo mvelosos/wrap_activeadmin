@@ -4,6 +4,8 @@ if CbStem.google_analytics.present?
          priority: CbStem.google_analytics[:priority] || 10
 
     controller do
+      include CbStem::DateRangeFilterFeatures
+
       before_action :init_google_service,
                     :init_date_range_filter
 
@@ -12,21 +14,10 @@ if CbStem.google_analytics.present?
       def init_google_service
         @google_service = CbStem::GoogleOauthService.call
       end
-
-      def init_date_range_filter
-        @date_range_filter =
-          CbStem::DateRangeFilter.new data_range_filter_params
-      end
-
-      def data_range_filter_params
-        params.fetch(:date_range_filter, {}).permit(
-          :from, :to
-        )
-      end
     end
 
     content do
-      cb_stem_component('google_analytics/date_range_filter')
+      cb_stem_component('google_analytics/date_range_filter', url: %i[admin google_analytics])
 
       cb_stem_component(
         'google_analytics/page_view',

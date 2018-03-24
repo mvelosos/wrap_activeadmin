@@ -20,6 +20,6 @@ panel t('cb_stem.components.google_analytics.pageviews.gender') do
   if result_hash.present?
     chart(type: 'doughnut', label: result_hash.keys, data: result_hash.values)
   else
-    cb_stem_component('google_analytics/empty_state')
+    cb_stem_component('charts/empty_state')
   end
 end

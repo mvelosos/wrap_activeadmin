@@ -11,7 +11,7 @@ module ActiveAdmin
         'cb-stem-chart'
       end
 
-      def build(type:, label:, data:)
+      def build(type:, label:, data:, options: {})
         div do
           content_tag(
             :canvas, '',
@@ -19,7 +19,7 @@ module ActiveAdmin
               'js': "#{type}-chart",
               'chart-label': label,
               'chart-data':  data
-            }
+            }.reverse_merge!(options)
           )
         end
       end

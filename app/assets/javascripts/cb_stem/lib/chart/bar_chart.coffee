@@ -49,14 +49,15 @@ class ActiveAdmin.BarChart
     labels   = @$element.data('chart-label')
     data     = @$element.data('chart-data')
     options  = @$element.data('chart-options')
+    colors   = @$element.data('chart-colors') || ChartColors
     @options = $.extend @options, options
 
     chartData =
       labels: labels
       datasets: [{
         borderWidth: 2
-        borderColor: ChartColors
-        backgroundColor: $.map(ChartColors, (n, i) -> hexToRgba(n, 0.4))
+        borderColor: colors
+        backgroundColor: $.map(colors, (n, i) -> hexToRgba(n, 0.4))
         data: data
       }]
 

@@ -21,6 +21,6 @@ panel t('cb_stem.components.google_analytics.pageviews.traffic') do
     h1 sum, class: 'display-1 mb-4'
     chart(type: 'line', label: result_hash.keys, data: [{ value: result_hash.values }])
   else
-    cb_stem_component('google_analytics/empty_state')
+    cb_stem_component('charts/empty_state')
   end
 end

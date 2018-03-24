@@ -1,10 +1,10 @@
-active_admin_form_for date_range_filter, url: [:admin, :google_analytics], method: :get do |f|
-  ul class: 'list-inline mt-3' do
+active_admin_form_for date_range_filter, url: url, method: :get do |f|
+  ul class: 'list-unstyled mt-3 d-flex flex-row align-items-end' do
     f.input :filter_type,
             as: :hidden,
             input_html: { value: 'custom' }
     f.input :from,
-            wrapper_html: { class: 'list-inline-item' },
+            wrapper_html: { class: 'mb-0 mr-2' },
             input_html: {
               class: 'datepicker form-control',
               data: {
@@ -12,7 +12,7 @@ active_admin_form_for date_range_filter, url: [:admin, :google_analytics], metho
               }
             }
     f.input :to,
-            wrapper_html: { class: 'list-inline-item' },
+            wrapper_html: { class: 'mb-0 mr-2' },
             input_html: {
               class: 'datepicker form-control',
               data: {
@@ -21,6 +21,6 @@ active_admin_form_for date_range_filter, url: [:admin, :google_analytics], metho
             }
     f.action :submit,
              label: t('.submit'),
-             wrapper_html: { class: 'list-inline-item' }
+             wrapper_html: { class: 'mb-0' }
   end
 end
