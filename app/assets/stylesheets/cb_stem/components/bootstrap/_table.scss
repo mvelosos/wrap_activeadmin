@@ -11,6 +11,11 @@ table {
       }
     }
 
+    td:empty::after {
+      color: $text-muted;
+      content: 'n/a';
+    }
+
     .table-col {
       &:first-child { padding-left: $card-spacer-x; }
       &:last-child { padding-right: $card-spacer-x; }

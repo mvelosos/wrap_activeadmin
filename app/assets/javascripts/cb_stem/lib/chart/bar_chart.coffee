@@ -17,6 +17,7 @@ class ActiveAdmin.BarChart
         padding: 0
       scales:
         yAxes: [
+          maxBarThickness: 50
           gridLines:
             zeroLineColor: '#E6E6E6'
             color: '#E6E6E6'
@@ -25,6 +26,7 @@ class ActiveAdmin.BarChart
             beginAtZero: true
         ]
         xAxes: [
+          maxBarThickness: 50
           gridLines:
             drawBorder: false
             zeroLineColor: '#E6E6E6'
@@ -50,16 +52,27 @@ class ActiveAdmin.BarChart
     data     = @$element.data('chart-data')
     options  = @$element.data('chart-options')
     colors   = @$element.data('chart-colors') || ChartColors
-    @options = $.extend @options, options
+    @options = $.extend true, @options, options
+    datasets = []
+
+    $.each data, (index, value) ->
+      length = ChartColors.length
+      color =
+        if index > length
+          colors[(index % length)]
+        else
+          colors[index]
+
+      datasets[index] =
+        label: value.label
+        data: value.value
+        borderWidth: 2
+        borderColor: color
+        backgroundColor: hexToRgba(color, 0.4)
 
     chartData =
       labels: labels
-      datasets: [{
-        borderWidth: 2
-        borderColor: colors
-        backgroundColor: $.map(colors, (n, i) -> hexToRgba(n, 0.4))
-        data: data
-      }]
+      datasets: datasets
 
     return if !@element
     new Chart(
