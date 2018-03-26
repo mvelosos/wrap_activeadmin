@@ -27,7 +27,7 @@ class ActiveAdmin.DoughnutChart
     data     = @$element.data('chart-data')
     options  = @$element.data('chart-options')
     colors   = @$element.data('chart-colors') || ChartColors
-    @options = $.extend @options, options
+    @options = $.extend true, @options, options
 
     chartData =
       labels: labels
