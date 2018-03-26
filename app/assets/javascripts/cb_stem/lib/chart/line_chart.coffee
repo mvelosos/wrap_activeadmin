@@ -15,6 +15,11 @@ class ActiveAdmin.LineChart
       labels: false
       layout:
         padding: 0
+      elements:
+        point:
+          radius: 0
+          hitRadius: 10
+          hoverRadus: 5
       scales:
         yAxes: [
           gridLines:
@@ -64,12 +69,12 @@ class ActiveAdmin.LineChart
       datasets[index] =
         label: value.label
         data: value.value
-        pointRadius: 0
-        pointHoverRadius: 2
-        pointBorderWidth: 0
         borderWidth: 2
+        borderWidth: 0
         borderColor: color
-        pointBackgroundColor: color
+        pointBackgroundColor: '#FFFFFF'
+        pointBorderColor: color
+        pointBorderWidth: 2
         backgroundColor: hexToRgba(color, 0.4)
         lineTension: 0
         fill: true
