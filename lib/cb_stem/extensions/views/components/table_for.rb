@@ -92,16 +92,29 @@ module ActiveAdmin
 
       # rubocop:disable all
       def defaults(resource, options = {})
-        if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
+        if target_controller(resource).action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
           item I18n.t('active_admin.view'), [:admin, resource], class: "view_link #{options[:css_class]}", title: I18n.t('active_admin.view')
         end
-        if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
+        if target_controller(resource).action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
           item I18n.t('active_admin.edit'), [:edit, :admin, resource], class: "edit_link #{options[:css_class]}", title: I18n.t('active_admin.edit')
         end
-        if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
+        if target_controller(resource).action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
           item I18n.t('active_admin.delete'), [:admin, resource], class: "delete_link #{options[:css_class]}", title: I18n.t('active_admin.delete'),
             method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
         end
+      end
+
+      def target_controller_name(resource)
+        [
+          active_admin_namespace.module_name,
+          resource.model_name.plural.camelize + 'Controller'
+        ].compact.join('::')
+      end
+
+      # Returns the controller for this config
+      def target_controller(resource)
+        object = resource.decorated? ? resource.object : resource
+        target_controller_name(object).constantize
       end
 
       # Register Table Actions
