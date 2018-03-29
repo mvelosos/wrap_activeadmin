@@ -1,4 +1,5 @@
 .color-brick {
+  flex-shrink: 0;
   width: $color-brick-size;
   height: $color-brick-size;
   overflow: hidden;
