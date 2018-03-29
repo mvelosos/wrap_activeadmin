@@ -79,8 +79,9 @@ module ActiveAdmin::ViewHelpers
     options = args.extract_options!
     klass   = options.delete(:class)
     icon    = options.delete(:icon) { 'image-2' }
+    size    = options.delete(:size) { nil }
     content_tag :div, class: "thumbnail #{klass}" do
-      object.try(image).present? ? image_tag(object.send(image), *args) : aa_icon(icon)
+      object.try(image, size).present? ? image_tag(object.send(image, size), *args) : aa_icon(icon)
     end
   end
 
