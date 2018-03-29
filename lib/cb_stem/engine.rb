@@ -25,7 +25,8 @@ module CbStem
 
   class << self
 
-    mattr_accessor :google_analytics, :chart_colors
+    mattr_accessor :google_analytics, :chart_colors,
+                   :file_preview_versions
 
     # add default values of more config vars here
     self.google_analytics = {}
@@ -42,6 +43,8 @@ module CbStem
       '#20c997',
       '#17a2b8'
     ]
+
+    self.file_preview_versions = %i[thumb]
 
   end
 

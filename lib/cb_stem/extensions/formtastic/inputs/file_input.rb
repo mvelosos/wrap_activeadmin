@@ -22,8 +22,14 @@ module Formtastic
       # rubocop:disable Metrics/AbcSize
       def attachment_preview
         template.content_tag :div, class: 'file-preview' do
-          object.try(method).present? && object.try(method).image? &&
-            template.image_tag(object.try(method)&.url)
+          if object.try(method).present? && object.try(method).image?
+            version = object.try(method)&.versions&.map(&:first) & CbStem.file_preview_versions
+            if version.empty?
+              template.image_tag(object.try(method)&.url)
+            else
+              template.image_tag(object.try(method)&.url(version))
+            end
+          end
         end
       end
 
