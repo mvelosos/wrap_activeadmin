@@ -4,6 +4,9 @@
 log/*.log
 pkg/
 
+# Ignore rbenv files
+.ruby-version
+
 # Ignore Test Files
 test/dummy/db/*.sqlite3
 test/dummy/db/*.sqlite3-journal

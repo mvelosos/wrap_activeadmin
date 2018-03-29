@@ -74,14 +74,20 @@ module ActiveAdmin::ViewHelpers
     !resource.errors.empty?
   end
 
+  # rubocop:disable Metrics/MethodLength
   def thumbnail(object, image, *args)
     return unless image
     options = args.extract_options!
     klass   = options.delete(:class)
     icon    = options.delete(:icon) { 'image-2' }
     size    = options.delete(:size) { nil }
+    url_method = options.delete(:url_method) { '_url' }
     content_tag :div, class: "thumbnail #{klass}" do
-      object.try(image, size).present? ? image_tag(object.send(image, size), *args) : aa_icon(icon)
+      if object.try(image).present? && object.try("#{image}#{url_method}", size)
+        image_tag(object.send("#{image}#{url_method}", size), *args)
+      else
+        aa_icon(icon)
+      end
     end
   end
 
