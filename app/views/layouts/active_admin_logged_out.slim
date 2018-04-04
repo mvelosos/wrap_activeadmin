@@ -2,6 +2,7 @@ doctype html
 html
   head
     meta[http-equiv="Content-type" content="text/html; charset=utf-8"]
+    = tag :meta, name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
     title
       = [@page_title, render_or_call_method_or_proc_on(self, ActiveAdmin.application.site_title)].compact.join(' | ')
     - ActiveAdmin.application.stylesheets.each do |style, options|
@@ -18,7 +19,7 @@ html
         .col-md-8.col-lg-4
           .text-center.mb-3
             .logo
-              - image = ActiveAdmin.application.site_title_image.present? ? ActiveAdmin.application.site_title_image : 'cb_stem/logo.png'
+              - image = ActiveAdmin.application.site_title_image.presence || 'cb_stem/logo.png'
               = image_tag image,
                 alt: ActiveAdmin.application.site_title,
                 retina: true
