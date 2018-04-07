@@ -1,7 +1,0 @@
-class <%= class_name %>Category < ApplicationRecord
-
-  validates :title, uniqueness: { case_sensitive: false }
-
-  has_many :<%= class_name.underscore %>s, dependent: :destroy
-
-end
