@@ -191,7 +191,7 @@ module CbStem
       require_each(
         %w[
           action_items header tabbed_navigation
-          title_bar index_as_table footer
+          title_bar index_as_table footer sidebar_section
         ],
         path: 'views'
       )
