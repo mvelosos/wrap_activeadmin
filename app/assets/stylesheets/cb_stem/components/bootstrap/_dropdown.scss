@@ -1,3 +1,7 @@
 .dropdown {
   .dropdown-toggle i { font-size: $icon-size; }
+
+  .dropdown-menu {
+    @include box-shadow($dropdown-box-shadow);
+  }
 }

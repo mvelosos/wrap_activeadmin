@@ -3,6 +3,7 @@
   color: color-yiq($titlebar-bg);
   background: linear-gradient(to bottom left, #{$titlebar-bg} , darken($titlebar-bg, 3%));
   background-color: $titlebar-bg;
+  @include box-shadow($titlebar-shadow);
 
   @include media-breakpoint-up($header-breakpoint) {
     left: $header-width;

@@ -11,7 +11,11 @@
 
 .form-control {
   &.h5 { font-size: $h5-font-size; }
-  &.datepicker { background: $input-bg; }
+
+  &.datepicker {
+    background: $input-bg;
+    border-radius: $border-radius;
+  }
 }
 
 .field_with_errors {

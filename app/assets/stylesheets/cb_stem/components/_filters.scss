@@ -48,10 +48,11 @@
     overflow: hidden;
     font-size: $font-size-lg;
     font-weight: $font-weight-normal;
-    color: $white;
+    color: color-yiq($filter-header-bg);
     white-space: nowrap;
-    background: $primary;
+    background: $filter-header-bg;
     border-radius: 0;
+    @include box-shadow($filter-header-shadow);
   }
 
   .card-header,
