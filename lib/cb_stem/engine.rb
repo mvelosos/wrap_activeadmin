@@ -133,7 +133,7 @@ module CbStem
         %w[
           base/wrapping base/html base/labelling actions/base
           inputs/boolean_input inputs/switch_input inputs/file_input
-          inputs/select_input inputs/color_picker_input
+          inputs/select_input inputs/color_picker_input inputs/hstore_input
           inputs/date_picker_input inputs/base/timeish helpers/errors_helper
           form_builder
         ],

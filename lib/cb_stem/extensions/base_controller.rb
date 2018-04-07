@@ -7,7 +7,7 @@ module ActiveAdmin
 
     def update
       update! do |success, _failure|
-        success.html { redirect_to [:edit, :admin, resource] }
+        success.html { redirect_to edit_resource_path }
       end
     end
 
