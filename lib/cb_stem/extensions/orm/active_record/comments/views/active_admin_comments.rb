@@ -131,9 +131,8 @@ module ActiveAdmin
             dropdown_menu '', icon: 'menu-dots',
                               button: { class: 'p-0' },
                               menu: { class: 'dropdown-menu-right' } do
-              if authorized?(ActiveAdmin::Auth::DESTROY, comment)
+              authorized?(ActiveAdmin::Auth::DESTROY, comment) &&
                 comment_action_delete(comment)
-              end
             end
           end
         end

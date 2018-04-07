@@ -38,9 +38,10 @@ module ActiveAdmin
         add_action_item :new, only: :index do
           if new_action?
             action_btn(
-              new_btn_title,
-              new_resource_path,
-              icon: 'simple-add'
+              new_btn_title, new_resource_path,
+              icon: 'simple-add',
+              class: 'btn-primary',
+              title: true
             )
           end
         end
@@ -51,9 +52,10 @@ module ActiveAdmin
         add_action_item :edit, only: :show do
           if edit_action?
             action_btn(
-              edit_btn_title,
-              edit_resource_path,
-              icon: 'edit-74'
+              edit_btn_title, edit_resource_path,
+              icon: 'edit-72',
+              class: 'btn-primary',
+              title: true
             )
           end
         end
