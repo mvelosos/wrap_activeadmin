@@ -114,7 +114,7 @@ module ActiveAdmin::ViewHelpers
   def menu_badge(badge)
     return unless badge.is_a?(Integer) && badge.positive?
     badge = '99+' if badge > 99
-    content_tag(:span, badge, class: 'badge badge-pill badge-success')
+    content_tag(:span, badge, class: 'badge badge-pill badge-primary')
   end
 
   def devise_error_html

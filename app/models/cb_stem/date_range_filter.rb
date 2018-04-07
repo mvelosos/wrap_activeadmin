@@ -7,8 +7,6 @@ module CbStem
 
     include ::CbStem::NonDbModel
 
-    attr_accessor :filter_type, :from, :to
-
     validates :filter_type,
               presence: true
     validates :from, :to,

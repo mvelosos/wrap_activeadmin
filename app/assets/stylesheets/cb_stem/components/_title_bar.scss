@@ -1,8 +1,10 @@
 #title_bar {
+  z-index: $zindex-titlebar;
   height: $navbar-height;
   color: color-yiq($titlebar-bg);
   background: linear-gradient(to bottom left, #{$titlebar-bg} , darken($titlebar-bg, 3%));
   background-color: $titlebar-bg;
+  @include box-shadow($titlebar-shadow);
 
   @include media-breakpoint-up($header-breakpoint) {
     left: $header-width;
@@ -49,9 +51,13 @@
 
   .btn {
     display: inline-flex;
-    padding-right: 0;
-    padding-left: 0;
-    color: $titlebar-btn-color;
+
+    &.btn-link {
+      padding-right: 0;
+      padding-left: 0;
+      color: $titlebar-btn-color;
+    }
+
     i.nc-icon { font-size: $icon-size; }
   }
 
@@ -74,7 +80,11 @@
   }
 
   .action_item {
-    .nc-icon + .action-text { display: none; }
+    .nc-icon + .action-text {
+      margin-left: $spacer / 2;
+
+      @include media-breakpoint-down(md) { display: none; }
+    }
   }
 
   #mobile-menu {

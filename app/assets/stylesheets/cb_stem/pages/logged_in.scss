@@ -37,6 +37,8 @@ body.logged_in {
     }
 
     @include media-breakpoint-down(md) {
+      flex-direction: column;
+
       #main_content_wrapper,
       #main_content {
         max-width: 100% !important;
@@ -57,7 +59,7 @@ body.logged_in {
 
     &.with_sidebar {
       #main_content_wrapper {
-        @extend .col;
+        @extend .col-md;
         flex: 1;
         max-width: calc(100% - #{$sidebar-width});
       }

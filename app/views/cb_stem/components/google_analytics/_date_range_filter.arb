@@ -21,6 +21,7 @@ active_admin_form_for date_range_filter, url: url, method: :get do |f|
             }
     f.action :submit,
              label: t('.submit'),
-             wrapper_html: { class: 'mb-0' }
+             wrapper_html: { class: 'mb-0' },
+             button_html: { class: 'btn btn-light' }
   end
 end

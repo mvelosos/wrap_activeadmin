@@ -18,8 +18,11 @@ $logged-out-logo-size: 64px !default;
 $backdrop-bg:          transparent !default;
 $logged-out-body-bg:   $body-bg !default;
 $sidebar-bg:           $body-bg !default;
-$titlebar-bg:          $primary !default;
-$titlebar-btn-color:   $dark !default;
+$titlebar-bg:          $white !default;
+$titlebar-btn-color:   $primary !default;
+$titlebar-shadow:      0 1px 0 0 $hr-border-color !default;
+$filter-header-bg:     $titlebar-bg !default;
+$filter-header-shadow: $titlebar-shadow !default;
 $header-bg:            $dark !default;
 $card-shadow:          0 0 0 1px rgba($dark, 0.05), 0 1px 3px 0 rgba($dark, 0.15) !default;
 $float-help-shadow:    $card-shadow !default;
@@ -30,12 +33,13 @@ $svg-color-adjustment: 33% !default;
 // z-index
 $zindex-custom-backdrop: 1040;
 $zindex-aside:           11;
-$zindex-header:          1080;
-$zindex-filter:          1090;
+$zindex-header:          2000;
+$zindex-filter:          1050;
 $zindex-flashes:         2200;
 $zindex-float-help:      30;
-$zindex-select2:         1000;
+$zindex-select2:         1055;
 $zindex-datepicker:      1100;
+$zindex-titlebar:        1080;
 
 // Breakpoints
 $header-breakpoint: xl;

@@ -7,7 +7,7 @@ module ActiveAdmin
 
       WRAPPER_ID    = 'action_items'.freeze
       WRAPPER_CLASS = 'action-btns'.freeze
-      ITEM_CLASS    = 'btn btn-link'.freeze
+      ITEM_CLASS    = 'btn'.freeze
 
       # rubocop:disable Metrics/MethodLength
       def build(action_items)
@@ -35,12 +35,14 @@ module ActiveAdmin
       private
 
       def action_btn(title, url, html_options = {})
-        icon = html_options.delete(:icon) { nil }
-        html_options[:class] = "#{ITEM_CLASS} #{html_options[:class]}".strip.squeeze
+        icon          = html_options.delete(:icon)  { nil }
+        display_title = html_options.delete(:title) { false }
+        html_options[:class] ||= 'btn-link'
+        html_options[:class]   = "#{ITEM_CLASS} #{html_options[:class]}".strip.squeeze
         options = html_options.merge(title: title, data: { toggle: 'tooltip', placement: 'bottom' })
         link_to url, options do
           concat content_tag(:i, '', class: "nc-icon nc-#{icon}") if icon
-          concat content_tag(:span, title, class: 'action-text')
+          concat content_tag(:span, title, class: 'action-text')  if display_title
         end
       end
 

@@ -1,6 +1,8 @@
 #sidebar {
+  @extend .col-md;
   width: 100%;
   padding: 0;
+  overflow-y: scroll;
   background: $sidebar-bg;
 
   .sidebar_section {
@@ -27,6 +29,10 @@
   }
 
   @include media-breakpoint-up(lg) {
+    position: fixed;
+    top: $navbar-height;
+    right: 0;
+    bottom: 0;
     width: $sidebar-width;
     border-left: 1px solid $hr-border-color;
   }
