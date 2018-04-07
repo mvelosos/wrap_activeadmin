@@ -82,7 +82,7 @@ module ActiveAdmin
 
         def build_breadcrumb(separator = '/')
           return unless breadcrumbs?
-          ul id: 'breadcrumbs', class: 'list-inline my-3' do
+          ul id: 'breadcrumbs', class: 'list-inline mb-3' do
             valid_links.each do |link|
               li class: 'list-inline-item mr-1 my-1' do
                 text_node(link)

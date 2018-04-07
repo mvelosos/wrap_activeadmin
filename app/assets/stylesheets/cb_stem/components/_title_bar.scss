@@ -11,8 +11,8 @@
   }
 
   @include media-breakpoint-up(lg) {
-    padding-right: 1.5 * $spacer !important;
-    padding-left: 1.5 * $spacer !important;
+    padding-right: 1.25 * $spacer !important;
+    padding-left: 1.25 * $spacer !important;
   }
 
   #breadcrumbs {

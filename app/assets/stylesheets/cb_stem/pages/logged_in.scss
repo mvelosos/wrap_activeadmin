@@ -16,24 +16,28 @@ body.logged_in {
     display: flex;
     flex: 1;
     flex-direction: column;
+    padding: 0;
   }
 
   #active_admin_content {
     @extend .row;
     display: flex;
     flex: 1;
+    width: 100%;
+    margin: 0;
 
     #main_content_wrapper {
       display: flex;
       flex: 1;
       flex-direction: column;
       justify-content: space-between;
-      padding: $spacer 0;
+      width: 100%;
+      padding: $spacer * 1.25 0;
     }
 
     #main_content {
       @extend .container;
-      padding: 0 $spacer;
+      padding: 0 1.25 * $spacer;
     }
 
     @include media-breakpoint-down(md) {
@@ -52,8 +56,8 @@ body.logged_in {
 
     @include media-breakpoint-up(lg) {
       #main_content_wrapper {
-        padding-right: 1.5 * $spacer !important;
-        padding-left: 1.5 * $spacer !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
       }
     }
 
