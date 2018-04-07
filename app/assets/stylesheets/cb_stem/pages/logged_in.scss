@@ -4,7 +4,6 @@ body.logged_in {
   flex: 1;
   min-height: 100%;
   padding-top: $navbar-height;
-  overflow: hidden;
 
   @include media-breakpoint-up($header-breakpoint) {
     padding-left: $header-width;
@@ -17,7 +16,6 @@ body.logged_in {
     display: flex;
     flex: 1;
     flex-direction: column;
-    height: calc(100vh - #{$navbar-height});
   }
 
   #active_admin_content {
@@ -31,7 +29,6 @@ body.logged_in {
       flex-direction: column;
       justify-content: space-between;
       padding: $spacer 0;
-      overflow-y: scroll;
     }
 
     #main_content {
@@ -40,6 +37,8 @@ body.logged_in {
     }
 
     @include media-breakpoint-down(md) {
+      flex-direction: column;
+
       #main_content_wrapper,
       #main_content {
         max-width: 100% !important;
@@ -60,7 +59,7 @@ body.logged_in {
 
     &.with_sidebar {
       #main_content_wrapper {
-        @extend .col;
+        @extend .col-md;
         flex: 1;
         max-width: calc(100% - #{$sidebar-width});
       }

@@ -24,6 +24,7 @@
 
   @include media-breakpoint-down(xs) {
     width: 100%;
+    max-width: $header-width;
   }
 
   &:not(.show) {

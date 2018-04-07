@@ -1,4 +1,5 @@
 #title_bar {
+  z-index: $zindex-titlebar;
   height: $navbar-height;
   color: color-yiq($titlebar-bg);
   background: linear-gradient(to bottom left, #{$titlebar-bg} , darken($titlebar-bg, 3%));
@@ -79,7 +80,11 @@
   }
 
   .action_item {
-    .nc-icon + .action-text { margin-left: $spacer / 2; }
+    .nc-icon + .action-text {
+      margin-left: $spacer / 2;
+
+      @include media-breakpoint-down(md) { display: none; }
+    }
   }
 
   #mobile-menu {
