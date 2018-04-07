@@ -129,7 +129,7 @@ module ActiveAdmin
             success: 'alert-success',
             error: 'alert-danger',
             alert: 'alert-warning',
-            notice: 'alert-success'
+            notice: 'alert-primary'
           }[type.to_sym] || type.to_s
         end
 
