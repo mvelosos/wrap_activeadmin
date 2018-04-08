@@ -72,6 +72,8 @@
     }
 
     .action_item {
+      position: relative;
+
       & + .action_item,
       & + .dropdown {
         margin-left: $spacer;
