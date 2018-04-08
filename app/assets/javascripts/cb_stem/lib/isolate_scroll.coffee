@@ -3,7 +3,7 @@ class ActiveAdmin.IsolateScroll
   constructor: (@options, @element) ->
     @$element = $(@element)
     defaults = {
-      offset: 15
+      offset: 30
     }
     @options = $.extend defaults, @options
 

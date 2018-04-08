@@ -24,6 +24,12 @@
   @include transition(transform 0.2s linear);
   @include transform(translateX(0));
 
+  @include media-breakpoint-down(md) {
+    top: 0;
+    z-index: $zindex-titlebar + 10;
+    width: 100%;
+  }
+
   &:not(.show) {
     @include transform(translateX(100%));
 

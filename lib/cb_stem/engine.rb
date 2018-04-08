@@ -32,14 +32,14 @@ module CbStem
     self.google_analytics = {}
 
     self.chart_colors = [
-      '#2ab265',
-      '#4191f0',
-      '#6610f2',
-      '#6f42c1',
-      '#e83e8c',
-      '#dc3545',
-      '#fd7e14',
-      '#f4b73f',
+      '#56b181',
+      '#65B1E3',
+      '#6775de',
+      '#8857a7',
+      '#e9a9e7',
+      '#d16156',
+      '#f09f82',
+      '#ecbf68',
       '#20c997',
       '#17a2b8'
     ]

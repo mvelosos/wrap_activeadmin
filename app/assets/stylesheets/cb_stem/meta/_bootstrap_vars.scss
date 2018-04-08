@@ -10,15 +10,15 @@
 //
 // // stylelint-disable
 $white:    #fff !default;
-$gray-100: #f7f7f7 !default;
-$gray-200: #f3f6f7 !default;
+$gray-100: #fcfcfc !default;
+$gray-200: #f7f8f9 !default;
 $gray-300: #E8E8E8 !default;
 $gray-400: #c4cdd5 !default;
 $gray-500: #c9c9c9 !default;
-$gray-600: #999 !default;
+$gray-600: #8b98a8 !default;
 $gray-700: #495057 !default;
 $gray-800: #434240 !default;
-$gray-900: #26313F !default;
+$gray-900: #152b3c !default;
 $black:    #000 !default;
 //
 // $grays: () !default;
@@ -34,55 +34,55 @@ $black:    #000 !default;
 //   "900": $gray-900
 // ), $grays);
 //
-$blue:    #4a90e2 !default;
-// $indigo:  #6610f2 !default;
-// $purple:  #6f42c1 !default;
-// $pink:    #e83e8c !default;
-// $red:     #dc3545 !default;
-// $orange:  #fd7e14 !default;
-$yellow:  #f4b73f !default;
-$green:   #2ab265 !default;
-// $teal:    #20c997 !default;
-// $cyan:    #17a2b8 !default;
-//
-// $colors: () !default;
-// $colors: map-merge((
-//   "blue":       $blue,
-//   "indigo":     $indigo,
-//   "purple":     $purple,
-//   "pink":       $pink,
-//   "red":        $red,
-//   "orange":     $orange,
-//   "yellow":     $yellow,
-//   "green":      $green,
-//   "teal":       $teal,
-//   "cyan":       $cyan,
-//   "white":      $white,
-//   "gray":       $gray-600,
-//   "gray-dark":  $gray-800
-// ), $colors);
-//
-$primary:       $blue !default;
+$blue:    #65B1E3 !default;
+$indigo:  #6775de !default;
+$purple:  #8857a7 !default;
+$pink:    #e9a9e7 !default;
+$red:     #d16156 !default;
+$orange:  #f09f82 !default;
+$yellow:  #ecbf68 !default;
+$green:   #56b181 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$colors: () !default;
+$colors: map-merge((
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+), $colors);
+
+$primary:       $green !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
 $info:          $blue !default;
-// $warning:       $yellow !default;
-// $danger:        $red !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
 $light:         $gray-100 !default;
 $dark:          $gray-900 !default;
-//
-// $theme-colors: () !default;
-// $theme-colors: map-merge((
-//   "primary":    $primary,
-//   "secondary":  $secondary,
-//   "success":    $success,
-//   "info":       $info,
-//   "warning":    $warning,
-//   "danger":     $danger,
-//   "light":      $light,
-//   "dark":       $dark
-// ), $theme-colors);
-// // stylelint-enable
+
+$theme-colors: $colors !default;
+$theme-colors: map-merge((
+  "primary":    $primary,
+  "secondary":  $secondary,
+  "success":    $success,
+  "info":       $info,
+  "warning":    $warning,
+  "danger":     $danger,
+  "light":      $light,
+  "dark":       $dark
+), $theme-colors);
+// stylelint-enable
 //
 // // Set a specific jump point for requesting color jumps
 // $theme-color-interval:      8% !default;
@@ -192,7 +192,7 @@ $grid-breakpoints: (
 // // Set the number of columns and specify the width of the gutters.
 //
 // $grid-columns:                12 !default;
-// $grid-gutter-width:           30px !default;
+$grid-gutter-width:           2rem !default;
 //
 // // Components
 // //

@@ -33,7 +33,7 @@ module ActiveAdmin
 
         def fields
           template.content_tag :div, class: 'row' do
-            template.content_tag(:div, gt_input, class: 'col-md-6') <<
+            template.content_tag(:div, gt_input, class: 'col-md-6 mb-3 mb-md-0') <<
               template.content_tag(:div, lt_input, class: 'col-md-6')
           end
         end

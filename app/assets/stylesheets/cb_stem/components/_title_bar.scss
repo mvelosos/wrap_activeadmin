@@ -2,7 +2,7 @@
   z-index: $zindex-titlebar;
   height: $navbar-height;
   color: color-yiq($titlebar-bg);
-  background: linear-gradient(to bottom left, #{$titlebar-bg} , darken($titlebar-bg, 3%));
+  background: linear-gradient(to bottom left, #{$titlebar-bg} , darken($titlebar-bg, $titlebar-bg-adjustment));
   background-color: $titlebar-bg;
   @include box-shadow($titlebar-shadow);
 

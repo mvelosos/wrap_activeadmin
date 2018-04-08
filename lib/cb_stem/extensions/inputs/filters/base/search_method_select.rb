@@ -27,7 +27,7 @@ module ActiveAdmin
 
           def fields_html
             template.content_tag :div, class: 'row' do
-              template.content_tag(:div, select_html, class: 'col-md-6') <<
+              template.content_tag(:div, select_html, class: 'col-md-6 mb-3 mb-md-0') <<
                 template.content_tag(:div, input_html, class: 'col-md-6')
             end
           end
