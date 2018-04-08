@@ -30,16 +30,31 @@
   }
 
   .has_many_container {
+    &.ui-sortable {
+      .has-many-fields {
+        padding-left: calc(30px + #{$spacer}) !important;
+      }
+    }
+
     .has_many_fields {
-      padding-top: 1.5 * $spacer;
-      &:not(:first-child) { border-top: 1px solid $hr-border-color; }
+      @extend .card;
+      margin-bottom: $spacer;
+      overflow: hidden;
+
+      &.ui-sortable-placeholder {
+        z-index: 11;
+        background: theme-color-level('primary', $alert-bg-level);
+        border: 1px dashed $primary;
+        border-radius: $border-radius;
+        visibility: visible !important;
+        @include box-shadow(none);
+      }
 
       &.ui-sortable-helper {
         background: $card-bg;
         border: 1px solid $input-focus-border-color;
         transform-origin: center left;
         @include box-shadow($input-focus-box-shadow);
-        @include transform(scale(0.87));
       }
 
       .columns > ol,
@@ -51,19 +66,35 @@
 
       .has-many-fields {
         @extend .col;
-        padding: 0;
+        padding: $card-spacer-y $card-spacer-x;
       }
       .has-many-actions > ol { height: 100%; }
 
       .has-many-handle {
-        margin-right: $spacer;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 11;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        margin: 0;
         border-right: 1px solid $hr-border-color;
         border-radius: 0;
+
+        a {
+          padding-right: $spacer / 4;
+          padding-left: $spacer / 4;
+        }
       }
 
       .has-many-actions {
         display: flex;
         justify-content: flex-end;
+
+        .form-group:last-child { margin-bottom: 0; }
       }
 
       .has-many-actions,
