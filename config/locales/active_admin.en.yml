@@ -14,7 +14,7 @@ en:
     header_close: Close Menu
     filter_close: Close Filter
     search_model: "Search %{model}"
-    new_model: "New %{model}"
+    new_model: "Add %{model}"
     edit_model: "Edit %{model}"
     delete_model: "Delete %{model}"
     details: "%{model} Details"

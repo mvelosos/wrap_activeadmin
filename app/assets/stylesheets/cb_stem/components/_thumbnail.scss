@@ -1,5 +1,4 @@
-.thumbnail {
-  @extend .bg-light;
+%thumbnail {
   position: relative;
   display: flex;
   align-items: center;
@@ -8,7 +7,6 @@
   height: $thumbnail-size;
   overflow: hidden;
   font-size: $icon-size;
-  color: $text-muted;
   border-radius: $border-radius;
 
   &.circle { border-radius: 50%; }
@@ -17,6 +15,16 @@
     width: $thumbnail-size-sm;
     height: $thumbnail-size-sm;
   }
+}
+
+.thumbnail-icon {
+  @extend %thumbnail;
+}
+
+.thumbnail {
+  @extend %thumbnail;
+  @extend .bg-light;
+  color: $text-muted;
 
   img {
     position: absolute;
