@@ -23,12 +23,12 @@ module ActiveAdmin
       def add_default_destroy_action_item
         add_action_item :destroy, only: :edit do
           if destroy_action?
-            action_btn(
-              destroy_btn_title,
-              resource_path(resource),
-              icon: 'trash-simple', method: :delete,
-              data: { confirm: destroy_confirm }
-            )
+            dropdown_menu '', icon: 'menu-dots' do
+              item(
+                destroy_btn_title, resource_path(resource),
+                class: 'text-danger', method: :delete, data: { confirm: destroy_confirm }
+              )
+            end
           end
         end
       end
@@ -40,8 +40,7 @@ module ActiveAdmin
             action_btn(
               new_btn_title, new_resource_path,
               icon: 'simple-add',
-              class: 'btn-primary',
-              title: true
+              title: false
             )
           end
         end
@@ -53,9 +52,8 @@ module ActiveAdmin
           if edit_action?
             action_btn(
               edit_btn_title, edit_resource_path,
-              icon: 'edit-72',
-              class: 'btn-primary',
-              title: true
+              icon: 'edit-76',
+              title: false
             )
           end
         end

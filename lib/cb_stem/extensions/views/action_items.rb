@@ -9,7 +9,6 @@ module ActiveAdmin
       WRAPPER_CLASS = 'action-btns'.freeze
       ITEM_CLASS    = 'btn'.freeze
 
-      # rubocop:disable Metrics/MethodLength
       def build(action_items)
         super(id: WRAPPER_ID, class: WRAPPER_CLASS)
 
@@ -19,15 +18,6 @@ module ActiveAdmin
           mobile_klass = action_item.mobile ? nil : 'd-none d-sm-block'
           span class: "#{action_item.html_class} #{mobile_klass}" do
             instance_exec(&action_item.block)
-          end
-        end
-
-        mobile_hidden_items = items.reject(&:mobile)
-
-        return if mobile_hidden_items.empty?
-        dropdown_menu '', icon: 'menu-dots', id: 'mobile-menu', class: 'd-block d-sm-none' do
-          mobile_hidden_items.each do |action_item|
-            raw_item instance_exec(&action_item.block)
           end
         end
       end
