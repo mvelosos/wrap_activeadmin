@@ -2,6 +2,7 @@
   z-index: $zindex-datepicker;
   padding: $spacer / 2;
   border-color: $dropdown-border-color;
+  @include box-shadow($dropdown-box-shadow);
 
   &::before,
   &::after {
