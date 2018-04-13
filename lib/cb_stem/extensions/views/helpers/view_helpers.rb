@@ -67,7 +67,7 @@ module ActiveAdmin::ViewHelpers
 
   def devise_error_messages!
     return '' unless devise_error_messages?
-    devise_error_html&.html_safe
+    safe_join [devise_error_html]
   end
 
   def devise_error_messages?
@@ -90,6 +90,7 @@ module ActiveAdmin::ViewHelpers
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def color_brick(color, *args)
     options = args.extract_options!
@@ -98,14 +99,14 @@ module ActiveAdmin::ViewHelpers
     content_tag :div, '', options.merge(style: "background-color: #{color};")
   end
 
-  alias batch_form active_admin_form_for
-
-  private
-
   def aa_icon(icon)
     return if icon.blank?
     content_tag(:i, '', class: "nc-icon nc-#{icon}")
   end
+
+  alias batch_form active_admin_form_for
+
+  private
 
   def menu_title(label)
     content_tag(:span, label, class: 'menu-text')
