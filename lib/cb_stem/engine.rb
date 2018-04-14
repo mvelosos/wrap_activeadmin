@@ -174,10 +174,7 @@ module CbStem
     end
 
     def require_helpers
-      require_each(
-        %w[view_helpers],
-        path: 'views/helpers'
-      )
+      require_each(%w[view_helpers])
     end
 
     def require_orm

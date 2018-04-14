@@ -8,7 +8,7 @@ module ActiveAdmin
       def build(title = nil, attributes = {})
         super(attributes)
         add_class wrapper_class
-        @title    = h5(title_tag(title), class: heading_class) if title.present?
+        @title    = build_title(title)
         @contents = div(class: body_class)
       end
 
@@ -17,6 +17,10 @@ module ActiveAdmin
       end
 
       private
+
+      def build_title(title)
+        h5 title_tag(title), class: heading_class
+      end
 
       def wrapper_class
         'card mb-3'
@@ -31,7 +35,9 @@ module ActiveAdmin
       end
 
       def title_tag(title)
-        div title.to_s, class: 'title'
+        div class: 'title' do
+          title.to_s if title.present?
+        end
       end
 
     end
