@@ -22,6 +22,7 @@
     border-color: $hr-border-color;
     .title { flex: 1; }
     .header_action i { font-size: $icon-size; }
+    .header_action > .btn { @extend .btn-sm; }
   }
 
   .card-spacer-x {

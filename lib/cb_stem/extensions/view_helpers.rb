@@ -1,5 +1,8 @@
 # Extend ActiveAdmin ViewHelpers
+# rubocop:disable Metrics/ModuleLength
 module ActiveAdmin::ViewHelpers
+
+  alias batch_form active_admin_form_for
 
   def error_messages(resource)
     return if resource.errors.blank?
@@ -9,6 +12,34 @@ module ActiveAdmin::ViewHelpers
           concat content_tag(:li, resource.errors.full_messages_for(x).first)
         end
       end
+    end
+  end
+
+  def flashes_html
+    flash.each do |type, msg|
+      concat(content_tag(:div, msg, class: "alert #{bs_class_for(type)}"))
+    end
+    nil
+  end
+
+  def devise_error_messages!
+    return '' unless devise_error_messages?
+    safe_join [devise_error_html]
+  end
+
+  def devise_error_messages?
+    !resource.errors.empty?
+  end
+
+  def action_btn(title, url, html_options = {})
+    icon          = html_options.delete(:icon)  { nil }
+    display_title = html_options.delete(:title) { false }
+    html_options[:class] ||= 'btn-link'
+    html_options[:class]   = "btn #{html_options[:class]}".strip.squeeze
+    options = html_options.merge(title: title, data: { toggle: 'tooltip', placement: 'bottom' })
+    link_to url, options do
+      concat content_tag(:i, '', class: "nc-icon nc-#{icon}") if icon
+      concat content_tag(:span, title, class: 'action-text')  if display_title
     end
   end
 
@@ -58,22 +89,6 @@ module ActiveAdmin::ViewHelpers
     end
   end
 
-  def flashes_html
-    flash.each do |type, msg|
-      concat(content_tag(:div, msg, class: "alert #{bs_class_for(type)}"))
-    end
-    nil
-  end
-
-  def devise_error_messages!
-    return '' unless devise_error_messages?
-    devise_error_html&.html_safe
-  end
-
-  def devise_error_messages?
-    !resource.errors.empty?
-  end
-
   # rubocop:disable Metrics/MethodLength
   def thumbnail(object, image, *args)
     return unless image
@@ -98,14 +113,12 @@ module ActiveAdmin::ViewHelpers
     content_tag :div, '', options.merge(style: "background-color: #{color};")
   end
 
-  alias batch_form active_admin_form_for
-
-  private
-
   def aa_icon(icon)
     return if icon.blank?
     content_tag(:i, '', class: "nc-icon nc-#{icon}")
   end
+
+  private
 
   def menu_title(label)
     content_tag(:span, label, class: 'menu-text')
