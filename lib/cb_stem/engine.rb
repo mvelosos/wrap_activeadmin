@@ -94,7 +94,7 @@ module CbStem
     end
 
     initializer 'view overrides' do |_app|
-      require_helpers
+      require_view_helpers
       require_formtastic
       require_just_datetime_picker
       require_filters
@@ -173,7 +173,7 @@ module CbStem
       )
     end
 
-    def require_helpers
+    def require_view_helpers
       require_each(%w[view_helpers])
     end
 
