@@ -3,6 +3,7 @@ module ActiveAdmin
   module Views
 
     # Overwriting TableFor - activeadmin/lib/active_admin/views/components/table_for.rb
+    # rubocop:disable Metrics/ClassLength
     class TableFor < Arbre::HTML::Table
 
       # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
@@ -91,17 +92,40 @@ module ActiveAdmin
       end
 
       # rubocop:disable all
-      def defaults(resource, options = {})
-        if target_controller(resource).action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
-          item I18n.t('active_admin.view'), [:admin, resource], class: "view_link #{options[:css_class]}", title: I18n.t('active_admin.view')
+      def defaults(target, options = {})
+        if target_controller(target).action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, target)
+          item I18n.t('active_admin.view'), find_routes(resource, target), class: "view_link #{options[:css_class]}", title: I18n.t('active_admin.view')
         end
-        if target_controller(resource).action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
-          item I18n.t('active_admin.edit'), [:edit, :admin, resource], class: "edit_link #{options[:css_class]}", title: I18n.t('active_admin.edit')
+        if target_controller(target).action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, target)
+          item I18n.t('active_admin.edit'), find_routes(resource, target, prefix: :edit), class: "edit_link #{options[:css_class]}", title: I18n.t('active_admin.edit')
         end
-        if target_controller(resource).action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
-          item I18n.t('active_admin.delete'), [:admin, resource], class: "delete_link #{options[:css_class]}", title: I18n.t('active_admin.delete'),
+        if target_controller(target).action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, target)
+          item I18n.t('active_admin.delete'), find_routes(resource, target), class: "delete_link #{options[:css_class]}", title: I18n.t('active_admin.delete'),
             method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
         end
+      end
+
+      def find_routes(resource, target, prefix: nil)
+        if is_belongs_to?(resource, target)
+          [prefix, :admin, resource, target].reject(&:blank?)
+        else
+          [prefix, :admin, target].reject(&:blank?)
+        end
+      end
+
+      def is_belongs_to?(resource, target)
+        required_belongs_to?(target) && match_current_scope?(target, resource)
+      end
+
+      def required_belongs_to?(target)
+        config = active_admin_resource_for(target.class)
+        config.belongs_to? && config.belongs_to_config.required?
+      end
+
+      def match_current_scope?(target, resource)
+        config = active_admin_resource_for(target.class)
+        config.belongs_to_config.target.resource_name.singular ==
+          resource.model_name.singular
       end
 
       def target_controller_name(resource)
