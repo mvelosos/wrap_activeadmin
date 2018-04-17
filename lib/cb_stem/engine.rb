@@ -1,7 +1,10 @@
 # Base
 require 'devise'
 require 'active_admin'
+# require 'active_admin/sortable_tree'
 require 'draper'
+require 'ancestry'
+require 'acts_as_list'
 # Components
 require 'bootstrap'
 require 'bootstrap-datepicker-rails'
@@ -23,36 +26,6 @@ require 'signet/oauth_2/client'
 # CbStem
 module CbStem
 
-  class << self
-
-    mattr_accessor :google_analytics, :chart_colors,
-                   :file_preview_versions
-
-    # add default values of more config vars here
-    self.google_analytics = {}
-
-    self.chart_colors = [
-      '#56b181',
-      '#65B1E3',
-      '#6775de',
-      '#8857a7',
-      '#e9a9e7',
-      '#d16156',
-      '#f09f82',
-      '#ecbf68',
-      '#20c997',
-      '#17a2b8'
-    ]
-
-    self.file_preview_versions = %i[thumb]
-
-  end
-
-  # this function maps the vars from your app into your engine
-  def self.setup
-    yield self
-  end
-
   # Initialize Engine
   # rubocop:disable Metrics/ClassLength
   class Engine < ::Rails::Engine
@@ -68,7 +41,13 @@ module CbStem
     end
 
     config.to_prepare do
-      Dir.glob(Rails.root + 'app/admin/concerns/cb_stem/**/*_feature*.rb').each do |c|
+      Dir.glob(CbStem::Engine.root + 'app/admin/concerns/cb_stem/**/*_feature*.rb').each do |c|
+        require_dependency(c)
+      end
+    end
+
+    config.to_prepare do
+      Dir.glob(CbStem::Engine.root + 'app/decorators/cb_stem/**/*_decorator*.rb').each do |c|
         require_dependency(c)
       end
     end
@@ -99,6 +78,7 @@ module CbStem
       require_just_datetime_picker
       require_filters
       require_resources
+      require_dsls
       require_components
       require_inputs
       require_views
@@ -107,10 +87,14 @@ module CbStem
       require_others
     end
 
+    initializer 'initialize DSL' do |_app|
+      ::ActiveAdmin::DSL.send(:include, ActiveAdmin::HtmlContents::DSL)
+    end
+
     initializer 'cb_stem.assets.precompile' do |app|
       app.config.assets.precompile += %w[
-        cb_stem/logo.png cb_stem/empty_state.svg
-        cb_stem/default/avatar.png
+        cb_stem/logo.png cb_stem/default/avatar.png
+        cb_stem/empty_state.svg cb_stem/sortable_handle.svg
       ]
     end
 
@@ -124,7 +108,10 @@ module CbStem
 
     def require_others
       require_each(
-        %w[base_controller view_factory form_builder]
+        %w[
+          base_controller view_factory form_builder
+          active_admin_sortable html_content resource page
+        ]
       )
     end
 
@@ -153,7 +140,7 @@ module CbStem
         %w[
           site_title table_for dropdown_menu panel attributes_table
           active_admin_form blank_slate columns scopes tabs
-          cb_stem_component chart
+          cb_stem_component chart html_content
         ],
         path: 'views/components'
       )
@@ -168,7 +155,7 @@ module CbStem
 
     def require_resources
       require_each(
-        %w[action_items],
+        %w[action_items html_contents],
         path: 'resource'
       )
     end
@@ -198,6 +185,13 @@ module CbStem
       require_each(
         %w[base index form],
         path: 'views/pages'
+      )
+    end
+
+    def require_dsls
+      require_each(
+        %w[html_contents],
+        path: 'dsl'
       )
     end
 

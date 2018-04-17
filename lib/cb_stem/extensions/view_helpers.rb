@@ -36,17 +36,24 @@ module ActiveAdmin::ViewHelpers
     !resource.errors.empty?
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def action_btn(title, url, html_options = {})
     icon          = html_options.delete(:icon)  { nil }
     display_title = html_options.delete(:title) { false }
+    data          = html_options.delete(:data)  { {} }
     html_options[:class] ||= 'btn-link'
     html_options[:class]   = "btn #{html_options[:class]}".strip.squeeze
-    options = html_options.merge(title: title, data: { toggle: 'tooltip', placement: 'bottom' })
+    options =
+      html_options.merge(
+        title: title,
+        data: { toggle: 'tooltip', placement: 'bottom' }.merge(data)
+      )
     link_to url, options do
       concat content_tag(:i, '', class: "nc-icon nc-#{icon}") if icon
       concat content_tag(:span, title, class: 'action-text')  if display_title
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   def menu_label(label, icon: nil, badge: 0)
     safe_join [
@@ -110,6 +117,7 @@ module ActiveAdmin::ViewHelpers
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def color_brick(color, *args)
     options = args.extract_options!
@@ -126,7 +134,8 @@ module ActiveAdmin::ViewHelpers
   private
 
   def menu_title(label)
-    content_tag(:span, label, class: 'menu-text')
+    title = label.is_a?(Class) ? label.model_name.human(count: 2) : label
+    content_tag(:span, title, class: 'menu-text')
   end
 
   def menu_badge(badge)

@@ -101,7 +101,7 @@ module ActiveAdmin
         end
         if target_controller(target).action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, target)
           item I18n.t('active_admin.delete'), find_routes(resource, target), class: "delete_link #{options[:css_class]}", title: I18n.t('active_admin.delete'),
-            method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
+            method: :delete, data: { confirm:  I18n.t('active_admin.delete_title'), message: I18n.t('active_admin.delete_confirmation') }
         end
       end
 

@@ -62,6 +62,7 @@ module ActiveAdmin
             build_main_content_wrapper
             build_sidebar unless skip_sidebar?
           end
+          build_html_contents unless skip_html_contents?
         end
 
         private
@@ -94,7 +95,7 @@ module ActiveAdmin
         end
 
         def links
-          breadcrumb_config = active_admin_config && active_admin_config.breadcrumb
+          breadcrumb_config = active_admin_config&.breadcrumb
           if breadcrumb_config.is_a?(Proc)
             instance_exec(controller, &active_admin_config.breadcrumb)
           elsif breadcrumb_config.present?
@@ -131,6 +132,27 @@ module ActiveAdmin
             alert: 'alert-warning',
             notice: 'alert-primary'
           }[type.to_sym] || type.to_s
+        end
+
+        # Extra Section
+        def html_contents_for_action
+          if active_admin_config&.html_contents?
+            active_admin_config.html_contents_for(params[:action], self)
+          else
+            []
+          end
+        end
+
+        def build_html_contents
+          div id: 'html_contents' do
+            html_contents_for_action.collect do |section|
+              html_content(section)
+            end
+          end
+        end
+
+        def skip_html_contents?
+          html_contents_for_action.empty? || assigns[:skip_html_contents] == true
         end
 
       end

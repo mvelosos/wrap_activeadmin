@@ -32,6 +32,10 @@ module ActiveAdmin
         I18n.t('active_admin.delete_confirmation')
       end
 
+      def destroy_title
+        I18n.t('active_admin.delete_title')
+      end
+
       def destroy_btn_title
         I18n.t('active_admin.delete_model', model: active_admin_config.resource_label).to_s
       end

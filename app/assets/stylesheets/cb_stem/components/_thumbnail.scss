@@ -26,6 +26,8 @@
   color: $text-muted;
   background: $light;
 
+  &:not(.transparent) { @extend .bg-light; }
+
   img {
     position: absolute;
     top: 0;
