@@ -20,6 +20,19 @@ module ActiveAdmin::ViewHelpers
     end
   end
 
+  def modal(*args, &block)
+    html_options = args.extract_options!
+    size         = html_options.delete(:size) { nil }
+    wrapper_klass = %w[modal-dialog]
+    wrapper_klass.push size if size.present?
+    options = { class: 'modal fade', data: { backdrop: 'static' } }.merge(html_options)
+    content_tag :div, options do
+      content_tag :div, class: wrapper_klass do
+        content_tag :div, instance_exec(&block), class: 'modal-content'
+      end
+    end
+  end
+
   def flashes_html
     flash.each do |type, msg|
       concat(content_tag(:div, msg, class: "alert #{bs_class_for(type)}"))

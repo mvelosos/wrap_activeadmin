@@ -1,0 +1,22 @@
+active_admin_form_for folder,
+                      url: create_folder_admin_cb_stem_media_items_path,
+                      remote: true,
+                      html: { autocomplete: :off } do |f|
+  div class: 'modal-header' do
+    h5 t('.title'), class: 'modal-title'
+  end
+
+  div class: 'modal-body' do
+    f.input :title,
+            label: false,
+            placeholder: t('.placeholders.title'),
+            wrapper_html: { class: 'mb-0' },
+            input_html: { autofocus: true }
+    f.input :parent_id, as: :hidden
+  end
+
+  div class: 'modal-footer' do
+    f.button t('active_admin.cancel'), class: 'btn btn-light', 'data-dismiss': 'modal'
+    f.action :submit, label: t('admin.cb_stem_media_items.create_folder.submit')
+  end
+end

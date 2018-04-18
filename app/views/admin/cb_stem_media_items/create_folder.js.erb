@@ -1,0 +1,20 @@
+var $modal = $('#folder-item-modal');
+var $table = $('.index_table tbody');
+var $tr    = $table.find('tr').last().clone();
+var $selectable_column = $tr.find('.collection_selection');
+var flashes = "<%= escape_javascript @flashes %>";
+$tr.attr('id', "<%= dom_id(@folder) %>");
+$selectable_column.attr('id', 'batch_action_item_<%= @folder.id %>');
+$selectable_column.val('<%= @folder.id %>');
+$tr.find('.col-title').html('<%= @folder.identifier %>');
+$tr.find('.col-actions .dropdown-item').each(function() {
+  var arr = $(this).attr('href').split('/');
+  arr.splice(-1,1);
+  arr.push("<%= @folder.id %>");
+  url = arr.join();
+  $(this).attr('href', url);
+});
+$table.append($tr);
+$modal.modal('hide');
+$('#flash-wrapper').html(flashes);
+$('#flashes').aaFlash();

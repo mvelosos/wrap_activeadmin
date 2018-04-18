@@ -28,6 +28,7 @@
     top: 0;
     z-index: $zindex-titlebar + 10;
     width: 100%;
+    max-width: $filter-width;
   }
 
   &:not(.show) {

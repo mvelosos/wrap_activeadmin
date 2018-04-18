@@ -140,7 +140,7 @@ module CbStem
         %w[
           site_title table_for dropdown_menu panel attributes_table
           active_admin_form blank_slate columns scopes tabs
-          cb_stem_component chart html_content
+          cb_stem_component chart html_content notification_messages
         ],
         path: 'views/components'
       )

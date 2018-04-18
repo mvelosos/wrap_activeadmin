@@ -1,4 +1,14 @@
 en:
+  admin:
+    cb_stem_media_items:
+      create_folder:
+        submit: Create
+        success: Folder %{name} created!
+      form:
+        title: New Folder
+        placeholders:
+          title: Folder Name
+
   active_admin:
     resource:
       index:
@@ -12,6 +22,9 @@ en:
       cb_stem/media_item:
         one: Media Item
         other: Media Items
+    attributes:
+      cb_stem/media_item:
+        title: Name
 
   cb_stem:
     menu:
