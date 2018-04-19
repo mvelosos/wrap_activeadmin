@@ -29,12 +29,20 @@ module ActiveAdmin
           end
         end
 
+        def loading_backdrop
+          div id: 'loading-backdrop' do
+            div class: 'backdrop'
+            div class: 'lds-ring'
+          end
+        end
+
         def headers
           build_header
           build_flash_messages
         end
 
         def footers
+          loading_backdrop
           # build_float_help
         end
 

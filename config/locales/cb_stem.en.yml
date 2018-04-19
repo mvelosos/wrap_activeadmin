@@ -1,11 +1,17 @@
 en:
   admin:
-    cb_stem_media_items:
+    cb_stem_folder_items:
       create_folder:
-        submit: Create
         success: Folder %{name} created!
+      update_folder:
+        success: Folder %{name} updated!
       form:
-        title: New Folder
+        new:
+          title: New Folder
+          submit: Create
+        edit:
+          title: Edit Folder
+          submit: Update
         placeholders:
           title: Folder Name
 
@@ -27,6 +33,10 @@ en:
         title: Name
 
   cb_stem:
+    active_admin_sortable:
+      update:
+        success: Successfully updated %{model}
+
     menu:
       media_items: Media Library
 

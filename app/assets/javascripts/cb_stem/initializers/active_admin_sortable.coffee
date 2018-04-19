@@ -19,9 +19,11 @@
         $.ajax
           url: url
           type: 'post'
-          data: position: toPos
-          success: ->
-            window.location.reload()
+          data:
+            position: toPos
+          success: (response) ->
+            $('#flash-wrapper').html(response);
+            $('#flashes').aaFlash();
             return
         return
     @disableSelection()

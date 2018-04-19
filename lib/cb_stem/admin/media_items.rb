@@ -11,7 +11,7 @@ if CbStem.enable_media_library
 
     sortable
 
-    actions :all, except: %i[new create]
+    actions :index, :show, :destroy
 
     permit_params :title
 
@@ -21,27 +21,12 @@ if CbStem.enable_media_library
       end
     end
 
-    # ACTIONS
-    collection_action :create_folder, method: :post do
-      @folder = CbStem::MediaItem.new(folder_params.merge(type: CbStem::FolderItem))
-      render 'create_folder_error' unless @folder.save
-      @folder = CbStem::Admin::MediaItemDecorator.decorate @folder
-      flash[:notice] = t('.success', name: @folder.title)
-      @flashes = render_to_string partial: 'flash', layout: false
-    end
-
-    collection_action :new_folder, method: :get do
-      parent  = CbStem::MediaItem.find_by(id: params[:parent_id])
-      @folder = CbStem::MediaItem.new(type: CbStem::FolderItem)
-      @folder.parent = parent if parent.present?
-    end
-
     # ACTION ITEMS
     action_item :add_folder,
                 only: :index do
       action_btn(
         t('.cb_stem.media_items.add'),
-        [:new_folder, :admin, :cb_stem, :media_items, parent_id: params[:parent_id]],
+        [:new_folder, :admin, :cb_stem, :folder_items, parent_id: params[:parent_id]],
         remote: true,
         icon: 'simple-add',
         title: false
@@ -65,16 +50,6 @@ if CbStem.enable_media_library
 
     # CONTROLLER
     controller do
-      def build_new_resource
-        r = super
-        r.type = CbStem::FolderItem
-        r
-      end
-
-      def find_resource
-        CbStem::MediaItem.find_by(id: params[:id])
-      end
-
       def scoped_collection
         parent.present? ? parent.children : end_of_association_chain.roots
       end
@@ -82,13 +57,7 @@ if CbStem.enable_media_library
       private
 
       def parent
-        @parent ||= CbStem::MediaItem.find_by id: params[:parent_id]
-      end
-
-      def folder_params
-        params.fetch(:folder_item, {}).permit(
-          :title, :parent_id
-        )
+        @parent ||= CbStem::FolderItem.find_by id: params[:parent_id]
       end
     end
 
@@ -102,7 +71,16 @@ if CbStem.enable_media_library
       selectable_column
       column :title, :identifier
       column :items_count
-      actions
+      actions(defaults: false) do |u|
+        item t('active_admin.view'), [:admin, :cb_stem, :media_items, parent_id: u.id]
+        item t('active_admin.edit'), [:edit_folder, :admin, :cb_stem, u.model], remote: true
+        item t('active_admin.delete'), [:admin, :cb_stem, u.model],
+             method: :delete,
+             data: {
+               confirm:  I18n.t('active_admin.delete_title'),
+               message: I18n.t('active_admin.delete_confirmation')
+             }
+      end
     end
 
     # FORM

@@ -32,7 +32,7 @@ window.ChartColors = <%= CbStem.chart_colors %>
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()
   $('#flashes').aaFlash()
-  $('#main-menu, #filters_sidebar_section .card-body').aaIsolateScroll()
+  $('#main-menu, #loading-backdrop, #filters_sidebar_section .card-body').aaIsolateScroll()
   $('.form-control-file').aaFileInput()
   $('.tinymce').aaTinyMCE()
   $('#active_admin_content .dropdown').aaDropdown()
