@@ -1,0 +1,10 @@
+.ui-draggable-dragging { @extend %ui-clone-helper; }
+
+.ui-draggable {
+  &.dragging { opacity: 0.5; }
+
+  .col-handle {
+    width: calc(#{$icon-size} + #{$card-spacer-x});
+    .handle { @extend %ui-drag-handle; }
+  }
+}

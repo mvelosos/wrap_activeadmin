@@ -14,7 +14,17 @@ module CbStem
             content_tag(:div, aa_icon('folder-14'),
                         class: 'thumbnail transparent text-primary mr-1')
           )
-          concat(content_tag(:span, title, class: 'identifier-text'))
+          concat(content_tag(:span, name, class: 'identifier-text'))
+        end
+      end
+
+      def select_item_template
+        content_tag :div, class: 'd-flex flex-row align-items-center' do
+          concat(
+            content_tag(:div, aa_icon('folder-14'),
+                        class: 'thumbnail transparent text-primary mr-1 xs')
+          )
+          concat(content_tag(:span, name, class: 'identifier-text'))
         end
       end
 

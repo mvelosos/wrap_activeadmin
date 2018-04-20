@@ -1,21 +1,4 @@
-// .index_table {
-//   .ui-sortable-helper {
-//     display: table;
-//
-//     .table-col:nth-child(n + 3) {
-//       display: none;
-//     }
-//   }
-// }
-
 .activeadmin-sortable {
   width: calc(#{$icon-size} + #{$card-spacer-x});
-
-  .handle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: grab;
-    svg { height: $icon-size; }
-  }
+  .handle { @extend %ui-drag-handle; }
 }

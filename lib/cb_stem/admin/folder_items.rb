@@ -4,8 +4,6 @@ if CbStem.enable_media_library
 
     actions :destroy
 
-    permit_params :title
-
     # ACTIONS
     collection_action :new_folder, method: :get do
       parent  = CbStem::FolderItem.find_by(id: params[:parent_id])
@@ -16,7 +14,7 @@ if CbStem.enable_media_library
     collection_action :create_folder, method: :post do
       @folder = CbStem::FolderItem.new(folder_params)
       if @folder.save
-        flash[:notice] = t('.success', name: @folder.title)
+        flash[:notice] = t('.success', name: @folder.name)
         render 'save'
       else
         render 'save_error'
@@ -31,7 +29,7 @@ if CbStem.enable_media_library
       @folder = CbStem::FolderItem.find_by(id: params[:id])
       @folder.assign_attributes(folder_params)
       if @folder.save
-        flash[:notice] = t('.success', name: @folder.title)
+        flash[:notice] = t('.success', name: @folder.name)
         render 'save'
       else
         render 'save_error'
@@ -40,9 +38,15 @@ if CbStem.enable_media_library
 
     # CONTROLLER
     controller do
+      def destroy
+        destroy! do |success, _failure|
+          success.html { redirect_back fallback_location: %i[admin cb_stem media_items] }
+        end
+      end
+
       def folder_params
         params.fetch(:folder_item, {}).permit(
-          :title, :parent_id
+          :name, :parent_id
         )
       end
     end

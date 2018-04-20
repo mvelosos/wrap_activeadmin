@@ -105,8 +105,11 @@ module ActiveAdmin
           form_builder.input sortable_column, as: :hidden
 
           template.content_tag(:li, class: 'form-group has-many-handle') do
-            template.link_to template.content_tag(:i, '', class: "nc-icon nc-move-05"), "#",
-                             class: 'button btn text-secondary'
+            template.content_tag :div, class: 'handle' do
+              template.render('cb_stem/svgs/sortable_handle.svg')
+            end
+            # template.link_to template.content_tag(:i, '', class: "nc-icon nc-move-05"), "#",
+            #                  class: 'button btn text-secondary'
           end
         end
       end

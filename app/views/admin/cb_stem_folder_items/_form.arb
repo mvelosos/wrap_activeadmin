@@ -16,16 +16,17 @@ active_admin_form_for folder,
   end
 
   div class: 'modal-body' do
-    f.input :title,
+    f.input :name,
             label: false,
-            placeholder: t('.placeholders.title'),
+            placeholder: t('.placeholders.name'),
             wrapper_html: { class: 'mb-0' },
             input_html: { autofocus: true }
-    f.input :parent_id, as: :hidden
+    f.input :parent_id,
+            as: :hidden
   end
 
   div class: 'modal-footer' do
-    f.button t('active_admin.cancel'), class: 'btn btn-light', 'data-dismiss': 'modal'
+    a t('active_admin.cancel'), '#', class: 'btn btn-light', 'data-dismiss': 'modal'
     f.action :submit, label: t(".#{label}.submit")
   end
 end

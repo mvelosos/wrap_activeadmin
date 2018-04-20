@@ -9,6 +9,10 @@ module ActiveAdmin::ViewHelpers
     'selected'
   end
 
+  def handle_icon
+    render('cb_stem/svgs/sortable_handle.svg')
+  end
+
   def error_messages(resource)
     return if resource.errors.blank?
     content_tag :div, class: 'alert alert-danger' do
@@ -20,18 +24,25 @@ module ActiveAdmin::ViewHelpers
     end
   end
 
+  # rubocop:disable Metrics/MethodLength
   def modal(*args, &block)
+    # @TODO: need to move to Arbre Component
     html_options = args.extract_options!
     size         = html_options.delete(:size) { nil }
     wrapper_klass = %w[modal-dialog]
     wrapper_klass.push size if size.present?
-    options = { class: 'modal fade', data: { backdrop: 'static' } }.merge(html_options)
+    options =
+      { class: 'modal fade', data: { backdrop: 'static' } }.
+      merge(html_options)
     content_tag :div, options do
       content_tag :div, class: wrapper_klass do
-        content_tag :div, instance_exec(&block), class: 'modal-content'
+        content_tag :div, class: 'modal-content' do
+          instance_exec(&block) if block_given?
+        end
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def flashes_html
     flash.each do |type, msg|

@@ -1,10 +1,14 @@
 en:
   admin:
+    cb_stem_media_items:
+      drop:
+        success: Folder %{name} moved to %{target}
+        error: Failed to move folder. Please refresh and try again.
     cb_stem_folder_items:
       create_folder:
-        success: Folder %{name} created!
+        success: Folder %{name} created
       update_folder:
-        success: Folder %{name} updated!
+        success: Folder %{name} updated
       form:
         new:
           title: New Folder
@@ -13,7 +17,7 @@ en:
           title: Edit Folder
           submit: Update
         placeholders:
-          title: Folder Name
+          name: Folder Name
 
   active_admin:
     resource:
@@ -30,7 +34,7 @@ en:
         other: Media Items
     attributes:
       cb_stem/media_item:
-        title: Name
+        ancestry: Folder
 
   cb_stem:
     active_admin_sortable:
@@ -39,6 +43,7 @@ en:
 
     menu:
       media_items: Media Library
+      media_items/filtered: Filtered Results
 
     date:
       formats:

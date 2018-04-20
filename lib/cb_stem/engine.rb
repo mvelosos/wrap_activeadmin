@@ -1,7 +1,6 @@
 # Base
 require 'devise'
 require 'active_admin'
-# require 'active_admin/sortable_tree'
 require 'draper'
 require 'ancestry'
 require 'acts_as_list'
@@ -14,6 +13,8 @@ require 'carrierwave'
 require 'tinymce-rails'
 require 'select2-rails'
 require 'chart-js-rails'
+require 'jquery-rails'
+require 'jquery-ui-rails'
 # Countries
 require 'flag-icons-rails'
 require 'carmen-rails'

@@ -1,8 +1,8 @@
 $ ->
   $.rails.allowAction = (link) ->
-      return true unless link.attr('data-confirm')
-      $.rails.showConfirmDialog(link) # look bellow for implementations
-      false # always stops the action since code runs asynchronously
+    return true unless link.attr('data-confirm')
+    $.rails.showConfirmDialog(link) # look bellow for implementations
+    false # always stops the action since code runs asynchronously
 
   $.rails.confirmed = (link, inputs) ->
     link.removeAttr('data-confirm')

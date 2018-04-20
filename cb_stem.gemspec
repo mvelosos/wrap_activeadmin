@@ -20,7 +20,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'slim-rails'
   s.add_dependency 'sass-rails'
   s.add_dependency 'activeadmin', '~> 1.2.1'
-  # s.add_dependency 'active_admin-sortable_tree', '~> 2.0.0'
   s.add_dependency 'just-datetime-picker'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails', '~> 6.0.1'

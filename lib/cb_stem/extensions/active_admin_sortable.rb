@@ -45,11 +45,6 @@ module ActiveAdmin
           end
         end
       end
-      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
-
-      def handle_icon
-        render('cb_stem/svgs/sortable_handle.svg')
-      end
 
     end
 

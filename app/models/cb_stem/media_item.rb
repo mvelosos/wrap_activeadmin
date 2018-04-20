@@ -4,9 +4,8 @@ module CbStem
 
     has_ancestry touch: true,
                  orphan_strategy: :destroy
-    acts_as_list scope: %i[ancestry]
 
-    validates :title, presence: true
+    validates :name, presence: true
 
   end
 
