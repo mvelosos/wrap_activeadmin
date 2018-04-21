@@ -4,6 +4,11 @@ en:
       drop:
         success: Folder %{name} moved to %{target}
         error: Failed to move folder. Please refresh and try again.
+      media_items_upload:
+        upload: Upload Files
+        placeholders:
+          drop: Drop files here
+
     cb_stem_folder_items:
       create_folder:
         success: Folder %{name} created
@@ -35,6 +40,7 @@ en:
     attributes:
       cb_stem/media_item:
         ancestry: Folder
+        items_count: Items
 
   cb_stem:
     active_admin_sortable:

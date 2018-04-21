@@ -53,6 +53,11 @@ class ActiveAdmin.MediaLibrary
     droppable_opts = @droppable
     @$element.find(droppable_opts.accept).draggable @draggable
     @$element.find(droppable_opts.accept).each ->
+      return true if $(@).find('.table-item-identifier').hasClass 'file-item'
       $(@).droppable droppable_opts
+
+    $('#media-items-upload #drop-holder').aaDropZone()
+    Dropzone.forElement('#media-items-upload #drop-holder').on 'queuecomplete', ->
+      $('body').aaLoading()
 
 $.widget.bridge 'aaMediaLibrary', ActiveAdmin.MediaLibrary

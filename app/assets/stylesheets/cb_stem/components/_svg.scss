@@ -11,14 +11,14 @@
   }
 
   .st2 {
-    fill: #FFFFFF;
+    fill: $white;
     stroke: $svg-color;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
 
   .st3 {
-    fill: #FFFFFF;
+    fill: $white;
   }
 
   .st4 {
@@ -33,4 +33,45 @@
   .st0 {
     fill: $text-muted;
   }
+}
+
+.file-upload {
+  .st0 {
+    fill: lighten($svg-color, $svg-color-adjustment);
+  }
+
+  .st1 {
+    fill: $white;
+  }
+
+  .st2 {
+    fill: none;
+    stroke: $svg-color;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .st3 {
+    fill: none;
+    stroke: $svg-color;
+    stroke-linejoin: round;
+  }
+
+  .st4 {
+    fill: $white;
+    stroke: $svg-color;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .st5 {
+    fill: none;
+    stroke: $svg-color;
+    stroke-miterlimit: 10;
+  }
+}
+
+.folder-icon {
+  .st0 { fill: lighten($svg-color, $svg-color-adjustment); }
+  .st1 { fill: $svg-color; }
 }

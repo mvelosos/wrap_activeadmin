@@ -6,6 +6,8 @@ class CreateMediaItems < ActiveRecord::Migration[5.0]
       t.float   :file_size, default: 0
       t.integer :items_count, default: 0
       t.string  :ancestry, index: true
+      t.string  :file
+      t.string  :file_type
 
       t.timestamps
     end

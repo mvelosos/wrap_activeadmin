@@ -12,6 +12,7 @@ require 'just-datetime-picker'
 require 'carrierwave'
 require 'tinymce-rails'
 require 'select2-rails'
+require 'dropzonejs-rails'
 require 'chart-js-rails'
 require 'jquery-rails'
 require 'jquery-ui-rails'
@@ -32,6 +33,8 @@ module CbStem
   class Engine < ::Rails::Engine
 
     isolate_namespace CbStem
+
+    config.autoload_paths += Dir[CbStem::Engine.root.join('app', 'uploaders', '*').to_s]
 
     ActiveAdmin.before_load do |app|
       require_relative 'extensions/batch_actions/controller'

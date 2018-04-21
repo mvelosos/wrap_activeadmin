@@ -7,6 +7,7 @@
 #= require bootstrap-datepicker
 #= require tinymce
 #= require select2-full
+#= require dropzone
 #= require Chart.min
 #= require_self
 #= require active_admin/lib/checkbox-toggler
@@ -40,6 +41,7 @@ onDOMReady = ->
   $('[data-js="bar-chart"]').aaBarChart()
   $('[data-js="doughnut-chart"]').aaDoughnutChart()
   $('.admin_cb_stem_media_items').aaMediaLibrary()
+  $('[data-js="dropzone"]').aaDropZone()
 
 $(document)
   .ready(onDOMReady)

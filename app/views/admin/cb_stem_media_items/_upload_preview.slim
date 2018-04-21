@@ -1,0 +1,14 @@
+#media-upload-template.d-none
+  .file-preview.align-items-start
+    .thumbnail.mr-3
+      img[data-dz-thumbnail]
+    .identifier-text
+      p.name.font-weight-bold.text-truncate[data-dz-name]
+      p.size[data-dz-size]
+      .progress.progress-striped.active[role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"]
+        .progress-bar.progress-bar-success[style="width:0%;" data-dz-uploadprogress]
+      small.text-danger.mt-2[data-dz-errormessage]
+.mt-4
+  #media-actions.d-none.text-right
+    = link_to 'Clear Queue', '#', class: 'btn-link text-secondary', id: 'clear-preview'
+  #media-upload-preview.files

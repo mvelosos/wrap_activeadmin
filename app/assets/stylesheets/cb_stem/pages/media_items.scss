@@ -1,0 +1,49 @@
+body.admin_cb_stem_media_items {
+  .table-item-identifier {
+    .thumbnail svg { height: 32px; }
+  }
+
+  #media-items-upload {
+    #drop-holder {
+      padding: $card-spacer-y $card-spacer-x;
+
+      &.dragenter .indicator {
+        background: theme-color-level('primary', $alert-bg-level) !important;
+        border-color: $primary;
+      }
+
+      .indicator {
+        padding: $spacer * 3;
+        border: 2px dashed $hr-border-color;
+        border-radius: $border-radius;
+        @include pointer-events(none);
+
+        svg {
+          max-width: 100%;
+          max-height: 180px;
+        }
+      }
+    }
+  }
+
+  #media-upload-preview {
+    .file-preview {
+      @extend %identifier;
+      padding: $spacer 0;
+      cursor: default;
+
+      &.dz-error {
+        .progress { display: none; }
+      }
+
+      & + .file-preview {
+        border-top: 1px solid $hr-border-color;
+      }
+
+      .progress {
+        height: 8px;
+        border-radius: $border-radius;
+      }
+    }
+  }
+}

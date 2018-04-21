@@ -19,6 +19,7 @@ module ActiveAdmin
       private
 
       def build_title(title)
+        return if title.blank?
         h5 title_tag(title), class: heading_class
       end
 

@@ -5,15 +5,22 @@ if CbStem.enable_media_library
     menu label: proc { menu_label(t('cb_stem.menu.media_items'), icon: 'folder-image') },
          priority: 1
 
-    config.sort_order = 'name_asc'
+    config.sort_order = 'file_type_desc'
     config.paginate   = false
     config.remove_action_item(:new)
 
-    actions :index, :show, :destroy
+    actions :index, :show
 
     permit_params :name
 
     # ACTIONS
+    batch_action :delete,
+                 confirm: I18n.t('active_admin.delete_title'),
+                 message: I18n.t('active_admin.delete_confirmation') do |ids|
+      CbStem::MediaItem.where(id: ids).destroy_all
+      redirect_back fallback_location: %i[admin cb_stem media_items]
+    end
+
     member_action :drop, method: :post do
       parent = CbStem::FolderItem.find_by(id: parent_id)
       item   = CbStem::MediaItem.find_by(id: params[:id])
@@ -102,7 +109,13 @@ if CbStem.enable_media_library
     end
 
     # INDEX
+    sidebar '', class: 'transparent body-p-0' do
+      render 'media_items_upload'
+    end
+
     filter :name
+    filter :file_type
+    filter :items_count
     filter :updated_at
     filter :created_at
 
@@ -116,10 +129,15 @@ if CbStem.enable_media_library
       selectable_column
       column :name, :identifier, sortable: 'name'
       column :items_count
+      column :file_size
       column :updated_at
       actions(defaults: false) do |u|
-        item t('active_admin.view'), [:admin, :cb_stem, :media_items, parent_id: params[:parent_id]]
-        item t('active_admin.edit'), [:edit_folder, :admin, :cb_stem, u.model], remote: true
+        if u.type == 'CbStem::FolderItem'
+          item t('active_admin.view'),
+               [:admin, :cb_stem, :media_items, parent_id: params[:parent_id]]
+          item t('active_admin.edit'),
+               [:edit_folder, :admin, :cb_stem, u.model], remote: true
+        end
         item t('active_admin.delete'), [:admin, :cb_stem, u.model],
              method: :delete,
              data: {

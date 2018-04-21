@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'jquery-rails'
   s.add_dependency 'jquery-ui-rails', '~> 6.0.1'
   s.add_dependency 'jquery-minicolors-rails'
+  s.add_dependency 'dropzonejs-rails', '~> 0.7.4'
   s.add_dependency 'select2-rails'
   s.add_dependency 'tinymce-rails'
   s.add_dependency 'chart-js-rails', '~> 0.1.3'

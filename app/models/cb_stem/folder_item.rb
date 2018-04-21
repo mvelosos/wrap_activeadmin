@@ -2,13 +2,15 @@ module CbStem
 
   class FolderItem < MediaItem
 
-    after_touch :update_items_count
+    after_touch :update_info
 
     private
 
-    def update_items_count
-      return unless children.count != items_count
-      update(items_count: children.count)
+    def update_info
+      update(
+        items_count: children.count,
+        file_size:   children.sum(:file_size)
+      )
     end
 
   end

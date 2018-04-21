@@ -1,0 +1,32 @@
+# rubocop:disable Metrics/BlockLength
+div id: 'media-items-upload' do
+  active_admin_form_for :drop_upload,
+                        url: %i[drop_upload admin cb_stem file_items],
+                        html: {
+                          id: 'drop-holder',
+                          data: {
+                            'dropzone-clickable': '.dropzone-btn',
+                            'dropzone-preview': '#media-upload-preview',
+                            'dropzone-template': '#media-upload-template'
+                          }
+                        } do |f|
+    f.input :parent_id,
+            as: :hidden,
+            input_html: { value: params[:parent_id] }
+    div class: 'mb-4' do
+      link_to(
+        t('.upload'),
+        '#',
+        class: 'btn btn-primary btn-block dropzone-btn'
+      )
+    end
+
+    div class: 'indicator text-center' do
+      render 'cb_stem/svgs/upload.svg'
+      h4 t('.placeholders.drop'), class: 'display-4 text-muted'
+    end
+
+    render 'upload_preview'
+  end
+end
+# rubocop:enable Metrics/BlockLength
