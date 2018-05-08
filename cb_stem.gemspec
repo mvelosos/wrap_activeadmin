@@ -31,7 +31,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave', '~> 1.0'
   s.add_dependency 'rmagick'
   s.add_dependency 'fog'
-  s.add_dependency 'acts-as-taggable-on', '~> 4.0'
   s.add_dependency 'acts_as_list', '~> 0.9.10'
   s.add_dependency 'devise'
   s.add_dependency 'bootstrap', '~> 4.0.0'
