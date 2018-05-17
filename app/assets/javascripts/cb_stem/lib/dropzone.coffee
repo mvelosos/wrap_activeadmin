@@ -11,6 +11,7 @@ class ActiveAdmin.aaDropZone
       autoQueue: true
       thumbnailWidth: 80
       thumbnailHeight: 80
+      clickable: false
       dragover: =>
         @$element.addClass @interacts.dragEnterClass
       dragleave: =>

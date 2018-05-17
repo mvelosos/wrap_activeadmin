@@ -13,6 +13,50 @@ if CbStem.enable_media_library
 
     permit_params :name
 
+    # BATCH ACTIONS
+    # rubocop:disable Metrics/LineLength
+    batch_action :move, confirm: proc { t('.cb_stem.media_items.add_to_folder') }, priority: 1, batch_form: proc {
+      batch_form :media_item do |f|
+        f.inputs do
+          f.input :parent_id,
+                  label: false,
+                  as: :select,
+                  collection: (
+                    CbStem::Admin::MediaItemDecorator.decorate_collection(
+                      CbStem::FolderItem.order(name: :asc)
+                    ).map { |u| [u.name, u.id, { 'data-template': u.select_item_template }] }
+                  ),
+                  input_html: {
+                    class: 'select2',
+                    data: {
+                      'select2-search': true,
+                      'select2-clear': true,
+                      'select2-template': true,
+                      'select2-selection-template': true,
+                      'select2-placeholder': t('cb_stem.components.select2.placeholder')
+                    }
+                  }
+        end
+      end
+    } do |ids, inputs|
+      media_items = CbStem::MediaItem.where(id: ids)
+      parent      = CbStem::FolderItem.find_by(id: inputs['media_item[parent_id]'])
+      count       = media_items.length
+      if media_items && parent
+        media_items.find_each { |x| x.update(parent: parent) unless parent.id == x.id }
+        flash[:notice] =
+          t('active_admin.batch_actions.media_items.success',
+            items: "#{count} #{CbStem::MediaItem.model_name.human(count: count).downcase}",
+            value: parent.name)
+      else
+        flash[:error] =
+          t('active_admin.batch_actions.media_items.failure',
+            value: CbStem::MediaItem.model_name.human)
+      end
+      redirect_back fallback_location: %i[admin cb_stem media_items]
+    end
+    # rubocop:enable Metrics/LineLength
+
     # ACTIONS
     batch_action :delete,
                  confirm: I18n.t('active_admin.delete_title'),
@@ -42,16 +86,27 @@ if CbStem.enable_media_library
     end
 
     # ACTION ITEMS
+    action_item :add_file,
+                only: :index do
+      action_btn(
+        t('.cb_stem.media_items.add_file'),
+        '#',
+        icon: 'simple-add',
+        title: false,
+        class: 'dropzone-btn btn-link'
+      )
+    end
+
     action_item :add_folder,
                 only: :index do
       action_btn(
-        t('.cb_stem.media_items.add'),
+        t('.cb_stem.media_items.add_folder'),
         [
           :new_folder, :admin, :cb_stem, :folder_items,
           parent_id: params[:parent_id]
         ],
         remote: true,
-        icon: 'simple-add',
+        icon: 'folder-add',
         title: false
       )
     end
@@ -70,7 +125,7 @@ if CbStem.enable_media_library
         ]
         links +=
           parent.ancestors.collect do |x|
-            link_to(x.name, admin_cb_stem_media_items_path(params[:parent_id]))
+            link_to(x.name, admin_cb_stem_media_items_path(parent_id: x.parent_id))
           end
       end
       links
@@ -109,7 +164,7 @@ if CbStem.enable_media_library
     end
 
     # INDEX
-    sidebar '', class: 'transparent body-p-0' do
+    html_content :dropzone do
       render 'media_items_upload'
     end
 
@@ -120,12 +175,12 @@ if CbStem.enable_media_library
     filter :created_at
 
     index title: proc { page_title } do
-      column '', class: 'col-handle' do |resource|
-        div class: 'handle',
-            'data-sort-url': url_for([:drop, :admin, :cb_stem, resource]) do
-          handle_icon
-        end
-      end
+      # column '', class: 'col-handle' do |resource|
+      #   div class: 'handle',
+      #       'data-sort-url': url_for([:drop, :admin, :cb_stem, resource]) do
+      #     handle_icon
+      #   end
+      # end
       selectable_column
       column :name, :identifier, sortable: 'name'
       column :items_count

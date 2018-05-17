@@ -4,6 +4,9 @@ en:
       drop:
         success: Folder %{name} moved to %{target}
         error: Failed to move folder. Please refresh and try again.
+      upload_preview:
+        title: Uploading Files
+        completed: Completed
       media_items_upload:
         upload: Upload Files
         placeholders:
@@ -25,18 +28,25 @@ en:
           name: Folder Name
 
   active_admin:
+    batch_actions: &common_batch_actions
+      success: Successfully updated %{items} with %{value}
+      failure: Could not update with %{value}
+      media_items:
+        success: Successfully move %{items} to %{value}
     resource:
       index:
         cb_stem:
           media_items:
             inventory: '%{count} Item(s)'
-            add: Add Folder
+            add_folder: Add Folder
+            add_file: Upload File
+            add_to_folder: Move Selection To Folder
 
   activerecord:
     models:
       cb_stem/media_item:
-        one: Media Item
-        other: Media Items
+        one: Item
+        other: Items
     attributes:
       cb_stem/media_item:
         ancestry: Folder

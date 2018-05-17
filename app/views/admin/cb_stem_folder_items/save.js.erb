@@ -1,3 +1,8 @@
 var $modal = $('#folder-item-modal');
 $modal.modal('hide');
-$('body').aaLoading();
+$('body').data('aaLoading').open();
+$('#main_content_wrapper').load(window.location.href + ' #main_content', function() {
+  $('body').data('aaLoading').close();
+  $('#main_content').aaBatchAction();
+  $('#active_admin_content .dropdown').aaDropdown();
+});

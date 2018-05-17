@@ -4,7 +4,6 @@ class ActiveAdmin.Loading
     @$element = $(@element)
 
     defaults = {
-      delay: 3000
       openClass: 'window-loading'
     }
 
@@ -15,13 +14,11 @@ class ActiveAdmin.Loading
   open: ->
     @$element.addClass(@options.openClass)
 
+  close: ->
+    @$element.removeClass(@options.openClass)
+
   # Private
   _bind: ->
-    @open()
-
-    setTimeout (=>
-      window.location.reload()
-      false
-    ), @options.delay
+    @
 
 $.widget.bridge 'aaLoading', ActiveAdmin.Loading

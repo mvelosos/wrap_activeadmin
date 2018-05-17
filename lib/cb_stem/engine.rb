@@ -97,7 +97,7 @@ module CbStem
 
     initializer 'cb_stem.assets.precompile' do |app|
       app.config.assets.precompile += %w[
-        cb_stem/logo.png cb_stem/default/avatar.png
+        cb_stem/logo.png cb_stem/default/avatar.png cb_stem/default/media.png
         cb_stem/empty_state.svg cb_stem/sortable_handle.svg
       ]
     end

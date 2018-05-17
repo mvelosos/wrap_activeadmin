@@ -16,10 +16,10 @@ module CbStem
       end
 
       def select_item_template
-        content_tag :div, class: 'd-flex flex-row align-items-center' do
+        content_tag :div, class: 'table-item-identifier folder-item' do
           concat(
-            content_tag(:div, aa_icon('folder-14'),
-                        class: 'thumbnail border text-primary mr-2 xs')
+            content_tag(:div, render('cb_stem/svgs/folder.svg'),
+                        class: 'thumbnail mr-2 transparent xs')
           )
           concat(content_tag(:span, name, class: 'identifier-text'))
         end
@@ -41,7 +41,7 @@ module CbStem
                 class: 'table-item-identifier folder-item' do
           concat(
             content_tag(:div, render('cb_stem/svgs/folder.svg'),
-                        class: 'thumbnail mr-2')
+                        class: 'thumbnail mr-2 transparent')
           )
           concat(content_tag(:span, name, class: 'identifier-text'))
         end

@@ -28,11 +28,14 @@ window.ChartColors = <%= CbStem.chart_colors %>
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()
   $('#flashes').aaFlash()
-  $('#main-menu, #loading-backdrop, #filters_sidebar_section .card-body').aaIsolateScroll()
+  $('#main-menu, #loading-backdrop,
+    #filters_sidebar_section .card-body,
+    #media-upload-preview .card-body').aaIsolateScroll()
   $('.form-control-file').aaFileInput()
   $('.tinymce').aaTinyMCE()
   $('#active_admin_content .dropdown').aaDropdown()
   $('#active_admin_content .tabs').aaTabs()
+  $('#main_content').aaBatchAction()
   $('.select2').aaSelect2()
   $('[data-js="form-trigger"]').aaFormTrigger()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
@@ -42,6 +45,7 @@ onDOMReady = ->
   $('[data-js="doughnut-chart"]').aaDoughnutChart()
   $('.admin_cb_stem_media_items').aaMediaLibrary()
   $('[data-js="dropzone"]').aaDropZone()
+  $('body').aaLoading()
 
 $(document)
   .ready(onDOMReady)

@@ -1,14 +1,20 @@
 #media-upload-template.d-none
   .file-preview.align-items-start
-    .thumbnail.mr-3
+    .thumbnail.border.mr-2
       img[data-dz-thumbnail]
     .identifier-text
-      p.name.font-weight-bold.text-truncate[data-dz-name]
-      p.size[data-dz-size]
-      .progress.progress-striped.active[role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"]
+      p.name.text-truncate[data-dz-name]
+      .progress.progress-striped.active.mt-2[role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"]
         .progress-bar.progress-bar-success[style="width:0%;" data-dz-uploadprogress]
-      small.text-danger.mt-2[data-dz-errormessage]
-.mt-4
-  #media-actions.d-none.text-right
-    = link_to 'Clear Queue', '#', class: 'btn-link text-secondary', id: 'clear-preview'
-  #media-upload-preview.files
+      small.mt-1.success-msg.text-success= t('.completed')
+      small.mt-1.text-danger[data-dz-errormessage]
+
+#media-upload-popup.card.body-p-0
+  .card-header.border-bottom.py-2.px-3
+    .w-100
+      .row
+        .col.font-weight-bold
+          = t('.title')
+        .col-auto
+          = link_to aa_icon('simple-remove'), '#', class: 'btn-link text-muted', id: 'clear-queue'
+  #media-upload-preview.card-body
