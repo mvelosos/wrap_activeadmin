@@ -56,10 +56,6 @@ en:
         items_count: Items
 
   cb_stem:
-    active_admin_sortable:
-      update:
-        success: Successfully updated %{model}
-
     menu:
       media_items: Media Library
       media_items/filtered: Filtered Results
