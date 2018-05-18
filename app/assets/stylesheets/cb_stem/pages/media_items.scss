@@ -1,4 +1,5 @@
-body.admin_cb_stem_media_items {
+body.admin_cb_stem_media_items,
+body.admin_cb_stem_file_items {
   &.media-droppable {
     #drop-holder {
       display: block;
@@ -63,12 +64,13 @@ body.admin_cb_stem_media_items {
         }
       }
 
-      .success-msg { display: none; }
-
       .progress {
         height: 4px;
         border-radius: $border-radius;
       }
+
+      .success-msg { display: none; }
+      .status-text { white-space: normal; }
     }
   }
 

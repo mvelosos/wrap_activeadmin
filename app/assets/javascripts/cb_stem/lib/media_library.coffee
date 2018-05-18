@@ -12,33 +12,11 @@ class ActiveAdmin.MediaLibrary
     }
 
     @options = $.extend options, @options
-
     @_bind()
 
-  _drop: (event, ui) ->
-    target_id = $(event.target).attr('id').split('_').pop()
-    item      = ui.draggable
-    item_id   = item.attr('id').split('_').pop()
-    url       = '/admin/cb_stem_media_items/:id/drop'.replace(':id', item_id)
-
-    $.ajax
-      url: url
-      type: 'post'
-      data:
-        parent_id: target_id
-      success: (response) ->
-        $('body').aaLoading()
-      error: (jqXHR) ->
-        $('#flash-wrapper').html(jqXHR.responseJSON);
-        $('#flashes').aaFlash();
-    false
-
-  # Private
-  _bind: ->
-    options    = @options
-    $("##{options.dropAreaId}").aaDropZone()
-    $dropzone  = Dropzone.forElement("#" + options.dropAreaId)
-    $container = $($dropzone.previewsContainer)
+  _dropHolderInit: ->
+    options = @options
+    $target = $("##{options.overlayId}")
     @$element.on
       'drop': (e) ->
         e.preventDefault()
@@ -47,9 +25,26 @@ class ActiveAdmin.MediaLibrary
         $(@).addClass options.dropActiveClass
         false
       'dragleave dragexit': (e) ->
-        $target = $("##{options.overlayId}")
         return if !($target).is(e.target) && $target.has(e.target).length == 0
         $(@).removeClass options.dropActiveClass
+    return
+
+  _refreshPage: ->
+    $('body').data('aaLoading').open()
+    $('#main_content_wrapper').load(window.location.href + ' #main_content', ->
+      $('body').data('aaLoading').close()
+      $('#active_admin_content .dropdown').aaDropdown()
+      $('#main_content').aaBatchAction()
+    )
+    return
+
+  _collectionUpload: ->
+    return unless @$element.hasClass 'index'
+    options    = @options
+    $("##{options.dropAreaId}").aaDropZone()
+    $dropzone  = Dropzone.forElement("#" + options.dropAreaId)
+    $container = $($dropzone.previewsContainer)
+    @_dropHolderInit()
 
     @$element.on 'click', '#clear-queue', (e) ->
       e.preventDefault()
@@ -65,17 +60,34 @@ class ActiveAdmin.MediaLibrary
       $container.parent("##{options.uploadPopupId}").
         addClass options.previewActiveClass
 
-    $dropzone.on 'queuecomplete', ->
+    $dropzone.on 'queuecomplete', =>
       if $container.find('.dz-error').length > 0
         $container.addClass options.previewActiveClass
       else
         $container.removeClass options.previewActiveClass
+      @_refreshPage()
 
-      $('body').data('aaLoading').open()
-      $('#main_content_wrapper').load(window.location.href + ' #main_content', ->
-        $('body').data('aaLoading').close()
-        $('#active_admin_content .dropdown').aaDropdown()
-        $('#main_content').aaBatchAction()
-      )
+  _memberUpload: ->
+    return unless @$element.hasClass 'show'
+    options = @options
+    $("##{options.dropAreaId}").aaDropZone()
+    $dropzone = Dropzone.forElement("#" + options.dropAreaId)
+    @_dropHolderInit(previewTemplate: false)
+
+    $dropzone.on 'drop', =>
+      @$element.removeClass options.dropActiveClass
+
+    $dropzone.on 'error', (_file, errorMessage, _xhrObj)->
+      debugger
+      $('#flash-wrapper').html(errorMessage)
+      $('#flashes').aaFlash()
+
+    $dropzone.on 'queuecomplete', =>
+      @_refreshPage()
+
+  # Private
+  _bind: ->
+    @_collectionUpload()
+    @_memberUpload()
 
 $.widget.bridge 'aaMediaLibrary', ActiveAdmin.MediaLibrary

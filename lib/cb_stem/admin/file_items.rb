@@ -9,7 +9,8 @@ if CbStem.enable_media_library
     action_item :download, only: :show do
       action_btn(
         t('.cb_stem.media_items.download'),
-        '#',
+        resource.file_url,
+        target: '_blank',
         icon: 'square-download',
         title: false
       )
@@ -32,11 +33,29 @@ if CbStem.enable_media_library
     end
 
     # CONTROLLER
+    member_action :drop_update, method: :patch do
+      resource.file = params['file']
+      if resource.save
+        @status = :ok
+      else
+        flash[:error] = file.errors.messages[:file][0..0]
+        @status       = :internal_server_error
+        @msg          = render_to_string partial: 'cb_stem/components/flash', layout: false
+      end
+      render text: @msg, status: @status
+    end
+
     collection_action :drop_upload, method: :post do
       parent = CbStem::FolderItem.find_by(id: upload_params[:parent_id])
       file   = CbStem::FileItem.new(file: params['file'])
       file.parent = parent if parent.present?
-      file.save ? head(200) : head(500)
+      if file.save
+        @status = :ok
+      else
+        @status = :internal_server_error
+        @msg    = file.errors.messages[:file][0..0]
+      end
+      render json: @msg, status: @status
     end
 
     controller do
@@ -56,7 +75,24 @@ if CbStem.enable_media_library
     end
 
     # SHOW
+    html_content :dropzone, only: :show do
+      div id: 'media-items-upload', class: 'mb-3' do
+        active_admin_form_for resource,
+                              url: [:drop_update, :admin, :cb_stem, resource],
+                              method: :patch,
+                              html: {
+                                id: 'drop-holder',
+                                data: { 'dropzone-clickable': '.dropzone-btn' }
+                              }
+      end
+    end
+
     sidebar '', only: :show do
+      div do
+        link_to t('.cb_stem.media_items.upload'), '#',
+                class: 'btn btn-primary btn-block dropzone-btn'
+      end
+
       attributes_table_for resource do
         row :reference_key
         row :file_size

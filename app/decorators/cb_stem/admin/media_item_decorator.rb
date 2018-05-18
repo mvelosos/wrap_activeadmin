@@ -48,12 +48,9 @@ module CbStem
       def media_identifier
         link_to [:admin, :cb_stem, object, parent_id: object],
                 class: 'table-item-identifier' do
-          if image?
-            image_identifier
-          elsif video?
-            video_identifier
-          else
-            file_identifier
+          case file_type_eq
+          when :image then image_identifier
+          else file_identifier
           end
         end
       end
@@ -64,13 +61,8 @@ module CbStem
       end
 
       def file_identifier
-        content_tag(:div, render('cb_stem/svgs/file.svg'),
-                    class: 'thumbnail mr-2 transparent') +
-          content_tag(:span, name, class: 'identifier-text')
-      end
-
-      def video_identifier
-        content_tag(:div, render('cb_stem/svgs/video.svg'),
+        type = file_type_eq.to_s
+        content_tag(:div, render("cb_stem/svgs/#{type}.svg"),
                     class: 'thumbnail mr-2 transparent') +
           content_tag(:span, name, class: 'identifier-text')
       end

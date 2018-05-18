@@ -164,7 +164,7 @@ if CbStem.enable_media_library
     end
 
     # INDEX
-    html_content :dropzone do
+    html_content :dropzone, only: :index do
       render 'media_items_upload'
     end
 

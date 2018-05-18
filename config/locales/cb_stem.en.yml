@@ -1,9 +1,6 @@
 en:
   admin:
     cb_stem_media_items:
-      drop:
-        success: Folder %{name} moved to %{target}
-        error: Failed to move folder. Please refresh and try again.
       upload_preview:
         title: Uploading Files
         completed: Completed
@@ -44,6 +41,7 @@ en:
         cb_stem:
           media_items:
             download: Download
+            upload: Replace
 
   activerecord:
     models:

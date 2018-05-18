@@ -7,8 +7,9 @@
       p.name.text-truncate.mb-1[data-dz-name]
       .progress.progress-striped.active[role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"]
         .progress-bar.progress-bar-success[style="width:0%;" data-dz-uploadprogress]
-      small.success-msg.text-success= t('.completed')
-      small.text-danger[data-dz-errormessage]
+      small.status-text
+        .success-msg.text-success= t('.completed')
+        .text-danger[data-dz-errormessage]
 
 #media-upload-popup.card.body-p-0
   .card-header.border-bottom.py-2.px-3

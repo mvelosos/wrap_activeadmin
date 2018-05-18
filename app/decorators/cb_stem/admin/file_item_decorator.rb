@@ -8,9 +8,10 @@ module CbStem
       decorates 'cb_stem/file_item'
 
       def preview
-        if image?
+        case file_type_eq
+        when :image
           image_tag file_url(:tablet), class: 'mw-100'
-        elsif video?
+        when :video
           video_tag file_url, controls: true, autobuffer: true, class: 'mw-100'
         else
           content_tag :div, class: 'table-item-identifier' do
