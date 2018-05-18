@@ -2,12 +2,13 @@
   .file-preview.align-items-start
     .thumbnail.border.mr-2
       img[data-dz-thumbnail]
+      = render('cb_stem/svgs/file.svg')
     .identifier-text
-      p.name.text-truncate[data-dz-name]
-      .progress.progress-striped.active.mt-2[role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"]
+      p.name.text-truncate.mb-1[data-dz-name]
+      .progress.progress-striped.active[role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"]
         .progress-bar.progress-bar-success[style="width:0%;" data-dz-uploadprogress]
-      small.mt-1.success-msg.text-success= t('.completed')
-      small.mt-1.text-danger[data-dz-errormessage]
+      small.success-msg.text-success= t('.completed')
+      small.text-danger[data-dz-errormessage]
 
 #media-upload-popup.card.body-p-0
   .card-header.border-bottom.py-2.px-3

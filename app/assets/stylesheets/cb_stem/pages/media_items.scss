@@ -44,7 +44,6 @@ body.admin_cb_stem_media_items {
       padding: $spacer;
       cursor: default;
 
-
       &.dz-success,
       &.dz-error {
         .progress { display: none; }
@@ -54,6 +53,14 @@ body.admin_cb_stem_media_items {
 
       & + .file-preview {
         border-top: 1px solid $hr-border-color;
+      }
+
+      .thumbnail {
+        svg { height: 80%; }
+
+        img[src] + svg {
+          display: none;
+        }
       }
 
       .success-msg { display: none; }

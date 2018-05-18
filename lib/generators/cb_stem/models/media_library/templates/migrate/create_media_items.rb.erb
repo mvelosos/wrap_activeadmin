@@ -8,6 +8,7 @@ class CreateMediaItems < ActiveRecord::Migration[5.0]
       t.string  :ancestry, index: true
       t.string  :file
       t.string  :file_type
+      t.string  :reference_key
 
       t.timestamps
     end

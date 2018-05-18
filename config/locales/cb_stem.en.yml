@@ -37,7 +37,6 @@ en:
       index:
         cb_stem:
           media_items:
-            inventory: '%{count} Item(s)'
             add_folder: Add Folder
             add_file: Upload File
             add_to_folder: Move Selection To Folder

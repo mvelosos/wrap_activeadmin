@@ -169,22 +169,17 @@ if CbStem.enable_media_library
     end
 
     filter :name
+    filter :reference_key
     filter :file_type
-    filter :items_count
     filter :updated_at
     filter :created_at
 
     index title: proc { page_title } do
-      # column '', class: 'col-handle' do |resource|
-      #   div class: 'handle',
-      #       'data-sort-url': url_for([:drop, :admin, :cb_stem, resource]) do
-      #     handle_icon
-      #   end
-      # end
       selectable_column
       column :name, :identifier, sortable: 'name'
-      column :items_count
+      column :file_type
       column :file_size
+      column :reference_key
       column :updated_at
       actions(defaults: false) do |u|
         if u.type == 'CbStem::FolderItem'

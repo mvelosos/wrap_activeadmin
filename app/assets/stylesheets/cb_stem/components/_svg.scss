@@ -35,43 +35,12 @@
   }
 }
 
-.file-upload {
-  .st0 {
-    fill: lighten($svg-color, $svg-color-adjustment);
-  }
-
-  .st1 {
-    fill: $white;
-  }
-
-  .st2 {
-    fill: none;
-    stroke: $svg-color;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .st3 {
-    fill: none;
-    stroke: $svg-color;
-    stroke-linejoin: round;
-  }
-
-  .st4 {
-    fill: $white;
-    stroke: $svg-color;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .st5 {
-    fill: none;
-    stroke: $svg-color;
-    stroke-miterlimit: 10;
-  }
-}
-
 .folder-icon {
   .st0 { fill: lighten($svg-color, $svg-color-adjustment); }
-  .st1 { fill: $svg-color; }
+  .st1 { fill: lighten($svg-color, ($svg-color-adjustment / 2)); }
+}
+
+.file-icon {
+  .st0 { fill: $gray-300; }
+  .st1 { fill: $secondary; }
 }

@@ -16,18 +16,16 @@ module CbStem
       end
 
       def select_item_template
-        content_tag :div, class: 'table-item-identifier folder-item' do
+        content_tag :div, class: 'table-item-identifier' do
+          concat(content_tag(:div, render('cb_stem/svgs/folder.svg'),
+                             class: 'thumbnail mr-2 transparent xs'))
           concat(
-            content_tag(:div, render('cb_stem/svgs/folder.svg'),
-                        class: 'thumbnail mr-2 transparent xs')
+            content_tag(:div, class: 'identifier-text text-decoration-none') do
+              content_tag(:span, "[#{reference_key}]", class: 'mr-1 text-secondary') +
+                content_tag(:span, name)
+            end
           )
-          concat(content_tag(:span, name, class: 'identifier-text'))
         end
-      end
-
-      def items_count
-        return if object.items_count.zero?
-        t('.cb_stem.media_items.inventory', count: object.items_count)
       end
 
       def file_size
@@ -38,7 +36,7 @@ module CbStem
 
       def folder_identifier
         link_to [:admin, :cb_stem, :media_items, parent_id: object],
-                class: 'table-item-identifier folder-item' do
+                class: 'table-item-identifier' do
           concat(
             content_tag(:div, render('cb_stem/svgs/folder.svg'),
                         class: 'thumbnail mr-2 transparent')
@@ -67,8 +65,8 @@ module CbStem
         link_to [:admin, :cb_stem, :media_items, parent_id: object],
                 class: 'table-item-identifier file-item' do
           concat(
-            content_tag(:div, aa_icon('single-content-02'),
-                        class: 'thumbnail transparent mr-2')
+            content_tag(:div, render('cb_stem/svgs/file.svg'),
+                        class: 'thumbnail mr-2 transparent')
           )
           concat(content_tag(:span, name, class: 'identifier-text'))
         end
