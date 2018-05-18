@@ -9,7 +9,7 @@ if CbStem.enable_media_library
     config.paginate   = false
     config.remove_action_item(:new)
 
-    actions :index, :show
+    actions :index
 
     permit_params :name
 
@@ -187,6 +187,9 @@ if CbStem.enable_media_library
                [:admin, :cb_stem, :media_items, parent_id: params[:parent_id]]
           item t('active_admin.edit'),
                [:edit_folder, :admin, :cb_stem, u.model], remote: true
+        else
+          item t('active_admin.view'),
+               admin_cb_stem_file_item_path(u, parent_id: params[:parent_id])
         end
         item t('active_admin.delete'), [:admin, :cb_stem, u.model],
              method: :delete,
