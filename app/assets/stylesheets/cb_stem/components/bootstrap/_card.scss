@@ -20,6 +20,7 @@
     flex-direction: row;
     border-bottom: 0;
     border-color: $hr-border-color;
+    &:empty { display: none; }
     .title { flex: 1; }
     .header_action i { font-size: $icon-size; }
     .header_action > .btn { @extend .btn-sm; }

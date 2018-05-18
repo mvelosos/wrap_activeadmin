@@ -35,9 +35,8 @@ module ActiveAdmin
       end
 
       def title_tag(title)
-        div class: 'title' do
-          title.to_s if title.present?
-        end
+        return if title.blank?
+        div title.to_s, class: 'title'
       end
 
     end

@@ -23,8 +23,8 @@
 
 .thumbnail {
   @extend %thumbnail;
-  @extend .bg-light;
   color: $text-muted;
+  background: $light;
 
   img {
     position: absolute;
