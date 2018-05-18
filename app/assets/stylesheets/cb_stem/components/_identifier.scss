@@ -9,6 +9,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
+  & + .table-item-identifier { margin-top: $spacer; }
   &:hover .identifier-text { text-decoration: underline; }
 
   .identifier-text {
