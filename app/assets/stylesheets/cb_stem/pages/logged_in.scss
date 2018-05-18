@@ -63,7 +63,7 @@ body.logged_in {
 
     &.with_sidebar {
       #main_content_wrapper {
-        @extend .col-md;
+        @extend .col-lg;
         flex: 1;
         max-width: calc(100% - #{$sidebar-width});
       }

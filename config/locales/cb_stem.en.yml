@@ -40,6 +40,10 @@ en:
             add_folder: Add Folder
             add_file: Upload File
             add_to_folder: Move Selection To Folder
+      show:
+        cb_stem:
+          media_items:
+            download: Download
 
   activerecord:
     models:

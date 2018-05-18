@@ -6,11 +6,13 @@ if CbStem.enable_media_library
     actions :show, :destroy
 
     # ACTIONS
-    collection_action :drop_upload, method: :post do
-      parent = CbStem::FolderItem.find_by(id: upload_params[:parent_id])
-      file   = CbStem::FileItem.new(file: params['file'])
-      file.parent = parent if parent.present?
-      file.save ? head(200) : head(500)
+    action_item :download, only: :show do
+      action_btn(
+        t('.cb_stem.media_items.download'),
+        '#',
+        icon: 'square-download',
+        title: false
+      )
     end
 
     # BREADCRUMBS
@@ -30,6 +32,13 @@ if CbStem.enable_media_library
     end
 
     # CONTROLLER
+    collection_action :drop_upload, method: :post do
+      parent = CbStem::FolderItem.find_by(id: upload_params[:parent_id])
+      file   = CbStem::FileItem.new(file: params['file'])
+      file.parent = parent if parent.present?
+      file.save ? head(200) : head(500)
+    end
+
     controller do
       def destroy
         destroy! do |success, _failure|
@@ -49,7 +58,6 @@ if CbStem.enable_media_library
     # SHOW
     sidebar '', only: :show do
       attributes_table_for resource do
-        row :name
         row :reference_key
         row :file_size
         row :file_type

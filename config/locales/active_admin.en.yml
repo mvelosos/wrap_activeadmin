@@ -90,7 +90,7 @@ en:
       author_type: "Author Type"
       body: "Body"
       author: "Author"
-      add: "Add Comment"
+      add: "Comment"
       delete: "Delete Comment"
       delete_confirmation: "Are you sure you want to delete these comment?"
       resource: "Resource"
