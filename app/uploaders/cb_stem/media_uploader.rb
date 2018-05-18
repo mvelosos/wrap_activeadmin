@@ -1,59 +1,53 @@
 module CbStem
 
-  # Uploader For Medias
+  # MediaUploader
   class MediaUploader < CbStem::ApplicationUploader
 
-    def default_url
-      ActionController::Base.helpers.asset_path('cb_stem/default/media.png')
+    IMAGE_TYPES = %w[jpg jpeg gif png pdf].freeze
+    FILE_TYPES  = %w[png pdf doc docx json].freeze
+    VIDEO_TYPES = %w[mov avi mkv mpeg mpeg2 mp4 3gp].freeze
+    AUDIO_TYPES = %w[mp3 wma ra ram rm mid ogg].freeze
+
+    include CbStem::ImageConcern
+    include CbStem::FileConcern
+    include CbStem::AudioConcern
+    include CbStem::VideoConcern
+
+    process :save_meta_to_model
+
+    def extension_whitelist
+      model.try(:extension_whitelist) || default_whitelist
     end
 
-    process resize_to_fit: [1000, 1000], if: :image?
-
-    version :preview, if: :pdf? do
-      process :pdf_cover
-      process resize_to_fill: [800, 800]
-      process convert: :jpg
-
-      def full_filename(for_file = model.source.file)
-        super.chomp(File.extname(super)) + '.jpg'
-      end
+    def default_whitelist
+      IMAGE_TYPES + FILE_TYPES + VIDEO_TYPES + AUDIO_TYPES
     end
 
-    version :thumb, if: :image? do
-      process resize_to_fit: [256, 256]
+    def audio?(new_file = self)
+      new_file.content_type&.start_with? 'audio'
     end
 
-    version :medium, if: :image? do
-      process resize_to_fit: [512, 512]
+    def image?(new_file = self)
+      new_file.content_type&.start_with? 'image'
     end
 
-    version :large, if: :image? do
-      process resize_to_fit: [1024, 1024]
+    def file?(new_file = self)
+      new_file.content_type&.start_with? 'application'
     end
 
-    ## Mobile version
-    version :mobile, if: :image? do
-      process resize_to_fit: [300, 300]
+    def video?(new_file = self)
+      new_file.content_type&.start_with? 'video'
     end
 
-    # Tablet version
-    version :tablet, if: :image? do
-      process resize_to_fit: [600, 600]
+    def pdf?(new_file = self)
+      new_file.content_type&.eql? 'application/pdf'
     end
 
-    # Desktop version
-    version :desktop, if: :image? do
-      process resize_to_fit: [800, 800]
-    end
+    protected
 
-    def pdf_cover
-      manipulate! do |frame, index|
-        frame if index.zero?
-      end
-    end
-
-    def extension_white_list
-      %w[jpg jpeg gif png pdf doc docx json]
+    def save_meta_to_model
+      model.try('file_type=', file.content_type) if file.content_type
+      model.try('file_size=', file.size)
     end
 
   end

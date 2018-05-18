@@ -28,6 +28,8 @@
 
   &:not(.transparent) { @extend .bg-light; }
 
+  svg { height: 80%; }
+
   img {
     position: absolute;
     top: 0;

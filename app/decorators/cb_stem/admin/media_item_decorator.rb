@@ -46,30 +46,33 @@ module CbStem
       end
 
       def media_identifier
-        if image?
-          image_identifier
-        else
-          file_identifier
+        link_to [:admin, :cb_stem, object, parent_id: object],
+                class: 'table-item-identifier' do
+          if image?
+            image_identifier
+          elsif video?
+            video_identifier
+          else
+            file_identifier
+          end
         end
       end
 
       def image_identifier
-        link_to [:admin, :cb_stem, :media_items, parent_id: object],
-                class: 'table-item-identifier file-item' do
-          concat(thumbnail(object, 'file', class: 'mr-2', icon: 'single-02'))
-          concat(content_tag(:span, name, class: 'identifier-text'))
-        end
+        thumbnail(object, 'file', class: 'mr-2', icon: 'single-02') +
+          content_tag(:span, name, class: 'identifier-text')
       end
 
       def file_identifier
-        link_to [:admin, :cb_stem, :media_items, parent_id: object],
-                class: 'table-item-identifier file-item' do
-          concat(
-            content_tag(:div, render('cb_stem/svgs/file.svg'),
-                        class: 'thumbnail mr-2 transparent')
-          )
-          concat(content_tag(:span, name, class: 'identifier-text'))
-        end
+        content_tag(:div, render('cb_stem/svgs/file.svg'),
+                    class: 'thumbnail mr-2 transparent') +
+          content_tag(:span, name, class: 'identifier-text')
+      end
+
+      def video_identifier
+        content_tag(:div, render('cb_stem/svgs/video.svg'),
+                    class: 'thumbnail mr-2 transparent') +
+          content_tag(:span, name, class: 'identifier-text')
       end
 
     end
