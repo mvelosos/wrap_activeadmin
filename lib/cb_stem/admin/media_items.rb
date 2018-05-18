@@ -189,7 +189,7 @@ if CbStem.enable_media_library
                [:edit_folder, :admin, :cb_stem, u.model], remote: true
         else
           item t('active_admin.view'),
-               admin_cb_stem_file_item_path(u, parent_id: params[:parent_id])
+               admin_cb_stem_file_item_path(u, parent_id: u)
         end
         item t('active_admin.delete'), [:admin, :cb_stem, u.model],
              method: :delete,
