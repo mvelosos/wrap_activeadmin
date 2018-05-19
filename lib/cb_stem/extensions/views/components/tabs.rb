@@ -23,7 +23,7 @@ module ActiveAdmin
         options = options.reverse_merge({})
         klass   = %w[nav-item]
         klass.push options.delete(:class)
-        li options.merge(class: klass.join(' ')) do
+        li class: klass.join(' ') do
           link_to title, "##{title.parameterize}", options
         end
       end

@@ -13,7 +13,7 @@ class ActiveAdmin.Tabs
 
   # Private
   _bind: ->
-    return false if @$element.hasClass @options.excludeClass
+    return if @$element.hasClass @options.excludeClass
     @$element.tabs()
 
 $.widget.bridge 'aaTabs', ActiveAdmin.Tabs

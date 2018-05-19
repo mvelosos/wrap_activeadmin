@@ -17,6 +17,5 @@
 
 .table-item-identifier {
   @extend %identifier;
-
-  &:hover .identifier-text { text-decoration: underline; }
+  & + .table-item-identifier { margin-top: $spacer; }
 }

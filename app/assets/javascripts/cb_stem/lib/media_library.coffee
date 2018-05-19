@@ -78,7 +78,6 @@ class ActiveAdmin.MediaLibrary
       @$element.removeClass options.dropActiveClass
 
     $dropzone.on 'error', (_file, errorMessage, _xhrObj)->
-      debugger
       $('#flash-wrapper').html(errorMessage)
       $('#flashes').aaFlash()
 

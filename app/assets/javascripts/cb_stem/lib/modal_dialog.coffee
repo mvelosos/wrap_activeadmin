@@ -52,7 +52,8 @@ ActiveAdmin.modal_dialog = (title, inputs, callback, message='', form='')->
     title: title
     open: (event, ui) ->
       $('body').trigger 'modal_dialog:after_open', [form]
-      $('form .select2').aaSelect2()
+      if $(@).find('.select2').length
+        $(@).find('.select2').aaSelect2()
       $('body').addClass 'modal-open'
     close: (event, ui) ->
       $('body').removeClass 'modal-open'
@@ -62,7 +63,7 @@ ActiveAdmin.modal_dialog = (title, inputs, callback, message='', form='')->
         text: 'Cancel'
         'class': 'btn btn-light'
         click: ->
-          $(this).dialog('close').remove()
+          $(@).dialog('close').remove()
       }
       {
         text: 'Ok'
