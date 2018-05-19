@@ -21,7 +21,9 @@ module ActiveAdmin
 
       def build_menu_item(title, options)
         options = options.reverse_merge({})
-        li options.merge(class: 'nav-item') do
+        klass   = %w[nav-item]
+        klass.push options.delete(:class)
+        li options.merge(class: klass.join(' ')) do
           link_to title, "##{title.parameterize}", options
         end
       end

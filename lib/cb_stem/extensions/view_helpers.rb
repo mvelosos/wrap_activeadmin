@@ -4,6 +4,11 @@ module ActiveAdmin::ViewHelpers
 
   alias batch_form active_admin_form_for
 
+  def select_tab?(target_tab, key: :tab)
+    return unless target_tab == params[key]
+    'selected'
+  end
+
   def error_messages(resource)
     return if resource.errors.blank?
     content_tag :div, class: 'alert alert-danger' do

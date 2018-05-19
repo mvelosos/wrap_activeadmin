@@ -21,7 +21,6 @@
 #= require active_admin/ext/jquery
 #= require active_admin/initializers/batch_actions
 #= require active_admin/initializers/filters
-#= require active_admin/initializers/tabs
 #= require_tree ./utilities
 #= require_tree ./lib
 #= require_tree ./initializers
@@ -36,6 +35,7 @@ onDOMReady = ->
   $('.form-control-file').aaFileInput()
   $('.tinymce').aaTinyMCE()
   $('#active_admin_content .dropdown').aaDropdown()
+  $('#active_admin_content .tabs').aaTabs()
   $('.select2').aaSelect2()
   $('[data-js="form-trigger"]').aaFormTrigger()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
