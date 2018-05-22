@@ -24,7 +24,7 @@ en:
     previous: "Previous"
     next: "Next"
     download: "Download:"
-    has_many_new: "Add %{model}"
+    has_many_new: "%{model}"
     has_many_delete: "Delete"
     has_many_remove: "Remove"
     move: "Move"

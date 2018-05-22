@@ -29,7 +29,7 @@ module CbStem
   ]
 
   self.file_preview_versions = %i[thumb]
-  self.enable_media_library  = true
+  self.enable_media_library  = false
 
   # this function maps the vars from your app into your engine
   def self.setup

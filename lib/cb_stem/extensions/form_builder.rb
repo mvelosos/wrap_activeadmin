@@ -173,9 +173,11 @@ module ActiveAdmin
         html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
         text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
-        template.link_to text, '#', class: 'button has_many_add btn btn-light', data: {
+        template.link_to '#', class: 'button has_many_add btn btn-light', data: {
           html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
-        }
+        } do
+          template.content_tag(:i, '', class: "nc-icon nc-simple-add mr-1") + text
+        end
       end
 
       def wrap_div_or_li(html)
