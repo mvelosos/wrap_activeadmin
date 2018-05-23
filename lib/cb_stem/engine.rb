@@ -117,7 +117,7 @@ module CbStem
       require_each(
         %w[
           base_controller view_factory form_builder
-          html_content resource page
+          html_content resource page active_admin_sortable
         ]
       )
     end
