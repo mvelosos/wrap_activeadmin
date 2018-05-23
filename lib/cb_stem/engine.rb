@@ -168,6 +168,13 @@ module CbStem
     end
 
     def require_view_helpers
+      require_each(
+        %w[
+          base blank_slate sortable notice
+          display tab component menu
+        ],
+        path: 'view_helpers'
+      )
       require_each(%w[view_helpers])
     end
 
