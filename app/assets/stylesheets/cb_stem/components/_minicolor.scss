@@ -18,6 +18,7 @@
   }
 
   .minicolors-swatch-color {
+    @extend %color-brick-bg;
     border: 1px solid $hr-border-color;
   }
 

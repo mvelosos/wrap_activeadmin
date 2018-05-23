@@ -41,7 +41,6 @@
     .has_many_fields {
       @extend .card;
       margin-bottom: $spacer;
-      overflow: hidden;
 
       &.ui-sortable-placeholder {
         z-index: 11;

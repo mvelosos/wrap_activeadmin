@@ -21,7 +21,20 @@
     border-bottom: 0;
     border-color: $hr-border-color;
     &:empty { display: none; }
+
     .title { flex: 1; }
+
+    .title + .header_action {
+      display: initial;
+      flex: initial;
+     }
+
+    .header_action {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+    }
+
     .header_action i { font-size: $icon-size; }
     .header_action > .btn { @extend .btn-sm; }
   }
