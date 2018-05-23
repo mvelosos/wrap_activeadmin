@@ -147,7 +147,7 @@ module ActiveAdmin::ViewHelpers
     options = args.extract_options!
     klass   = options.delete(:class)
     options[:class] = "color-brick #{klass}".strip
-    content_tag :div, '', options.merge(style: "background-color: #{color};")
+    content_tag :div, '', options.merge(style: "background: #{color};")
   end
 
   def aa_icon(icon)

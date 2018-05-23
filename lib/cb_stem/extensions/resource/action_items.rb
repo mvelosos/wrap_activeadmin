@@ -22,7 +22,7 @@ module ActiveAdmin
       # Adds the default Destroy link on show
       # rubocop:disable Metrics/MethodLength
       def add_default_destroy_action_item
-        add_action_item :destroy, only: :edit do
+        add_action_item :destroy, only: %i[edit update] do
           if destroy_action?
             dropdown_menu '', icon: 'menu-dots' do
               item(

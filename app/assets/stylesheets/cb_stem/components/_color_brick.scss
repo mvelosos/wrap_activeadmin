@@ -6,7 +6,6 @@
 
 .color-brick {
   @extend %color-brick-bg;
-
   flex-shrink: 0;
   width: $color-brick-size;
   height: $color-brick-size;
