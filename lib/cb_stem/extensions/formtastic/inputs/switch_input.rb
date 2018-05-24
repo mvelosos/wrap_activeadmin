@@ -9,7 +9,7 @@ module Formtastic
         input_wrapping do
           template.content_tag(:div, toggle_html_options) do
             hidden_field_html +
-              check_box_with_label
+              check_box_with_label_html
           end
         end
       end
@@ -27,7 +27,7 @@ module Formtastic
           template.content_tag(:span, '', class: 'switch-btn')
       end
 
-      def check_box_with_label
+      def check_box_with_label_html
         check_box_html << '' << label_html
       end
 
