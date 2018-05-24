@@ -24,6 +24,7 @@
 
 window.ActiveAdmin = {}
 window.ChartColors = <%= CbStem.chart_colors %>
+window.I18n        = <%= I18n.t('cb_stem').to_json %>
 
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()

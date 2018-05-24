@@ -7,9 +7,10 @@ module Formtastic
 
       def to_html
         input_wrapping do
-          hidden_field_html +
-            check_box_html +
-            label_html
+          template.content_tag(:div, toggle_html_options) do
+            hidden_field_html +
+              check_box_with_label
+          end
         end
       end
 
@@ -26,14 +27,8 @@ module Formtastic
           template.content_tag(:span, '', class: 'switch-btn')
       end
 
-      def input_wrapping(&block)
-        template.content_tag(:div, wrapper_html_options) do
-          template.content_tag(
-            :div,
-            [template.capture(&block), error_html, hint_html].join("\n")&.html_safe,
-            toggle_html_options
-          )
-        end
+      def check_box_with_label
+        check_box_html << '' << label_html
       end
 
       def toggle_html_options

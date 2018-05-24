@@ -17,7 +17,10 @@
 
     &.hidden { display: none; }
 
-    label.control-label { display: block; }
+    label.control-label {
+      display: block;
+      text-transform: capitalize;
+    }
   }
 
   .fragments-group {
@@ -85,10 +88,6 @@
         border-right: 1px solid $hr-border-color;
         border-radius: 0;
 
-        // a {
-        //   padding-right: $spacer / 4;
-        //   padding-left: $spacer / 4;
-        // }
         .handle {
           @extend %ui-drag-handle;
         }

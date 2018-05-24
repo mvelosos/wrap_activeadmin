@@ -1,15 +1,16 @@
 PATH
   remote: .
   specs:
-    cb_stem (1.0.6)
+    cb_stem (1.0.8)
       activeadmin (~> 1.2.1)
-      acts-as-taggable-on (~> 4.0)
       acts_as_list (~> 0.9.10)
       ancestry
       bootstrap (~> 4.0.0)
       bootstrap-datepicker-rails
       carmen-rails
       carrierwave (~> 1.0)
+      carrierwave-audio
+      carrierwave-video
       chart-js-rails (~> 0.1.3)
       countries
       devise
@@ -32,6 +33,7 @@ PATH
       select2-rails
       signet
       slim-rails
+      streamio-ffmpeg
       tinymce-rails
 
 GEM
@@ -91,18 +93,16 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (4.0.0)
-      activerecord (>= 4.0)
     acts_as_list (0.9.12)
       activerecord (>= 3.0)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    ancestry (3.0.1)
+    ancestry (3.0.2)
       activerecord (>= 3.2.0)
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
-    autoprefixer-rails (8.4.1)
+    autoprefixer-rails (8.5.0)
       execjs
     bcrypt (3.1.11)
     bootstrap (4.0.0)
@@ -122,6 +122,13 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    carrierwave-audio (1.0.8)
+      carrierwave (>= 0.10.0)
+      ruby-sox (>= 0.0.3)
+      soxi-wrapper (>= 0.0.1)
+    carrierwave-video (0.6.0)
+      carrierwave
+      streamio-ffmpeg
     chart-js-rails (0.1.4)
       railties (> 3.1)
     coffee-rails (4.2.2)
@@ -332,7 +339,7 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    google-api-client (0.21.1)
+    google-api-client (0.21.2)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.7.0)
       httpclient (>= 2.8.1, < 3.0)
@@ -497,6 +504,7 @@ GEM
       netrc (~> 0.8)
     retriable (3.1.1)
     rmagick (2.16.0)
+    ruby-sox (0.0.3)
     sass (3.5.6)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -523,6 +531,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
+    soxi-wrapper (0.0.2)
     spoon (0.0.6)
       ffi
     sprockets (3.7.1)
@@ -532,6 +541,8 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    streamio-ffmpeg (3.0.2)
+      multi_json (~> 1.8)
     temple (0.8.0)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -540,7 +551,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
-    tinymce-rails (4.7.12)
+    tinymce-rails (4.7.13)
       railties (>= 3.1.1)
     trollop (2.1.2)
     tzinfo (1.2.4)
