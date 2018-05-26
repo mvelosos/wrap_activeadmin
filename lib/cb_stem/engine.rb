@@ -171,7 +171,7 @@ module CbStem
       require_each(
         %w[
           base blank_slate sortable notice
-          display tab component menu
+          display tab component menu file
         ],
         path: 'view_helpers'
       )

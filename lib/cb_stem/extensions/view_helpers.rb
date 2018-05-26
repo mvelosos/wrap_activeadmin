@@ -6,6 +6,7 @@ module ActiveAdmin::ViewHelpers
   include ViewHelpers::Sortable
   include ViewHelpers::Notice
   include ViewHelpers::Display
+  include ViewHelpers::File
   include ViewHelpers::Tab
   include ViewHelpers::Component
   include ViewHelpers::Menu

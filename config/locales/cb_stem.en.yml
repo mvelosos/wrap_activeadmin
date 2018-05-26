@@ -54,6 +54,9 @@ en:
         items_count: Items
 
   cb_stem:
+    file_preview:
+      label: 'Current attachment: '
+
     active_admin_sortable:
       update:
         success: Successfully updated %{model}
