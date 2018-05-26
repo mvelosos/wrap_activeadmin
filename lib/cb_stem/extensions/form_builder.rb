@@ -181,12 +181,17 @@ module ActiveAdmin
       end
 
       def wrap_div_or_li(html)
+        opts = { class: "has_many_container #{assoc}" }
+        if sortable_column
+          opts.merge!(
+            'data-sortable': sortable_column,
+            'data-sortable-start': sortable_start
+          )
+        end
         template.content_tag(
           already_in_an_inputs_block ? :li : :div,
           html,
-          class: "has_many_container #{assoc}",
-          'data-sortable' => sortable_column,
-          'data-sortable-start' => sortable_start
+          opts
         )
       end
     end

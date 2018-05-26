@@ -43,6 +43,9 @@
 
     .has_many_fields {
       @extend .card;
+      @extend .border;
+      @include box-shadow(none !important);
+
       margin-bottom: $spacer;
 
       &.ui-sortable-placeholder {
@@ -114,5 +117,4 @@
       }
     }
   }
-
 }
