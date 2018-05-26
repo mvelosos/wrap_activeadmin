@@ -12,6 +12,10 @@
     text-align: right;
   }
 
+  li.form-group:last-of-type {
+    margin-bottom: 0;
+  }
+
   .input {
     list-style: none;
 
@@ -42,11 +46,17 @@
     }
 
     .has_many_fields {
-      @extend .card;
-      @extend .border;
-      @include box-shadow(none !important);
+      &:not(.unwrap) {
+        @extend .card;
+        @extend .border;
+        @include box-shadow(none !important);
 
-      margin-bottom: $spacer;
+        & > ol > .has-many-fields {
+          padding: $card-spacer-y $card-spacer-x;
+        }
+      }
+
+      &:not(:last-of-type) { margin-bottom: $spacer; }
 
       &.ui-sortable-placeholder {
         z-index: 11;
@@ -71,10 +81,16 @@
 
       & > ol { margin: 0; }
 
+      legend {
+        @extend .h5;
+        @extend .mb-3;
+      }
+
       .has-many-fields {
         @extend .col;
-        padding: $card-spacer-y $card-spacer-x;
+        padding: 0;
       }
+
       .has-many-actions > ol { height: 100%; }
 
       .has-many-handle {

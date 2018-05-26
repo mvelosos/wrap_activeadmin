@@ -95,7 +95,7 @@ module ActiveAdmin
       end
 
       def form_actions(form_builder)
-        template.content_tag :ol, class: 'has-many-actions form-group' do
+        template.content_tag :ol, class: 'has-many-actions mt-3 form-group' do
           template.capture { has_many_actions(form_builder, "".html_safe) }
         end
       end
@@ -173,7 +173,7 @@ module ActiveAdmin
         html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
         text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
-        template.link_to '#', class: 'button has_many_add btn btn-light', data: {
+        template.link_to '#', class: 'button has_many_add mt-3 btn btn-light', data: {
           html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
         } do
           template.content_tag(:i, '', class: "nc-icon nc-simple-add mr-1") + text
