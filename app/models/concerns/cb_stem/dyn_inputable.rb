@@ -21,7 +21,7 @@ module CbStem
 
     class_methods do
       def human_attribute_name(attribute, default: nil)
-        hit = (I18N_WHITELIST & attribute.split('.'))
+        hit = (I18N_WHITELIST & attribute.to_s.split('.'))
         if hit.present?
           CbStem::DynInput.human_attribute_name(hit.first)
         else
