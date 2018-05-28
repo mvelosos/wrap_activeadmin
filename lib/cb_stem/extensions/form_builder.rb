@@ -115,19 +115,21 @@ module ActiveAdmin
       end
 
       def has_many_actions(form_builder, contents)
-        if form_builder.object.new_record?
-          template.concat(
-            template.content_tag(:li, class: 'form-group') do
-              template.link_to I18n.t('active_admin.has_many_remove'), "#",
-                               class: 'button has_many_remove text-secondary'
-            end
-          )
-        elsif allow_destroy?(form_builder.object)
-          form_builder.input(
-            :_destroy, as: :boolean,
-            wrapper_html: { class: 'has_many_delete' },
-            label: I18n.t('active_admin.has_many_delete')
-          )
+        if allow_destroy?(form_builder.object)
+          if form_builder.object.new_record?
+            template.concat(
+              template.content_tag(:li, class: 'form-group') do
+                template.link_to I18n.t('active_admin.has_many_remove'), "#",
+                                 class: 'button has_many_remove text-secondary'
+              end
+            )
+          else
+            form_builder.input(
+              :_destroy, as: :boolean,
+              wrapper_html: { class: 'has_many_delete' },
+              label: I18n.t('active_admin.has_many_delete')
+            )
+          end
         end
 
         contents
