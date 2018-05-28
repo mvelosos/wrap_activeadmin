@@ -10,10 +10,14 @@ f.has_many :dyn_input_configs, new_record: false do |j|
         false
       end
 
-    j.has_many :dyn_input_groups,
-               new_record: new_record,
-               allow_destroy: j.object.multiple?,
-               class: klass do |k|
+    options = {
+      new_record: new_record,
+      allow_destroy: j.object.multiple?,
+      class: klass
+    }
+    options[:sortable] = :position if j.object.sortable?
+
+    j.has_many :dyn_input_groups, options do |k|
       k.inputs(class: 'columns') do
         j.object.config.sort_by { |x| x['position'] }.each do |field|
           field_presence =

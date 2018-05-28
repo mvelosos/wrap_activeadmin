@@ -6,6 +6,7 @@ class CreateCbStemDynInputConfigs < ActiveRecord::Migration[5.1]
       t.string :reference_key
       t.json :config, default: {}
       t.boolean :multiple, default: false
+      t.boolean :sortable, default: false
       t.references :dyn_inputable,
                    polymorphic: true,
                    index: { name: 'dyn_inputable_on_cb_input_config_id' }
