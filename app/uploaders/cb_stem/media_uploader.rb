@@ -16,12 +16,15 @@ module CbStem
     process :save_meta_to_model
 
     def extension_whitelist
-      model.try(:extension_whitelist) || default_whitelist
+      if model.respond_to?(:extension_whitelist)
+        model.extension_whitelist
+      else
+        default_whitelist
+      end
     end
 
     def default_whitelist
-      model.try(:media_whitelist) ||
-        (IMAGE_TYPES + FILE_TYPES + VIDEO_TYPES + AUDIO_TYPES)
+      IMAGE_TYPES + FILE_TYPES + VIDEO_TYPES + AUDIO_TYPES
     end
 
     def audio?(new_file = self)
