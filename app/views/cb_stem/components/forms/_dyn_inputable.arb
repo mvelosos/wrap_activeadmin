@@ -1,0 +1,74 @@
+f.has_many :dyn_input_configs, new_record: false do |j|
+  j.inputs j.object.name do
+    klass = j.object.multiple? ? '' : 'unwrap'
+    j.object.dyn_input_groups.build if j.object.dyn_input_groups.blank? && !j.object.multiple?
+    new_record =
+      if j.object.multiple?
+        t("cb_stem.dyn_forms.#{j.object.reference_key}",
+          default: CbStem::DynInputGroup.model_name.human)
+      else
+        false
+      end
+
+    j.has_many :dyn_input_groups,
+               new_record: new_record,
+               allow_destroy: j.object.multiple?,
+               class: klass do |k|
+      k.inputs(class: 'columns') do
+        j.object.config.sort_by { |x| x['position'] }.each do |field|
+          field_presence =
+            k.object.dyn_inputs.
+            select { |x| x.reference_key == field['reference_key'] }.present?
+          next if field_presence
+
+          k.object.dyn_inputs.build(
+            reference_key: field['reference_key'],
+            type:          "cb_stem/dyn_input_#{field['type']}".camelcase,
+            position:      field['position']
+          )
+        end
+
+        k.semantic_fields_for :dyn_inputs do |d|
+          config    = j.object.config.find { |x| x['reference_key'] == d.object.reference_key }
+          label     = config['label']
+          hint      = config['required']
+          span      = config['span']
+          required  = config['required']
+
+          d.input :reference_key, as: :hidden
+          d.input :type,          as: :hidden
+
+          case d.object.type
+          when CbStem::DynInputText.to_s
+            d.input :value_text,
+                    label: label,
+                    required: required,
+                    hint: hint,
+                    input_html: { class: 'tinymce', rows: 4 },
+                    wrapper_html: { class: "col-md-#{span}" }
+          when CbStem::DynInputNumber.to_s
+            d.input :value_number,
+                    label: label,
+                    required: required,
+                    hint: hint,
+                    wrapper_html: { class: "col-md-#{span}" }
+          when CbStem::DynInputFile.to_s
+            d.input :value_string,
+                    label: label,
+                    required: required,
+                    hint: hint,
+                    wrapper_html: { class: "col-md-#{span}" }
+            d.input :value_string_cache,
+                    as: :hidden
+          else
+            d.input :value_string,
+                    label: label,
+                    required: required,
+                    hint: hint,
+                    wrapper_html: { class: "col-md-#{span}" }
+          end
+        end
+      end
+    end
+  end
+end

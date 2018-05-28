@@ -46,6 +46,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
     - 'config/**/*.rb'
     - 'app/admin/**/*.rb'
+    - 'app/views/**/*.arb'
     - 'lib/cb_stem/admin/**/*.rb'
 
 Layout/EmptyLinesAroundClassBody:

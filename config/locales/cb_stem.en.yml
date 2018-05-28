@@ -2,7 +2,7 @@ en:
   admin:
     cb_stem_media_items:
       upload_preview:
-        title: Uploading Files
+        title:     Uploading Files
         completed: Completed
       media_items_upload:
         upload: Upload Files
@@ -16,10 +16,10 @@ en:
         success: Folder %{name} updated
       form:
         new:
-          title: New Folder
+          title:  New Folder
           submit: Create
         edit:
-          title: Edit Folder
+          title:  Edit Folder
           submit: Update
         placeholders:
           name: Folder Name
@@ -34,24 +34,31 @@ en:
       index:
         cb_stem:
           media_items:
-            add_folder: Add Folder
-            add_file: Upload File
+            add_folder:    Add Folder
+            add_file:      Upload File
             add_to_folder: Move Selection To Folder
       show:
         cb_stem:
           media_items:
             download: Download
-            upload: Replace
+            upload:   Replace
 
   activerecord:
     models:
       cb_stem/media_item:
-        one: Item
+        one:   Item
         other: Items
+      cb_stem/dyn_input_group:
+        one:   Record
+        other: Records
     attributes:
       cb_stem/media_item:
-        ancestry: Folder
+        ancestry:    Folder
         items_count: Items
+      cb_stem/dyn_input:
+        value_string: Value
+        value_text:   Value
+        value_number: Value
 
   cb_stem:
     file_preview:
@@ -62,7 +69,7 @@ en:
         success: Successfully updated %{model}
 
     menu:
-      media_items: Media Library
+      media_items:          Media Library
       media_items/filtered: Filtered Results
 
     date:
@@ -70,7 +77,7 @@ en:
         default: '%Y/%m/%d'
 
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
-    owner: "Clever Banana Studios Inc"
+    owner:      "Clever Banana Studios Inc"
 
     components:
       select2:
@@ -80,19 +87,19 @@ en:
           submit: Submit
         pageviews:
           traffic: Total Visits
-          gender: Visit By Gender
-          age: Visits By Age
-          device: Visits By Device
+          gender:  Visit By Gender
+          age:     Visits By Age
+          device:  Visits By Device
           country: Visits By Country
         source: Traffic Source
         session:
-          bounce: Bounce Rate
+          bounce:       Bounce Rate
           avg_duration: Avg. Session Duration
         empty_state:
           message: No Results
 
     panels:
-      danger: Danger Zone
+      danger:         Danger Zone
       reset_password: Reset Password
 
     hints:
@@ -105,7 +112,7 @@ en:
       choose_file: Choose File
       placeholders:
         choose_file: No File Selected
-        comments: Your comments...
+        comments:    Your comments...
 
     resource:
       sections: &shared_panels
@@ -115,5 +122,5 @@ en:
           <<: *shared_panels
           security: Security
         inputs:
-          info: Personal Information
+          info:     Personal Information
           password: Reset Password
