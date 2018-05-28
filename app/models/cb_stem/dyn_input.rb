@@ -7,7 +7,7 @@ module CbStem
       CbStem::DynInputNumber CbStem::DynInputFile
     ].freeze
 
-    acts_as_list scope: :dyn_input_group
+    acts_as_list scope: :cb_stem_dyn_input_group_id
 
     belongs_to :dyn_input_group,
                class_name: 'CbStem::DynInputGroup'

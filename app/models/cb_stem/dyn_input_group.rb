@@ -2,7 +2,7 @@ module CbStem
 
   class DynInputGroup < ApplicationRecord
 
-    acts_as_list scope: :dyn_input_config
+    acts_as_list scope: :cb_stem_dyn_input_config_id
 
     belongs_to :dyn_input_config,
                class_name: 'CbStem::DynInputConfig'

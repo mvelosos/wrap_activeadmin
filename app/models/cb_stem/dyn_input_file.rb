@@ -19,8 +19,7 @@ module CbStem
     def in_whitelist
       file      = value_string.file
       valid_ext = field_config['whitelist']
-      return if file.blank?
-      return if valid_ext.include? file.extension
+      return if file.blank? || valid_ext.include?(file.extension&.downcase)
       errors.add(:value_string,
                  I18n.t(:extension_whitelist_error,
                         scope: %i[errors messages],

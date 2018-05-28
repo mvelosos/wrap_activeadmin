@@ -44,11 +44,14 @@ f.has_many :dyn_input_configs, new_record: false do |j|
 
           case d.object.type
           when CbStem::DynInputText.to_s
+            options = { rows: config['rows'] }
+            options[:class] = 'tinymce' if config['richtext']
+
             d.input :value_text,
                     label: label,
                     required: required,
                     hint: hint,
-                    input_html: { class: 'tinymce', rows: 4 },
+                    input_html: options,
                     wrapper_html: { class: "col-md-#{span}" }
           when CbStem::DynInputNumber.to_s
             d.input :value_number,
@@ -57,6 +60,7 @@ f.has_many :dyn_input_configs, new_record: false do |j|
                     hint: hint,
                     wrapper_html: { class: "col-md-#{span}" }
           when CbStem::DynInputFile.to_s
+            hint = d.object.persisted? ? file_link(k.object) : hint
             d.input :value_string,
                     label: label,
                     required: required,
