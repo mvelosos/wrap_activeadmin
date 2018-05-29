@@ -32,11 +32,36 @@ module CbStem
       def dyn_inputable_params
         [dyn_input_configs_attributes: CbStem::DynInputConfig.permitted_params]
       end
+
+      def refresh_dyn_inputable_configs
+        find_each.map do |x|
+          x.update_dyn_input_configs
+          x.update_dyn_inputs
+        end
+      end
     end
 
     def find_dyn_attr(config:, key:)
       config = dyn_input_configs.find_by(reference_key: config)
       config.dyn_inputs.where(reference_key: key)&.first
+    end
+
+    def update_dyn_inputs
+      dyn_input_configs.each do |x|
+        inputs = x.config
+        keys   = inputs.map { |d| d['reference_key'] }
+        dyn_inputs.not_with_keys(keys)&.destroy_all
+        dyn_inputs.find_each(&:save)
+      end
+    end
+
+    def update_dyn_input_configs
+      return unless try(:dyn_inputable_configs)
+      keys = dyn_inputable_configs.map { |x| x[:reference_key] }
+      dyn_input_configs.not_with_keys(keys)&.destroy_all
+      dyn_inputable_configs.each do |x|
+        dyn_input_configs.find_by(reference_key: x[:reference_key])&.update(x)
+      end
     end
 
   end

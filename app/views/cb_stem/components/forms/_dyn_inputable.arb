@@ -1,12 +1,23 @@
+defaults = f.object.try(:dyn_inputable_configs)
+if defaults
+  keys    = f.object.dyn_input_configs.map(&:reference_key)
+  configs = f.object.dyn_inputable_configs.reject { |x| keys.include? x[:reference_key] }
+  f.object.assign_attributes(dyn_input_configs_attributes: configs)
+end
+
 f.has_many :dyn_input_configs, new_record: false do |j|
   config_scope =
-    [:cb_stem, :dyn_inputable, j.object.reference_key.to_sym]
+    [
+      :cb_stem, :dyn_inputable,
+      j.object.dyn_inputable_type.underscore, j.object.reference_key.to_sym
+    ]
   name =
     j.object.name &&
     t(:name, scope: config_scope, default: j.object.name)
 
   j.inputs name do
     klass = j.object.multiple? ? '' : 'unwrap'
+    j.input :reference_key, as: :hidden
     j.object.dyn_input_groups.build if j.object.dyn_input_groups.blank? && !j.object.multiple?
     new_record =
       if j.object.multiple?
@@ -80,6 +91,24 @@ f.has_many :dyn_input_configs, new_record: false do |j|
                     wrapper_html: { class: "col-md-#{span}" }
             d.input :value_string_cache,
                     as: :hidden
+          when CbStem::DynInputSelect.to_s
+            field      = config['multiple'] ? :value_array : :value_string
+            collection = config['collection'] || []
+            collection =
+              collection.map do |x|
+                [t("collection.#{x.downcase&.underscore}", scope: scope, default: x), x]
+              end
+
+            d.input field,
+                    label: label,
+                    required: required,
+                    hint: hint,
+                    as: :select,
+                    multiple: config['multiple'],
+                    collection: collection,
+                    selected: d.object.value_array,
+                    wrapper_html: { class: "col-md-#{span}" },
+                    input_html: { class: 'select2' }
           when CbStem::DynInputRelation.to_s
             field      = config['multiple'] ? :value_array : :value_string
             model      = config['relation_type'].constantize
@@ -88,9 +117,7 @@ f.has_many :dyn_input_configs, new_record: false do |j|
             d.input field,
                     label: label,
                     required: required,
-                    hint:
-                      t(hint, scope: [:cb_stem, :dy_inputable, d.object.reference_key.to_sym],
-                              default: hint),
+                    hint: hint,
                     as: :select,
                     multiple: config['multiple'],
                     collection: dyn_select_collection(collection, config),

@@ -4,9 +4,9 @@ module CbStem
 
     CONFIG_WHITELIST =
       %i[
-        reference_key position type span
+        reference_key position type span config
         label hint option required whitelist richtext
-        rows multiple relation_type relation_method
+        rows multiple relation_type relation_method collection
         option_template option_decorator
       ].freeze
 
@@ -23,14 +23,16 @@ module CbStem
     accepts_nested_attributes_for :dyn_input_groups,
                                   reject_if: :all_blank, allow_destroy: true
 
+    before_validation :mirror_configs
     before_save :destroy_unrelated_children
 
     validates :reference_key, presence: true
 
     default_scope { order(position: :asc) }
+    scope :not_with_keys, ->(keys) { where.not(reference_key: keys) }
 
     def self.permitted_params
-      %i[id position name _destroy] +
+      %i[id position name multiple sortable reference_key config _destroy] +
         [dyn_input_groups_attributes: CbStem::DynInputGroup.permitted_params]
     end
 
@@ -38,13 +40,19 @@ module CbStem
       attrs = attrs.map { |x| x.slice(*CONFIG_WHITELIST) }
       attrs =
         attrs.select do |x|
-          CbStem::DynInput::TYPES.include?("cb_stem/dyn_input_#{x['type']}".camelcase)
+          CbStem::DynInput::TYPES.include?("cb_stem/dyn_input_#{x[:type]}".camelcase)
         end
-      attrs.map { |x| x.reverse_merge! config_defaults }
-      self[:config] = attrs
+      self[:config] = attrs.map { |x| x.reverse_merge! config_defaults }
     end
 
     private
+
+    def mirror_configs
+      defaults = dyn_inputable.try(:dyn_inputable_configs)
+      return unless defaults
+      config = defaults.find { |x| x[:reference_key] == reference_key }
+      assign_attributes(config)
+    end
 
     def config_defaults
       @config_defaults ||=
@@ -64,6 +72,7 @@ module CbStem
            :hint, :label, :option_template, :option_decorator
         false
       when :relation_method then 'all'
+      when :collection then []
       when :rows then 4
       when :span then 12
       end

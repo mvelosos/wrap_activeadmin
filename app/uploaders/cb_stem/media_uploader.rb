@@ -16,11 +16,11 @@ module CbStem
     process :save_meta_to_model
 
     def extension_whitelist
-      if model.respond_to?(:extension_whitelist)
-        model.extension_whitelist
-      else
+      whitelist_method =
+        %i[background extension_whitelist].join('_')
+      model.try(whitelist_method) ||
+        model.try(:extension_whitelist) ||
         default_whitelist
-      end
     end
 
     def default_whitelist

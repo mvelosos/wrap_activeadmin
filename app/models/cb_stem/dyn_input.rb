@@ -5,13 +5,15 @@ module CbStem
     TYPES = %w[
       CbStem::DynInputText CbStem::DynInputString
       CbStem::DynInputNumber CbStem::DynInputFile
-      CbStem::DynInputRelation
+      CbStem::DynInputRelation CbStem::DynInputSelect
     ].freeze
 
     acts_as_list scope: :cb_stem_dyn_input_group_id
 
     belongs_to :dyn_input_group,
-               class_name: 'CbStem::DynInputGroup'
+               class_name: 'CbStem::DynInputGroup',
+               foreign_key: 'cb_stem_dyn_input_group_id',
+               inverse_of: :dyn_inputs
 
     validates :reference_key, presence: true
     validates :type,          presence: true, inclusion: { in: TYPES }
@@ -21,6 +23,7 @@ module CbStem
     delegate :config, to: :dyn_input_group, allow_nil: true
 
     default_scope { order(position: :asc) }
+    scope :not_with_keys, ->(keys) { where.not(reference_key: keys) }
 
     def self.permitted_params
       %i[
