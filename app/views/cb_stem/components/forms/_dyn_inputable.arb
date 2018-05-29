@@ -68,6 +68,21 @@ f.has_many :dyn_input_configs, new_record: false do |j|
                     wrapper_html: { class: "col-md-#{span}" }
             d.input :value_string_cache,
                     as: :hidden
+          when CbStem::DynInputRelation.to_s
+            field = config['multiple'] ? :value_array : :value_string
+            model = config['relation_type'].constantize
+            collection =
+              model.try(:all) ? model.all.map { |x| [x.display_name, x.id] } : []
+            d.input field,
+                    label: label,
+                    required: required,
+                    hint: hint,
+                    as: :select,
+                    multiple: config['multiple'],
+                    collection: collection,
+                    selected: d.object.value_array,
+                    wrapper_html: { class: "col-md-#{span}" },
+                    input_html: { class: 'select2' }
           else
             d.input :value_string,
                     label: label,

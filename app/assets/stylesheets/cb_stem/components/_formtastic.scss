@@ -77,6 +77,10 @@
       .columns > ol,
       & > ol {
         @extend .row;
+
+        & > .has_many_container {
+          @extend .col-md-12;
+        }
       }
 
       & > ol { margin: 0; }
@@ -115,6 +119,8 @@
       .has-many-actions {
         display: flex;
         justify-content: flex-end;
+
+        &:not(:empty) { margin-top: $spacer; }
 
         .form-group:last-child { margin-bottom: 0; }
       }

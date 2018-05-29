@@ -5,6 +5,7 @@ module CbStem
     TYPES = %w[
       CbStem::DynInputText CbStem::DynInputString
       CbStem::DynInputNumber CbStem::DynInputFile
+      CbStem::DynInputRelation
     ].freeze
 
     acts_as_list scope: :cb_stem_dyn_input_group_id
@@ -26,7 +27,7 @@ module CbStem
         id label type position span reference_key required
         value_text value_string value_number input_config
         value_string_cache _destroy
-      ]
+      ] + [value_array: []]
     end
 
     def field_config

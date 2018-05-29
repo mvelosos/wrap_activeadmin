@@ -21,8 +21,7 @@ module CbStem
 
         def generate_migrations
           %w[
-            dyn_input_configs
-            dyn_input_groups
+            dyn_input_configs dyn_input_groups
             dyn_inputs
           ].each do |file|
             migration_template(

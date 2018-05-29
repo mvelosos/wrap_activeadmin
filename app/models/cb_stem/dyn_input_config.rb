@@ -6,7 +6,7 @@ module CbStem
       %i[
         reference_key position type span
         label hint option required whitelist richtext
-        rows
+        rows relation_type multiple
       ].freeze
 
     acts_as_list scope: :dyn_inputable
@@ -50,7 +50,7 @@ module CbStem
         CONFIG_WHITELIST.each_with_object({}) do |i, hash|
           val =
             case i
-            when :required, :richtext then false
+            when :required, :richtext, :multiple then false
             when :rows then 4
             when :span then 12
             end

@@ -95,7 +95,7 @@ module ActiveAdmin
       end
 
       def form_actions(form_builder)
-        template.content_tag :ol, class: 'has-many-actions mt-3 form-group' do
+        template.content_tag :ol, class: 'has-many-actions form-group' do
           template.capture { has_many_actions(form_builder, "".html_safe) }
         end
       end
@@ -108,8 +108,6 @@ module ActiveAdmin
             template.content_tag :div, class: 'handle' do
               template.render('cb_stem/svgs/sortable_handle.svg')
             end
-            # template.link_to template.content_tag(:i, '', class: "nc-icon nc-move-05"), "#",
-            #                  class: 'button btn text-secondary'
           end
         end
       end
