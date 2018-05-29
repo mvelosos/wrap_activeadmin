@@ -1,5 +1,11 @@
 f.has_many :dyn_input_configs, new_record: false do |j|
-  j.inputs j.object.name do
+  config_scope =
+    [:cb_stem, :dyn_inputable, j.object.reference_key.to_sym]
+  name =
+    j.object.name &&
+    t(:name, scope: config_scope, default: j.object.name)
+
+  j.inputs name do
     klass = j.object.multiple? ? '' : 'unwrap'
     j.object.dyn_input_groups.build if j.object.dyn_input_groups.blank? && !j.object.multiple?
     new_record =
@@ -33,9 +39,15 @@ f.has_many :dyn_input_configs, new_record: false do |j|
         end
 
         k.semantic_fields_for :dyn_inputs do |d|
-          config    = j.object.config.find { |x| x['reference_key'] == d.object.reference_key }
-          label     = config['label']
-          hint      = config['required']
+          scope =
+            config_scope + [:dyn_inputs, d.object.reference_key.to_sym]
+          config = j.object.config.find { |x| x['reference_key'] == d.object.reference_key }
+          label =
+            config['label'] &&
+            t(:label, scope: scope, default: config['label'])
+          hint =
+            config['hint'] &&
+            t(:hint, scope: scope, default: config['hint'])
           span      = config['span']
           required  = config['required']
 
@@ -69,20 +81,29 @@ f.has_many :dyn_input_configs, new_record: false do |j|
             d.input :value_string_cache,
                     as: :hidden
           when CbStem::DynInputRelation.to_s
-            field = config['multiple'] ? :value_array : :value_string
-            model = config['relation_type'].constantize
-            collection =
-              model.try(:all) ? model.all.map { |x| [x.display_name, x.id] } : []
+            field      = config['multiple'] ? :value_array : :value_string
+            model      = config['relation_type'].constantize
+            collection = model.try(config['relation_method']) || []
+
             d.input field,
                     label: label,
                     required: required,
-                    hint: hint,
+                    hint:
+                      t(hint, scope: [:cb_stem, :dy_inputable, d.object.reference_key.to_sym],
+                              default: hint),
                     as: :select,
                     multiple: config['multiple'],
-                    collection: collection,
+                    collection: dyn_select_collection(collection, config),
                     selected: d.object.value_array,
                     wrapper_html: { class: "col-md-#{span}" },
-                    input_html: { class: 'select2' }
+                    input_html: {
+                      class: 'select2',
+                      data: {
+                        'select2-search': true,
+                        'select2-template': config['option_template'],
+                        'select2-selection-template': config['option_template']
+                      }
+                    }
           else
             d.input :value_string,
                     label: label,

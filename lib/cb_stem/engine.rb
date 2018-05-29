@@ -172,6 +172,7 @@ module CbStem
         %w[
           base blank_slate sortable notice
           display tab component menu file
+          dyn_inputable
         ],
         path: 'view_helpers'
       )

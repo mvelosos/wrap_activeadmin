@@ -6,7 +6,8 @@ module CbStem
       %i[
         reference_key position type span
         label hint option required whitelist richtext
-        rows relation_type multiple
+        rows multiple relation_type relation_method
+        option_template option_decorator
       ].freeze
 
     acts_as_list scope: :dyn_inputable
@@ -48,19 +49,24 @@ module CbStem
     def config_defaults
       @config_defaults ||=
         CONFIG_WHITELIST.each_with_object({}) do |i, hash|
-          val =
-            case i
-            when :required, :richtext, :multiple then false
-            when :rows then 4
-            when :span then 12
-            end
-          hash[i] = val
+          hash[i] = default_attr(i)
         end
     end
 
     def destroy_unrelated_children
       keys = config.map { |x| x['reference_key'] }
       dyn_inputs.where.not(reference_key: keys).destroy_all
+    end
+
+    def default_attr(attr)
+      case attr
+      when :required, :richtext, :multiple,
+           :hint, :label, :option_template, :option_decorator
+        false
+      when :relation_method then 'all'
+      when :rows then 4
+      when :span then 12
+      end
     end
 
   end
