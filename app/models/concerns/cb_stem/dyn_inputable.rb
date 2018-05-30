@@ -48,24 +48,14 @@ module CbStem
       load_dyn_input_config(key: key, path: path)
     end
 
-    def inputable_config_mapping_key
-      nil
-    end
-
-    def load_dyn_input_config(key:, path:)
-      file = YAML.load_file(path)
-      file.map(&:deep_symbolize_keys!)
-      key.present? ? file.find { |x| x[:id] == key }&.fetch(:configs, {}) : file
-    end
-
-    def find_dyn_collection(key:)
+    def dyn_collection(key:)
       dyn_input_configs.
         find_by(reference_key: key)&.dyn_input_groups
     end
 
-    def find_dyn_attr(config:, key:)
-      config = dyn_input_configs.find_by(reference_key: config)
-      config.dyn_inputs.where(reference_key: key)&.first
+    def dyn_resource(key:)
+      dyn_input_configs.
+        find_by(reference_key: key)&.dyn_input_groups&.first
     end
 
     def update_dyn_inputs
@@ -84,6 +74,18 @@ module CbStem
       dyn_inputable_configs.each do |x|
         dyn_input_configs.find_by(reference_key: x[:reference_key])&.update(x)
       end
+    end
+
+    private
+
+    def inputable_config_mapping_key
+      nil
+    end
+
+    def load_dyn_input_config(key:, path:)
+      file = YAML.load_file(path)
+      file.map(&:deep_symbolize_keys!)
+      key.present? ? file.find { |x| x[:id] == key }&.fetch(:configs, {}) : file
     end
 
   end

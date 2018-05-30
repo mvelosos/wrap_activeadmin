@@ -57,13 +57,25 @@ module CbStem
 
     def get_value(input)
       case input.type
-      when CbStem::DynInputText.to_s   then input.value_text
-      when CbStem::DynInputNumber.to_s then input.value_number
-      when CbStem::DynInputSelect.to_s, CbStem::DynInputRelation.to_s
-        value = input.value_array
-        input.field_config['multiple'] ? value : value.first
+      when CbStem::DynInputText.to_s     then input.value_text
+      when CbStem::DynInputNumber.to_s   then input.value_number
+      when CbStem::DynInputSelect.to_s   then dyn_select_value(input)
+      when CbStem::DynInputRelation.to_s then dyn_relation_value(input)
       else input.value_string
       end
+    end
+
+    def dyn_select_value(input)
+      value = input.value_array
+      input.field_config['multiple'] ? value : value.first
+    end
+
+    def dyn_relation_value(input)
+      resource_model = input.field_config['relation_type']
+      return unless Object.const_defined? resource_model
+      ids     = input.value_array
+      records = resource_model.constantize.where(ids: ids)
+      input.field_config['multiple'] ? records : records.first
     end
 
   end

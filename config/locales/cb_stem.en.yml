@@ -59,6 +59,7 @@ en:
         value_string: Value
         value_text:   Value
         value_number: Value
+        value_array:  Value
 
   cb_stem:
     file_preview:
