@@ -62,8 +62,7 @@ module CbStem
       when CbStem::DynInputSelect.to_s, CbStem::DynInputRelation.to_s
         value = input.value_array
         input.field_config['multiple'] ? value : value.first
-      else
-        input.value_string
+      else input.value_string
       end
     end
 
