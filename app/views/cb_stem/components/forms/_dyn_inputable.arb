@@ -2,7 +2,8 @@ defaults = f.object.try(:dyn_inputable_configs)
 if defaults
   keys    = f.object.dyn_input_configs.map(&:reference_key)
   configs = f.object.dyn_inputable_configs.reject { |x| keys.include? x[:reference_key] }
-  f.object.assign_attributes(dyn_input_configs_attributes: configs)
+  configs &&
+    f.object.assign_attributes(dyn_input_configs_attributes: configs)
 end
 
 f.has_many :dyn_input_configs, new_record: false do |j|

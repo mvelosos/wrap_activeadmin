@@ -41,6 +41,28 @@ module CbStem
       end
     end
 
+    def dyn_inputable_configs
+      path = Rails.root.join('db', 'dyn_inputable', "#{self.class.to_s.underscore}.yml").to_s
+      return unless File.exist?(path)
+      key = inputable_config_mapping_key && try(inputable_config_mapping_key)
+      load_dyn_input_config(key: key, path: path)
+    end
+
+    def inputable_config_mapping_key
+      nil
+    end
+
+    def load_dyn_input_config(key:, path:)
+      file = YAML.load_file(path)
+      file.map(&:deep_symbolize_keys!)
+      key.present? ? file.find { |x| x[:id] == key }&.fetch(:configs, {}) : file
+    end
+
+    def find_dyn_collection(key:)
+      dyn_input_configs.
+        find_by(reference_key: key)&.dyn_input_groups
+    end
+
     def find_dyn_attr(config:, key:)
       config = dyn_input_configs.find_by(reference_key: config)
       config.dyn_inputs.where(reference_key: key)&.first
