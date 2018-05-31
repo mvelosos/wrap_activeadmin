@@ -48,14 +48,14 @@ module CbStem
       load_dyn_input_config(key: key, path: path)
     end
 
-    def dyn_collection(key:)
+    def dyn_collection(reference_key:)
       dyn_input_configs.
-        find_by(reference_key: key)&.dyn_input_groups
+        find_by(reference_key: reference_key)&.dyn_input_groups
     end
 
-    def dyn_resource(key:)
+    def dyn_resource(reference_key:)
       dyn_input_configs.
-        find_by(reference_key: key)&.dyn_input_groups&.first
+        find_by(reference_key: reference_key)&.dyn_input_groups&.first
     end
 
     def update_dyn_inputs

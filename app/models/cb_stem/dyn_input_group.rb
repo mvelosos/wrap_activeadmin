@@ -16,8 +16,6 @@ module CbStem
 
     accepts_nested_attributes_for :dyn_inputs
 
-    after_initialize :define_dyn_methods
-
     delegate :config, to: :dyn_input_config, allow_nil: true
 
     default_scope { order(position: :asc) }
@@ -33,7 +31,7 @@ module CbStem
     end
 
     def method_missing(method_name, *args, &block)
-      dyn_attr?(method_name) ? nil : super
+      dyn_attr?(method_name) ? find_input(method_name, *args) : super
     end
 
     private
@@ -43,39 +41,19 @@ module CbStem
       method_name =~ /^dyn_/
     end
 
-    def define_dyn_methods
-      dyn_inputs.each do |x|
-        self.class.send :define_method, "dyn_#{x.reference_key}" do
-          get_value(x)
-        end
-        next unless x.type == CbStem::DynInputFile.to_s
-        self.class.send :define_method, "dyn_#{x.reference_key}_url" do
-          x.value_string_url
-        end
-      end
+    def find_input(method_name, *args)
+      key   = method_name.to_s.gsub(/(dyn_|_url)/, '')
+      url   = method_name.to_s.include?('_url')
+      input = dyn_inputs.find_by(reference_key: key)
+      get_value(input, url, *args)
     end
 
-    def get_value(input)
-      case input.type
-      when CbStem::DynInputText.to_s     then input.value_text
-      when CbStem::DynInputNumber.to_s   then input.value_number
-      when CbStem::DynInputSelect.to_s   then dyn_select_value(input)
-      when CbStem::DynInputRelation.to_s then dyn_relation_value(input)
-      else input.value_string
-      end
-    end
-
-    def dyn_select_value(input)
-      value = input.value_array
-      input.field_config['multiple'] ? value : value.first
-    end
-
-    def dyn_relation_value(input)
-      resource_model = input.field_config['relation_type']
-      return unless Object.const_defined? resource_model
-      ids     = input.value_array
-      records = resource_model.constantize.where(ids: ids)
-      input.field_config['multiple'] ? records : records.first
+    def get_value(input, url, *args)
+      return if input.blank?
+      str = %w[value]
+      str.push 'url' if url
+      method_name = str.join('_')
+      input.try(method_name, *args)
     end
 
   end

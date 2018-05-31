@@ -49,6 +49,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'signet'
   s.add_dependency 'legato'
   s.add_dependency 'ancestry'
+  s.add_dependency 'video_info', '~> 2.7.0'
 
   s.add_development_dependency 'devise'
   s.add_development_dependency 'pg', '~> 0.15'

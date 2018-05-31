@@ -12,10 +12,6 @@
     text-align: right;
   }
 
-  li.form-group:last-of-type {
-    @include media-breakpoint-up(lg) { margin-bottom: 0; }
-  }
-
   .input {
     list-style: none;
 

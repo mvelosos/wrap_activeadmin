@@ -8,12 +8,14 @@ module CbStem
   autoload :VERSION, 'cb_stem/version'
 
   mattr_accessor :google_analytics
+  mattr_accessor :video_info
   mattr_accessor :chart_colors
   mattr_accessor :file_preview_versions
   mattr_accessor :enable_media_library
 
   # add default values of more config vars here
   self.google_analytics = {}
+  self.video_info = {}
 
   self.chart_colors = [
     '#56b181',

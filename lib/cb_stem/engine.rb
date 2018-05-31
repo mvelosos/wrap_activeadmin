@@ -27,6 +27,8 @@ require 'countries'
 require 'oauth2'
 require 'legato'
 require 'signet/oauth_2/client'
+# Video Embed
+require 'video_info'
 
 # CbStem
 module CbStem
@@ -109,6 +111,10 @@ module CbStem
       Dir.glob(Rails.root + 'app/admin/concerns/**/*.rb').each do |c|
         require_dependency(c)
       end
+    end
+
+    initializer :load_initializers do
+      require_relative 'initializers/video_info'
     end
 
     private
@@ -225,5 +231,6 @@ module CbStem
     end
 
   end
+  # rubocop:enable Metrics/ClassLength
 
 end

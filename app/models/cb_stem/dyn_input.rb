@@ -6,6 +6,7 @@ module CbStem
       CbStem::DynInputText CbStem::DynInputString
       CbStem::DynInputNumber CbStem::DynInputFile
       CbStem::DynInputRelation CbStem::DynInputSelect
+      CbStem::DynInputVideoEmbed
     ].freeze
 
     acts_as_list scope: :cb_stem_dyn_input_group_id

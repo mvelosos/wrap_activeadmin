@@ -10,6 +10,9 @@ module CbStem
 
     validate :in_whitelist
 
+    alias_attribute :value,     :value_string
+    alias_attribute :value_url, :value_string_url
+
     def extension_whitelist
       false
     end
