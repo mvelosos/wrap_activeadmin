@@ -1,0 +1,11 @@
+class CreateCbStemDynInputGroups < ActiveRecord::Migration[5.1]
+  def change
+    create_table :cb_stem_dyn_input_groups do |t|
+      t.integer :position
+      t.boolean :multiple, default: false
+      t.references :cb_stem_dyn_input_config, index: true
+
+      t.timestamps
+    end
+  end
+end

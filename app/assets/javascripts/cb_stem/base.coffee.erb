@@ -1,9 +1,5 @@
 #= require jquery3
-#= require jquery-ui/widgets/datepicker
-#= require jquery-ui/widgets/dialog
-#= require jquery-ui/widgets/sortable
-#= require jquery-ui/widgets/tabs
-#= require jquery-ui/widget
+#= require jquery-ui
 #= require jquery_ujs
 #= require jquery.minicolors
 #= require popper
@@ -11,6 +7,7 @@
 #= require bootstrap-datepicker
 #= require tinymce
 #= require select2-full
+#= require dropzone
 #= require Chart.min
 #= require_self
 #= require active_admin/lib/checkbox-toggler
@@ -20,22 +17,25 @@
 #= require active_admin/ext/jquery-ui
 #= require active_admin/ext/jquery
 #= require active_admin/initializers/batch_actions
-#= require active_admin/initializers/filters
 #= require_tree ./utilities
 #= require_tree ./lib
 #= require_tree ./initializers
 
 window.ActiveAdmin = {}
 window.ChartColors = <%= CbStem.chart_colors %>
+window.I18n        = <%= I18n.t('cb_stem').to_json %>
 
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()
   $('#flashes').aaFlash()
-  $('#main-menu, #filters_sidebar_section .card-body').aaIsolateScroll()
+  $('#main-menu, #loading-backdrop,
+    #filters_sidebar_section .card-body,
+    #media-upload-preview .card-body').aaIsolateScroll()
   $('.form-control-file').aaFileInput()
   $('.tinymce').aaTinyMCE()
   $('#active_admin_content .dropdown').aaDropdown()
   $('#active_admin_content .tabs').aaTabs()
+  $('#main_content').aaBatchAction()
   $('.select2').aaSelect2()
   $('[data-js="form-trigger"]').aaFormTrigger()
   $('#mobile-menu .dropdown-menu [data-toggle="tooltip"]').tooltip('dispose')
@@ -43,6 +43,9 @@ onDOMReady = ->
   $('[data-js="line-chart"]').aaLineChart()
   $('[data-js="bar-chart"]').aaBarChart()
   $('[data-js="doughnut-chart"]').aaDoughnutChart()
+  $('.admin_cb_stem_media_items, .admin_cb_stem_file_items').aaMediaLibrary()
+  $('[data-js="dropzone"]').aaDropZone()
+  $('body').aaLoading()
 
 $(document)
   .ready(onDOMReady)

@@ -35,7 +35,7 @@ module ActiveAdmin
       end
 
       def title_tag(title)
-        return if title.blank?
+        return '' if title.blank?
         div title.to_s, class: 'title'
       end
 

@@ -1,20 +1,84 @@
 en:
+  admin:
+    cb_stem_media_items:
+      upload_preview:
+        title:     Uploading Files
+        completed: Completed
+      media_items_upload:
+        upload: Upload Files
+        placeholders:
+          drop: Drop files here
+
+    cb_stem_folder_items:
+      create_folder:
+        success: Folder %{name} created
+      update_folder:
+        success: Folder %{name} updated
+      form:
+        new:
+          title:  New Folder
+          submit: Create
+        edit:
+          title:  Edit Folder
+          submit: Update
+        placeholders:
+          name: Folder Name
+
+  active_admin:
+    batch_actions: &common_batch_actions
+      success: Successfully updated %{items} with %{value}
+      failure: Could not update with %{value}
+      media_items:
+        success: Successfully move %{items} to %{value}
+    resource:
+      index:
+        cb_stem:
+          media_items:
+            add_folder:    Add Folder
+            add_file:      Upload File
+            add_to_folder: Move Selection To Folder
+      show:
+        cb_stem:
+          media_items:
+            download: Download
+            upload:   Replace
+
+  activerecord:
+    models:
+      cb_stem/media_item:
+        one:   Item
+        other: Items
+      cb_stem/dyn_input_group:
+        one:   Record
+        other: Records
+    attributes:
+      cb_stem/media_item:
+        ancestry:    Folder
+        items_count: Items
+      cb_stem/dyn_input:
+        value_string: Value
+        value_text:   Value
+        value_number: Value
+        value_array:  Value
+
   cb_stem:
-    activerecord:
-      attributes:
-        date_range_filter:
-          filter_types/today: Today
-          filter_types/this_week: This Week
-          filter_types/this_month: This Month
-          filter_types/this_year: This Year
-          filter_types/custom: Custom Range
+    file_preview:
+      label: 'Current attachment: '
+
+    active_admin_sortable:
+      update:
+        success: Successfully updated %{model}
+
+    menu:
+      media_items:          Media Library
+      media_items/filtered: Filtered Results
 
     date:
       formats:
         default: '%Y/%m/%d'
 
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
-    owner: "Clever Banana Studios Inc"
+    owner:      "Clever Banana Studios Inc"
 
     components:
       select2:
@@ -24,19 +88,19 @@ en:
           submit: Submit
         pageviews:
           traffic: Total Visits
-          gender: Visit By Gender
-          age: Visits By Age
-          device: Visits By Device
+          gender:  Visit By Gender
+          age:     Visits By Age
+          device:  Visits By Device
           country: Visits By Country
         source: Traffic Source
         session:
-          bounce: Bounce Rate
+          bounce:       Bounce Rate
           avg_duration: Avg. Session Duration
         empty_state:
           message: No Results
 
     panels:
-      danger: Danger Zone
+      danger:         Danger Zone
       reset_password: Reset Password
 
     hints:
@@ -49,7 +113,7 @@ en:
       choose_file: Choose File
       placeholders:
         choose_file: No File Selected
-        comments: Your comments...
+        comments:    Your comments...
 
     resource:
       sections: &shared_panels
@@ -59,5 +123,5 @@ en:
           <<: *shared_panels
           security: Security
         inputs:
-          info: Personal Information
+          info:     Personal Information
           password: Reset Password

@@ -21,3 +21,11 @@
   -moz-appearance: $value;
   appearance: $value;
 }
+
+@mixin pointer-events($value) {
+  -moz-pointer-events: $value;
+  -webkit-pointer-events: $value;
+  -o-pointer-events: $value;
+  -ms-pointer-events: $value;
+  pointer-events: $value;
+}

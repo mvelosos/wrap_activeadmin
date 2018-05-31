@@ -12,7 +12,7 @@ class ActiveAdmin.TinyMCE
         'insertdatetime media table contextmenu',
         'table textcolor wordcount hr'
       ]
-      toolbar1: 'undo redo | formatselect | bold italic underline strikethrough superscript subscript | alignleft aligncenter alignright | bullist numlist | link hr table'
+      toolbar1: 'undo redo | removeformat | formatselect | bold italic underline strikethrough superscript subscript | alignleft aligncenter alignright | bullist numlist | link hr table'
       block_formats: 'Heading 1=h1;Heading 2=h2;Heading 3=h3;Heading 4=h4;Heading 5=h5;Heading 6=h6;Paragraph=p'
       preview_styles: true
       style_formats: false
@@ -26,6 +26,9 @@ class ActiveAdmin.TinyMCE
       table_row_advtab: false
       code_dialog_height: 300
       code_dialog_width: 300
+      forced_root_block : 'p'
+      forced_root_block_attrs:
+        'class': 'tinymce-line'
       content_css: [
         "<%= asset_url('cb_stem/public/tinymce') %>"
       ]

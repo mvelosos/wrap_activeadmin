@@ -105,26 +105,29 @@ module ActiveAdmin
           form_builder.input sortable_column, as: :hidden
 
           template.content_tag(:li, class: 'form-group has-many-handle') do
-            template.link_to template.content_tag(:i, '', class: "nc-icon nc-move-05"), "#",
-                             class: 'button btn text-secondary'
+            template.content_tag :div, class: 'handle' do
+              template.render('cb_stem/svgs/sortable_handle.svg')
+            end
           end
         end
       end
 
       def has_many_actions(form_builder, contents)
-        if form_builder.object.new_record?
-          template.concat(
-            template.content_tag(:li, class: 'form-group') do
-              template.link_to I18n.t('active_admin.has_many_remove'), "#",
-                               class: 'button has_many_remove text-secondary'
-            end
-          )
-        elsif allow_destroy?(form_builder.object)
-          form_builder.input(
-            :_destroy, as: :boolean,
-            wrapper_html: { class: 'has_many_delete' },
-            label: I18n.t('active_admin.has_many_delete')
-          )
+        if allow_destroy?(form_builder.object)
+          if form_builder.object.new_record?
+            template.concat(
+              template.content_tag(:li, class: 'form-group') do
+                template.link_to I18n.t('active_admin.has_many_remove'), "#",
+                                 class: 'button has_many_remove text-secondary'
+              end
+            )
+          else
+            form_builder.input(
+              :_destroy, as: :boolean,
+              wrapper_html: { class: 'has_many_delete' },
+              label: I18n.t('active_admin.has_many_delete')
+            )
+          end
         end
 
         contents
@@ -170,18 +173,25 @@ module ActiveAdmin
         html = template.capture{ __getobj__.send(:inputs_for_nested_attributes, opts, &form_block) }
         text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
 
-        template.link_to text, '#', class: 'button has_many_add btn btn-light', data: {
+        template.link_to '#', class: 'button has_many_add mt-3 btn btn-light', data: {
           html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
-        }
+        } do
+          template.content_tag(:i, '', class: "nc-icon nc-simple-add mr-1") + text
+        end
       end
 
       def wrap_div_or_li(html)
+        opts = { class: "has_many_container #{assoc}" }
+        if sortable_column
+          opts.merge!(
+            'data-sortable': sortable_column,
+            'data-sortable-start': sortable_start
+          )
+        end
         template.content_tag(
           already_in_an_inputs_block ? :li : :div,
           html,
-          class: "has_many_container #{assoc}",
-          'data-sortable' => sortable_column,
-          'data-sortable-start' => sortable_start
+          opts
         )
       end
     end

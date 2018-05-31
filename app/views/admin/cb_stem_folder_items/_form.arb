@@ -1,0 +1,32 @@
+persisted = folder.persisted?
+label     = persisted ? 'edit' : 'new'
+url =
+  if persisted
+    update_folder_admin_cb_stem_folder_item_path(folder)
+  else
+    create_folder_admin_cb_stem_folder_items_path
+  end
+
+active_admin_form_for folder,
+                      url: url,
+                      remote: true,
+                      html: { autocomplete: :off } do |f|
+  div class: 'modal-header' do
+    h5 t(".#{label}.title"), class: 'modal-title'
+  end
+
+  div class: 'modal-body' do
+    f.input :name,
+            label: false,
+            placeholder: t('.placeholders.name'),
+            wrapper_html: { class: 'mb-0' },
+            input_html: { autofocus: true }
+    f.input :parent_id,
+            as: :hidden
+  end
+
+  div class: 'modal-footer' do
+    a t('active_admin.cancel'), '#', class: 'btn btn-light', 'data-dismiss': 'modal'
+    f.action :submit, label: t(".#{label}.submit")
+  end
+end

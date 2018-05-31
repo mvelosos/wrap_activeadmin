@@ -1,1 +1,7 @@
 // https://getbootstrap.com/docs/4.0/components/modal/
+.modal-dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100% - 2 * #{$modal-dialog-margin});
+}

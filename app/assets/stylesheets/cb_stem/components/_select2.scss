@@ -114,6 +114,7 @@ input.select2 { display: none; }
   .select2-results__option[aria-selected='true'] {
     color: color-yiq($primary) !important;
     background: $primary !important;
+    i { color: color-yiq($primary) !important; }
   }
 
   .select2-results__option--highlighted[aria-selected] {

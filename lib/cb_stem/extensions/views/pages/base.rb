@@ -29,12 +29,20 @@ module ActiveAdmin
           end
         end
 
+        def loading_backdrop
+          div id: 'loading-backdrop' do
+            div class: 'backdrop'
+            div class: 'lds-ring'
+          end
+        end
+
         def headers
           build_header
           build_flash_messages
         end
 
         def footers
+          loading_backdrop
           # build_float_help
         end
 
@@ -46,13 +54,8 @@ module ActiveAdmin
         end
 
         def build_flash_messages
-          div id: 'flashes' do
-            flash_messages.each do |type, message|
-              div class: "alert #{bs_class_for(type)}" do
-                flash_message(message)
-                flash_action
-              end
-            end
+          div id: 'flash-wrapper' do
+            notification_messages(flash_messages)
           end
         end
 
@@ -62,6 +65,7 @@ module ActiveAdmin
             build_main_content_wrapper
             build_sidebar unless skip_sidebar?
           end
+          build_html_contents unless skip_html_contents?
         end
 
         private
@@ -94,7 +98,7 @@ module ActiveAdmin
         end
 
         def links
-          breadcrumb_config = active_admin_config && active_admin_config.breadcrumb
+          breadcrumb_config = active_admin_config&.breadcrumb
           if breadcrumb_config.is_a?(Proc)
             instance_exec(controller, &active_admin_config.breadcrumb)
           elsif breadcrumb_config.present?
@@ -112,25 +116,25 @@ module ActiveAdmin
           end
         end
 
-        def flash_action
-          div class: 'flash-action' do
-            button(class: 'btn btn-link') { 'Dismiss' }
+        # Extra Section
+        def html_contents_for_action
+          if active_admin_config&.html_contents?
+            active_admin_config.html_contents_for(params[:action], self)
+          else
+            []
           end
         end
 
-        def flash_message(message)
-          div class: 'flash-message' do
-            text_node safe_join([message])
+        def build_html_contents
+          div id: 'html_contents' do
+            html_contents_for_action.collect do |section|
+              html_content(section)
+            end
           end
         end
 
-        def bs_class_for(type)
-          {
-            success: 'alert-success',
-            error: 'alert-danger',
-            alert: 'alert-warning',
-            notice: 'alert-primary'
-          }[type.to_sym] || type.to_s
+        def skip_html_contents?
+          html_contents_for_action.empty? || assigns[:skip_html_contents] == true
         end
 
       end

@@ -2,15 +2,23 @@
 require 'devise'
 require 'active_admin'
 require 'draper'
+require 'ancestry'
+require 'acts_as_list'
 # Components
 require 'bootstrap'
 require 'bootstrap-datepicker-rails'
 require 'jquery-minicolors-rails'
 require 'just-datetime-picker'
 require 'carrierwave'
+require 'carrierwave/video'
+require 'carrierwave/audio'
+require 'streamio-ffmpeg'
 require 'tinymce-rails'
 require 'select2-rails'
+require 'dropzonejs-rails'
 require 'chart-js-rails'
+require 'jquery-rails'
+require 'jquery-ui-rails'
 # Countries
 require 'flag-icons-rails'
 require 'carmen-rails'
@@ -19,45 +27,19 @@ require 'countries'
 require 'oauth2'
 require 'legato'
 require 'signet/oauth_2/client'
+# Video Embed
+require 'video_info'
 
 # CbStem
 module CbStem
-
-  class << self
-
-    mattr_accessor :google_analytics, :chart_colors,
-                   :file_preview_versions
-
-    # add default values of more config vars here
-    self.google_analytics = {}
-
-    self.chart_colors = [
-      '#56b181',
-      '#65B1E3',
-      '#6775de',
-      '#8857a7',
-      '#e9a9e7',
-      '#d16156',
-      '#f09f82',
-      '#ecbf68',
-      '#20c997',
-      '#17a2b8'
-    ]
-
-    self.file_preview_versions = %i[thumb]
-
-  end
-
-  # this function maps the vars from your app into your engine
-  def self.setup
-    yield self
-  end
 
   # Initialize Engine
   # rubocop:disable Metrics/ClassLength
   class Engine < ::Rails::Engine
 
     isolate_namespace CbStem
+
+    config.autoload_paths += Dir[CbStem::Engine.root.join('app', 'uploaders', '*').to_s]
 
     ActiveAdmin.before_load do |app|
       require_relative 'extensions/batch_actions/controller'
@@ -68,7 +50,13 @@ module CbStem
     end
 
     config.to_prepare do
-      Dir.glob(Rails.root + 'app/admin/concerns/cb_stem/**/*_feature*.rb').each do |c|
+      Dir.glob(CbStem::Engine.root + 'app/admin/concerns/cb_stem/**/*_feature*.rb').each do |c|
+        require_dependency(c)
+      end
+    end
+
+    config.to_prepare do
+      Dir.glob(CbStem::Engine.root + 'app/decorators/cb_stem/**/*_decorator*.rb').each do |c|
         require_dependency(c)
       end
     end
@@ -99,6 +87,7 @@ module CbStem
       require_just_datetime_picker
       require_filters
       require_resources
+      require_dsls
       require_components
       require_inputs
       require_views
@@ -107,10 +96,14 @@ module CbStem
       require_others
     end
 
+    initializer 'initialize DSL' do |_app|
+      ::ActiveAdmin::DSL.send(:include, ActiveAdmin::HtmlContents::DSL)
+    end
+
     initializer 'cb_stem.assets.precompile' do |app|
       app.config.assets.precompile += %w[
-        cb_stem/logo.png cb_stem/empty_state.svg
-        cb_stem/default/avatar.png
+        cb_stem/logo.png cb_stem/default/avatar.png
+        cb_stem/default/media.png cb_stem/transparent_bg
       ]
     end
 
@@ -120,11 +113,18 @@ module CbStem
       end
     end
 
+    initializer :load_initializers do
+      require_relative 'initializers/video_info'
+    end
+
     private
 
     def require_others
       require_each(
-        %w[base_controller view_factory form_builder]
+        %w[
+          base_controller view_factory form_builder
+          html_content resource page active_admin_sortable
+        ]
       )
     end
 
@@ -153,7 +153,7 @@ module CbStem
         %w[
           site_title table_for dropdown_menu panel attributes_table
           active_admin_form blank_slate columns scopes tabs
-          cb_stem_component chart
+          cb_stem_component chart html_content notification_messages
         ],
         path: 'views/components'
       )
@@ -168,12 +168,20 @@ module CbStem
 
     def require_resources
       require_each(
-        %w[action_items],
+        %w[action_items html_contents],
         path: 'resource'
       )
     end
 
     def require_view_helpers
+      require_each(
+        %w[
+          base blank_slate sortable notice
+          display tab component menu file
+          dyn_inputable
+        ],
+        path: 'view_helpers'
+      )
       require_each(%w[view_helpers])
     end
 
@@ -201,6 +209,13 @@ module CbStem
       )
     end
 
+    def require_dsls
+      require_each(
+        %w[html_contents],
+        path: 'dsl'
+      )
+    end
+
     def require_inputs
       require_each(
         %w[base/search_method_select date_range_input forms],
@@ -216,5 +231,6 @@ module CbStem
     end
 
   end
+  # rubocop:enable Metrics/ClassLength
 
 end

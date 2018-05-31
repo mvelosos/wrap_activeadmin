@@ -1,0 +1,17 @@
+class CreateCbStemDynInputConfigs < ActiveRecord::Migration[5.1]
+  def change
+    create_table :cb_stem_dyn_input_configs do |t|
+      t.integer :position
+      t.string :name
+      t.string :reference_key
+      t.json :config, default: {}
+      t.boolean :multiple, default: false
+      t.boolean :sortable, default: false
+      t.references :dyn_inputable,
+                   polymorphic: true,
+                   index: { name: 'dyn_inputable_on_cb_input_config_id' }
+
+      t.timestamps
+    end
+  end
+end

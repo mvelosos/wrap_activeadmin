@@ -1,5 +1,9 @@
 // https://getbootstrap.com/docs/4.0/components/buttons/
 .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   &:hover,
   &:active,
   &:focus {

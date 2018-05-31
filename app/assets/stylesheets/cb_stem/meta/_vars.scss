@@ -13,6 +13,7 @@ $thumbnail-size:       36px !default;
 $thumbnail-size-sm:    24px !default;
 $sscript-font-size:    60% !default;
 $logged-out-logo-size: 64px !default;
+$spinner-size:         48px !default;
 
 // Colors
 $backdrop-bg:            transparent !default;
@@ -28,19 +29,21 @@ $header-bg:              $dark !default;
 $card-shadow:            0 0 0 1px rgba($dark, 0.05), 0 1px 3px 0 rgba($dark, 0.15) !default;
 $float-help-shadow:      $card-shadow !default;
 $header-logo-bg:         transparent !default;
-$svg-color:              $primary !default;
+$svg-color:              $text-muted !default;
 $svg-color-adjustment:   33% !default;
 
 // z-index
-$zindex-custom-backdrop: 1040;
 $zindex-aside:           11;
-$zindex-header:          2000;
-$zindex-filter:          1050;
-$zindex-flashes:         2200;
 $zindex-float-help:      30;
-$zindex-select2:         1055;
 $zindex-datepicker:      1100;
+$zindex-custom-backdrop: 1040;
+$zindex-filter:          1050;
+$zindex-select2:         1055;
 $zindex-titlebar:        1080;
+$zindex-header:          2000;
+$zindex-flashes:         2200;
+$zindex-media-upload:    8000;
+$zindex-loading:         9999;
 
 // Breakpoints
 $header-breakpoint: xl;

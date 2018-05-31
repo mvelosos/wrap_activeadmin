@@ -21,7 +21,6 @@ module ActiveAdmin
       private
 
       def blank_slate_icon
-        # image_tag('cb_stem/empty_state.svg', retina: true)
         render 'cb_stem/svgs/empty_state.svg'
       end
 

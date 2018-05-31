@@ -14,6 +14,7 @@ class ActiveAdmin.Select2
       'theme': 'bootstrap'
       'width': '100%'
       'minimumResultsForSearch': Infinity
+      'placeholder': window.I18n.components.select2.placeholder
     }
 
     @options = $.extend defaults, @options

@@ -15,7 +15,12 @@
   .input {
     list-style: none;
 
-    label.control-label { display: block; }
+    &.hidden { display: none; }
+
+    label.control-label {
+      display: block;
+      text-transform: capitalize;
+    }
   }
 
   .fragments-group {
@@ -37,9 +42,17 @@
     }
 
     .has_many_fields {
-      @extend .card;
-      margin-bottom: $spacer;
-      overflow: hidden;
+      &:not(.unwrap) {
+        @extend .card;
+        @extend .border;
+        @include box-shadow(none !important);
+
+        & > ol > .has-many-fields {
+          padding: $card-spacer-y $card-spacer-x;
+        }
+      }
+
+      &:not(:last-of-type) { margin-bottom: $spacer; }
 
       &.ui-sortable-placeholder {
         z-index: 11;
@@ -60,14 +73,24 @@
       .columns > ol,
       & > ol {
         @extend .row;
+
+        & > .has_many_container {
+          @extend .col-md-12;
+        }
       }
 
       & > ol { margin: 0; }
 
+      legend {
+        @extend .h5;
+        @extend .mb-3;
+      }
+
       .has-many-fields {
         @extend .col;
-        padding: $card-spacer-y $card-spacer-x;
+        padding: 0;
       }
+
       .has-many-actions > ol { height: 100%; }
 
       .has-many-handle {
@@ -84,15 +107,16 @@
         border-right: 1px solid $hr-border-color;
         border-radius: 0;
 
-        a {
-          padding-right: $spacer / 4;
-          padding-left: $spacer / 4;
+        .handle {
+          @extend %ui-drag-handle;
         }
       }
 
       .has-many-actions {
         display: flex;
         justify-content: flex-end;
+
+        &:not(:empty) { margin-top: $spacer; }
 
         .form-group:last-child { margin-bottom: 0; }
       }
@@ -111,5 +135,4 @@
       }
     }
   }
-
 }

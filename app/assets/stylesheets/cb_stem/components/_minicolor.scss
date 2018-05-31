@@ -6,9 +6,9 @@
   }
 
   .minicolors-swatch {
+    @extend %color-brick-bg;
     width: $color-brick-size;
     height: $color-brick-size;
-    background: transparent;
     border: 0;
     border-radius: $border-radius;
   }

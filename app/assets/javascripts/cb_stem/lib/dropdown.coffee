@@ -31,5 +31,4 @@ class ActiveAdmin.Dropdown
       $listHolder.data 'open', false
       return
 
-
 $.widget.bridge 'aaDropdown', ActiveAdmin.Dropdown

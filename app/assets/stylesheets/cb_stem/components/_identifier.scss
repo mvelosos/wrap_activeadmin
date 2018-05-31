@@ -1,4 +1,4 @@
-.table-item-identifier {
+%identifier {
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -9,11 +9,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 
-  & + .table-item-identifier { margin-top: $spacer; }
-  &:hover .identifier-text { text-decoration: underline; }
-
   .identifier-text {
     @extend .text-truncate;
     flex: 1;
   }
+}
+
+.table-item-identifier {
+  @extend %identifier;
+  & + .table-item-identifier { margin-top: $spacer; }
 }
