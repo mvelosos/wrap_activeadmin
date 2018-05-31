@@ -75,12 +75,24 @@ module ActiveAdmin
 
         # rubocop:disable all
         def defaults(resource, options = {})
+          item_show(resource, options)
+          item_edit(resource, options)
+          item_destroy(resource, options)
+        end
+
+        def item_show(resource, options = {})
           if controller.action_methods.include?('show') && authorized?(ActiveAdmin::Auth::READ, resource)
             item I18n.t('active_admin.view'), resource_path(resource), class: "view_link #{options[:css_class]}", title: I18n.t('active_admin.view')
           end
+        end
+
+        def item_edit(resource, options = {})
           if controller.action_methods.include?('edit') && authorized?(ActiveAdmin::Auth::UPDATE, resource)
             item I18n.t('active_admin.edit'), edit_resource_path(resource), class: "edit_link #{options[:css_class]}", title: I18n.t('active_admin.edit')
           end
+        end
+
+        def item_destroy(resource, options = {})
           if controller.action_methods.include?('destroy') && authorized?(ActiveAdmin::Auth::DESTROY, resource)
             item I18n.t('active_admin.delete'), resource_path(resource), class: "delete_link #{options[:css_class]}", title: I18n.t('active_admin.delete'),
               method: :delete, data: { confirm:  I18n.t('active_admin.delete_title'), message: I18n.t('active_admin.delete_confirmation') }

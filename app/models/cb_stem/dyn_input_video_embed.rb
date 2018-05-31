@@ -15,6 +15,8 @@ module CbStem
     def find_value
       return if value_string.blank?
       VideoInfo.new(value_string)
+    rescue VideoInfo::UrlError
+      nil
     end
 
   end

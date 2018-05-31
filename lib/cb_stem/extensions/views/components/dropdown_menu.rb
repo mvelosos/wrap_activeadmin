@@ -29,6 +29,12 @@ module ActiveAdmin
         end
       end
 
+      def item_divider
+        within @menu do
+          li class: 'dropdown-divider'
+        end
+      end
+
       def raw_item(item)
         within @menu do
           li item
