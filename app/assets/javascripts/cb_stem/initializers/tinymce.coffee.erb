@@ -26,6 +26,9 @@ class ActiveAdmin.TinyMCE
       table_row_advtab: false
       code_dialog_height: 300
       code_dialog_width: 300
+      forced_root_block : 'p'
+      forced_root_block_attrs:
+        'class': 'tinymce-line'
       content_css: [
         "<%= asset_url('cb_stem/public/tinymce') %>"
       ]
