@@ -118,6 +118,7 @@ module ActiveAdmin
       end
 
       def required_belongs_to?(target)
+        target = target.try(:decorated?) ? target.model : target
         config = active_admin_resource_for(target.class)
         config.belongs_to? && config.belongs_to_config.required?
       end

@@ -17,7 +17,7 @@ module CbStem
 
     def extension_whitelist
       whitelist_method =
-        %i[background extension_whitelist].join('_')
+        [mounted_as, :extension_whitelist].join('_')
       model.try(whitelist_method) ||
         model.try(:extension_whitelist) ||
         default_whitelist

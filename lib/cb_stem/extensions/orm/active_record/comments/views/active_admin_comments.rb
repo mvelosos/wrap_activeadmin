@@ -12,7 +12,7 @@ module ActiveAdmin
         protected
 
         def wrapper_class
-          'activeadmin-comments mb-3 mt-5'
+          'activeadmin-comments my-3'
         end
 
         def heading_class

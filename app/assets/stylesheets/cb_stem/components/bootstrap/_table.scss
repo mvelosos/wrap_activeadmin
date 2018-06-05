@@ -1,9 +1,12 @@
 // https://getbootstrap.com/docs/4.0/content/tables/
 table {
   width: 100%;
+
   .col-actions { text-align: right; }
 
   &.table {
+    margin-bottom: 0;
+
     tbody tr:first-child {
       td,
       th {
