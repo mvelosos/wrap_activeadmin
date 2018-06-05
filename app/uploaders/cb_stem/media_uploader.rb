@@ -28,23 +28,28 @@ module CbStem
     end
 
     def audio?(new_file = self)
-      new_file.content_type&.start_with?('audio')
+      new_file.content_type &&
+        new_file.content_type&.start_with?('audio')
     end
 
     def image?(new_file = self)
-      new_file.content_type&.start_with?('image')
+      new_file.content_type &&
+        new_file.content_type&.start_with?('image')
     end
 
     def file?(new_file = self)
-      new_file.content_type&.start_with?('application')
+      new_file.content_type &&
+        new_file.content_type&.start_with?('application')
     end
 
     def video?(new_file = self)
-      new_file.content_type&.start_with?('video')
+      new_file.content_type &&
+        new_file.content_type&.start_with?('video')
     end
 
     def pdf?(new_file = self)
-      new_file.content_type&.eql?('application/pdf')
+      new_file.content_type &&
+        new_file.content_type&.eql?('application/pdf')
     end
 
     protected

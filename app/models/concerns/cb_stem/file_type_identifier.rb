@@ -6,18 +6,15 @@ module CbStem
 
     included do
       def image?
-        file_type.present? &&
-          file_type.start_with?('image')
+        file_type.start_with?('image')
       end
 
       def video?
-        file_type.present? &&
-          file_type.start_with?('video')
+        file_type.start_with?('video')
       end
 
       def audio?
-        file_type.present? &&
-          file_type.start_with?('audio')
+        file_type.start_with?('audio')
       end
 
       def file?
