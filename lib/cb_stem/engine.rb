@@ -115,6 +115,7 @@ module CbStem
 
     initializer :load_initializers do
       require_relative 'initializers/video_info'
+      require_relative 'callable'
     end
 
     private
