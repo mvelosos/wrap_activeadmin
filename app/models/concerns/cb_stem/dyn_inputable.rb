@@ -62,8 +62,8 @@ module CbStem
       dyn_input_configs.each do |x|
         inputs = x.config
         keys   = inputs.map { |d| d['reference_key'] }
-        dyn_inputs.not_with_keys(keys)&.destroy_all
-        dyn_inputs.find_each(&:save)
+        x.dyn_inputs.not_with_keys(keys)&.destroy_all
+        x.dyn_inputs.find_each(&:save)
       end
     end
 

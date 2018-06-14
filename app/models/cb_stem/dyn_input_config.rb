@@ -12,7 +12,7 @@ module CbStem
 
     acts_as_list scope: :dyn_inputable
 
-    belongs_to :dyn_inputable, polymorphic: true
+    belongs_to :dyn_inputable, polymorphic: true, touch: true
     has_many :dyn_input_groups,
              class_name: 'CbStem::DynInputGroup',
              foreign_key: 'cb_stem_dyn_input_config_id',
