@@ -12,10 +12,12 @@ module CbStem
   mattr_accessor :chart_colors
   mattr_accessor :file_preview_versions
   mattr_accessor :enable_media_library
+  mattr_accessor :file_size
 
   # add default values of more config vars here
   self.google_analytics = {}
   self.video_info = {}
+  self.file_size  = 0..10.megabytes
 
   self.chart_colors = [
     '#56b181',

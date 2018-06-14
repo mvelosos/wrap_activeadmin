@@ -52,6 +52,10 @@ module CbStem
         new_file.content_type&.eql?('application/pdf')
     end
 
+    def size_range
+      CbStem.file_size
+    end
+
     protected
 
     def save_meta_to_model

@@ -7,7 +7,8 @@ module CbStem
     belongs_to :dyn_input_config,
                class_name: 'CbStem::DynInputConfig',
                foreign_key: 'cb_stem_dyn_input_config_id',
-               inverse_of: :dyn_input_groups
+               inverse_of: :dyn_input_groups,
+               touch: true
     has_many :dyn_inputs,
              class_name: 'CbStem::DynInput',
              foreign_key: 'cb_stem_dyn_input_group_id',

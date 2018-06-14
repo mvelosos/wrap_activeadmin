@@ -14,7 +14,8 @@ module CbStem
     belongs_to :dyn_input_group,
                class_name: 'CbStem::DynInputGroup',
                foreign_key: 'cb_stem_dyn_input_group_id',
-               inverse_of: :dyn_inputs
+               inverse_of: :dyn_inputs,
+               touch: true
 
     validates :reference_key, presence: true
     validates :type,          presence: true, inclusion: { in: TYPES }
