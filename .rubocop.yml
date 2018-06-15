@@ -64,15 +64,16 @@ Layout/DotPosition:
 
 Style/OptionHash:
   Enabled: false
-Style/FileName:
-  Exclude:
-    - 'Gemfile'
-    - '.overcommit_gems.rb'
 Style/FrozenStringLiteralComment:
   Enabled: false
   # waiting on https://github.com/rrosenblum/rubocop/commit/0c7f91b0abeb2dad305edfa301366b504bb7b734
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Naming/FileName:
+  Exclude:
+    - 'Gemfile'
+    - '.overcommit_gems.rb'
 
 Bundler/OrderedGems:
   Enabled: false

@@ -1,12 +1,16 @@
-defaults = f.object.try(:dyn_inputable_configs)
+reference_key ||= 'dyn_input_configs'
+defaults        = f.object.try(:dyn_inputable_configs, reference_key: reference_key)
+
 if defaults
   keys    = f.object.dyn_input_configs.map(&:reference_key)
-  configs = f.object.dyn_inputable_configs.reject { |x| keys.include? x[:reference_key] }
+  configs = defaults.reject { |x| keys.include? x[:reference_key] }
+  attrs   = {}
+  attrs["#{reference_key}_attributes"] = configs
   configs &&
-    f.object.assign_attributes(dyn_input_configs_attributes: configs)
+    f.object.assign_attributes(attrs)
 end
 
-f.has_many :dyn_input_configs, new_record: false do |j|
+f.has_many reference_key.to_sym, new_record: false do |j|
   config_scope =
     [
       :cb_stem, :dyn_inputable,

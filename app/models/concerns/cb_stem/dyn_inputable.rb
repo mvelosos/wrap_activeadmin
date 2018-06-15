@@ -19,7 +19,12 @@ module CbStem
                                     allow_destroy: true
     end
 
+    # rubocop:disable Metrics/BlockLength
     class_methods do
+      def define_dyn_configs(*args)
+        args.collect { |k| define_configs_association(k) }
+      end
+
       def human_attribute_name(attribute, default: nil)
         hit = (I18N_WHITELIST & attribute.to_s.split('.'))
         if hit.present?
@@ -29,8 +34,10 @@ module CbStem
         end
       end
 
-      def dyn_inputable_params
-        [dyn_input_configs_attributes: CbStem::DynInputConfig.permitted_params]
+      def dyn_inputable_params(reference_key: 'dyn_input_configs')
+        attrs = {}
+        attrs["#{reference_key}_attributes"] = CbStem::DynInputConfig.permitted_params
+        [attrs]
       end
 
       def refresh_dyn_inputable_configs
@@ -39,13 +46,30 @@ module CbStem
           x.update_dyn_inputs
         end
       end
-    end
 
-    def dyn_inputable_configs
+      def define_configs_association(reference_key)
+        has_many reference_key,
+                 -> { where(reference_key: reference_key.to_s) },
+                 as: :dyn_inputable,
+                 class_name: 'CbStem::DynInputConfig',
+                 inverse_of: :dyn_inputable
+
+        accepts_nested_attributes_for reference_key,
+                                      reject_if: :all_blank,
+                                      allow_destroy: true
+      end
+    end
+    # rubocop:enable Metrics/BlockLength
+
+    def dyn_inputable_configs(reference_key: 'dyn_input_configs')
       path = Rails.root.join('db', 'dyn_inputable', "#{self.class.to_s.underscore}.yml").to_s
       return unless File.exist?(path)
       key = inputable_config_mapping_key && try(inputable_config_mapping_key)
-      load_dyn_input_config(key: key, path: path)
+      if reference_key == 'dyn_input_configs'
+        load_dyn_input_config(key: key, path: path)
+      else
+        load_dyn_input_config(key: key, path: path, reference: reference_key)
+      end
     end
 
     def dyn_collection(reference_key:)
@@ -82,10 +106,11 @@ module CbStem
       nil
     end
 
-    def load_dyn_input_config(key:, path:)
+    def load_dyn_input_config(key:, path:, reference: nil)
       file = YAML.load_file(path)
       file.map(&:deep_symbolize_keys!)
-      key.present? ? file.find { |x| x[:id] == key }&.fetch(:configs, {}) : file
+      configs = key.present? ? file.find { |x| x[:id] == key }&.fetch(:configs, {}) : file
+      reference.present? ? configs.select { |x| x[:reference_key] == reference } : configs
     end
 
   end
