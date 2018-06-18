@@ -72,7 +72,7 @@ module ActiveAdmin
     attr_accessor :block, :name, :options
 
     def priority
-      options[:priority] || 999
+      options[:priority] || 0
     end
 
     def mobile
