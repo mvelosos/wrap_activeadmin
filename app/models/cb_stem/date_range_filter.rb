@@ -7,6 +7,8 @@ module CbStem
 
     include ::CbStem::NonDbModel
 
+    attr_writer :from, :to
+
     validates :filter_type,
               presence: true
     validates :from, :to,

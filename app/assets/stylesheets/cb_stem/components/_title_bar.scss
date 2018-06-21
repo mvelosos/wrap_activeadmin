@@ -50,11 +50,9 @@
   }
 
   .btn {
-    display: inline-flex;
+    display: inline-block;
 
     &.btn-link {
-      padding-right: 0;
-      padding-left: 0;
       color: $titlebar-btn-color;
     }
 
@@ -62,9 +60,8 @@
   }
 
   .action-btns {
-    display: inline-flex;
+    display: inline-block;
     justify-content: flex-end;
-    margin-left: $spacer;
 
     .dropdown-menu {
       right: 0;
@@ -75,11 +72,6 @@
       position: relative;
 
       &:empty { display: none; }
-
-      & + .action_item,
-      & + .dropdown {
-        margin-left: $spacer;
-      }
     }
   }
 
@@ -88,13 +80,6 @@
       margin-left: $spacer / 2;
 
       @include media-breakpoint-down(md) { display: none; }
-    }
-  }
-
-  #mobile-menu {
-    .dropdown-menu a {
-      @extend .dropdown-item;
-      .nc-icon { display: none; }
     }
   }
 }
