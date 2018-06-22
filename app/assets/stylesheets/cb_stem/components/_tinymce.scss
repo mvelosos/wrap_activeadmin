@@ -52,19 +52,17 @@
     @extend .btn;
     @extend .btn-sm;
     @extend .btn-light;
-    display: flex;
     height: 32px;
-    line-height: 32px;
+    line-height: calc(32px - #{$input-btn-padding-y-sm} * 2);
     color: $body-color !important;
     text-shadow: none;
     background: $white !important;
     box-sizing: border-box;
 
     button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: block;
       padding: 0;
+      line-height: calc(32px - #{$input-btn-padding-y-sm} * 2);
     }
 
     * { color: inherit !important; }

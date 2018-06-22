@@ -39,7 +39,9 @@ class ActiveAdmin.TinyMCE
     @_bind()
 
   create: ->
-    @options = $.extend @options, { target: @element, height: @$element.height() }
+    @configs = @$element.data('tinymce-options') || {}
+    @configs = $.extend @configs, { target: @element, height: @$element.height() }
+    @options = $.extend @options, @configs
     tinyMCE.init(@options)
     @
 
