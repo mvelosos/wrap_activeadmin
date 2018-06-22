@@ -15,7 +15,7 @@ module ActiveAdmin
 
         items.each do |action_item|
           mobile_klass = action_item.mobile ? nil : 'd-none d-sm-block'
-          span class: "#{action_item.html_class} #{mobile_klass}" do
+          div class: "#{action_item.html_class} #{mobile_klass}" do
             instance_exec(&action_item.block)
           end
         end

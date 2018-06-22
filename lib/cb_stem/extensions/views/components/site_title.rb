@@ -32,20 +32,25 @@ module ActiveAdmin
 
       def site_link
         return unless site_title_link?
-        a(i('', class: 'nc-icon nc-launch-47'),
-          href: @namespace.site_title_link,
+        a(href: @namespace.site_title_link,
           id: 'site-link', title: I18n.t('active_admin.view_site_link'),
           class: 'btn btn-link',
-          target: '_blank', 'data-toggle': 'tooltip', 'data-placement': 'bottom')
+          target: '_blank') do
+          div(class: 'tooltip-holder', title: I18n.t('active_admin.view_site_link'),
+              'data-toggle': 'tooltip', 'data-placement': 'bottom')
+          i('', class: 'nc-icon nc-launch-47')
+        end
       end
 
       def close_link
         return unless site_title_link?
-        div title: I18n.t('active_admin.header_close'),
-            'data-toggle': 'tooltip', 'data-placement': 'bottom' do
-          a(i('', class: 'nc-icon nc-move-left'),
-            class: 'btn btn-link d-xl-none',
-            target: '_blank', 'data-toggle': 'collapse', 'data-target': '#header')
+        div title: I18n.t('active_admin.header_close') do
+          a(class: 'btn btn-link d-xl-none',
+            target: '_blank', 'data-toggle': 'collapse', 'data-target': '#header') do
+            div(class: 'tooltip-holder', title: I18n.t('active_admin.header_close'),
+                'data-toggle': 'tooltip', 'data-placement': 'bottom')
+            i('', class: 'nc-icon nc-move-left')
+          end
         end
       end
 

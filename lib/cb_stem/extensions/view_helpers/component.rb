@@ -10,12 +10,11 @@ module ViewHelpers
       data          = html_options.delete(:data)  { {} }
       html_options[:class] ||= 'btn-link'
       html_options[:class]   = "btn #{html_options[:class]}".strip.squeeze
-      options =
-        html_options.merge(
-          title: title,
-          data: { toggle: 'tooltip', placement: 'bottom' }.merge(data)
-        )
+      options                = html_options.merge(title: title, data: data)
       link_to url, options do
+        concat content_tag(:span, '', class: 'tooltip-holder',
+                                      title: title,
+                                      data: { toggle: 'tooltip', placement: 'bottom' })
         concat content_tag(:i, '', class: "nc-icon nc-#{icon}") if icon
         concat content_tag(:span, title, class: 'action-text')  if display_title
       end

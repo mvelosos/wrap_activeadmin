@@ -20,12 +20,13 @@ module ActiveAdmin
       end
 
       def build_sidebar_toggle
-        div id: 'sidebar-toggle',
-            class: 'btn btn-link ',
-            'data-toggle': 'tooltip',
-            'data-placement': 'bottom',
-            'data-original-title': I18n.t('active_admin.header_toggle') do
-          a 'data-toggle': 'collapse', 'data-target': '#header' do
+        div id: 'sidebar-toggle', class: 'btn btn-link ' do
+          a 'data-toggle': 'collapse', 'data-target': '#header',
+            title: I18n.t('active_admin.header_toggle') do
+            div(class: 'tooltip-holder',
+                'data-toggle': 'tooltip',
+                'data-placement': 'bottom',
+                'data-original-title': I18n.t('active_admin.header_toggle'))
             i '', class: 'nc-icon nc-menu-34'
           end
         end
@@ -33,12 +34,11 @@ module ActiveAdmin
 
       def build_search_toggle
         title = I18n.t('active_admin.search_model', model: active_admin_config.resource_label).to_s
-        div id: 'search-filter-toggle',
-            class: 'btn btn-link ',
-            'data-toggle': 'tooltip',
-            'data-placement': 'bottom',
-            'data-original-title': title do
-          a 'data-toggle': 'collapse', 'data-target': '#filters' do
+        div id: 'search-filter-toggle', class: 'btn btn-link ' do
+          a title: title, 'data-toggle': 'collapse', 'data-target': '#filters' do
+            div(class: 'tooltip-holder', 'data-toggle': 'tooltip',
+                'data-placement': 'bottom',
+                'data-original-title': title)
             i '', class: 'nc-icon nc-zoom-2'
           end
         end
