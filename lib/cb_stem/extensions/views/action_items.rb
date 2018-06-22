@@ -11,8 +11,16 @@ module ActiveAdmin
       def build(action_items)
         super(id: WRAPPER_ID, class: WRAPPER_CLASS)
 
-        items = action_items
+        btn_items      = action_items.reject(&:dropdown)
+        dropdown_items = action_items.select(&:dropdown)
 
+        build_btns(btn_items)
+        build_dropdown(dropdown_items)
+      end
+
+      private
+
+      def build_btns(items)
         items.each do |action_item|
           mobile_klass = action_item.mobile ? nil : 'd-none d-sm-block'
           div class: "#{action_item.html_class} #{mobile_klass}" do
@@ -21,7 +29,14 @@ module ActiveAdmin
         end
       end
 
-      private
+      def build_dropdown(items)
+        return if items.blank?
+        dropdown_menu '', icon: 'menu-dots' do
+          items.each do |action_item|
+            instance_exec(&action_item.block)
+          end
+        end
+      end
 
       def destroy_action?
         controller.action_methods.include?('destroy') &&

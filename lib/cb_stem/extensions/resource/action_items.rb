@@ -20,21 +20,15 @@ module ActiveAdmin
       end
 
       # Adds the default Destroy link on show
-      # rubocop:disable Metrics/MethodLength
       def add_default_destroy_action_item
-        add_action_item :destroy, only: %i[edit update show] do
+        add_action_item :destroy, dropdown: true, priority: 99, only: %i[edit update show] do
           if destroy_action?
-            dropdown_menu '', icon: 'menu-dots' do
-              item(
-                destroy_btn_title, resource_path(resource),
-                class: 'text-danger', method: :delete,
-                data: { confirm: destroy_title, message: destroy_confirm }
-              )
-            end
+            item(destroy_btn_title, resource_path(resource),
+                 class: 'text-danger', method: :delete,
+                 data: { confirm: destroy_title, message: destroy_confirm })
           end
         end
       end
-      # rubocop:enable Metrics/MethodLength
 
       # Adds the default New link on index
       def add_default_new_action_item
@@ -77,6 +71,10 @@ module ActiveAdmin
 
     def mobile
       options[:mobile].to_s.present? ? options[:mobile] : true
+    end
+
+    def dropdown
+      options[:dropdown].to_s.present? ? options[:dropdown] : false
     end
 
   end
