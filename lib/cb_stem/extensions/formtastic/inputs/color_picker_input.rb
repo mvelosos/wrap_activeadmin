@@ -3,7 +3,7 @@ module Formtastic
   module Inputs
 
     # Custom Color Picker Input
-    class ColorPickerInput < Formtastic::Inputs::StringInput
+    class ColorPickerInput < ::Formtastic::Inputs::StringInput
 
       def html_input_type
         'text'
