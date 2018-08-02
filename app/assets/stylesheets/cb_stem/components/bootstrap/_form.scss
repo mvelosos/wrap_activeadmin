@@ -2,7 +2,7 @@
 %select-input {
   @include appearance(none);
   padding-right: $icon-size + $input-padding-y;
-  background: linear-gradient(to bottom, $input-bg, darken($input-bg, 3%));
+  background: linear-gradient(to bottom, $input-bg, darken($input-bg, 5%));
 
   option {
     &[value=''] { color: $input-placeholder-color; }
@@ -30,7 +30,7 @@
   position: relative;
 
   &:not(.multiple)::after {
-    @extend %nc-icon;
+    @extend %aa-icon;
     position: absolute;
     top: 0;
     right: 0;
@@ -42,7 +42,7 @@
     font-size: $icon-size;
     color: $secondary;
     pointer-events: none;
-    content: $icon-select;
+    content: map-get($system-icons, 'select');
   }
 
   select { @extend %select-input; }

@@ -19,14 +19,14 @@
     color: $white;
     background: $primary;
     border-color: $primary;
-    content: $icon-checkbox-intermediate;
+    content: map-get($system-icons, 'checkbox-intermediate');
   }
 
   input:checked + .checkbox-icon::before {
     color: $white;
     background: $primary;
     border-color: $primary;
-    content: $icon-checkbox-checked;
+    content: map-get($system-icons, 'checkbox-checked');
   }
 
   .checkbox-icon {
@@ -40,7 +40,7 @@
     }
 
     &::before {
-      @extend %nc-icon;
+      @extend %aa-icon;
 
       display: inline-flex;
       align-items: center;

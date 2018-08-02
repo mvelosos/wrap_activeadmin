@@ -7,12 +7,12 @@ table {
   &.table {
     margin-bottom: 0;
 
-    tbody tr:first-child {
-      td,
-      th {
-        border-top: 0;
-      }
-    }
+    // tbody tr:first-child {
+    //   td,
+    //   th {
+    //     border-top: 0;
+    //   }
+    // }
 
     td:empty::after {
       color: $text-muted;
@@ -20,8 +20,8 @@ table {
     }
 
     .table-col {
-      &:first-child { padding-left: $card-spacer-x; }
-      &:last-child { padding-right: $card-spacer-x; }
+      &:first-child { padding-left: $spacer; }
+      &:last-child { padding-right: $spacer; }
     }
 
     &.table-outline {

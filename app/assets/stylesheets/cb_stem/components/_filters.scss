@@ -13,7 +13,7 @@
 
 #filters {
   position: fixed;
-  top: $navbar-height;
+  top: 0;
   right: 0;
   bottom: 0;
   z-index: $zindex-filter;
@@ -25,8 +25,6 @@
   @include transform(translateX(0));
 
   @include media-breakpoint-down(md) {
-    top: 0;
-    z-index: $zindex-titlebar + 10;
     width: 100%;
     max-width: $filter-width;
   }

@@ -12,6 +12,10 @@
   }
 
   &.btn-light {
-    border: 1px solid $hr-border-color;
+    background-color: $light;
+    background-image: linear-gradient(to bottom, $white 0%, $gray-100 100%);
+    border: 1px solid $input-border-color;
   }
+
+  i { line-height: 1; }
 }

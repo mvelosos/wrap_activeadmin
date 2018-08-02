@@ -19,7 +19,7 @@ module ActiveAdmin
         I18n.t('cb_stem.powered_by',
                year: Time.zone.now.year,
                owner: t('cb_stem.owner'),
-               version: "#{CbStem::VERSION} #{CbStem::STAGE}")
+               version: CbStem::VERSION)
       end
 
     end

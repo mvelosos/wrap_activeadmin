@@ -42,6 +42,17 @@ en:
           media_items:
             download: Download
             upload:   Replace
+    devise:
+      shared:
+        minimum_password_length: '%{count} characters minimum'
+        links:
+          actions:
+            register: Sign up today
+            password: Reset now
+            login:    Sign in
+          register: Don't have an account? %{link}
+          password: Forgot your password? %{link}
+          login:    Already have an account? %{link}
 
   activerecord:
     models:

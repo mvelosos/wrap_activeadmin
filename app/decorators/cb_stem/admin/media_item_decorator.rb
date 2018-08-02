@@ -56,7 +56,7 @@ module CbStem
       end
 
       def image_identifier
-        thumbnail(object, 'file', class: 'mr-2', icon: 'single-02') +
+        thumbnail(object, 'file', class: 'mr-2') +
           content_tag(:span, name, class: 'identifier-text')
       end
 

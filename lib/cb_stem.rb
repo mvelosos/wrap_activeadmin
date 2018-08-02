@@ -9,28 +9,14 @@ module CbStem
 
   mattr_accessor :google_analytics
   mattr_accessor :video_info
-  mattr_accessor :chart_colors
   mattr_accessor :file_preview_versions
   mattr_accessor :enable_media_library
   mattr_accessor :file_size
 
   # add default values of more config vars here
   self.google_analytics = {}
-  self.video_info = {}
-  self.file_size  = 0..10.megabytes
-
-  self.chart_colors = [
-    '#56b181',
-    '#65B1E3',
-    '#6775de',
-    '#8857a7',
-    '#e9a9e7',
-    '#d16156',
-    '#f09f82',
-    '#ecbf68',
-    '#20c997',
-    '#17a2b8'
-  ]
+  self.video_info       = {}
+  self.file_size        = 0..10.megabytes
 
   self.file_preview_versions = %i[thumb]
   self.enable_media_library  = false

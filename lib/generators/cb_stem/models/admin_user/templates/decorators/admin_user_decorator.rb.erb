@@ -14,7 +14,6 @@ class Admin::<%= class_name %>Decorator < ApplicationDecorator
 
   def avatar(*args)
     options = args.extract_options!
-    options.reverse_merge!(icon: 'single-02')
     thumbnail(object, 'avatar', options)
   end
 

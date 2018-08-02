@@ -3,9 +3,9 @@ module ViewHelpers
   # ViewHelpers Base
   module Base
 
-    def aa_icon(icon)
+    def aa_icon(icon, prefix: 'aa')
       return if icon.blank?
-      content_tag(:i, '', class: "nc-icon nc-#{icon}")
+      content_tag(:i, '', class: "#{prefix}-icon #{prefix}-#{icon}")
     end
 
     private

@@ -21,7 +21,7 @@ module ActiveAdmin
 
       def flash_action
         div class: 'flash-action' do
-          button(class: 'btn btn-link') { 'Dismiss' }
+          button(class: 'btn btn-link') { aa_icon('close') }
         end
       end
 

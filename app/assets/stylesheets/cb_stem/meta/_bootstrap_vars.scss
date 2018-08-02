@@ -11,14 +11,14 @@
 // // stylelint-disable
 $white:    #fff !default;
 $gray-100: #fcfcfc !default;
-$gray-200: #f7f8f9 !default;
+$gray-200: #FAFAFA !default;
 $gray-300: #E8E8E8 !default;
-$gray-400: #c4cdd5 !default;
-$gray-500: #c9c9c9 !default;
-$gray-600: #8b98a8 !default;
+$gray-400: #cdd0d2 !default;
+$gray-500: #a0a0a0 !default;
+$gray-600: #9c9c9c !default;
 $gray-700: #495057 !default;
-$gray-800: #434240 !default;
-$gray-900: #152b3c !default;
+$gray-800: #4c525a !default;
+$gray-900: #1B2B3B !default;
 $black:    #000 !default;
 //
 // $grays: () !default;
@@ -41,7 +41,7 @@ $pink:    #ff89ad !default;
 $red:     #d16156 !default;
 $orange:  #f09f82 !default;
 $yellow:  #ecbf68 !default;
-$green:   #56b181 !default;
+$green:   #53af8b !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
@@ -59,7 +59,7 @@ $colors: map-merge((
   "cyan":       $cyan,
   "white":      $white,
   "gray":       $gray-600,
-  "gray-dark":  $gray-800
+  "gray-dark":  $gray-900
 ), $colors);
 
 $primary:       $green !default;
@@ -91,14 +91,14 @@ $theme-colors: map-merge((
 $yiq-contrasted-threshold: 175 !default;
 //
 // // Customize the light and dark text colors for use in our YIQ color contrast function.
-// $yiq-text-dark: $gray-900 !default;
-// $yiq-text-light: $white !default;
+$yiq-text-dark: $gray-800 !default;
+$yiq-text-light: $white !default;
 //
 // // Options
 // //
 // // Quickly modify global styling by enabling or disabling optional features.
 //
-$enable-caret:              false !default;
+$enable-caret: false !default;
 // $enable-rounded:            true !default;
 // $enable-shadows:            false !default;
 // $enable-gradients:          false !default;
@@ -120,7 +120,7 @@ $spacers: (
   1: ($spacer * .25),
   2: ($spacer * .5),
   3: $spacer,
-  4: ($spacer * 1.5),
+  4: ($spacer * 2),
   5: ($spacer * 3),
   6: ($spacer * 4)
 ) !default;
@@ -137,8 +137,8 @@ $spacers: (
 // //
 // // Settings for the `<body>` element.
 //
-$body-bg:                   $gray-200 !default;
-$body-color:                $gray-800 !default;
+$body-bg:    $gray-200 !default;
+$body-color: $gray-800 !default;
 //
 // // Links
 // //
@@ -192,7 +192,7 @@ $grid-breakpoints: (
 // // Set the number of columns and specify the width of the gutters.
 //
 // $grid-columns:                12 !default;
-$grid-gutter-width:           2rem !default;
+$grid-gutter-width:           1rem !default;
 //
 // // Components
 // //
@@ -201,7 +201,7 @@ $grid-gutter-width:           2rem !default;
 // $line-height-lg:              1.5 !default;
 // $line-height-sm:              1.5 !default;
 //
-// $border-width:                1px !default;
+$border-width:                1px !default;
 // $border-color:                $gray-200 !default;
 //
 // $border-radius:               .25rem !default;
@@ -236,8 +236,8 @@ $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;
 $font-weight-bold:            500 !default;
 //
-$font-weight-base:            $font-weight-light !default;
-$line-height-base:            1.3 !default;
+$font-weight-base:            $font-weight-normal !default;
+$line-height-base:            1.4 !default;
 //
 $h1-font-size:                $font-size-base * 2.5 !default;
 $h2-font-size:                $font-size-base * 2 !default;
@@ -266,9 +266,9 @@ $display4-size:               $h4-font-size !default;
 // $lead-font-size:              ($font-size-base * 1.25) !default;
 // $lead-font-weight:            300 !default;
 //
-$small-font-size:             80% !default;
+$small-font-size:             84% !default;
 //
-$text-muted:                  $gray-500 !default;
+$text-muted:                  $gray-400 !default;
 //
 // $blockquote-small-color:      $gray-600 !default;
 // $blockquote-font-size:        ($font-size-base * 1.25) !default;
@@ -294,7 +294,7 @@ $hr-border-color:             rgba($black, .1) !default;
 // //
 // // Customizes the `.table` component with basic values, each used across all table variations.
 //
-// $table-cell-padding:          .75rem !default;
+$table-cell-padding:          .5rem !default;
 // $table-cell-padding-sm:       .3rem !default;
 //
 // $table-bg:                    transparent !default;
@@ -321,7 +321,7 @@ $hr-border-color:             rgba($black, .1) !default;
 //
 $input-btn-padding-y:         .5rem !default;
 // $input-btn-padding-x:         .75rem !default;
-// $input-btn-line-height:       $line-height-base !default;
+$input-btn-line-height:       $line-height-base !default;
 //
 // $input-btn-focus-width:       .2rem !default;
 // $input-btn-focus-color:       rgba(theme-color("primary"), .25) !default;
@@ -335,7 +335,7 @@ $input-btn-padding-y:         .5rem !default;
 // $input-btn-padding-x-lg:      1rem !default;
 // $input-btn-line-height-lg:    $line-height-lg !default;
 //
-// $input-btn-border-width:      $border-width !default;
+$input-btn-border-width:      $border-width !default;
 //
 //
 // // Buttons
@@ -356,7 +356,7 @@ $input-btn-padding-y:         .5rem !default;
 //
 // $btn-border-width:            $input-btn-border-width !default;
 //
-// $btn-font-weight:             $font-weight-normal !default;
+$btn-font-weight:             $font-weight-bold !default;
 // $btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
 // $btn-focus-width:             $input-btn-focus-width !default;
 // $btn-focus-box-shadow:        $input-btn-focus-box-shadow !default;
@@ -389,12 +389,12 @@ $input-btn-padding-y:         .5rem !default;
 // $input-padding-x-lg:                    $input-btn-padding-x-lg !default;
 // $input-line-height-lg:                  $input-btn-line-height-lg !default;
 //
-// $input-bg:                              $white !default;
+$input-bg:                              $gray-100 !default;
 // $input-disabled-bg:                     $gray-200 !default;
 //
 // $input-color:                           $gray-700 !default;
 // $input-border-color:                    $gray-400 !default;
-// $input-border-width:                    $input-btn-border-width !default;
+$input-border-width:                    $input-btn-border-width !default;
 // $input-box-shadow:                      inset 0 1px 1px rgba($black, .075) !default;
 //
 // $input-border-radius:                   $border-radius !default;
@@ -408,11 +408,11 @@ $input-focus-border-color:              $primary !default;
 // $input-focus-box-shadow:                $input-btn-focus-box-shadow !default;
 //
 $input-placeholder-color:               $gray-400 !default;
-//
-// $input-height-border:                   $input-btn-border-width * 2 !default;
-//
-// $input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
-// $input-height:                          calc(#{$input-height-inner} + #{$input-height-border}) !default;
+
+$input-height-border:                   $input-btn-border-width * 2 !default;
+
+$input-height-inner:                    ($font-size-base * $input-btn-line-height) + ($input-btn-padding-y * 2) !default;
+$input-height:                          calc(#{$input-height-inner} + #{$input-height-border}) !default;
 //
 // $input-height-inner-sm:                 ($font-size-sm * $input-btn-line-height-sm) + ($input-btn-padding-y-sm * 2) !default;
 // $input-height-sm:                       calc(#{$input-height-inner-sm} + #{$input-height-border}) !default;
@@ -431,7 +431,7 @@ $input-placeholder-color:               $gray-400 !default;
 // $form-check-inline-margin-x:            .75rem !default;
 // $form-check-inline-input-margin-x:      .3125rem !default;
 //
-$form-group-margin-bottom:              1.5rem !default;
+$form-group-margin-bottom:              0.75rem !default;
 //
 // $input-group-addon-color:               $input-color !default;
 // $input-group-addon-bg:                  $gray-200 !default;
@@ -441,7 +441,7 @@ $form-group-margin-bottom:              1.5rem !default;
 // $custom-control-spacer-x:               1rem !default;
 //
 // $custom-control-indicator-size:         1rem !default;
-// $custom-control-indicator-bg:           $gray-300 !default;
+$custom-control-indicator-bg:           $gray-100 !default;
 // $custom-control-indicator-bg-size:      50% 50% !default;
 // $custom-control-indicator-box-shadow:   inset 0 .25rem .25rem rgba($black, .1) !default;
 //
@@ -651,7 +651,7 @@ $card-spacer-y:                     1.25rem !default;
 // $card-spacer-x:                     1.25rem !default;
 // $card-border-width:                 $border-width !default;
 // $card-border-radius:                $border-radius !default;
-$card-border-color:                 transparent !default;
+$card-border-color:                 rgba($dark, 0.1) !default;
 // $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width}) !default;
 $card-cap-bg:                       transparent !default;
 // $card-bg:                           $white !default;
@@ -707,10 +707,10 @@ $tooltip-bg:                  $gray-900 !default;
 //
 // // Badges
 //
-// $badge-font-size:                   75% !default;
+$badge-font-size:                   80% !default;
 // $badge-font-weight:                 $font-weight-bold !default;
-// $badge-padding-y:                   .25em !default;
-// $badge-padding-x:                   .4em !default;
+$badge-padding-y:                   .33em !default;
+$badge-padding-x:                   .5em !default;
 // $badge-border-radius:               $border-radius !default;
 //
 // $badge-pill-padding-x:              .6em !default;
@@ -732,8 +732,8 @@ $tooltip-bg:                  $gray-900 !default;
 // $modal-content-bg:               $white !default;
 // $modal-content-border-color:     rgba($black, .2) !default;
 // $modal-content-border-width:     $border-width !default;
-$modal-content-box-shadow-xs:    0 0 8px rgba(0, 0, 0, 0.3) !default;
-$modal-content-box-shadow-sm-up: 0 0 8px rgba(0, 0, 0, 0.3) !default;
+$modal-content-box-shadow-xs:    0 0 8px rgba($dark, 0.1) !default;
+$modal-content-box-shadow-sm-up: 0 0 8px rgba($dark, 0.1) !default;
 //
 // $modal-backdrop-bg:           $black !default;
 // $modal-backdrop-opacity:      .5 !default;
@@ -781,7 +781,7 @@ $modal-content-box-shadow-sm-up: 0 0 8px rgba(0, 0, 0, 0.3) !default;
 // $list-group-border-width:           1px !default;
 // $list-group-border-radius:          $border-radius !default;
 //
-// $list-group-item-padding-y:         .75rem !default;
+$list-group-item-padding-y:         .5rem !default;
 // $list-group-item-padding-x:         1.25rem !default;
 //
 // $list-group-hover-bg:               $gray-100 !default;

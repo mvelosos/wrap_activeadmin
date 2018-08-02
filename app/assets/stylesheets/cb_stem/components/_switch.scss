@@ -1,17 +1,17 @@
 // Switches for Bootstrap 4.
-$switch-height: calc(#{$input-height} * 0.8) !default;
-$switch-height-sm: calc(#{$input-height-sm} * 0.8) !default;
-$switch-height-lg: calc(#{$input-height-lg} * 0.8) !default;
-$switch-border-radius: $switch-height !default;
-$switch-bg: $custom-control-indicator-bg !default;
-$switch-checked-bg: map-get($theme-colors, 'primary') !default;
-$switch-disabled-bg: $custom-control-indicator-disabled-bg !default;
-$switch-disabled-color: $custom-control-label-disabled-color !default;
-$switch-thumb-bg: $white !default;
+$switch-height:              calc(#{$input-height} * 0.8) !default;
+$switch-height-sm:           calc(#{$input-height-sm} * 0.8) !default;
+$switch-height-lg:           calc(#{$input-height-lg} * 0.8) !default;
+$switch-border-radius:       $switch-height !default;
+$switch-border:              1px solid $input-border-color !default;
+$switch-bg:                  $custom-control-indicator-bg !default;
+$switch-checked-bg:          map-get($theme-colors, 'primary') !default;
+$switch-disabled-bg:         $custom-control-indicator-disabled-bg !default;
+$switch-disabled-color:      $custom-control-label-disabled-color !default;
+$switch-thumb-bg:            $white !default;
 $switch-thumb-border-radius: 50% !default;
-$switch-thumb-padding: 2px !default;
-$switch-focus-box-shadow: 0 0 0 $input-btn-focus-width rgba(map-get($theme-colors, 'primary'), 0.25) !default;
-$switch-transition: 0.2s all !default;
+$switch-focus-box-shadow:    0 0 0 $input-btn-focus-width rgba(map-get($theme-colors, 'primary'), 0.25) !default;
+$switch-transition:          0.2s all !default;
 
 .form-switch {
   position: relative;
@@ -60,18 +60,21 @@ $switch-transition: 0.2s all !default;
       &::before {
         right: 0;
         background-color: $switch-bg;
+        border: $switch-border;
         border-radius: $switch-border-radius;
         transition: $switch-transition;
       }
 
       &::after {
-        top: $switch-thumb-padding;
-        left: $switch-thumb-padding;
-        width: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
-        height: calc(#{$switch-height} - calc(#{$switch-thumb-padding} * 2));
+        top: 0;
+        left: 0;
+        width: $switch-height;
+        height: $switch-height;
         background-color: $switch-thumb-bg;
+        border: $switch-border;
         border-radius: $switch-thumb-border-radius;
         transition: $switch-transition;
+        @include box-shadow(0 0 0 1px rgba($dark, 0.05), 0 0 8px rgba($dark, 0.05));
       }
     }
 

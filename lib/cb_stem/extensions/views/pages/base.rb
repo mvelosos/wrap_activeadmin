@@ -5,7 +5,6 @@ module ActiveAdmin
     module Pages
 
       # Overwriting Header - activeadmin/lib/active_admin/views/pages/base.rb
-      # rubocop:disable Metrics/ClassLength
       class Base < Arbre::HTML::Document
 
         WRAPPER_CLASS = 'container-fluid'.freeze
@@ -43,14 +42,6 @@ module ActiveAdmin
 
         def footers
           loading_backdrop
-          # build_float_help
-        end
-
-        def build_float_help
-          div id: 'float-help' do
-            i class: 'nc-icon'
-            span 'Need Help?'
-          end
         end
 
         def build_flash_messages
@@ -75,41 +66,9 @@ module ActiveAdmin
             assigns[:skip_sidebar] == true
         end
 
-        def valid_links
-          return if links.blank?
-          links.delete_if { |x| x =~ %r{<a\ href="\/admin">Admin<\/a>} }
-        end
-
-        def breadcrumbs?
-          valid_links.present? && links.is_a?(::Array)
-        end
-
-        def build_breadcrumb(separator = '/')
-          return unless breadcrumbs?
-          ul id: 'breadcrumbs', class: 'list-inline mb-3' do
-            valid_links.each do |link|
-              li class: 'list-inline-item mr-1 my-1' do
-                text_node(link)
-                span(separator, class: 'breadcrumb_sep ml-1 text-muted')
-              end
-            end
-            li(text_node(title), class: 'list-inline-item mr-1')
-          end
-        end
-
-        def links
-          breadcrumb_config = active_admin_config&.breadcrumb
-          if breadcrumb_config.is_a?(Proc)
-            instance_exec(controller, &active_admin_config.breadcrumb)
-          elsif breadcrumb_config.present?
-            breadcrumb_links
-          end
-        end
-
         def build_main_content_wrapper
           div id: 'main_content_wrapper' do
             div id: 'main_content' do
-              build_breadcrumb
               main_content
             end
             build_footer

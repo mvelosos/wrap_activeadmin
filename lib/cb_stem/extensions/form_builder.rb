@@ -176,7 +176,7 @@ module ActiveAdmin
         template.link_to '#', class: 'button has_many_add mt-3 btn btn-light', data: {
           html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
         } do
-          template.content_tag(:i, '', class: "nc-icon nc-simple-add mr-1") + text
+          template.content_tag(:i, '', class: "aa-icon aa-add mr-1") + text
         end
       end
 

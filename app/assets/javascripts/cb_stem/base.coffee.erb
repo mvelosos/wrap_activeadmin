@@ -22,8 +22,19 @@
 #= require_tree ./initializers
 
 window.ActiveAdmin = {}
-window.ChartColors = <%= CbStem.chart_colors %>
-window.I18n        = <%= I18n.t('cb_stem').to_json %>
+window.ChartColors = [
+  '#56b181',
+  '#65B1E3',
+  '#6775de',
+  '#8857a7',
+  '#e9a9e7',
+  '#d16156',
+  '#f09f82',
+  '#ecbf68',
+  '#20c997',
+  '#17a2b8'
+]
+window.I18n = <%= I18n.t('cb_stem').to_json %>
 
 onDOMReady = ->
   $('[data-toggle="tooltip"]').tooltip()

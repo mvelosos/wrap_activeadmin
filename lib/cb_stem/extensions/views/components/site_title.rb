@@ -38,18 +38,17 @@ module ActiveAdmin
           target: '_blank') do
           div(class: 'tooltip-holder', title: I18n.t('active_admin.view_site_link'),
               'data-toggle': 'tooltip', 'data-placement': 'bottom')
-          i('', class: 'nc-icon nc-launch-47')
+          i('', class: 'aa-icon aa-launch-site')
         end
       end
 
       def close_link
-        return unless site_title_link?
         div title: I18n.t('active_admin.header_close') do
           a(class: 'btn btn-link d-xl-none',
             target: '_blank', 'data-toggle': 'collapse', 'data-target': '#header') do
             div(class: 'tooltip-holder', title: I18n.t('active_admin.header_close'),
                 'data-toggle': 'tooltip', 'data-placement': 'bottom')
-            i('', class: 'nc-icon nc-move-left')
+            i('', class: 'aa-icon aa-close-sidebar')
           end
         end
       end

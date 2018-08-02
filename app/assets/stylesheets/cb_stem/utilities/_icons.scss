@@ -1,0 +1,32 @@
+@font-face {
+  font-family: $icon-font;
+  font-style: normal;
+  font-weight: normal;
+  src: font-url('#{$icon-path}/#{$icon-font}.eot') format('embedded-opentype'),
+  font-url('#{$icon-path}/#{$icon-font}.woff2') format('woff2'),
+  font-url('#{$icon-path}/#{$icon-font}.woff') format('woff'),
+  font-url('#{$icon-path}/#{$icon-font}.ttf') format('truetype'),
+  font-url('#{$icon-path}/#{$icon-font}.svg') format('svg');
+}
+
+%aa-icon {
+  display: inline-block;
+  font-family: $icon-font;
+  font-style: normal;
+  text-decoration: none;
+  text-transform: none;
+  vertical-align: middle;
+  // sass-lint:disable no-vendor-prefixes
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.aa-icon {
+  @extend %aa-icon;
+  font-size: $icon-size;
+
+  @each $key, $value in $system-icons {
+    &.aa-#{$key}::after { content: $value; }
+  }
+}
+

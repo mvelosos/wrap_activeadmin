@@ -14,7 +14,8 @@
   width: $header-width;
   height: 100%;
   color: $white;
-  background: $header-bg;
+  background-color: $header-bg;
+  background-image: $header-gradient;
   border-right: $hr-border-width solid $hr-border-color;
   @include transition(transform 0.2s linear);
 
@@ -81,7 +82,7 @@
         justify-content: center;
         width: 100%;
         height: 100%;
-        background: $warning;
+        background: $header-logo-bg;
       }
     }
 
@@ -106,14 +107,17 @@
   .list-group {
     margin-bottom: $spacer / 2;
 
-    .active > a,
-    .active > a:hover {
-      color: $primary;
+    .active {
+      & > a,
+      & > a:hover {
+        color: $primary;
+      }
     }
 
     a {
       display: flex;
       align-items: center;
+      min-height: 40px;
       padding: $list-group-item-padding-y $list-group-item-padding-x;
       color: rgba($white, 0.5);
       text-decoration: none;
@@ -130,13 +134,13 @@
       }
 
       &::after {
-        @extend %nc-icon;
+        @extend %aa-icon;
         margin-left: $spacer / 2;
-        content: $icon-arrow-right;
+        content: map-get($system-icons, 'menu-anchor');
       }
 
       &.with-sub-menu::after {
-        content: $icon-submenu;
+        content: map-get($system-icons, 'submenu');
       }
 
       span.menu-text { flex: 1; }
@@ -149,6 +153,7 @@
 
     .list-group-item {
       padding: 0;
+      overflow: hidden;
       background: rgba($white, 0.05);
       border: 0;
     }

@@ -36,15 +36,15 @@
   .mce-statusbar { border-top: 0; }
 
   .mce-caret {
-    @extend .nc-icon;
+    @extend .aa-icon;
     position: static;
     width: auto;
     height: auto;
     margin: 0 !important;
-    margin-left: $spacer / 2 !important;
+    font-size: $icon-size-sm;
     border: 0;
 
-    &::before { content: $icon-select; }
+    &::after { content: map-get($system-icons, 'select'); }
   }
 
   .mce-text,
@@ -58,6 +58,8 @@
     text-shadow: none;
     background: $white !important;
     box-sizing: border-box;
+
+    i { vertical-align: text-bottom; }
 
     button {
       display: block;

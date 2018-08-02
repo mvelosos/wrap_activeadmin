@@ -15,7 +15,7 @@ module ViewHelpers
         concat content_tag(:span, '', class: 'tooltip-holder',
                                       title: title,
                                       data: { toggle: 'tooltip', placement: 'bottom' })
-        concat content_tag(:i, '', class: "nc-icon nc-#{icon}") if icon
+        concat content_tag(:i, '', class: "aa-icon aa-#{icon}") if icon
         concat content_tag(:span, title, class: 'action-text')  if display_title
       end
     end
@@ -76,7 +76,7 @@ module ViewHelpers
       return unless image
       options = args.extract_options!
       klass   = options.delete(:class)
-      icon    = options.delete(:icon) { 'image-2' }
+      icon    = options.delete(:icon) { 'image' }
       size    = options.delete(:size) { nil }
       url_method = options.delete(:url_method) { '_url' }
       content_tag :div, class: "thumbnail #{klass}" do
