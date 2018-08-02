@@ -8,3 +8,8 @@ sup {
 
 sub { bottom: 0; }
 * { outline: none; }
+
+abbr[title],
+abbr[data-original-title] {
+  text-decoration: none;
+}

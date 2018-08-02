@@ -46,7 +46,7 @@
       background: $primary;
 
       th { padding: $spacer / 2 0; }
-      th:hover { background: darken($primary, 10%); }
+      th:hover { background: darken($secondary, 10%); }
     }
 
     th.dow {
@@ -55,7 +55,7 @@
       text-transform: uppercase;
     }
     tr th { border-radius: 0; }
-    .nc-icon { line-height: $icon-size; }
+    .aa-icon { line-height: $icon-size; }
   }
 
   tbody tr td {
@@ -89,8 +89,8 @@
       &.today:focus,
       &.today:focus:active {
         &::before {
-          color: color-yiq($body-bg);
-          background: $body-bg;
+          color: color-yiq($gray-300) !important;
+          background: $gray-300 !important;
         }
       }
 

@@ -23,7 +23,7 @@ input.select2 { display: none; }
     border: $input-border-width solid $input-border-color;
 
     &::after {
-      @extend %nc-icon;
+      @extend %aa-icon;
       position: absolute;
       top: 0;
       right: 0;
@@ -36,7 +36,7 @@ input.select2 { display: none; }
       font-size: $icon-size;
       color: $secondary;
       pointer-events: none;
-      content: $icon-select;
+      content: map-get($system-icons, 'select');
     }
 
     .select2-selection__placeholder {
@@ -61,10 +61,11 @@ input.select2 { display: none; }
     background: $input-bg !important;
 
     .select2-selection__choice {
+      @extend .badge;
+      @extend .badge-secondary;
       display: inline-flex;
       flex-direction: row-reverse;
-      color: $secondary;
-      background: $light;
+      border: 0;
 
       .select2-selection__choice__remove {
         margin-right: 0;
@@ -92,7 +93,7 @@ input.select2 { display: none; }
   .select2-dropdown {
     font-size: $font-size-base;
     background-color: $input-focus-bg;
-    border: $dropdown-border-width solid $primary !important;
+    border: $dropdown-border-width solid $dropdown-border-color !important;
     border-radius: $dropdown-border-radius;
     @include box-shadow($dropdown-box-shadow);
 

@@ -107,7 +107,7 @@ module ActiveAdmin
         end
 
         def comment_avatar(comment)
-          thumbnail(comment.author, :avatar, class: 'mr-2', icon: 'single-02')
+          thumbnail(comment.author, :avatar, class: 'mr-2')
         end
 
         def comment_author(comment)

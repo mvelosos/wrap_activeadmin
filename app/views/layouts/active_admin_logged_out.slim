@@ -15,8 +15,8 @@ html
     = csrf_meta_tag
   body[class="active_admin logged_out #{controller.action_name}"]
     .container-fluid
-      #content_wrapper.row.align-items-center.justify-content-md-center
-        .col-md-8.col-lg-4
+      #content_wrapper.row.align-items-center.justify-content-md-center.px-2
+        .col-md-6.col-lg-5.col-xl-4
           .text-center.mb-3
             .logo
               - image = ActiveAdmin.application.site_title_image.presence || 'cb_stem/logo.png'
@@ -25,7 +25,10 @@ html
                 retina: true
           #active_admin_content
             = yield :title
-            = flashes_html
-            = yield
-      #footer
-        = yield :footer
+            .card.mb-3
+              .card-body.pb-1
+                = flashes_html
+                = yield
+            = render 'active_admin/devise/shared/links'
+      #footer.text-center.text-muted.p-2.small
+        = I18n.t('cb_stem.powered_by', year: Time.zone.now.year, owner: t('cb_stem.owner'), version: CbStem::VERSION)

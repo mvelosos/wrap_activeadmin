@@ -2,8 +2,7 @@
   z-index: $zindex-titlebar;
   height: $navbar-height;
   color: color-yiq($titlebar-bg);
-  background: linear-gradient(to bottom left, #{$titlebar-bg} , darken($titlebar-bg, $titlebar-bg-adjustment));
-  background-color: $titlebar-bg;
+  background: $titlebar-bg;
   @include box-shadow($titlebar-shadow);
 
   @include media-breakpoint-up($header-breakpoint) {
@@ -13,15 +12,6 @@
   @include media-breakpoint-up(lg) {
     padding-right: 1.25 * $spacer !important;
     padding-left: 1.25 * $spacer !important;
-  }
-
-  #breadcrumbs {
-    .dropdown-item a::before {
-      @extend %nc-icon;
-      margin-right: $spacer / 2;
-      vertical-align: middle;
-      content: $icon-breadcrumb-link;
-    }
   }
 
   #titlebar-content { flex: 1; }
@@ -45,7 +35,7 @@
       flex-direction: row;
       width: 100%;
 
-      i.nc-icon { margin-left: $spacer / 2; }
+      i.aa-icon { margin-left: $spacer / 2; }
     }
   }
 
@@ -56,7 +46,7 @@
       color: $titlebar-btn-color;
     }
 
-    i.nc-icon { font-size: $icon-size; }
+    i.aa-icon { font-size: $icon-size; }
   }
 
   .action-btns {
@@ -75,8 +65,10 @@
     }
   }
 
+  .breadcrumb_sep { font-weight: $font-weight-normal; }
+
   .action_item {
-    .nc-icon + .action-text {
+    .aa-icon + .action-text {
       margin-left: $spacer / 2;
 
       @include media-breakpoint-down(md) { display: none; }

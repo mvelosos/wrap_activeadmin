@@ -1,18 +1,18 @@
 @mixin index-as-table {
   table.index_table {
     border-collapse: separate;
-    border-spacing: 0 $spacer / 4;
+    border-spacing: 0 $spacer / 3;
 
     .col-selectable {
       width: $col-selectable-width;
       max-width: $col-selectable-width;
     }
 
-    i.nc-icon { font-size: $icon-size; }
+    i.aa-icon { font-size: $icon-size; }
 
     th,
     td {
-      padding: $spacer / 2 $table-cell-padding;
+      padding: $spacer / 4 $table-cell-padding;
       vertical-align: middle !important;
     }
 
@@ -30,15 +30,15 @@
           }
         }
 
-        &.sorted-desc::after { content: $icon-sort-desc; }
-        &.sorted-asc::after { content: $icon-sort-asc; }
+        &.sorted-desc::after { content: map-get($system-icons, 'sort-desc');}
+        &.sorted-asc::after { content: map-get($system-icons, 'sort-asc');}
 
         &::after {
-          @extend %nc-icon;
+          @extend %aa-icon;
           margin-left: $spacer / 2;
           font-weight: 700;
           color: $text-muted;
-          content: $icon-sortable;
+          content: map-get($system-icons, 'sortable');
         }
       }
 
@@ -47,12 +47,29 @@
 
     td {
       border: 0;
+      border-color: $card-border-color;
+      border-style: solid;
+      border-width: 1px 0 !important;
+
+      &:first-child {
+        border-left-width: 1px !important;
+        border-bottom-left-radius: $card-border-radius;
+        border-top-left-radius: $card-border-radius;
+      }
+
+      &:last-child  {
+        border-right-width: 1px !important;
+        border-top-right-radius: $card-border-radius;
+        border-bottom-right-radius: $card-border-radius;
+      }
     }
 
     tbody {
       tr {
         height: 56px;
         background: $white;
+        @include box-shadow($card-shadow);
+
         &.selected { background: theme-color-level('primary', $alert-bg-level); }
 
         &.ui-sortable-helper {

@@ -16,7 +16,7 @@ module ActiveAdmin
         # Easily set options for the button or menu
         button_options = options.delete(:button) || {}
         menu_options   = options.delete(:menu) || {}
-        @icon   = options.delete(:icon) || 'minimal-down'
+        @icon   = options.delete(:icon) || 'dropdown'
         @button = build_button(name, button_options)
         @menu   = build_menu(menu_options)
         klass   = [WRAPPER_CLASS, options[:class]].reject(&:blank?).join(' ')
@@ -60,7 +60,7 @@ module ActiveAdmin
 
         a button_options do
           text_node(name)
-          i('', class: "nc-icon nc-#{@icon}")
+          i('', class: "aa-icon aa-#{@icon}")
         end
       end
 

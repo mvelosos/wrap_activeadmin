@@ -15,6 +15,33 @@ module ActiveAdmin
 
       private
 
+      def links
+        breadcrumb_config = active_admin_config&.breadcrumb
+        if breadcrumb_config.is_a?(Proc)
+          instance_exec(controller, &active_admin_config.breadcrumb)
+        elsif breadcrumb_config.present?
+          breadcrumb_links
+        end
+      end
+
+      def valid_links
+        return if links.blank?
+        links.delete_if { |x| x =~ %r{<a\ href="\/admin">Admin<\/a>} }
+      end
+
+      def build_breadcrumb(separator = '/')
+        klass = 'list-inline-item mr-1 my-1'
+        ul id: 'breadcrumbs', class: 'list-inline mb-0 text-truncate' do
+          valid_links&.each do |link|
+            li class: klass do
+              text_node(link)
+              span(separator, class: 'breadcrumb_sep ml-1 text-muted')
+            end
+          end
+          li(text_node(@title), class: klass)
+        end
+      end
+
       def build_search_bar
         content_tag :input, class: 'form-control'
       end
@@ -27,7 +54,7 @@ module ActiveAdmin
                 'data-toggle': 'tooltip',
                 'data-placement': 'bottom',
                 'data-original-title': I18n.t('active_admin.header_toggle'))
-            i '', class: 'nc-icon nc-menu-34'
+            i '', class: 'aa-icon aa-menu'
           end
         end
       end
@@ -39,18 +66,18 @@ module ActiveAdmin
             div(class: 'tooltip-holder', 'data-toggle': 'tooltip',
                 'data-placement': 'bottom',
                 'data-original-title': title)
-            i '', class: 'nc-icon nc-zoom-2'
+            i '', class: 'aa-icon aa-search'
           end
         end
       end
 
       # rubocop:disable Metrics/MethodLength
       def build_titlebar
-        div id: 'titlebar-content', class: 'row d-flex justify-content-between' do
+        div id: 'titlebar-content', class: 'row d-flex justify-content-between align-items-center' do
           div class: 'col-4 d-xl-none' do
             build_sidebar_toggle
           end
-          div class: 'col-4 text-center text-xl-left site-title' do
+          div class: 'col-4 col-xl-8 text-center text-xl-left' do
             build_titlebar_left
           end
           div class: 'col-4' do
@@ -60,8 +87,8 @@ module ActiveAdmin
       end
 
       def build_titlebar_left
-        div id: 'titlebar_left', class: 'navbar-brand mr-0 text-truncate' do
-          text_node @title
+        div id: 'titlebar_left', class: 'navbar-brand mr-0 text-truncate d-block' do
+          build_breadcrumb
         end
       end
 

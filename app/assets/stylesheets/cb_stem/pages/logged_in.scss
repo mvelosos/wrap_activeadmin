@@ -12,6 +12,13 @@ body.logged_in {
   @include index-as-table;
   @include formastic;
 
+
+  #footer {
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+
   #wrapper {
     display: flex;
     flex: 1;
@@ -32,12 +39,12 @@ body.logged_in {
       flex-direction: column;
       justify-content: space-between;
       width: 100%;
-      padding: $spacer * 1.25 0;
+      padding: $spacer * 2 0;
     }
 
     #main_content {
       @extend .container;
-      padding: 0 1.25 * $spacer;
+      padding: 0 2 * $spacer;
     }
 
     @include media-breakpoint-down(md) {

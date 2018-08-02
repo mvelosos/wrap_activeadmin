@@ -36,7 +36,7 @@ module ActiveAdmin
           if new_action?
             action_btn(
               new_btn_title, new_resource_path,
-              icon: 'simple-add',
+              icon: 'add',
               title: false
             )
           end
@@ -49,7 +49,7 @@ module ActiveAdmin
           if edit_action?
             action_btn(
               edit_btn_title, edit_resource_path,
-              icon: 'edit-76',
+              icon: 'edit',
               title: false
             )
           end

@@ -1,3 +1,12 @@
+.index_content {
+  .table-responsive {
+    width: calc(100% + 4 * #{$spacer});
+    margin: 0 $spacer * -2;
+  }
+
+  .index_table { padding: 0 2 * $spacer; }
+}
+
 #index_footer {
   padding: $spacer 0;
   text-align: center;

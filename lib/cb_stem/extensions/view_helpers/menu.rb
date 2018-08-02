@@ -3,9 +3,12 @@ module ViewHelpers
   # ViewHelpers For Menu
   module Menu
 
-    def menu_label(label, icon: nil, badge: 0)
+    def menu_label(label, *args)
+      options = args.extract_options!
+      icon    = options.delete(:icon) { nil }
+      badge   = options.delete(:badge) { 0 }
       safe_join [
-        aa_icon(icon),
+        aa_icon(icon, options),
         menu_title(label),
         menu_badge(badge)
       ]

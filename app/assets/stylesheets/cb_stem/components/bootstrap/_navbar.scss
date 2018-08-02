@@ -1,5 +1,6 @@
 // https://getbootstrap.com/docs/4.0/components/navbar/
 .navbar {
-  .nc-icon { font-size: $icon-size; }
-  .btn { padding: $input-btn-padding-y; }
+  .aa-icon      { font-size: $icon-size; }
+  .btn          { padding: $input-btn-padding-y; }
+  .navbar-brand { font-weight: $font-weight-light; }
 }

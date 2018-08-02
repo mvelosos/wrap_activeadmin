@@ -1,5 +1,5 @@
 .nav-tabs {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5 * $spacer;
   border-bottom: 1px solid $hr-border-color;
 
   li.nav-item {
@@ -12,7 +12,7 @@
       &::after {
         position: absolute;
         right: 0;
-        bottom: -1px;
+        bottom: 0;
         left: 0;
         height: 2px;
         background: $primary;
@@ -25,11 +25,14 @@
     }
 
     a {
+      @extend .small;
       display: inline-flex;
       align-items: center;
-      padding: $spacer 0;
+      padding: $spacer / 2 0;
+      font-weight: $font-weight-bold;
       color: $secondary;
       text-decoration: none;
+      text-transform: uppercase;
     }
 
     span.badge {

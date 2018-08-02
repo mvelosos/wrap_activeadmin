@@ -1,7 +1,7 @@
 @mixin formastic {
   .inputs ol {
     padding: 0;
-    margin: 0;
+    margin: $form-group-margin-bottom 0;
     list-style: none;
   }
 
@@ -23,6 +23,18 @@
     }
   }
 
+  .fragments {
+    legend.label {
+      margin-bottom: $spacer / 2 !important;
+
+      & > label {
+        margin-bottom: 0 !important;
+        font-size: $font-size-base;
+        font-weight: $font-weight-base;
+      }
+    }
+  }
+
   .fragments-group {
     @extend .row;
     margin: 0 calc(-#{$spacer} / 4) !important;
@@ -31,6 +43,13 @@
       @extend .col-md;
       padding: 0 $spacer / 4;
       margin-bottom: $spacer;
+
+      & > label {
+        @extend .small;
+        font-weight: $font-weight-bold;
+        color: $secondary;
+        text-transform: uppercase;
+      }
     }
   }
 

@@ -11,8 +11,8 @@ onDOMReady = ->
       clearBtn: true
       format: 'yyyy-mm-dd'
       templates:
-        leftArrow: '<i class="nc-icon nc-minimal-left"></i>'
-        rightArrow: '<i class="nc-icon nc-minimal-right"></i>'
+        leftArrow: '<i class="aa-icon aa-arrow-left"></i>'
+        rightArrow: '<i class="aa-icon aa-arrow-right"></i>'
     }
     options  = input.data 'datepicker-options'
     input.datepicker $.extend(defaults, options)

@@ -71,9 +71,11 @@ module ActiveAdmin
 
       # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
       def build_parent_menu(item, children)
-        status_klass = item.current?(assigns[:current_tab]) ? 'active' : nil
+        klass = []
+        klass.push 'active'       if item.current?(assigns[:current_tab])
+        klass.push 'has-sub-menu' if children.present?
         ul class: 'list-group' do
-          li id: item.id, class: "list-group-item #{status_klass}" do |li|
+          li id: item.id, class: "list-group-item #{klass.join(' ')}".strip do |li|
             add_current(li, item)
             build_link(item, children)
             next if children.blank?
@@ -90,6 +92,7 @@ module ActiveAdmin
           end
         end
       end
+      # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
     end
 
