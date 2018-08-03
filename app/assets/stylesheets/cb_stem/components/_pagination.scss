@@ -12,6 +12,7 @@
 
     &.current {
       @extend .btn-primary;
+      background-image: none;
     }
   }
 }
