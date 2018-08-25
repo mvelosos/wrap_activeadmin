@@ -38,7 +38,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'acts_as_list', '~> 0.9.10'
   s.add_dependency 'devise'
   s.add_dependency 'bootstrap', '~> 4.0.0'
-  s.add_dependency 'font-awesome-sass', '~> 4.5.0'
   s.add_dependency 'bootstrap-datepicker-rails'
   s.add_dependency 'draper', '~> 3.0.1'
   s.add_dependency 'flag-icons-rails'
