@@ -23,23 +23,19 @@
     flex-direction: row;
     padding: 0;
     margin: 0;
+    color: color-yiq($dark);
     text-align: center;
     pointer-events: all;
+    background: $dark;
     border-radius: $border-radius-lg;
     @include box-shadow($modal-content-box-shadow-xs);
 
-    @each $color, $value in $theme-colors {
-      &.alert-#{$color} {
-        color: $value;
-        border-color: $value;
-        .btn { color: $value; }
-        .flash-message { border-right: 1px solid $value; }
-      }
-    }
+    .btn { color: inherit; }
   }
 
   .flash-message {
     padding: $spacer;
     text-align: left;
+    border-right: 1px solid rgba($black, 0.3);
   }
 }
