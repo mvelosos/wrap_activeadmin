@@ -27,7 +27,7 @@ module Formtastic
             if version.empty?
               template.image_tag(object.try(method)&.url)
             else
-              template.image_tag(object.try(method)&.url(version))
+              template.image_tag(object.try(method)&.url(version.first))
             end
           end
         end

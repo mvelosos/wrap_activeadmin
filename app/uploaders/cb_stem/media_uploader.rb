@@ -3,7 +3,7 @@ module CbStem
   # MediaUploader
   class MediaUploader < CbStem::ApplicationUploader
 
-    IMAGE_TYPES = %w[jpg jpeg gif png].freeze
+    IMAGE_TYPES = %w[svg jpg jpeg gif png].freeze
     FILE_TYPES  = %w[pdf doc docx json csv xlsx].freeze
     VIDEO_TYPES = %w[mov avi mkv mpeg mpeg2 mp4 3gp].freeze
     AUDIO_TYPES = %w[mp3 wma ra ram rm mid ogg].freeze
