@@ -42,11 +42,11 @@ module CbStem
     end
 
     def from_date
-      @from_date ||= Date.strptime(from, DATE_FORMAT)
+      @from_date ||= Time.zone.strptime(from, DATE_FORMAT)
     end
 
     def to_date
-      @to_date ||= Date.strptime(to, DATE_FORMAT)
+      @to_date ||= Time.zone.strptime(to, DATE_FORMAT)
     end
 
   end
