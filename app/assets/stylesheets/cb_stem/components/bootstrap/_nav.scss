@@ -8,7 +8,7 @@
     &:not(:last-child) { margin-right: $spacer * 1.5; }
 
     &.ui-tabs-active,
-    &.selected {
+    &.tab-selected {
       &::after {
         position: absolute;
         right: 0;

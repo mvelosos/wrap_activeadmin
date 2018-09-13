@@ -34,6 +34,12 @@ module ActiveAdmin
         end
       end
 
+      def classes_for_scope(scope)
+        classes = ['scope', scope.id]
+        classes << 'tab-selected' if current_scope?(scope)
+        classes.join(' ')
+      end
+
       private
 
       def scope_name(scope)

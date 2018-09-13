@@ -5,7 +5,7 @@ module ViewHelpers
 
     def select_tab?(target_tab, key: :tab)
       return unless target_tab == params[key]
-      'selected'
+      'tab-selected'
     end
 
   end
