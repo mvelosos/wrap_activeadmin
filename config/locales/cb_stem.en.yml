@@ -89,7 +89,7 @@ en:
         default: '%Y/%m/%d'
 
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
-    owner:      "Clever Banana Studios Inc"
+    owner:      "CMDBrew Software Inc"
 
     components:
       select2:

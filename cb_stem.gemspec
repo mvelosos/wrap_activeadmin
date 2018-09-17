@@ -5,14 +5,14 @@ require 'cb_stem/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = 'cb_stem'
+  s.name        = 'wrap_activeadmin'
   s.version     = CbStem::VERSION
-  s.authors     = ['Clever Banana Studios Inc.']
-  s.email       = ['dev@cleverbanana.com']
-  s.homepage    = 'http://www.cleverbanana.com'
-  s.summary     = 'Cb::Stem is a generic backend panel based on ActiveAdmin'
-  s.description = 'Cb::Stem is used as the base backend panel for all our clients.'
-  s.license     = 'Copyright Clever Banana Studios Inc.'
+  s.authors     = ['CMDBrew Studio Inc.']
+  s.email       = ['dev@cmdbrew.com']
+  s.homepage    = 'http://www.cmdbrew.com'
+  s.summary     = 'WrapActiveAdmin is a generic backend panel based on ActiveAdmin'
+  s.description = 'WrapActiveAdmin is used as the base backend panel for all our clients.'
+  s.license     = 'Copyright CMDBrew Studio Inc.'
 
   s.files = Dir['{app,config,db,lib}/**/*', 'LICENSE', 'Rakefile', 'README.md']
 
