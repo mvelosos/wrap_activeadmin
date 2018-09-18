@@ -11,8 +11,12 @@
     a { color: $body-color; }
 
     &.current {
-      @extend .btn-primary;
+      @extend .active;
       background-image: none;
     }
   }
+}
+
+.pagination_per_page {
+  @extend .mb-3;
 }

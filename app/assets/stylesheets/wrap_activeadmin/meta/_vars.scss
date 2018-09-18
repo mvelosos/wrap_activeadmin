@@ -4,6 +4,7 @@ $header-bg:         $dark !default;
 $header-gradient:   linear-gradient(to bottom left, $header-bg, darken($header-bg, 7%)) !default;
 $header-logo-bg:    $primary !default;
 $header-breakpoint: xl;
+$header-badge-color: primary !default;
 
 // Navbar
 $navbar-height: 56px !default;
@@ -30,7 +31,10 @@ $thumbnail-size:    36px !default;
 $thumbnail-size-sm: 24px !default;
 
 // Select2
-$select2-min-height:   $input-height !default;
+$select2-min-height: $input-height !default;
+
+// Badge
+$badge-bg-level: $alert-bg-level !default;
 
 // Logged Out
 $logged-out-logo-size:     64px !default;

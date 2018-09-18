@@ -27,8 +27,10 @@ module ActiveAdmin
           return unless any_table_tools?
           div class: 'table_tools' do
             build_scopes
-            build_batch_actions_selector
-            build_index_list
+            div class: 'index_ctrls' do
+              build_batch_actions_selector
+              build_index_list
+            end
           end
         end
 

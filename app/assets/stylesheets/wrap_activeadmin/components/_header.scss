@@ -156,6 +156,8 @@
       overflow: hidden;
       background: rgba($white, 0.05);
       border: 0;
+
+      .badge { @extend .badge-#{$header-badge-color}; }
     }
 
     .sub-menu {
