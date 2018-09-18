@@ -39,7 +39,7 @@ $indigo:  #6775de !default;
 $purple:  #8857a7 !default;
 $pink:    #ff89ad !default;
 $red:     #d16156 !default;
-$orange:  #f09f82 !default;
+$orange:  #ebb055 !default;
 $yellow:  #ecbf68 !default;
 $green:   #53af8b !default;
 $teal:    #20c997 !default;
@@ -88,7 +88,7 @@ $theme-colors: map-merge((
 // $theme-color-interval:      8% !default;
 //
 // // The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
-$yiq-contrasted-threshold: 175 !default;
+$yiq-contrasted-threshold: 195 !default;
 //
 // // Customize the light and dark text colors for use in our YIQ color contrast function.
 $yiq-text-dark: $gray-800 !default;
@@ -754,6 +754,7 @@ $modal-content-box-shadow-sm-up: 0 0 8px rgba($dark, 0.1) !default;
 // //
 // // Define alert colors, border radius, and padding.
 //
+$alert-bg-level:                    -10 !default;
 // $alert-padding-y:                   .75rem !default;
 // $alert-padding-x:                   1.25rem !default;
 // $alert-margin-bottom:               1rem !default;

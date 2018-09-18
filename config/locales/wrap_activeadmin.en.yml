@@ -89,7 +89,7 @@ en:
         default: '%Y/%m/%d'
 
     powered_by: '©%{year} %{owner}. All Rights Reserved. Version: %{version}'
-    owner:      "CMDBrew Software Inc"
+    owner:      CMDBrew Studio Inc
 
     components:
       select2:
