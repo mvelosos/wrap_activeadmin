@@ -1,0 +1,35 @@
+panel t('wrap_activeadmin.components.google_analytics.pageviews.country') do
+  result_hash = {}
+
+  results =
+    WrapActiveadmin::GoogleAnalytics.results(
+      property,
+      start_date: start_date,
+      end_date:   end_date,
+      limit: 5,
+      sort: ['-pageviews']
+    )
+  results.metrics    << 'pageviews'
+  results.dimensions << 'country'
+
+  results.each do |x|
+    percentage = x.pageviews.to_f / results.totals_for_all_results['pageviews'].to_f * 100.0
+    result_hash["#{x.country.capitalize} (#{to_percentage(percentage)})"] = x.pageviews.to_f
+  end
+
+  total = result_hash.values.inject(0) do |sum,x|
+    sum + x / results.totals_for_all_results['pageviews'].to_f * 100.0
+  end
+
+  if total < 100
+    percentage = 100 - total
+    pageviews  = results.totals_for_all_results['pageviews'].to_f * percentage / 100.0
+    result_hash["Others: #{to_percentage(percentage)}"] = pageviews
+  end
+
+  if result_hash.present?
+    chart(type: 'doughnut', label: result_hash.keys, data: result_hash.values)
+  else
+    wrap_activeadmin_component('charts/empty_state')
+  end
+end

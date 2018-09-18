@@ -19,7 +19,7 @@ html
         .col-md-6.col-lg-5.col-xl-4
           .text-center.mb-3
             .logo
-              - image = ActiveAdmin.application.site_title_image.presence || 'cb_stem/logo.png'
+              - image = ActiveAdmin.application.site_title_image.presence || 'wrap_activeadmin/logo.png'
               = image_tag image,
                 alt: ActiveAdmin.application.site_title,
                 retina: true
@@ -31,4 +31,4 @@ html
                 = yield
             = render 'active_admin/devise/shared/links'
       #footer.text-center.text-muted.p-2.small
-        = I18n.t('cb_stem.powered_by', year: Time.zone.now.year, owner: t('cb_stem.owner'), version: CbStem::VERSION)
+        = I18n.t('wrap_activeadmin.powered_by', year: Time.zone.now.year, owner: t('wrap_activeadmin.owner'), version: WrapActiveadmin::VERSION)

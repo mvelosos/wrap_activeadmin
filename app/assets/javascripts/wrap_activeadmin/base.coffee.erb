@@ -1,0 +1,71 @@
+#= require jquery3
+#= require jquery-ui
+#= require jquery_ujs
+#= require jquery.minicolors
+#= require popper
+#= require bootstrap
+#= require bootstrap-datepicker
+#= require tinymce
+#= require select2-full
+#= require dropzone
+#= require Chart.min
+#= require_self
+#= require active_admin/lib/checkbox-toggler
+#= require active_admin/lib/flash
+#= require active_admin/lib/per_page
+#= require active_admin/lib/table-checkbox-toggler
+#= require active_admin/ext/jquery-ui
+#= require active_admin/ext/jquery
+#= require active_admin/initializers/batch_actions
+#= require_tree ./utilities
+#= require_tree ./lib
+#= require_tree ./initializers
+
+window.ActiveAdmin = {}
+window.ChartColors = [
+  '#56b181',
+  '#65B1E3',
+  '#6775de',
+  '#8857a7',
+  '#e9a9e7',
+  '#d16156',
+  '#f09f82',
+  '#ecbf68',
+  '#20c997',
+  '#17a2b8'
+]
+window.I18n = <%= I18n.t('wrap_activeadmin').to_json %>
+
+onDOMReady = ->
+  $('[data-toggle="tooltip"]').tooltip()
+  $('#flashes').aaFlash()
+  $('#main-menu, #loading-backdrop,
+    #filters_sidebar_section .card-body,
+    #media-upload-preview .card-body').aaIsolateScroll()
+  $('.form-control-file').aaFileInput()
+  $('.tinymce').aaTinyMCE()
+  $('#active_admin_content .dropdown').aaDropdown()
+  $('#active_admin_content .tabs').aaTabs()
+  $('#main_content').aaBatchAction()
+  $('.select2').aaSelect2()
+  $('[data-js="form-trigger"]').aaFormTrigger()
+  $('.minicolors').aaColorPicker()
+  $('[data-js="line-chart"]').aaLineChart()
+  $('[data-js="bar-chart"]').aaBarChart()
+  $('[data-js="doughnut-chart"]').aaDoughnutChart()
+  $('.admin_wrap_activeadmin_media_items, .admin_wrap_activeadmin_file_items').aaMediaLibrary()
+  $('[data-js="dropzone"]').aaDropZone()
+  $('body').aaLoading()
+
+$(document)
+  .ready(onDOMReady)
+  .on('page:load turbolinks:load', onDOMReady);
+
+$(document)
+  .on 'has_many_add:after', '.has_many_container', (e, fieldset, container) ->
+    fieldset.find('.select2').aaSelect2()
+    fieldset.find('.tinymce').aaTinyMCE()
+    fieldset.find('.dropdown').aaDropdown()
+    fieldset.find('.form-control-file').aaFileInput()
+    fieldset.find('[data-js="form-trigger"]').aaFormTrigger()
+    fieldset.find('[data-toggle="tooltip"]').tooltip()

@@ -1,0 +1,97 @@
+ActiveAdmin.register <%= class_name %> do
+  decorate_with Admin::<%= class_name %>Decorator
+
+  menu false
+
+  permit_params :first_name, :last_name,
+                :avatar, :avatar_cache, :remove_avatar,
+                :email, :password, :password_confirmation
+
+  actions :all, except: %i[show]
+
+  # INDEX
+  filter :first_name
+  filter :last_name
+  filter :email
+  filter :updated_at
+  filter :created_at
+
+  index do
+    selectable_column
+    column :full_name, :identifier, sortable: :first_name
+    column :email
+    column :created_at
+    actions(dropdown: true, dropdown_name: nil)
+  end
+
+  # FORM
+  form multiple: true do
+    columns do
+      column(span: 8) do
+        resource.errors.present? && div(error_messages(resource), class: 'mb-4')
+
+        if resource.new_record?
+          form_section [:admin, resource], class: 'mb-3' do |f|
+            f.inputs do
+              f.input :avatar
+              f.input :remove_avatar,
+                      as: :boolean
+              f.input :avatar_cache,
+                      as: :hidden
+              hr
+              columns do
+                column { f.input :first_name }
+                column { f.input :last_name }
+              end
+              f.input :email
+            end
+
+            f.inputs t('wrap_activeadmin.resource.<%= class_name.underscore %>.sections.security') do
+              columns do
+                column do
+                  f.input :password,
+                          hint: t('devise.shared.minimum_password_length',
+                                  count: <%= class_name %>.password_length.min)
+                end
+                column { f.input :password_confirmation }
+              end
+            end
+            hr
+            f.actions
+          end
+        else
+          form_section [:admin, resource], class: 'mb-3' do |f|
+            f.inputs do
+              f.input :avatar
+              f.input :remove_avatar,
+                      as: :boolean
+              f.input :avatar_cache,
+                      as: :hidden
+              hr
+              columns do
+                column { f.input :first_name }
+                column { f.input :last_name }
+              end
+              f.input :email
+              f.actions
+            end
+          end
+
+          form_section [:admin, resource] do |f|
+            f.inputs t('wrap_activeadmin.resource.<%= class_name.underscore %>.sections.reset_password') do
+              columns do
+                column do
+                  f.input :password,
+                          hint: t('devise.shared.minimum_password_length',
+                                  count: <%= class_name %>.password_length.min)
+                end
+                column { f.input :password_confirmation }
+              end
+              f.actions
+            end
+          end
+        end
+      end
+    end
+  end
+end

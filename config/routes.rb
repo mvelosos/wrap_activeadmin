@@ -1,2 +1,2 @@
-CbStem::Engine.routes.draw do
+WrapActiveadmin::Engine.routes.draw do
 end
