@@ -1,0 +1,29 @@
+class UpgradeToWrapActiveAdmin < ActiveRecord::Migration[5.2]
+  def self.up
+    remove_index :cb_stem_dyn_input_groups, :cb_stem_dyn_input_config_id
+    remove_index :cb_stem_dyn_inputs, :cb_stem_dyn_input_group_id
+
+    rename_table :cb_stem_dyn_input_configs, :wrap_activeadmin_dyn_input_configs
+    rename_table :cb_stem_dyn_input_groups, :wrap_activeadmin_dyn_input_groups
+    rename_table :cb_stem_dyn_inputs, :wrap_activeadmin_dyn_inputs
+    rename_column :wrap_activeadmin_dyn_input_groups, :cb_stem_dyn_input_config_id, :wrap_activeadmin_dyn_input_config_id
+    rename_column :wrap_activeadmin_dyn_inputs, :cb_stem_dyn_input_group_id, :wrap_activeadmin_dyn_input_group_id
+
+    add_index :wrap_activeadmin_dyn_input_groups, :wrap_activeadmin_dyn_input_config_id, name: 'wrap_aa_dyn_input_groups_on_wrap_aa_dyn_input_config_id'
+    add_index :wrap_activeadmin_dyn_inputs, :wrap_activeadmin_dyn_input_group_id, name: 'wrap_aa_dyn_inputs_on_wrap_aa_dyn_input_group_id'
+  end
+
+  def self.down
+    remove_index :wrap_activeadmin_dyn_input_groups, name: 'wrap_aa_dyn_input_groups_on_wrap_aa_dyn_input_config_id'
+    remove_index :wrap_activeadmin_dyn_inputs, name: 'wrap_aa_dyn_inputs_on_wrap_aa_dyn_input_group_id'
+
+    rename_table :wrap_activeadmin_dyn_input_configs, :cb_stem_dyn_input_configs
+    rename_table :wrap_activeadmin_dyn_input_groups, :cb_stem_dyn_input_groups
+    rename_table :wrap_activeadmin_dyn_inputs, :cb_stem_dyn_inputs
+    rename_column :cb_stem_dyn_input_groups, :wrap_activeadmin_dyn_input_config_id, :cb_stem_dyn_input_config_id
+    rename_column :cb_stem_dyn_inputs, :wrap_activeadmin_dyn_input_group_id, :cb_stem_dyn_input_group_id
+
+    add_index :cb_stem_dyn_input_groups, :cb_stem_dyn_input_config_id
+    add_index :cb_stem_dyn_inputs, :cb_stem_dyn_input_group_id
+  end
+end

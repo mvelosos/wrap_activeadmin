@@ -1,0 +1,1 @@
+para t('wrap_activeadmin.components.google_analytics.empty_state.message'), class: 'text-muted'

@@ -1,4 +1,4 @@
-# CbStem
+# WrapActiveadmin
 Short description and motivation.
 
 ## Usage
@@ -8,7 +8,7 @@ How to use my plugin.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'cb_stem'
+gem 'wrap_activeadmin'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install cb_stem
+$ gem install wrap_activeadmin
 ```
 
 ## Contributing
@@ -33,7 +33,7 @@ $ overcommit --install
 
 Create a dummy rails app and add this to your Gemfile.
 ```ruby
-gem 'cb_stem', path: '{PATH_TO_GEM}/cb_stem'
+gem 'wrap_activeadmin', path: '{PATH_TO_GEM}/wrap_activeadmin'
 ```
 
 ## License

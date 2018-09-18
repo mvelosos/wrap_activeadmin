@@ -1,0 +1,20 @@
+panel t('wrap_activeadmin.components.google_analytics.session.avg_duration') do
+  result_hash = {}
+
+  results =
+    WrapActiveadmin::GoogleAnalytics.results(
+      property,
+      start_date: start_date,
+      end_date:   end_date
+    )
+  results.metrics << 'avgSessionDuration'
+
+  value = results.first&.avgSessionDuration
+  value = Time.at(value.to_i).utc.strftime('%H:%M:%S')
+
+  if value.present?
+    h1 value, class: 'display-1 mb-4'
+  else
+    wrap_activeadmin_component('charts/empty_state')
+  end
+end

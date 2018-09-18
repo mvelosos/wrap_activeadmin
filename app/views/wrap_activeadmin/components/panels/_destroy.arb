@@ -1,0 +1,10 @@
+panel t('wrap_activeadmin.panels.danger') do
+  para(t('wrap_activeadmin.hints.destroy', model: resource.class.model_name.human),
+       class: 'mb-3')
+  div do
+    link_to(t('active_admin.delete_model', model: resource.class.model_name.human),
+            [:admin, resource], method: :delete,
+            class: 'text-danger',
+            data: { confirm: t('active_admin.delete_confirmation') })
+  end
+end

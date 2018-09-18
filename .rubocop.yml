@@ -10,7 +10,7 @@ AllCops:
     - 'script/**/*'
     - 'node_modules/**/*'
     - 'db/migrate/**/*'
-    - 'cb_stem.gemspec'
+    - 'wrap_activeadmin.gemspec'
 
 Rails:
   Enabled: true
@@ -37,7 +37,7 @@ Metrics/LineLength:
     - 'Gemfile'
 Metrics/ModuleLength:
   Exclude:
-    - 'lib/cb_stem/extensions/views/helpers/view_helpers.rb'
+    - 'lib/wrap_activeadmin/extensions/views/helpers/view_helpers.rb'
 Metrics/MethodLength:
   Exclude:
     - 'db/migrate/*.rb'
@@ -47,7 +47,7 @@ Metrics/BlockLength:
     - 'config/**/*.rb'
     - 'app/admin/**/*.rb'
     - 'app/views/**/*.arb'
-    - 'lib/cb_stem/admin/**/*.rb'
+    - 'lib/wrap_activeadmin/admin/**/*.rb'
 
 Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
