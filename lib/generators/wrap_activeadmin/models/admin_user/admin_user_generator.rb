@@ -30,8 +30,8 @@ module WrapActiveadmin
 
         def generate_models
           template(
-            'models/admin_user.rb.erb',
-            "app/models/#{name.underscore}.rb"
+            'models/admin_users.rb.erb',
+            "app/models/#{name.underscore.pluralize}.rb"
           )
         end
 
