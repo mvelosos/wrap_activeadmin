@@ -11,7 +11,7 @@ class ActiveAdmin.BarChart
           usePointStyle: true
           fontSize: 10
       responsive: true
-      maintainAspectRatio: true
+      maintainAspectRatio: false
       labels: false
       layout:
         padding: 0

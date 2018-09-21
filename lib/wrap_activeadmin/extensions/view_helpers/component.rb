@@ -83,7 +83,7 @@ module ViewHelpers
         if object.try(image).present? && object.try("#{image}#{url_method}", size)
           image_tag(object.send("#{image}#{url_method}", size), *args)
         else
-          aa_icon(icon)
+          aa_icon(icon, options)
         end
       end
     end
