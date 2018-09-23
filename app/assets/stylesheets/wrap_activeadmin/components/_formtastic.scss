@@ -32,6 +32,13 @@
         font-weight: $font-weight-base;
       }
     }
+
+    .input-fragment {
+      .field_with_error {
+        display: flex;
+        width: 100%;
+      }
+    }
   }
 
   .fragments-group {
