@@ -5,7 +5,7 @@ input.select2 { display: none; }
 
 .select2-container--bootstrap {
   &.select2-container--open {
-    z-index: $zindex-select2 + 2;
+    z-index: $zindex-filter + 2;
   }
 
   .select2-selection {
