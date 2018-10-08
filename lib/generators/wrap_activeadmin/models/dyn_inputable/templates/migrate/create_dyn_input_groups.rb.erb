@@ -3,7 +3,8 @@ class CreateWrapActiveadminDynInputGroups < ActiveRecord::Migration[5.1]
     create_table :wrap_activeadmin_dyn_input_groups do |t|
       t.integer :position
       t.boolean :multiple, default: false
-      t.references :wrap_activeadmin_dyn_input_config, index: true
+      t.references :wrap_activeadmin_dyn_input_config,
+                   index: { name: 'index_waa_dyn_input_groups_on_waa_dyn_input_config_id' }
 
       t.timestamps
     end
