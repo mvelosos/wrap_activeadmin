@@ -58,6 +58,11 @@ module WrapActiveadmin
 
     protected
 
+    def process_upload?(_file)
+      !model.respond_to?(:background_upload) ||
+        model.background_upload == true
+    end
+
     def save_meta_to_model
       model.try('file_type=', file.content_type) if file.content_type
       model.try('file_size=', file.size)

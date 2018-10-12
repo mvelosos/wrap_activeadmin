@@ -10,22 +10,23 @@ module WrapActiveadmin
 
       # Mobile version
       version :sm, if: :image? do
-        process resize_to_fit: [600, 600]
+        process resize_to_fit: [600, 600], if: :process_upload?
       end
 
       # medium version
       version :md, if: :image? do
-        process resize_to_fit: [1200, 1200]
+        process resize_to_fit: [1200, 1200], if: :process_upload?
       end
 
       # Desktop version
       version :lg, if: :image? do
-        process resize_to_fit: [2400, 2400]
+        process resize_to_fit: [2400, 2400], if: :process_upload?
       end
 
       version :thumb, if: :image? do
-        process resize_to_fit: [128, 128]
+        process resize_to_fit: [128, 128], if: :process_upload?
       end
+
     end
 
   end
