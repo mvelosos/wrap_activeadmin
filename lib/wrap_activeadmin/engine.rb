@@ -179,7 +179,7 @@ module WrapActiveadmin
         %w[
           base blank_slate sortable notice
           display tab component menu file
-          dyn_inputable
+          dyn_inputable country
         ],
         path: 'view_helpers'
       )

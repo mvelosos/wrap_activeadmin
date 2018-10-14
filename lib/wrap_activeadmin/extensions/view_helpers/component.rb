@@ -55,22 +55,6 @@ module ViewHelpers
       end
     end
 
-    def country_identifier(country)
-      return if country&.code.blank?
-      content_tag :div, class: 'table-item-identifier' do
-        concat(flag_icon(country.code.downcase, class: 'mr-3'))
-        concat(content_tag(:span, country.name, class: 'identifier-text'))
-      end
-    end
-
-    def currency_identifier(country, currency)
-      return if country&.code.blank?
-      content_tag :div, class: 'table-item-identifier' do
-        concat(flag_icon(country.code.downcase, class: 'mr-3'))
-        concat(content_tag(:span, "#{country.name} - #{currency}", class: 'identifier-text'))
-      end
-    end
-
     # rubocop:disable Metrics/MethodLength
     def thumbnail(object, image, *args)
       return unless image

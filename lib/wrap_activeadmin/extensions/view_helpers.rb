@@ -11,6 +11,7 @@ module ActiveAdmin::ViewHelpers
   include ViewHelpers::Component
   include ViewHelpers::Menu
   include ViewHelpers::DynInputable
+  include ViewHelpers::Country
 
   alias batch_form active_admin_form_for
 

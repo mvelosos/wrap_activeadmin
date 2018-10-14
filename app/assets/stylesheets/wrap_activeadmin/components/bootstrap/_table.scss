@@ -4,15 +4,15 @@ table {
 
   .col-actions { text-align: right; }
 
+  &.align-middle {
+    th,
+    td {
+      vertical-align: middle;
+    }
+  }
+
   &.table {
     margin-bottom: 0;
-
-    // tbody tr:first-child {
-    //   td,
-    //   th {
-    //     border-top: 0;
-    //   }
-    // }
 
     td:empty::after {
       color: $text-muted;
