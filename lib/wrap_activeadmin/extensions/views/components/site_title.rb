@@ -22,12 +22,16 @@ module ActiveAdmin
 
       def site_title_image
         div class: 'logo' do
-          if site_title_image?
+          if site_title_image? && image_path
             title_image
           else
             div(title_text.split(' ').map(&:first)[0..1].join(''), class: 'placeholder')
           end
         end
+      end
+
+      def image_path
+        helpers.render_or_call_method_or_proc_on(helpers, @namespace.site_title_image)
       end
 
       def site_link
