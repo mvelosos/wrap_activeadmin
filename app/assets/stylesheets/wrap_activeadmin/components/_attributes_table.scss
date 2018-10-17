@@ -7,6 +7,13 @@
 
 .attributes-table {
   tbody {
+    tr:first-child {
+      td,
+      th {
+        border-top: 0;
+      }
+    }
+
     td,
     th {
       padding: $spacer;

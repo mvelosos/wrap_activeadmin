@@ -5,3 +5,9 @@
 .white-space-normal {
   white-space: normal !important;
 }
+
+@for $i from 1 to 10 {
+  .opacity-#{$i} {
+    opacity: $i * 10 / 100;
+  }
+}

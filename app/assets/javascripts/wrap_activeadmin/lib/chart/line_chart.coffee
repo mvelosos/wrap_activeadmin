@@ -23,20 +23,21 @@ class ActiveAdmin.LineChart
       scales:
         yAxes: [
           gridLines:
-            zeroLineColor: '#E6E6E6'
-            color: '#E6E6E6'
+            zeroLineColor: '#f0f0f0'
+            color: '#f0f0f0'
           ticks:
             display: true
             beginAtZero: true
+            fontSize: 9
         ]
         xAxes: [
           gridLines:
             drawBorder: false
-            zeroLineColor: '#E6E6E6'
-            color: '#E6E6E6'
-            borderDash: [3]
+            zeroLineColor: '#f0f0f0'
+            color: '#f0f0f0'
           ticks:
             maxRotation: 45
+            fontSize: 9
             callback: (value, index, values) ->
               if value
                 return value
@@ -70,7 +71,6 @@ class ActiveAdmin.LineChart
         label: value.label
         data: value.value
         borderWidth: 2
-        borderWidth: 0
         borderColor: color
         pointBackgroundColor: '#FFFFFF'
         pointBorderColor: color

@@ -7,11 +7,11 @@ module WrapActiveadmin
 
     include ::WrapActiveadmin::NonDbModel
 
-    attr_writer :from, :to
+    attr_writer :from, :to, :timezone
 
     validates :filter_type,
               presence: true
-    validates :from, :to,
+    validates :from, :to, :timezone,
               presence: true,
               if: proc { |x| x.filter_type == 'custom' }
 
@@ -39,6 +39,10 @@ module WrapActiveadmin
 
     def to
       @to ||= Time.zone.today.strftime(DATE_FORMAT)
+    end
+
+    def timezone
+      @timezone ||= Time.zone
     end
 
     def from_date

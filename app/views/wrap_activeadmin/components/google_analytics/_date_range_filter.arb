@@ -1,10 +1,8 @@
 active_admin_form_for date_range_filter, url: url, method: :get do |f|
-  ul class: 'list-unstyled mt-3 d-flex flex-row align-items-end' do
-    f.input :filter_type,
-            as: :hidden,
-            input_html: { value: 'custom' }
+  text_node hidden_field_tag(:tab, params[:tab])
+  ul class: 'list-unstyled mt-3 d-flex flex-column flex-lg-row align-items-lg-end' do
     f.input :from,
-            wrapper_html: { class: 'mb-0 mr-2' },
+            wrapper_html: { class: 'mb-0 mr-lg-2 mb-3 mb-lg-0' },
             input_html: {
               class: 'datepicker form-control',
               data: {
@@ -12,16 +10,23 @@ active_admin_form_for date_range_filter, url: url, method: :get do |f|
               }
             }
     f.input :to,
-            wrapper_html: { class: 'mb-0 mr-2' },
+            wrapper_html: { class: 'mb-0 mr-lg-2 mb-3 mb-lg-0' },
             input_html: {
               class: 'datepicker form-control',
               data: {
                 'datepicker-options': { format: 'mm/dd/yyyy' }
               }
             }
+    f.input :timezone,
+            as: :time_zone,
+            wrapper_html: { class: 'mb-0 mr-lg-2 mb-3 mb-lg-0' },
+            input_html: {
+              class: 'form-control select2',
+              data: { 'select2-search': true }
+            }
     f.action :submit,
              label: t('.submit'),
-             wrapper_html: { class: 'mb-0' },
+             wrapper_html: { class: 'mb-3 mb-lg-0' },
              button_html: { class: 'btn btn-light' }
   end
 end

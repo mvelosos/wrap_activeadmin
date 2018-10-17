@@ -12,7 +12,7 @@
 $white:    #fff !default;
 $gray-100: #fcfcfc !default;
 $gray-200: #FAFAFA !default;
-$gray-300: #E8E8E8 !default;
+$gray-300: #F0F0F0 !default;
 $gray-400: #cdd0d2 !default;
 $gray-500: #a0a0a0 !default;
 $gray-600: #9c9c9c !default;
@@ -80,6 +80,7 @@ $theme-colors: map-merge((
   "warning":    $warning,
   "danger":     $danger,
   "light":      $light,
+  "light-gray": $gray-300,
   "dark":       $dark
 ), $theme-colors);
 // stylelint-enable

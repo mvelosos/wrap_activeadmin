@@ -19,8 +19,8 @@ class ActiveAdmin.BarChart
         yAxes: [
           maxBarThickness: 50
           gridLines:
-            zeroLineColor: '#E6E6E6'
-            color: '#E6E6E6'
+            zeroLineColor: '#f0f0f0'
+            color: '#f0f0f0'
           ticks:
             display: true
             beginAtZero: true
@@ -29,8 +29,8 @@ class ActiveAdmin.BarChart
           maxBarThickness: 50
           gridLines:
             drawBorder: false
-            zeroLineColor: '#E6E6E6'
-            color: '#E6E6E6'
+            zeroLineColor: '#f0f0f0'
+            color: '#f0f0f0'
             borderDash: [3]
           ticks:
             maxRotation: 45
