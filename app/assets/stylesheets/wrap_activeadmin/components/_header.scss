@@ -62,10 +62,9 @@
       margin-right: $spacer;
       overflow: hidden;
       font-size: $font-size-base;
-      color: $white;
       text-transform: uppercase;
       vertical-align: middle;
-      background: $header-logo-bg;
+      background: $white;
       border-radius: $border-radius;
 
       img {
@@ -82,6 +81,7 @@
         justify-content: center;
         width: 100%;
         height: 100%;
+        color: color-yiq($header-logo-bg);
         background: $header-logo-bg;
       }
     }

@@ -3,7 +3,7 @@
   &.body-p-0 {
     .card-body { padding: 0; }
 
-    .card-body > *:last-child {
+    .card-body > *:last-child:not(.table-responsive) {
       overflow: hidden;
       border-bottom-right-radius: $card-border-radius;
       border-bottom-left-radius: $card-border-radius;
