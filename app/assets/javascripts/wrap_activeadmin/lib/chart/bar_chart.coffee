@@ -24,6 +24,7 @@ class ActiveAdmin.BarChart
           ticks:
             display: true
             beginAtZero: true
+            fontSize: 9
         ]
         xAxes: [
           maxBarThickness: 50
@@ -34,6 +35,7 @@ class ActiveAdmin.BarChart
             borderDash: [3]
           ticks:
             maxRotation: 45
+            fontSize: 9
             callback: (value, index, values) ->
               if value
                 return value

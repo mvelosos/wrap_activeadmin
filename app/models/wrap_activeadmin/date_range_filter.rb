@@ -46,11 +46,11 @@ module WrapActiveadmin
     end
 
     def from_date
-      @from_date ||= Time.zone.strptime(from, DATE_FORMAT)
+      @from_date ||= Time.zone.strptime(from, DATE_FORMAT).in_time_zone(timezone)
     end
 
     def to_date
-      @to_date ||= Time.zone.strptime(to, DATE_FORMAT)
+      @to_date ||= Time.zone.strptime(to, DATE_FORMAT).in_time_zone(timezone)
     end
 
   end

@@ -9,7 +9,7 @@ class ActiveAdmin.DoughnutChart
         position: 'left'
         labels:
           usePointStyle: true
-          fontSize: 10
+          fontSize: 9
       responsive: true
       maintainAspectRatio: true
       labels: false
