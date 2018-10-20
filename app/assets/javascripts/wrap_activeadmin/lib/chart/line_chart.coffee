@@ -60,7 +60,7 @@ class ActiveAdmin.LineChart
     datasets = []
 
     $.each data, (index, value) ->
-      length = ChartColors.length
+      length = ChartColors.length - 1
       color =
         if index > length
           colors[(index % length)]

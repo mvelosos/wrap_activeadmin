@@ -25,12 +25,12 @@ module ActiveAdmin
 
         def build_table_tools
           return unless any_table_tools?
-          div class: 'table_tools' do
-            build_scopes
+          div class: 'table_tools mb-3' do
             div class: 'index_ctrls' do
               build_batch_actions_selector
               build_index_list
             end
+            build_scopes
           end
         end
 
@@ -40,7 +40,7 @@ module ActiveAdmin
             scope_count: config.fetch(:scope_count, true)
           }
 
-          div id: 'scopes' do
+          div id: 'scopes', class: 'my-3' do
             scopes_renderer active_admin_config.scopes, scope_options
           end
         end

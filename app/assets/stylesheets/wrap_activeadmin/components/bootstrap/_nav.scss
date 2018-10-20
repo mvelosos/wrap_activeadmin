@@ -1,11 +1,19 @@
 .nav-tabs {
-  margin-bottom: 1.5 * $spacer;
-  border-bottom: 1px solid $hr-border-color;
+  @extend .card;
+  flex-direction: row;
+  margin-bottom: $spacer;
+  overflow: hidden;
+
+  @at-root .card .nav-tabs {
+    @include box-shadow(none);
+    border: 0;
+    border-bottom: 1px solid $hr-border-color;
+    border-radius: 0;
+  }
 
   li.nav-item {
     position: relative;
-
-    &:not(:last-child) { margin-right: $spacer * 1.5; }
+    margin-bottom: 0;
 
     &.ui-tabs-active,
     &.tab-selected {
@@ -28,11 +36,12 @@
       @extend .small;
       display: inline-flex;
       align-items: center;
-      padding: $spacer / 2 0;
+      padding: $spacer;
       font-weight: $font-weight-bold;
       color: $secondary;
       text-decoration: none;
       text-transform: uppercase;
+      border: 0;
     }
 
     span.badge {

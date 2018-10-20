@@ -36,7 +36,7 @@ window.ChartColors = [
 window.I18n = <%= I18n.t('wrap_activeadmin').to_json %>
 
 onDOMReady = ->
-  $('[data-toggle="tooltip"]').tooltip()
+  $('[data-toggle="tooltip"]').tooltip(trigger: 'hover')
   $('#flashes').aaFlash()
   $('#main-menu, #loading-backdrop,
     #filters_sidebar_section .card-body,
