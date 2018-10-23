@@ -61,7 +61,7 @@ module ViewHelpers
       options = args.extract_options!
       klass   = options.delete(:class)
       icon    = options.delete(:icon) { 'image' }
-      size    = options.delete(:size) { nil }
+      size    = options.delete(:size) { 'thumb' }
       url_method = options.delete(:url_method) { '_url' }
       content_tag :div, class: "thumbnail #{klass}" do
         if object.try(image).present? && object.try("#{image}#{url_method}", size)

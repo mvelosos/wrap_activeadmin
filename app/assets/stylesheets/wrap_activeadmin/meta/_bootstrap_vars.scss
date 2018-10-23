@@ -205,7 +205,7 @@ $grid-gutter-width:           1rem !default;
 $border-width:                1px !default;
 // $border-color:                $gray-200 !default;
 //
-// $border-radius:               .25rem !default;
+$border-radius:               .25rem !default;
 // $border-radius-lg:            .3rem !default;
 // $border-radius-sm:            .2rem !default;
 //
@@ -651,11 +651,11 @@ $zindex-tooltip:                    2000 !default;
 $card-spacer-y:                     1.25rem !default;
 // $card-spacer-x:                     1.25rem !default;
 // $card-border-width:                 $border-width !default;
-// $card-border-radius:                $border-radius !default;
+$card-border-radius:                $border-radius !default;
 $card-border-color:                 rgba($dark, 0.1) !default;
 // $card-inner-border-radius:          calc(#{$card-border-radius} - #{$card-border-width}) !default;
 $card-cap-bg:                       transparent !default;
-// $card-bg:                           $white !default;
+$card-bg:                           $white !default;
 //
 // $card-img-overlay-padding:          1.25rem !default;
 //

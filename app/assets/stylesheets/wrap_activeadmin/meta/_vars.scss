@@ -51,6 +51,12 @@ $backdrop-bg:          transparent !default;
 $svg-color:            $text-muted !default;
 $svg-color-adjustment: 33% !default;
 
+// Tabs
+$nav-tabs-border:        1px solid $card-border-color !default;
+$nav-tabs-border-radius: $card-border-radius !default;
+$nav-tabs-shadow:        $card-shadow !default;
+$nav-tabs-background:    $card-bg !default;
+
 // z-index
 $zindex-aside:           11;
 $zindex-float-help:      30;

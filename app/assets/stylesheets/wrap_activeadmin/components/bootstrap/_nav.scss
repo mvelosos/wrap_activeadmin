@@ -1,8 +1,11 @@
 .nav-tabs {
-  @extend .card;
   flex-direction: row;
   margin-bottom: $spacer;
   overflow: hidden;
+  background: $nav-tabs-background;
+  border: $nav-tabs-border;
+  border-radius: $nav-tabs-border-radius;
+  @include box-shadow($nav-tabs-shadow);
 
   @at-root .card .nav-tabs {
     @include box-shadow(none);
