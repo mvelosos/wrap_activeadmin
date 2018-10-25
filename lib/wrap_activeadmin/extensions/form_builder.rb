@@ -95,7 +95,7 @@ module ActiveAdmin
       end
 
       def form_actions(form_builder)
-        template.content_tag :ol, class: 'has-many-actions form-group' do
+        template.content_tag :ol, class: 'has-many-actions form-group my-0' do
           template.capture { has_many_actions(form_builder, "".html_safe) }
         end
       end

@@ -33,7 +33,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'carrierwave-audio'
   s.add_dependency 'carrierwave-video'
   s.add_dependency 'streamio-ffmpeg'
-  s.add_dependency 'mini_magick'
+  s.add_dependency 'rmagick'
   s.add_dependency 'fog'
   s.add_dependency 'acts_as_list', '~> 0.9.10'
   s.add_dependency 'devise'

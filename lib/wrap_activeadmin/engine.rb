@@ -1,35 +1,3 @@
-# Base
-require 'devise'
-require 'active_admin'
-require 'draper'
-require 'ancestry'
-require 'acts_as_list'
-# Components
-require 'bootstrap'
-require 'bootstrap-datepicker-rails'
-require 'jquery-minicolors-rails'
-require 'just-datetime-picker'
-require 'carrierwave'
-require 'carrierwave/video'
-require 'carrierwave/audio'
-require 'streamio-ffmpeg'
-require 'tinymce-rails'
-require 'select2-rails'
-require 'dropzonejs-rails'
-require 'chart-js-rails'
-require 'jquery-rails'
-require 'jquery-ui-rails'
-# Countries
-require 'flag-icons-rails'
-require 'carmen-rails'
-require 'countries'
-# Google Analytics
-require 'oauth2'
-require 'legato'
-require 'signet/oauth_2/client'
-# Video Embed
-require 'video_info'
-
 # WrapActiveadmin
 module WrapActiveadmin
 
@@ -50,13 +18,15 @@ module WrapActiveadmin
     end
 
     config.to_prepare do
-      Dir.glob(WrapActiveadmin::Engine.root + 'app/admin/concerns/wrap_activeadmin/**/*_feature*.rb').each do |c|
+      file_path = 'app/admin/concerns/wrap_activeadmin/**/*_feature*.rb'
+      Dir.glob(WrapActiveadmin::Engine.root + file_path).each do |c|
         require_dependency(c)
       end
     end
 
     config.to_prepare do
-      Dir.glob(WrapActiveadmin::Engine.root + 'app/decorators/wrap_activeadmin/**/*_decorator*.rb').each do |c|
+      file_path = 'app/decorators/wrap_activeadmin/**/*_decorator*.rb'
+      Dir.glob(WrapActiveadmin::Engine.root + file_path).each do |c|
         require_dependency(c)
       end
     end

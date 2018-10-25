@@ -26,7 +26,6 @@ module WrapActiveadmin
       version :thumb, if: :image? do
         process resize_to_fit: [128, 128], if: :process_upload?
       end
-
     end
 
   end
