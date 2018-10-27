@@ -12,12 +12,11 @@
   flex-direction: column;
   justify-content: start;
   width: $header-width;
-  height: 100%;
-  color: $white;
+  height: 100% !important;
+  color: color-yiq($header-bg);
   background-color: $header-bg;
   background-image: $header-gradient;
-  border-right: $hr-border-width solid $hr-border-color;
-  @include transition(transform 0.2s linear);
+  @include transition(all 0.2s linear);
 
   @include media-breakpoint-up($header-breakpoint) {
     @include transform(translateX(0) !important);
@@ -39,27 +38,57 @@
     width: 100%;
   }
 
+  hr { border-color: $header-hr-color; }
+
   .navbar {
     height: $navbar-height;
-    border-bottom: $hr-border-width solid $hr-border-color;
+    @if not($header-navbar-bg == 'transparent' or $header-navbar-bg == false) {
+      color: color-yiq($header-navbar-bg);
+      background: $header-navbar-bg;
+    }
   }
 
   .navbar-brand {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     width: 100%;
     padding: 0;
     margin-right: 0;
     overflow: hidden;
 
+    & > .title-link {
+      @extend .text-decoration-none;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      width: 100%;
+      color: inherit;
+    }
+
+    .title-content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      flex-shrink: 0;
+      justify-content: center;
+
+      .title-link-href {
+        font-size: 60%;
+        opacity: 0.5;
+      }
+    }
+
     .logo {
       position: relative;
       display: inline-flex;
       align-items: center;
+      flex-shrink: 0;
       justify-content: center;
       width: 32px;
       height: 32px;
-      margin-right: $spacer;
+      margin: calc((#{$header-icon-wrap-size} - 32px) / 2) ;
+      margin-right: $spacer / 3 * 2;
       overflow: hidden;
       font-size: $font-size-base;
       text-transform: uppercase;
@@ -89,6 +118,7 @@
     .title-text {
       flex: 1;
       margin-right: $spacer / 2;
+      line-height: 1.2;
     }
 
     .btn { color: $secondary; }
@@ -117,13 +147,13 @@
     a {
       display: flex;
       align-items: center;
-      min-height: 40px;
-      padding: $list-group-item-padding-y $list-group-item-padding-x;
-      color: rgba($white, 0.5);
+      min-height: $header-icon-wrap-size;
+      padding: 0;
+      color: rgba(color-yiq($header-bg), 0.5);
       text-decoration: none;
 
       &:hover {
-        color: $white;
+        color: color-yiq($header-bg);
       }
 
       & > * {
@@ -135,18 +165,31 @@
 
       &::after {
         @extend %aa-icon;
-        margin-left: $spacer / 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: $icon-size;
+        margin-left: map-get($spacers, 2);
+        font-size: $icon-size;
         content: map-get($system-icons, 'menu-anchor');
       }
 
-      &.with-sub-menu::after {
-        content: map-get($system-icons, 'submenu');
+      &.with-sub-menu {
+
+        &.collapsed::after { content: map-get($system-icons, 'submenu-open'); }
+        &::after { content: map-get($system-icons, 'submenu'); }
       }
 
       span.menu-text { flex: 1; }
 
       i {
-        margin-right: $spacer;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        justify-content: center;
+        width: $header-icon-wrap-size;
+        height: $header-icon-wrap-size;
+        margin-right: map-get($spacers, 2);
         font-size: $icon-size;
       }
     }
@@ -154,22 +197,14 @@
     .list-group-item {
       padding: 0;
       overflow: hidden;
-      background: rgba($white, 0.05);
+      background: transparent;
       border: 0;
 
       .badge { @extend .badge-#{$header-badge-color}; }
     }
 
-    .sub-menu {
-      border-top: 1px solid $hr-border-color;
-
-      li:not(:last-child) a {
-        border-bottom: 1px solid $hr-border-color;
-      }
-
-      a {
-        padding-left: calc(#{$list-group-item-padding-x} + #{$icon-size} + #{$spacer});
-      }
+    .sub-menu a {
+      padding-left: calc(#{$header-icon-wrap-size} + #{map-get($spacers, 2)});
     }
   }
 }

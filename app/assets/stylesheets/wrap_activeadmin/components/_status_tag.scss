@@ -1,6 +1,6 @@
 .status_tag {
   @extend .badge;
   text-transform: uppercase;
-  &.yes { @extend .badge-success; }
-  &.no { @extend .badge-danger; }
+  &.yes { @extend .badge-success-light; }
+  &.no { @extend .badge-danger-light; }
 }

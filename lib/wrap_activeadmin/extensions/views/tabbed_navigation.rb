@@ -55,6 +55,8 @@ module ActiveAdmin
 
       def dropdown_options(item)
         item.html_options.reverse_merge!(COLLAPSE_ANCHOR_OPTS)
+        extra_klass = item.current?(assigns[:current_tab]) ? nil : 'collapsed'
+        item.html_options[:class] += " #{extra_klass}"
       end
 
       def add_current(li, item)
