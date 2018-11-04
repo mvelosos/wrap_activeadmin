@@ -4,6 +4,7 @@ module WrapActiveadmin
   module AudioConcern
 
     extend ActiveSupport::Concern
+
     included do
       version :mp3, if: :audio? do
         include CarrierWave::Audio
@@ -13,7 +14,6 @@ module WrapActiveadmin
           "#{super.chomp(File.extname(super))}.mp3"
         end
       end
-
     end
 
   end
