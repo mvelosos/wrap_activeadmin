@@ -19,7 +19,7 @@ active_admin_form_for date_range_filter, url: url, method: :get do |f|
             }
     f.input :timezone,
             as: :time_zone,
-            wrapper_html: { class: 'mb-0 mr-lg-2 mb-3 mb-lg-0' },
+            wrapper_html: { class: 'col-lg-5 px-0 mb-0 mr-lg-2 mb-3 mb-lg-0' },
             input_html: {
               class: 'form-control select2',
               data: { 'select2-search': true }

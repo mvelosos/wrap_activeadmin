@@ -34,18 +34,6 @@ module ActiveAdmin
         helpers.render_or_call_method_or_proc_on(helpers, @namespace.site_title_image)
       end
 
-      def site_link
-        return unless site_title_link?
-        a(href: @namespace.site_title_link,
-          id: 'site-link', title: I18n.t('active_admin.view_site_link'),
-          class: 'btn btn-link',
-          target: '_blank') do
-          div(class: 'tooltip-holder', title: I18n.t('active_admin.view_site_link'),
-              'data-toggle': 'tooltip', 'data-placement': 'bottom')
-          i('', class: 'aa-icon aa-launch-site')
-        end
-      end
-
       def close_link
         div title: I18n.t('active_admin.header_close') do
           a(class: 'btn btn-link d-xl-none',
@@ -57,13 +45,39 @@ module ActiveAdmin
         end
       end
 
-      def site_title_content
-        site_title_image
-        div class: 'title-text text-truncate' do
-          text_node title_text
+      def site_title_link
+        a(href: format_url,
+          id: 'site-link', title: I18n.t('active_admin.view_site_link'),
+          class: 'title-link', target: '_blank') do
+          title_content
         end
-        site_link
+      end
+
+      def site_title
+        div class: 'title-link' do
+          title_content
+        end
+      end
+
+      def title_content
+        site_title_image
+        div class: 'title-content text-truncate' do
+          div title_text, class: 'title-text text-truncate'
+        end
+      end
+
+      def site_title_content
+        site_title_link? ? site_title_link : site_title
         close_link
+      end
+
+      def format_url(display: false)
+        link = @namespace.site_title_link
+        href = full_url_for(link).split('?').first
+        href.chomp!('/') unless href.length <= 1
+        return href unless display
+        href = request.base_url if href.chomp('/').blank?
+        href.sub(%r{^https?\:\/\/}, '')
       end
 
     end

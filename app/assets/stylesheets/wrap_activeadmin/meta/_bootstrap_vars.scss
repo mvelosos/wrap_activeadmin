@@ -11,14 +11,14 @@
 // // stylelint-disable
 $white:    #fff !default;
 $gray-100: #fcfcfc !default;
-$gray-200: #F7F7F7 !default;
-$gray-300: #F0F0F0 !default;
-$gray-400: #cdd0d2 !default;
+$gray-200: #f7f7f7 !default;
+$gray-300: #f0f0f0 !default;
+$gray-400: #c9c9c9 !default;
 $gray-500: #a0a0a0 !default;
 $gray-600: #9c9c9c !default;
 $gray-700: #495057 !default;
 $gray-800: #4c525a !default;
-$gray-900: #1B2B3B !default;
+$gray-900: #1b2b3b !default;
 $black:    #000 !default;
 //
 // $grays: () !default;
@@ -391,7 +391,7 @@ $btn-font-weight:             $font-weight-bold !default;
 // $input-line-height-lg:                  $input-btn-line-height-lg !default;
 //
 $input-bg:                              $white !default;
-// $input-disabled-bg:                     $gray-200 !default;
+$input-disabled-bg:                     $gray-200 !default;
 //
 // $input-color:                           $gray-700 !default;
 // $input-border-color:                    $gray-400 !default;
@@ -709,7 +709,7 @@ $tooltip-bg:                  $gray-900 !default;
 // // Badges
 //
 $badge-font-size:                   80% !default;
-// $badge-font-weight:                 $font-weight-bold !default;
+$badge-font-weight:                 $font-weight-bold !default;
 $badge-padding-y:                   .33em !default;
 $badge-padding-x:                   .5em !default;
 // $badge-border-radius:               $border-radius !default;

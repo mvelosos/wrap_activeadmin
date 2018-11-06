@@ -55,23 +55,24 @@ module ViewHelpers
       end
     end
 
-    # rubocop:disable Metrics/MethodLength
+    # rubocop:disable Metrics/MethodLength, Metrics/AbcSize
     def thumbnail(object, image, *args)
       return unless image
-      options = args.extract_options!
-      klass   = options.delete(:class)
-      icon    = options.delete(:icon) { 'image' }
-      size    = options.delete(:size) { 'thumb' }
+      options    = args.extract_options!
+      klass      = options.delete(:class)
+      icon       = options.delete(:icon) { 'image' }
+      size       = options.delete(:size) { 'thumb' }
+      processed  = options.delete(:processed) && true
       url_method = options.delete(:url_method) { '_url' }
       content_tag :div, class: "thumbnail #{klass}" do
-        if object.try(image).present? && object.try("#{image}#{url_method}", size)
+        if object.try(image).present? && object.try("#{image}#{url_method}", size) && processed
           image_tag(object.send("#{image}#{url_method}", size), *args)
         else
           aa_icon(icon, options)
         end
       end
     end
-    # rubocop:enable Metrics/MethodLength
+    # rubocop:enable Metrics/MethodLength, Metrics/AbcSize
 
     def color_brick(color, *args)
       options = args.extract_options!

@@ -1,10 +1,13 @@
 // Header
-$header-width:      340px !default;
-$header-bg:         $dark !default;
-$header-gradient:   linear-gradient(to bottom left, $header-bg, darken($header-bg, 7%)) !default;
-$header-logo-bg:    $primary !default;
-$header-breakpoint: xl;
-$header-badge-color: primary !default;
+$header-width:          300px !default;
+$header-bg:             $dark !default;
+$header-gradient:       linear-gradient(to bottom left, $header-bg, darken($header-bg, 7%)) !default;
+$header-logo-bg:        $primary !default;
+$header-breakpoint:     xl;
+$header-badge-color:    primary !default;
+$header-icon-wrap-size: 40px !default;
+$header-hr-color:       rgba($white, 0.05) !default;
+$header-navbar-bg:      false !default;
 
 // Navbar
 $navbar-height: 56px !default;
@@ -15,12 +18,12 @@ $titlebar-btn-color: $primary !default;
 $titlebar-shadow:    0 1px 0 0 rgba($dark, 0.1) !default;
 
 // Filter
-$filter-width:         370px !default;
+$filter-width:         340px !default;
 $filter-header-bg:     $titlebar-bg !default;
 $filter-header-shadow: $titlebar-shadow !default;
 
 // Sidebar
-$sidebar-width: 370px !default;
+$sidebar-width: 340px !default;
 $sidebar-bg:    $body-bg !default;
 
 // Table
@@ -84,9 +87,10 @@ $system-icons: (
   'arrow-right':           '\ea2f',
   'arrow-left':            '\ea30',
   'select':                '\ea2d',
-  'submenu':               '\ea2e',
+  'submenu':               '\ea42',
+  'submenu-open':          '\ea43',
   'menu':                  '\ea38',
-  'menu-anchor':           '\ea1d',
+  'menu-anchor':           '',
   'search':                '\ea02',
   'add':                   '\ea3b',
   'edit':                  '\ea3c',
@@ -95,6 +99,10 @@ $system-icons: (
   'dropdown':              '\ea2c',
   'menu-dots':             '\ea29',
   'launch-site':           '\ea1b',
-  'close-sidebar':         '\ea1c',
-  'image':                 '\ea3f'
+  'close-sidebar':         '\ea44',
+  'image':                 '\ea3f',
+  'caret-right':           '\ea40',
+  'caret-left':            '\ea41',
+  'caret-up':              '\ea42',
+  'caret-down':            '\ea43',
 ) !default;

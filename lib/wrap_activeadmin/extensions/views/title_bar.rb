@@ -85,6 +85,7 @@ module ActiveAdmin
           end
         end
       end
+      # rubocop:enable Metrics/MethodLength
 
       def build_titlebar_left
         div id: 'titlebar_left', class: 'navbar-brand mr-0 text-truncate d-block' do
