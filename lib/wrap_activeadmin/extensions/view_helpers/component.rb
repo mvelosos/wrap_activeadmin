@@ -62,10 +62,11 @@ module ViewHelpers
       klass      = options.delete(:class)
       icon       = options.delete(:icon) { 'image' }
       size       = options.delete(:size) { 'thumb' }
-      processed  = options.delete(:processed) && true
+      processed  = options.delete(:processed)
       url_method = options.delete(:url_method) { '_url' }
       content_tag :div, class: "thumbnail #{klass}" do
-        if object.try(image).present? && object.try("#{image}#{url_method}", size) && processed
+        if object.try(image).present? && object.try("#{image}#{url_method}", size) &&
+           (processed.to_s.present? ? processed : true)
           image_tag(object.send("#{image}#{url_method}", size), *args)
         else
           aa_icon(icon, options)
