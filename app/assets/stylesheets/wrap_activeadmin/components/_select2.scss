@@ -92,6 +92,7 @@ input.select2 { display: none; }
 
   .select2-dropdown {
     font-size: $font-size-base;
+    color: $input-color;
     background-color: $input-focus-bg;
     border: $dropdown-border-width solid $dropdown-border-color !important;
     border-radius: $dropdown-border-radius;

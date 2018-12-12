@@ -34,11 +34,7 @@ module ViewHelpers
 
     def devise_error_html
       messages = resource.errors.full_messages.join(', ')
-      <<-HTML
-      <div class='alert alert-danger'>
-        #{messages}
-      </div>
-      HTML
+      content_tag :div, messages, class: 'alert alert-danger'
     end
 
   end

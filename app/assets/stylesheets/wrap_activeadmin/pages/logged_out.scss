@@ -2,6 +2,7 @@ body.logged_out {
   position: relative;
   color: color-yiq($logged-out-body-bg);
   background-color: $logged-out-body-bg;
+  @include formastic;
 
   &::before {
     position: absolute;
