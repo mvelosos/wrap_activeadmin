@@ -1,7 +1,20 @@
 body.logged_out {
+  position: relative;
   color: color-yiq($logged-out-body-bg);
   background-color: $logged-out-body-bg;
-  background-image: $logged-out-body-gradient;
+
+  &::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $logged-out-body-bg;
+    background-image: $logged-out-body-gradient;
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: '';
+  }
 
   .logo {
     position: relative;
@@ -23,4 +36,6 @@ body.logged_out {
   #content_wrapper { min-height: calc(100vh - #{$navbar-height}); }
   #login .list-inline-item { display: block; }
   .card { color: $body-color; }
+
+  #footer { position: relative; }
 }

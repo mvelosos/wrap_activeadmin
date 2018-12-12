@@ -13,7 +13,7 @@ html
     - ActiveAdmin.application.meta_tags_for_logged_out_pages.each do |name, content|
       = tag(:meta, name: name, content: content)
     = csrf_meta_tag
-  body[class="active_admin logged_out #{controller.action_name}"]
+  body.py-4[class="active_admin logged_out #{controller.action_name}"]
     .container-fluid
       #content_wrapper.row.align-items-center.justify-content-md-center.px-2
         .col-md-6.col-lg-5.col-xl-4
