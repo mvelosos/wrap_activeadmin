@@ -15,7 +15,8 @@ module ViewHelpers
     end
 
     def currency_options
-      ISO3166::Country.all.map(&:currency_code).uniq.sort
+      @currency_options ||=
+        ISO3166::Country.all.map(&:currency_code).uniq.sort
     end
 
     def country_identifier(country)
