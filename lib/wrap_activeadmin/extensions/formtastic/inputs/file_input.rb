@@ -42,6 +42,7 @@ module Formtastic
       private
 
       def image?(file)
+        return false if file.blank?
         file.content_type&.start_with? 'image'
       end
 
