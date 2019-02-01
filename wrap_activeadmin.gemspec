@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'select2-rails'
   s.add_dependency 'tinymce-rails'
   s.add_dependency 'chart-js-rails', '~> 0.1.3'
-  s.add_dependency 'friendly_id', '~> 5.1.0'
   s.add_dependency 'carrierwave', '~> 1.3.1'
   s.add_dependency 'carrierwave-audio'
   s.add_dependency 'carrierwave-video'

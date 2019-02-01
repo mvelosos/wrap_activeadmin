@@ -6,10 +6,10 @@ module WrapActiveadmin
     extend ActiveSupport::Concern
 
     included do
-      version :file_preview, if: :pdf? do
-        process :cover,                     if: :process_upload?
-        process resize_to_fill: [800, 800], if: :process_upload?
-        process convert: :jpg,              if: :process_upload?
+      version :file_preview do
+        process :cover,                     if: :should_process_pdf?
+        process resize_to_fill: [800, 800], if: :should_process_pdf?
+        process convert: :jpg,              if: :should_process_pdf?
 
         def full_filename(for_file = model.source.file)
           super.chomp(File.extname(super)) + '.jpg'
@@ -21,6 +21,10 @@ module WrapActiveadmin
           end
         end
       end
+    end
+
+    def should_process_pdf?(*args)
+      pdf?(*args) && process_upload?(*args)
     end
 
   end

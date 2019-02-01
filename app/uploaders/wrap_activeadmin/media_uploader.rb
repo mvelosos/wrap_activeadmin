@@ -64,8 +64,10 @@ module WrapActiveadmin
     end
 
     def save_meta_to_model
-      model.try('file_type=', file.content_type) if file.content_type
-      model.try('file_size=', file.size)
+      file_type_attr = [mounted_as, 'file_type'].join('_')
+      file_size_attr = [mounted_as, 'file_size'].join('_')
+      model.try("#{file_type_attr}=", file.content_type) if file.content_type
+      model.try("#{file_size_attr}=", file.size)
     end
 
   end

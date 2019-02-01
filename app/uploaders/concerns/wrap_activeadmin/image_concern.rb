@@ -9,23 +9,27 @@ module WrapActiveadmin
       process resize_to_fit: [3000, 3000], if: :image?
 
       # Mobile version
-      version :sm, if: :image? do
-        process resize_to_fit: [600, 600], if: :process_upload?
+      version :sm do
+        process resize_to_fit: [600, 600], if: :should_process_image?
       end
 
       # medium version
-      version :md, if: :image? do
-        process resize_to_fit: [1200, 1200], if: :process_upload?
+      version :md do
+        process resize_to_fit: [1200, 1200], if: :should_process_image?
       end
 
       # Desktop version
-      version :lg, if: :image? do
-        process resize_to_fit: [2400, 2400], if: :process_upload?
+      version :lg do
+        process resize_to_fit: [2400, 2400], if: :should_process_image?
       end
 
-      version :thumb, if: :image? do
-        process resize_to_fit: [128, 128], if: :process_upload?
+      version :thumb do
+        process resize_to_fit: [128, 128], if: :should_process_image?
       end
+    end
+
+    def should_process_image?(*args)
+      image?(*args) && process_upload?(*args)
     end
 
   end

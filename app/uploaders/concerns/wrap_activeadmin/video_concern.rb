@@ -8,12 +8,12 @@ module WrapActiveadmin
     require 'streamio-ffmpeg'
 
     included do
-      version :web_video, if: :video? do
-        process :convert_to_mp4, if: :process_upload?
+      version :web_video do
+        process :convert_to_mp4, if: :should_process_video?
       end
 
-      version :video_preview, if: :video? do
-        process :screenshot, if: :process_upload?
+      version :video_preview do
+        process :screenshot, if: :should_process_video?
 
         def full_filename(for_file)
           img_name(for_file, version_name)
@@ -23,6 +23,10 @@ module WrapActiveadmin
           %(#{version_name}_#{for_file.chomp(File.extname(for_file))}.jpg)
         end
       end
+    end
+
+    def should_process_video?(*args)
+      video?(*args) && process_upload?(*args)
     end
 
     def screenshot
