@@ -19,11 +19,12 @@ module Formtastic
         end
       end
 
-      # rubocop:disable Metrics/AbcSize
+      # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
       def attachment_preview
         template.content_tag :div, class: 'file-preview' do
           if object.try(method).present? && image?(object.try(method))
-            version = object.try(method)&.versions&.map(&:first) & WrapActiveadmin.file_preview_versions
+            version =
+              object.try(method)&.versions&.map(&:first) & WrapActiveadmin.file_preview_versions
             if version.empty?
               template.image_tag(object.try(method)&.url)
             else
@@ -32,6 +33,7 @@ module Formtastic
           end
         end
       end
+      # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
       def file_input_class
         klass = %w[form-control-file form-control]
@@ -43,7 +45,8 @@ module Formtastic
 
       def image?(file)
         return false if file.blank?
-        file.content_type&.start_with? 'image'
+        file_type = object.try("#{file.mounted_as}_file_type").presence || file.content_type
+        file_type && file_type&.start_with?('image')
       end
 
       def attachment
