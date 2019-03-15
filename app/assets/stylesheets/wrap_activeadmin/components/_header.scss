@@ -10,7 +10,7 @@
   z-index: $zindex-header;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   width: $header-width;
   height: 100% !important;
   color: color-yiq($header-bg);
