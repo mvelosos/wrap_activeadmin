@@ -1,8 +1,6 @@
 body.logged_in {
   position: relative;
-  display: flex;
-  flex: 1;
-  min-height: 100%;
+  min-height: 100vh;
   padding-top: $navbar-height;
 
   @include media-breakpoint-up($header-breakpoint) {
