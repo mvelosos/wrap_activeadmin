@@ -32,7 +32,7 @@ PATH
       signet
       slim-rails
       streamio-ffmpeg
-      tinymce-rails
+      tinymce-rails (~> 4.4.0)
       video_info (~> 2.7.0)
 
 GEM
@@ -386,7 +386,7 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.9)
-    tinymce-rails (4.8.2)
+    tinymce-rails (4.4.3)
       railties (>= 3.1.1)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
