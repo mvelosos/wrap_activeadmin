@@ -51,11 +51,12 @@
   .navbar-brand {
     display: flex;
     align-items: center;
-    flex-shrink: 0;
+    flex-direction: row;
     width: 100%;
     padding: 0;
     margin-right: 0;
     overflow: hidden;
+    white-space: nowrap;
 
     & > .title-link {
       @extend .text-decoration-none;
@@ -63,6 +64,7 @@
       align-items: center;
       flex: 1;
       width: 100%;
+      overflow: hidden;
       color: inherit;
     }
 
