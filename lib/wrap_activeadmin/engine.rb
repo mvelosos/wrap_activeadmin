@@ -31,19 +31,19 @@ module WrapActiveadmin
       end
     end
 
-    initializer :wrap_activeadmin do
-      if defined?(ActiveAdmin)
-        ::ActiveAdmin.application.load_paths.unshift root.join('lib', 'wrap_activeadmin/admin').to_s
-      end
-    end
-
-    initializer 'default configs' do |_app|
+    config.before_initialize do
       ActiveAdmin.setup do |config|
         config.current_filters = false
         config.comments_menu   = false
         config.meta_tags = {
           viewport: 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no'
         }
+      end
+    end
+
+    initializer :wrap_activeadmin do
+      if defined?(ActiveAdmin)
+        ::ActiveAdmin.application.load_paths.unshift root.join('lib', 'wrap_activeadmin/admin').to_s
       end
     end
 
