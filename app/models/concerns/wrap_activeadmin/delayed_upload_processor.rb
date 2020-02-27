@@ -7,7 +7,7 @@ module WrapActiveadmin
     class_methods do
       def process_image(key, *args)
         after_save -> { create_upload_process_job(key, *args) },
-                   if: proc { |x| x.send("saved_change_to_#{key}?") || x.direct_upload }
+                   if: proc { |x| (x.send("#{key}_previous_change").present? && x.send("#{key}_previous_change").uniq.count > 1) || x.direct_upload }
       end
     end
 
@@ -26,6 +26,7 @@ module WrapActiveadmin
 
       def create_versions!(key, status_column: nil)
         return unless respond_to?(key)
+
         self.background_upload = true
         send("#{status_column}=", true) if status_column && respond_to?(status_column)
         send(key).recreate_versions!
