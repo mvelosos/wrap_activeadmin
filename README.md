@@ -1,6 +1,8 @@
-# WrapActiveadmin
 > ## ⛔️ DEPRECATED: THIS GEM IS NO LONGER BEING MAINTAINED
 > This gem is no longer being maintained. Please upgrade to [Adminterface](https://adminterface.io) or other excellent alternatives listed in the [ActiveAdmin Wiki](https://github.com/activeadmin/activeadmin/wiki) instead.
+
+# WrapActiveadmin
+ActiveAdmin addon
 
 ## Installation
 Add this line to your application's Gemfile:
