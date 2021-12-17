@@ -1,8 +1,6 @@
 # WrapActiveadmin
-Short description and motivation.
-
-## Usage
-How to use my plugin.
+> ## ⛔️ DEPRECATED: THIS GEM IS NO LONGER BEING MAINTAINED
+> This gem is no longer being maintained. Please upgrade to [Adminterface](https://adminterface.io) or other excellent alternatives listed in the [ActiveAdmin Wiki](https://github.com/activeadmin/activeadmin/wiki) instead.
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -37,3 +35,4 @@ gem 'wrap_activeadmin', path: '{PATH_TO_GEM}/wrap_activeadmin'
 ```
 
 ## License
+Please see **[LICENSE](LICENCE)** for licensing details.
